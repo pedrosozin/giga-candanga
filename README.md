@@ -10,8 +10,11 @@ Things you may want to cover:
 * System dependencies
 
 * Configuration
+  - siga as instruções deste link, e modifique o database.yml para suas credenciais
+  link: https://gorails.com/setup/ubuntu/16.10#postgresql
 
 * Database creation
+
 
 * Database initialization
 

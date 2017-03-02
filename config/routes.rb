@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   devise_for :usuarios
+
+
   # namespace :usuarios do
   #   get 'edit'
   #   get 'create'

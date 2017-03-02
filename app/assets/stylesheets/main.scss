@@ -1,0 +1,14 @@
+/*  base  */
+@import "base/variables.scss";
+@import "base/mixins.scss";
+@import "base/normalize.scss";
+@import "base/global.scss";
+
+
+/** Vendors  */
+
+@import "vendor/css/ionicons.min.css";
+
+/* controllers */
+
+@import "categorias.scss";

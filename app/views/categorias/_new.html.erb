@@ -1,0 +1,14 @@
+<div class="dialog-wrapper">
+    <div id="nova-categoria-dialog" title="Nova Categoria">
+        <div class="row">
+            <h2>Nova Categoria</h2>
+        </div>
+        <div class="underline"></div>
+
+        <%= form_for(@categoria, remote: true, class:"nova-categoria") do |f|%>
+            <%= f.label(:nome, "Nome")%>
+            <%= f.text_field(:nome, required: true)%>
+            <%= f.submit("Salvar")%>
+        <%end%>
+    </div>
+</div>

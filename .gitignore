@@ -18,3 +18,7 @@
 
 # Ignore database.yml local configuration
 config/database.yml
+
+#ignore general
+db/schema.rb
+tags

@@ -1,0 +1,75 @@
+// Place all the styles related to the categorias controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+$dialog-height: 40vh;
+
+
+
+section.categorias {
+    padding: 50px 5%;
+    width: 75%;
+    min-height: 100%;
+    height: auto;
+    display: block;
+    float: left;
+}
+
+button.nova-categoria{
+    margin: 25px 0;
+    display: block;
+    min-width: 150px;
+}
+
+// Dialog box of the index page
+#nova-categoria-dialog {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%); // center content
+
+    min-width: 479px;
+    width: 50%;
+    height: auto;
+    min-height: $dialog-height;
+    background-color: #f3f3f3;
+    padding: 10px;
+    animation-name: animatetop;
+    animation-duration: 0.4s;
+
+
+    .new_categoria {
+        padding-top: 20px;
+        min-height: $dialog-height;
+        position: relative;
+
+        label { margin-left: 25px;}
+
+        input[type=submit]{
+            display: block;
+            width: 150px;
+            position: absolute;
+            bottom: 15px;
+            right: 60px;
+        }
+
+        input[type=text]{
+            display: inline-block;
+            width: 80%;
+            min-width: 200px;
+        }
+
+        &:after {
+            content: " ";
+            display: block;
+            clear: both;
+            height: 0;
+            visibility: hidden;
+        }
+    }
+}
+
+@keyframes animatetop {
+    from {top: -300px; opacity: 0}
+    to {top: 40%; opacity: 1}
+}

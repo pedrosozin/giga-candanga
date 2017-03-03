@@ -6,14 +6,16 @@
       <th>Nome</th>
       <th>Email</th>
       <th>Telefone</th>
+      <th>Ações</th>
     </thead>
     <tbody>
       <% @users.each do |user| %>
         <tr>
           <td> <%= user.id %> </td>
-          <td> <%= user.complemento.nome %> </td>
+          <td> <%= user.complemento ? user.complemento.nome : "" %> </td>
           <td> <%= user.email %> </td>
-          <td> <%= user.complemento.telefone %> </td>
+          <td> <%= user.complemento ? user.complemento.telefone : "" %> </td>
+          <td> <%= link_to "Editar", edit_usuario_registration_path(user) %> </td>
         </tr>
       <% end %>
     </tbody>

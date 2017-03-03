@@ -10,13 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170302191302) do
+ActiveRecord::Schema.define(version: 20170303152221) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "usuarios", force: :cascade do |t|
+  create_table "complementos", force: :cascade do |t|
     t.string   "nome"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string   "telefone"
+    t.integer  "usuario_id"
+    t.index ["usuario_id"], name: "index_complementos_on_usuario_id", using: :btree
+  end
+
+  create_table "usuarios", force: :cascade do |t|
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
     t.string   "email",                  default: "", null: false
@@ -33,4 +41,5 @@ ActiveRecord::Schema.define(version: 20170302191302) do
     t.index ["reset_password_token"], name: "index_usuarios_on_reset_password_token", unique: true, using: :btree
   end
 
+  add_foreign_key "complementos", "usuarios"
 end

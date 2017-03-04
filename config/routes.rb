@@ -21,8 +21,12 @@ Rails.application.routes.draw do
     post '/', to: 'devise/registrations#create'
 
     # Rotas 'Password' Traduzidas
+    get 'nova_senha', to: 'devise/passwords#new', as: 'new_usuario_password'
+    get 'mudar_senha', to: 'devise/passwords#edit', as: 'edit_usuario_password'
+    patch 'atualizar_senha', to: 'devise/passwords#update', as: 'usuario_password'
+    put 'atualizar_senha', to: 'devise/passwords#update'
+    post 'nova_senha', to: 'devise/passwords#create'
   end
-
-  devise_for :usuarios, skip: [:sessions, :registrations]
+  
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

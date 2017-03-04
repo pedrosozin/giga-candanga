@@ -15,10 +15,12 @@ Rails.application.routes.draw do
     get 'cancelar', to: 'devise/registrations#cancel', as: 'cancel_usuario_registration'
     get 'cadastrar', to: 'devise/registrations#new', as: 'new_usuario_registration'
     get 'editar', to: 'devise/registrations#edit', as: 'edit_usuario_registration'
-    patch '/', to: 'devise/registrations#update', as: 'usuario_registration'
+    patch '/', to: 'devise/registrations#update', as: 'registration'
     put '/', to: 'devise/registrations#update'
     delete '/', to: 'devise/registrations#destroy'
     post '/', to: 'devise/registrations#create'
+
+    # Rotas 'Password' Traduzidas
   end
 
   devise_for :usuarios, skip: [:sessions, :registrations]

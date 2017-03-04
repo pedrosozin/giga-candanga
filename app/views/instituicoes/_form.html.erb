@@ -1,0 +1,153 @@
+<%= nested_form_for(@instituicao) do |f| %>
+	<!-- DISPLAY ERRORS-->
+	<% if @instituicao.errors.any? %>
+		<div class="alert alert-block">
+			<ul>
+				<% @instituicao.errors.full_messages.each do |msg| %>
+					<li><%= msg %></li>
+				<% end %>
+			</ul>
+		</div>
+	<% end %>
+
+	<!--  CAMPOS  PATA A INSTITUICAO -->
+	<div class="row">
+		<div class="field">
+			<%= f.label :nome %>
+			<%= f.text_field :nome, required: true%>
+		</div>
+
+		<div class="field">
+			<%= f.select(:categoria_id, @categorias.map { |c| [c.nome, c.id]})%>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="field">
+			<%= f.label :sigla %>
+			<%= f.text_field :sigla, required: true %>
+		</div>
+
+		<div class="field">
+			<%= f.label :cnpj %>
+			<%= f.text_field :cnpj, required: true %>
+		</div>
+
+		<div class="field">
+			<%= f.label :data_aprovacao, "Data Aprovação" %>
+			<%= f.date_select :data_aprovacao, required: true%>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="field">
+			<%= f.label :resumo %>
+			<%= f.text_area :resumo %>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="field">
+			<%= f.label :site %>
+			<%= f.text_field :site %>
+		</div>
+	</div>
+
+
+	<!--     CAMPOS PARA O EMAIL     -->
+
+	<div class="row">
+		<h2>Endereço</h2>
+	</div>
+
+	<%= f.fields_for :endereco do |ed| %>
+
+		<div class="row">
+			<div class="field">
+				<%= ed.label :cep%>
+				<%= ed.text_field(:cep)%>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="field">
+
+				<%= ed.label :cidade%>
+				<%= ed.text_field(:cidade)%>
+
+			</div>
+
+			<div class="field">
+
+				<%= ed.label :estado%>
+				<%= ed.text_field(:estado)%>
+
+			</div>
+			<div class="field">
+
+				<%= ed.label :bairro%>
+				<%= ed.text_field(:bairro)%>
+			</div>
+		</div>
+		<div class="row">
+			<div class="field">
+				<%= ed.label :endereco%>
+				<%= ed.text_field(:endereco)%>
+			</div>
+		</div>
+
+	<%end%>
+
+	<!-- CAMPOS PARA OS RESPONSAVEIS   -->
+
+	<div class="row">
+		<h2>Responsáveis</h2>
+	</div>
+	<%= f.fields_for :responsaveis do |res| %>
+		<div class="row">
+			<p><%= res.object.responsavel_tipo.descricao %></p>
+			<div class="row">
+				<div class="field">
+					<%= res.label(:cargo)%>
+					<%= res.text_field(:cargo)%>
+				</div>
+				<div class="field">
+					<%= res.label(:nome)%>
+					<%= res.text_field(:nome)%>
+				</div>
+			</div>
+
+			<div class="row">
+				<%= res.fields_for(:telefones) do |t|%>
+					<div class="field">
+						<%= t.label(:numero, "Telefone")%>
+						<%= t.text_field(:numero)%>
+					</div>
+					<% if t.object.persisted? %>
+						<div class="field">
+							<%= t.check_box(:_destroy)%>
+							<%= t.label(:_destroy, "Excluir")%>
+						</div>
+					<%end%>
+				<%end%>
+
+				<%= res.fields_for(:emails) do |t|%>
+					<div class="field">
+						<%= t.label(:email, "Email")%>
+						<%= t.text_field(:email)%>
+					</div>
+					<% if t.object.persisted? %>
+						<div class="field">
+							<%= t.check_box(:_destroy)%>
+							<%= t.label(:_destroy, "Excluir")%>
+						</div>
+					<%end%>
+				<%end%>
+			</div>
+		</div>
+	<%end%>
+
+	<div class="actions">
+		<%= f.submit %>
+	</div>
+<% end %>

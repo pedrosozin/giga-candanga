@@ -1,5 +1,6 @@
 class Categoria < ApplicationRecord
   validates :nome, presence: true, length: { in: 2..255}
+  has_many :instituicoes
 
   scope :ativas, lambda { where(ativa: true)}
   scope :inativas, lambda { where(ativa: false)}

@@ -1,86 +1,150 @@
 // configuracoes globais 
 @import "variables.scss";
 
-* { box-sizing: border-box;}
+$dialog-height: 25vh;
+
+* { box-sizing: border-box;} // tamanho box inclui padding e border
 
 html, body {
-  height: 100%;
-  width:100%;
+	height: 100%;
+	width:100%;
 }
+
 html {
-  position: relative;
+	position: relative;
 }
 
 body {
-  position: absolute;
+	position: absolute;
+	min-height: auto;
 }
 
-/* reusable items */
+/********************************* REUSABLE ITEMS ***************************************/
 .row {
-  width: 100%;
-  max-width: $resolucao-grande;
-  margin: 0 auto;
+	width: 100%;
+	max-width: $resolucao-grande;
+	margin: 0 auto;
+  clear: both;
+}
+
+.clear-fix {
+  zoom: 1;
+  &:after {
+    content: " ";
+    clear: both;
+    height: 0;
+    display: block;
+    visibility: hidden;
+  }
+}
+/**************    TABELA DAS TELAS DE LISTAGEM      ***************/
+
+.underline {
+	width: 100%;
+	height: 1px;
+	margin: 0 auto;
+	border-bottom: 2px solid #bbb;
+	display: block;
+	clear: both;
 }
 
 // used to style tables for "listar" pages
 .listing {
-  text-align: left;
-  margin-bottom: 40px;
-  transition: 2.5s;
+	text-align: left;
+	margin-bottom: 40px;
+	transition: 2.5s;
+	min-width: 479px;
 }
 
+/***********  LINKS    ****************/
+//delete link
 .link-delete:link,
 .link-delete:visited{
-  text-decoration: none;
-  font-size: 1.5rem;
-  color: #ccc;
-  transition: .3s;
-  margin-left: 10%;
+	text-decoration: none;
+	font-size: 1.5rem;
+	color: #ccc;
+	transition: .3s;
+	margin-left: 10%;
 }
 
 
 .link-delete:hover,
 .link-delete:active{
-  color:$red;
+	color:$red;
 }
 
+// ativat link
 .link-ativa:link,
 .link-ativa:visited{
-  @extend .link-delete:link;
+	@extend .link-delete:link;
 }
 
 .link-ativa:hover,
 .link-ativa:active {
-  color: $green;
+	color: $green;
 }
-
-.listing{
-  min-width: 479px;
-}
-
-.underline {
-  width: 100%;
-  height: 1px;
-  margin: 0 auto;
-  border-bottom: 2px solid #bbb;
-  display: block;
-  clear: both;
-}
-
+ /*************************************    MODAL DIALOG       ****************************************/
 .dialog-wrapper {
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
-  left: 0;
-  top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgba(0,0,0,0.7); /* Black w/ opacity */
+	display: none; /* Hidden by default */
+	position: fixed; /* Stay in place */
+	z-index: 1; /* Sit on top */
+	left: 0;
+	top: 0;
+	width: 100%; /* Full width */
+	height: 100%; /* Full height */
+	overflow: auto; /* Enable scroll if needed */
+	background-color: rgba(0,0,0,0.7); /* Black w/ opacity */
 }
 
+.dialog-default {
+	position: absolute;
+	top: 40%;
+	left: 50%;
+	transform: translate(-50%, -50%); // center content
+
+	min-width: 479px;
+	width: 50%;
+	height: auto;
+	min-height: $dialog-height;
+	background-color: #f3f3f3;
+	padding: 10px;
+	animation-name: animatetop;
+	animation-duration: 0.4s;
+
+
+	form {
+		padding-top: 20px;
+		min-height: $dialog-height;
+		position: relative;
+
+		label { margin-left: 25px;}
+
+		input[type=submit]{
+			display: block;
+			width: 150px;
+			position: absolute;
+			bottom: 15px;
+			right: 60px;
+		}
+
+		input[type=text]{
+			display: inline-block;
+			width: 80%;
+			min-width: 200px;
+		}
+
+		&:after {
+			content: " ";
+			display: block;
+			clear: both;
+			height: 0;
+			visibility: hidden;
+		}
+	}
+}
+/***********************************    BREADCRUMB    ***********************/
 .breadcrumb {
-  padding: 5px 0;
+	padding: 5px 0;
 }
 
 /************************************************************************************************************
@@ -89,50 +153,74 @@ body {
 $nav-back-color: #4388cc;
 $nav-border-color: #1b3280;
 
-.app-nav {
-  min-height: 90px;
-  width: 100%;
-  background-color: $nav-back-color;
-  border: 1px solid $nav-border-color;
+/* style para o wrapper principal do application layout*/
+.page-wrapper {
+	width: 100%;
+	position: relative;
+	max-width: $resolucao-grande;
+	height:100%;
+	display: block;
+	margin: 0 auto;
+	// left: 50%;
+	// transform: translate(-50%,0);
 }
+
+
+/*   navigation bar  */
+.app-nav {
+	min-height: 90px;
+	width: 100%;
+	background-color: $nav-back-color;
+	border: 1px solid $nav-border-color;
+}
+
+/* style da sidebar */
 
 .app-sidebar{
-  min-height: 100%;
-  background-color: $nav-back-color;
-  min-width: $resolucao-sidebar;
-  width: 25%;
-  display: block;
-  float: left;
-  border: 1px solid $nav-border-color;
-  padding-top: 110px;
-  padding-left: 25px;
+	min-height: 100%;
+	background-color: $nav-back-color;
+	max-width: $resolucao-sidebar;
+	width: 25%;
+	display: block;
+	float: left;
+	border: 1px solid $nav-border-color;
+	padding-top: 110px;
+	padding-left: 25px;
 
-  ul {
-    list-style: none;
-  }
+	ul {
+		list-style: none;
+	}
 
-  a:link,
-  a:visited {
-    text-decoration: none;
-    color: $black ;
-    transition: .3s;
-    line-height: 1.4rem;
-  }
+	a:link,
+	a:visited {
+		text-decoration: none;
+		color: $black ;
+		transition: .3s;
+		line-height: 1.4rem;
+	}
 
-  a:hover,
-  a:active {
-    color: $white;
-  }
+	a:hover,
+	a:active {
+		color: $white;
+	}
 }
 
 
-.page-wrapper {
-  width: 100%;
-  position: relative;
-  max-width: $resolucao-grande;
-  height:100%;
-  display: block;
-  margin: 0 auto;
-  // left: 50%;
-  // transform: translate(-50%,0);
+/********* STYLE PADRAO PARA AS SECTIONS    *****/
+.section-default {
+	padding: 50px 5%;
+	width: 75%;
+	min-height: 100%;
+	height: auto;
+	display: block;
+	float: left;
+}
+
+.field_with_errors {
+  input {border: 1px solid $red;}
+}
+/***********************                               ANIMACOES    ***************************************/
+@keyframes animatetop {
+	from {top: -300px; opacity: 0}
+	to {top: 40%; opacity: 1}
 }

@@ -108,7 +108,12 @@ GEM
     mini_portile2 (2.1.0)
     minitest (5.10.1)
     multi_json (1.12.1)
+<<<<<<< 566b9ac1978798f69d48461489a9feb17224dd92
     nio4r (2.0.0)
+=======
+    nested_form (0.3.2)
+    nio4r (1.2.1)
+>>>>>>> adiciona inicio do CRUD instituicoes, ajuste na configuração de idioma
     nokogiri (1.7.0.1)
       mini_portile2 (~> 2.1.0)
     orm_adapter (0.5.0)
@@ -214,7 +219,11 @@ DEPENDENCIES
   jbuilder (~> 2.5)
   jquery-rails
   listen (~> 3.0.5)
+<<<<<<< 566b9ac1978798f69d48461489a9feb17224dd92
   mailcatcher
+=======
+  nested_form
+>>>>>>> adiciona inicio do CRUD instituicoes, ajuste na configuração de idioma
   pg (~> 0.18)
   puma (~> 3.0)
   rails (~> 5.0.1)

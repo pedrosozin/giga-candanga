@@ -1,0 +1,28 @@
+// Place all the styles related to the Instituicoes controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+
+section.instituicao{
+  @extend .section-default !optional;
+  @extend .clear-fix !optional;
+  form.edit_instituicao {
+    @extend .inst-form;
+  }
+  form.new_instituicao {
+    @extend .inst-form;
+  }
+}
+
+
+.inst-form {
+  .field {
+    display: inline-block;
+    float: left;
+    padding: 10px 5px;
+
+    label { margin-right: 10px;}
+  }
+}
+

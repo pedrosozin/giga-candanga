@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Nome:</strong>
+  <%= @instituicao.nome %>
+</p>
+
+<p>
+  <strong>Sigla:</strong>
+  <%= @instituicao.sigla %>
+</p>
+
+<p>
+  <strong>Cnpj:</strong>
+  <%= @instituicao.cnpj %>
+</p>
+
+<p>
+  <strong>Data aprovacao:</strong>
+  <%= @instituicao.data_aprovacao %>
+</p>
+
+<p>
+  <strong>Resumo:</strong>
+  <%= @instituicao.resumo %>
+</p>
+
+<p>
+  <strong>Site:</strong>
+  <%= @instituicao.site %>
+</p>
+
+<%= link_to 'Edit', edit_instituicao_path(@instituicao) %> |
+<%= link_to 'Back', instituicoes_path %>

@@ -1,5 +1,6 @@
 class CategoriasController < ApplicationController
   def index
+    puts I18n.locale
     @categorias_ativas = Categoria.ativas
     @categorias_inativas = Categoria.inativas
     @categoria = Categoria.new

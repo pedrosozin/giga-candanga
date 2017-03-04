@@ -1,0 +1,14 @@
+<section class="instituicao">
+  <div class="row page-heading">
+    <h1>Cadastro Instituição</h1>
+    <div class="underline"></div>
+  </div>
+
+  <div class="row breadcrumb">
+    <p> <%= link_to("Instituioções", instituicoes_path)%> > Categorias </p>
+  </div>
+
+  <%= render 'form', locals: {instituicao: @instituicao, tipos_resp: @responsavel_tipos}%>
+
+  <%= link_to 'Back', instituicoes_path %>
+</section>

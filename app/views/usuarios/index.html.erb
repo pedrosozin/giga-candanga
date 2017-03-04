@@ -12,9 +12,11 @@
       <% @users.each do |user| %>
         <tr>
           <td> <%= user.id %> </td>
-          <td> <%= user.complemento ? user.complemento.nome : "" %> </td> # provisorio, validação cuidará desse detalhe
+          <!-- provisorio, validação cuidará desse detalhe -->
+          <td> <%= user.complemento ? user.complemento.nome : "" %> </td>
           <td> <%= user.email %> </td>
-          <td> <%= user.complemento ? user.complemento.telefone : "" %> </td> # provisorio, validação cuidará desse detalhe
+          <!-- provisorio, validação cuidará desse detalhe -->
+          <td> <%= user.complemento ? user.complemento.telefone : "" %> </td>
           <% if user == current_usuario %>
             <td> <%= link_to "Editar", edit_usuario_registration_path(user)%> </td>
           <% end %>

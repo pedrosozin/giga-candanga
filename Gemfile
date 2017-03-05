@@ -26,6 +26,10 @@ gem 'devise'
 gem 'devise-i18n'
 gem 'cancancan'
 
+# Bourbon and Neat
+gem 'bourbon', '~> 4.2.6'
+gem 'neat', '~> 1.7.2'
+
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks

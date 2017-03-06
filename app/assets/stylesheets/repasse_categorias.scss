@@ -3,9 +3,9 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 section.repasse-categorias{
-  @extend .section-default;
+  @extend .section-default !optional;
 }
 
 #nova-categoria-repasse-dialog {
-  @extend .dialog-default;
+  @extend .dialog-default !optional;
 }

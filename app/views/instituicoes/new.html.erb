@@ -5,10 +5,9 @@
   </div>
 
   <div class="row breadcrumb">
-    <p> <%= link_to("Instituioções", instituicoes_path)%> > Categorias </p>
+    <p> <%= link_to("Instituições", instituicoes_path)%> > Categorias </p>
   </div>
 
   <%= render 'form', locals: {instituicao: @instituicao, tipos_resp: @responsavel_tipos}%>
 
-  <%= link_to 'Back', instituicoes_path %>
 </section>

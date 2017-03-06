@@ -459,3 +459,13 @@ template {
 [hidden] {
   display: none;
 }
+/**
+ * disable chrome's native date picker
+ */
+// input::-webkit-calendar-picker-indicator{
+//     display: none;
+// }
+
+// input[type="date"]::-webkit-input-placeholder{ 
+//     display:none;
+// }

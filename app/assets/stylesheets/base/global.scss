@@ -24,7 +24,7 @@ body {
 	width: 100%;
 	max-width: $resolucao-grande;
 	margin: 0 auto;
-  clear: both;
+    @extend .clear-fix;
 }
 
 .clear-fix {

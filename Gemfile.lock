@@ -47,6 +47,9 @@ GEM
     bootstrap-sass (3.3.4.1)
       autoprefixer-rails (>= 5.0.0.1)
       sass (>= 3.2.19)
+    bourbon (4.3.3)
+      sass (~> 3.4)
+      thor (~> 0.19)
     builder (3.2.3)
     byebug (9.0.6)
     cancancan (1.16.0)
@@ -84,6 +87,8 @@ GEM
       railties (>= 4.2.0)
       thor (>= 0.14, < 2.0)
     json (2.0.3)
+    jquery-ui-rails (6.0.1)
+      railties (>= 3.2.16)
     listen (3.0.8)
       rb-fsevent (~> 0.9, >= 0.9.4)
       rb-inotify (~> 0.9, >= 0.9.7)
@@ -108,12 +113,12 @@ GEM
     mini_portile2 (2.1.0)
     minitest (5.10.1)
     multi_json (1.12.1)
-<<<<<<< 566b9ac1978798f69d48461489a9feb17224dd92
     nio4r (2.0.0)
-=======
+    neat (2.0.0)
+      sass (~> 3.4)
+      thor (~> 0.19)
     nested_form (0.3.2)
     nio4r (1.2.1)
->>>>>>> adiciona inicio do CRUD instituicoes, ajuste na configuração de idioma
     nokogiri (1.7.0.1)
       mini_portile2 (~> 2.1.0)
     orm_adapter (0.5.0)
@@ -211,6 +216,7 @@ PLATFORMS
 
 DEPENDENCIES
   adminlte2-rails (~> 0.0.6)
+  bourbon (~> 4.3.3)
   byebug
   cancancan
   coffee-rails (~> 4.2)
@@ -218,12 +224,11 @@ DEPENDENCIES
   devise-i18n
   jbuilder (~> 2.5)
   jquery-rails
+  jquery-ui-rails
   listen (~> 3.0.5)
-<<<<<<< 566b9ac1978798f69d48461489a9feb17224dd92
   mailcatcher
-=======
+  neat (~> 2.0.0)
   nested_form
->>>>>>> adiciona inicio do CRUD instituicoes, ajuste na configuração de idioma
   pg (~> 0.18)
   puma (~> 3.0)
   rails (~> 5.0.1)

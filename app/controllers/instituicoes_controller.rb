@@ -35,7 +35,7 @@ class InstituicoesController < ApplicationController
     puts instituicao_params.to_h
     respond_to do |format|
       if @instituicao.save
-        format.html { redirect_to @instituicao, notice: 'Instituicao was successfully created.' }
+        format.html { redirect_to edit_instituicao_path(@instituicao), notice: 'Instituicao was successfully created.' }
         format.json { render :show, status: :created, location: @instituicao }
       else
         @responsavel_tipos = ResponsavelTipo.all
@@ -52,7 +52,7 @@ class InstituicoesController < ApplicationController
   def update
     respond_to do |format|
       if @instituicao.update(instituicao_params)
-        format.html { redirect_to @instituicao, notice: 'Instituicao was successfully updated.' }
+        format.html { redirect_to edit_instituicao_path(@instituicao), notice: 'Instituicao was successfully updated.' }
         format.json { render :show, status: :ok, location: @instituicao }
       else
         @categorias = Categoria.ativas

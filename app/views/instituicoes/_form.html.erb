@@ -11,48 +11,48 @@
 	<% end %>
 
 	<!--  CAMPOS  PATA A INSTITUICAO -->
-	<div class="row">
+	<div class="row line-type-1">
 		<div class="field">
-			<%= f.label :nome %>
+			<div class="label-wrapper"><%= f.label :nome %></div>
 			<%= f.text_field :nome, required: true%>
 		</div>
 
 		<div class="field">
+			<div class="label-wrapper"><%= f.label(:categoria_id, "Categoria")%></div>
 			<%= f.select(:categoria_id, @categorias.map { |c| [c.nome, c.id]})%>
 		</div>
 	</div>
 
-	<div class="row">
+	<div class="row line-type-2">
 		<div class="field">
-			<%= f.label :sigla %>
+			<div class="label-wrapper"><%= f.label :sigla %></div>
 			<%= f.text_field :sigla, required: true %>
 		</div>
 
 		<div class="field">
-			<%= f.label :cnpj %>
-			<%= f.text_field :cnpj, required: true %>
+			<div class="label-wrapper"><%= f.label :cnpj, "CNPJ" %></div>
+			<%= f.text_field :cnpj%>
 		</div>
 
 		<div class="field">
-			<%= f.label :data_aprovacao, "Data Aprovação" %>
-			<%= f.date_select :data_aprovacao, required: true%>
+			<div class="label-wrapper"><%= f.label :data_aprovacao, "Data de aprovação" %></div>
+			<%= f.text_field :data_aprovacao, class: "date-picker"%>
 		</div>
 	</div>
 
-	<div class="row">
+	<div class="row line-type-3">
 		<div class="field">
-			<%= f.label :resumo %>
+			<div class="label-wrapper"><%= f.label :resumo %></div>
 			<%= f.text_area :resumo %>
 		</div>
 	</div>
 
-	<div class="row">
+	<div class="row line-type-4">
 		<div class="field">
-			<%= f.label :site %>
+			<div class="label-wrapper"><%= f.label :site %></div>
 			<%= f.text_field :site %>
 		</div>
 	</div>
-
 
 	<!--     CAMPOS PARA O EMAIL     -->
 
@@ -62,36 +62,36 @@
 
 	<%= f.fields_for :endereco do |ed| %>
 
-		<div class="row">
+		<div class="row line-type-5">
 			<div class="field">
-				<%= ed.label :cep%>
+				<div class="label-wrapper"><%= ed.label :cep%></div>
 				<%= ed.text_field(:cep)%>
 			</div>
 		</div>
 
-		<div class="row">
+		<div class="row line-type-6">
 			<div class="field">
 
-				<%= ed.label :cidade%>
+				<div class="label-wrapper"><%= ed.label :cidade%></div>
 				<%= ed.text_field(:cidade)%>
 
 			</div>
 
 			<div class="field">
 
-				<%= ed.label :estado%>
+				<div class="label-wrapper"><%= ed.label :estado%></div>
 				<%= ed.text_field(:estado)%>
 
 			</div>
 			<div class="field">
 
-				<%= ed.label :bairro%>
+				<div class="label-wrapper"><%= ed.label :bairro%></div>
 				<%= ed.text_field(:bairro)%>
 			</div>
 		</div>
-		<div class="row">
+		<div class="row line-type-7">
 			<div class="field">
-				<%= ed.label :endereco%>
+				<div class="label-wrapper"><%= ed.label :endereco%></div>
 				<%= ed.text_field(:endereco)%>
 			</div>
 		</div>
@@ -106,34 +106,35 @@
 	<%= f.fields_for :responsaveis do |res| %>
 		<div class="row">
 			<p><%= res.object.responsavel_tipo.descricao %></p>
-			<div class="row">
+			<div class="row line-type-8">
 				<div class="field">
-					<%= res.label(:cargo)%>
+					<div class="label-wrapper"><%= res.label(:cargo)%></div>
 					<%= res.text_field(:cargo)%>
 				</div>
 				<div class="field">
-					<%= res.label(:nome)%>
+					<div class="label-wrapper"><%= res.label(:nome)%></div>
 					<%= res.text_field(:nome)%>
 				</div>
 			</div>
 
-			<div class="row">
+			<div class="row line-type-9">
 				<%= res.fields_for(:telefones) do |t|%>
-					<div class="field">
-						<%= t.label(:numero, "Telefone")%>
+					<div class="field fone">
+						<div class="label-wrapper"><%= t.label(:numero, "Telefone")%></div>
 						<%= t.text_field(:numero)%>
 					</div>
 					<% if t.object.persisted? %>
 						<div class="field">
-							<%= t.check_box(:_destroy)%>
+							<div class="label-wrapper"><%= t.check_box(:_destroy)%></div>
 							<%= t.label(:_destroy, "Excluir")%>
 						</div>
 					<%end%>
+
 				<%end%>
 
 				<%= res.fields_for(:emails) do |t|%>
-					<div class="field">
-						<%= t.label(:email, "Email")%>
+					<div class="field email">
+						<div class="label-wrapper"><%= t.label(:email, "Email")%></div>
 						<%= t.text_field(:email)%>
 					</div>
 					<% if t.object.persisted? %>
@@ -147,7 +148,7 @@
 		</div>
 	<%end%>
 
-	<div class="actions">
-		<%= f.submit %>
+	<div class="actions row">
+		<%= f.submit "Salvar" %>
 	</div>
 <% end %>

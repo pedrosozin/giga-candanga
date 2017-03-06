@@ -27,8 +27,8 @@ gem 'devise-i18n'
 gem 'cancancan'
 
 # Bourbon and Neat
-gem 'bourbon', '~> 4.2.6'
-gem 'neat', '~> 1.7.2'
+gem 'bourbon', '~> 4.3.3'
+gem 'neat', '~> 2.0.0'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'

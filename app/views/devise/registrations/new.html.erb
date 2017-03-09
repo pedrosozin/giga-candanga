@@ -8,6 +8,20 @@
     <%= f.email_field :email, autofocus: true %>
   </div>
 
+  <%= f.fields_for :complementos do |complemento| %>
+
+    <div class="field">
+      <%= complemento.label :nome %>
+      <%= complemento.text_field :nome %>
+    </div>
+
+    <div class="field">
+      <%= complemento.label :telefone %>
+     <%= complemento.text_field :telefone %>
+    </div>
+
+  <% end %>
+
   <div class="field">
     <%= f.label :password, "Senha" %><br />
     <%= f.password_field :password, autocomplete: "off" %>

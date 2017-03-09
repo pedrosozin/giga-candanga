@@ -12,13 +12,13 @@ Rails.application.routes.draw do
     delete 'deslogar', to: 'devise/sessions#destroy', as: 'destroy_usuario_session'
 
     # Rotas 'Registrations' Traduzidas
-    get 'cancelar', to: 'devise/registrations#cancel', as: 'cancel_usuario_registration'
-    get 'cadastrar', to: 'devise/registrations#new', as: 'new_usuario_registration'
-    get 'editar', to: 'devise/registrations#edit', as: 'edit_usuario_registration'
-    patch '/', to: 'devise/registrations#update', as: 'registration'
-    put '/', to: 'devise/registrations#update'
-    delete '/', to: 'devise/registrations#destroy'
-    post '/', to: 'devise/registrations#create'
+    get 'cancelar', to: 'usuarios/registrations#cancel', as: 'cancel_usuario_registration'
+    get 'cadastrar', to: 'usuarios/registrations#new', as: 'new_usuario_registration'
+    get 'editar', to: 'usuarios/registrations#edit', as: 'edit_usuario_registration'
+    patch '/', to: 'usuarios/registrations#update', as: 'registration'
+    put '/', to: 'usuarios/registrations#update'
+    delete '/', to: 'usuarios/registrations#destroy'
+    post '/', to: 'usuarios/registrations#create'
 
     # Rotas 'Password' Traduzidas
     get 'nova_senha', to: 'devise/passwords#new', as: 'new_usuario_password'
@@ -27,7 +27,9 @@ Rails.application.routes.draw do
     put 'atualizar_senha', to: 'devise/passwords#update'
     post 'nova_senha', to: 'devise/passwords#create'
   end
-  
-  devise_for :usuario, skip: [:registrations, :sessions, :passwords]
+
+  devise_for :usuario, skip: [:registrations, :sessions, :passwords], controllers: {
+    registrations: 'usuarios/registrations'
+  }
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

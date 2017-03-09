@@ -5,8 +5,8 @@ class Responsavel < ApplicationRecord
   validates :nome, presence: true
   validates :cargo, presence: true
 
-  has_many :emails, inverse_of: :responsavel
-  has_many :telefones, inverse_of: :responsavel
+  has_many :emails, inverse_of: :responsavel, :dependent => :destroy
+  has_many :telefones, inverse_of: :responsavel, :dependent => :destroy
 
   accepts_nested_attributes_for :emails, allow_destroy: true, reject_if: :all_blank
     # proc { |atts|

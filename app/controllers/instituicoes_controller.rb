@@ -1,10 +1,14 @@
 class InstituicoesController < ApplicationController
-  before_action :set_instituicao, only: [:show, :edit, :update, :destroy]
+  before_action :set_instituicao, only: [:show, :edit, :update, :arquivar]
 
   # GET /instituicoes
   # GET /instituicoes.json
   def index
-    @instituicoes = Instituicao.all
+    if params[:search].present? 
+      @instituicoes = Instituicao.search(params[:search])
+    else
+      @instituicoes = Instituicao.ativas
+    end
   end
 
   # GET /instituicoes/1
@@ -35,7 +39,10 @@ class InstituicoesController < ApplicationController
     puts instituicao_params.to_h
     respond_to do |format|
       if @instituicao.save
-        format.html { redirect_to edit_instituicao_path(@instituicao), notice: 'Instituicao was successfully created.' }
+        flash[:type] = MSG_TYPE_SUCCESS
+        flash[:title] = "Sucesso"
+        flash[:notice] = "Registro criado com sucesso"
+        format.html { redirect_to instituicoes_path }
         format.json { render :show, status: :created, location: @instituicao }
       else
         @responsavel_tipos = ResponsavelTipo.all
@@ -52,7 +59,10 @@ class InstituicoesController < ApplicationController
   def update
     respond_to do |format|
       if @instituicao.update(instituicao_params)
-        format.html { redirect_to edit_instituicao_path(@instituicao), notice: 'Instituicao was successfully updated.' }
+        flash[:type] = MSG_TYPE_SUCCESS
+        flash[:title] = "Sucesso"
+        flash[:notice] = "Registro alterado com sucesso"
+        format.html { redirect_to instituicoes_path}
         format.json { render :show, status: :ok, location: @instituicao }
       else
         @categorias = Categoria.ativas
@@ -66,11 +76,20 @@ class InstituicoesController < ApplicationController
 
   # DELETE /instituicoes/1
   # DELETE /instituicoes/1.json
-  def destroy
-    @instituicao.destroy
-    respond_to do |format|
-      format.html { redirect_to instituicoes_url, notice: 'Instituicao was successfully destroyed.' }
-      format.json { head :no_content }
+  def arquivar
+    if @instituicao.arquiva
+      flash[:type] = MSG_TYPE_SUCCESS
+      flash[:title] = "Sucesso"
+      flash[:notice] = "Registro arquivado com sucesso"
+      respond_to do |format|
+        format.html { redirect_to instituicoes_url}
+        format.json { head :no_content }
+      end
+    else
+      flash[:type] = MSG_TYPE_ERROR
+      flash[:title] = "Erro"
+      flash[:notice] = "Falha ao arquivar registro"
+      redirect_to instituicoes_url
     end
   end
 

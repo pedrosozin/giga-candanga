@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
   root 'usuarios#index'
 
-  resources :instituicoes, path_names: {new: "criar", edit:"editar"}
+  resources :instituicoes, except:[:destroy], path_names: {new: "criar", edit:"editar"} do
+    member do
+      put :arquivar
+    end
+  end
 
   resources :repasse_categorias do 
     member do

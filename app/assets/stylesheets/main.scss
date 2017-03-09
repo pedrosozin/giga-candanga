@@ -1,3 +1,11 @@
+/** Vendors  */
+@import "bootstrap-sprockets";
+@import "bootstrap";
+@import "font-awesome";
+@import "ionicons";
+@import "admin-lte";
+// @import "vendor/css/ionicons.min.css";
+
 /*  base  */
 @import "base/variables.scss";
 @import "base/mixins.scss";
@@ -5,9 +13,6 @@
 @import "base/global.scss";
 
 
-/** Vendors  */
-@import "vendor/css/ionicons.min.css";
-// @import "neat";
 
 
 /* controllers */

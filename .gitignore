@@ -23,3 +23,5 @@ config/database.yml
 db/schema.rb
 tags
 public/assests
+checklist.txt
+public/assests/**/*

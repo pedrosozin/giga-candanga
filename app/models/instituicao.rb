@@ -4,11 +4,25 @@ class Instituicao < ApplicationRecord
 
   belongs_to :categoria, required: true
 
-  has_one :endereco, inverse_of: :instituicao
-  has_many :responsaveis, inverse_of: :instituicao
+  has_one :endereco, inverse_of: :instituicao, :dependent => :destroy
+  has_many :responsaveis, inverse_of: :instituicao,:dependent => :destroy
 
   accepts_nested_attributes_for :endereco, allow_destroy: true, reject_if: :all_blank
   accepts_nested_attributes_for :responsaveis, allow_destroy:true,  reject_if: proc{ |atts| deep_blank?(atts) }
+
+  scope :ativas, lambda { where(se_ativa: true)}
+  scope :search, -> (query) { where('nome like ? OR sigla LIKE ?',"%#{query}%","%#{query}%") }
+
+
+  def arquiva
+    self.se_ativa = false;
+    self.save
+  end
+
+  def ativa
+    self.se_ativa = true
+    self.save
+  end
 
   def self.deep_blank?(hash)
     hash.each do |key, value|

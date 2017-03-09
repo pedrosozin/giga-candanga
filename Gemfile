@@ -32,6 +32,7 @@ gem 'adminlte2-rails', '~> 0.0.6'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
+gem 'jquery-validation-rails'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
 gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
@@ -43,8 +44,12 @@ gem 'jbuilder', '~> 2.5'
 #
 gem "nested_form"
 
-gem 'bourbon', '~> 4.3.3'
-gem "neat", '~> 2.0.0'
+#style
+gem 'bootstrap-sass', '~> 3.3.6'
+gem 'adminlte-rails'
+gem 'bootbox-rails', '~>0.4'
+gem 'bootstrap-datepicker-rails'
+gem 'chosen-rails'
 
 gem 'rails-i18n', '~> 5.0.0'
 

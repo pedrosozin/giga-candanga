@@ -11,8 +11,10 @@
  * It is generally better to create a new file per style scope.
  *
  * require_tree .
- *= require main
  *= require jquery-ui
+ *= require main
+ *= require bootstrap-datepicker
+ *= require chosen
  *= require_self
  */
 @import "bootstrap-sprockets";

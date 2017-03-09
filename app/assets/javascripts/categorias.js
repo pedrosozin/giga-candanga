@@ -11,4 +11,4 @@ function handleNovaCategoria(event){
 
 $( document ).on('turbolinks:load', function() {
     $('.nova-categoria').on('click',handleNovaCategoria);
-})
+});

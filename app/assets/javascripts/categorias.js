@@ -8,7 +8,28 @@ function handleNovaCategoria(event){
     });
 }
 
+function handleFormCategoria(){
+    let options ={
+        rules: {
+            "categoria[nome]": {
+                required: true,
+                maxlength: 30
+            }
+        },
+        messages: {
+            "categoria[nome]":{
+                required: "Nome é obrigatório",
+                    maxlength: "Tamanho máximo 30 caracteres"
+            }
+        },
+        errorElement: 'div',
+        errorLabelContainer: '.errorTxt'
+    }; 
+    $('#new_categoria').validate(options);
+}
+
 
 $( document ).on('turbolinks:load', function() {
     $('.nova-categoria').on('click',handleNovaCategoria);
+    handleFormCategoria();
 });

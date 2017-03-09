@@ -3,7 +3,6 @@ class Responsavel < ApplicationRecord
   belongs_to :instituicao
 
   validates :nome, presence: true
-  validates :cargo, presence: true
 
   has_many :emails, inverse_of: :responsavel, :dependent => :destroy
   has_many :telefones, inverse_of: :responsavel, :dependent => :destroy

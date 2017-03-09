@@ -50,7 +50,9 @@ gem 'adminlte-rails'
 gem 'bootbox-rails', '~>0.4'
 gem 'bootstrap-datepicker-rails'
 gem 'chosen-rails'
+gem 'jquery_mask_rails'
 
+# internacionalização
 gem 'rails-i18n', '~> 5.0.0'
 
 # Use Capistrano for deployment

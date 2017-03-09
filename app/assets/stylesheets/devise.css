@@ -3,7 +3,6 @@ body {
 }
 
 .container {
-  @include grid-container;
   width: 25%;
   margin: 70px auto;
 }

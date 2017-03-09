@@ -26,6 +26,9 @@ gem 'devise'
 gem 'devise-i18n'
 gem 'cancancan'
 
+# AdminLTE 2 Bootstrap Template
+gem 'adminlte2-rails', '~> 0.0.6'
+
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks

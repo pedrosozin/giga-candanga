@@ -3,17 +3,21 @@
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
   <div class="field">
     <%= f.email_field :email, { autofocus: true,
-                                  placeholder: 'Email', class: 'input-form' }  %>
+                                  placeholder: 'Email'   }  %>
   </div>
 
   <div class="field">
     <%= f.password_field :password, { autocomplete: "off",
-                                        placeholder: 'Password', class: 'input-form' } %>
+                                        placeholder: 'Password' } %>
   </div>
 
   <div class="actions">
-    <span>Esqueceu a senha?</span><br/>
-    <span>Clique </span><%= link_to 'aqui', new_password_path(resource_name) %><br />
-    <%= f.submit 'Sign In', class: 'bt-medio' %>
+    <div>
+      <span>Esqueceu a senha?</span><br/>
+      <span>Clique </span><%= link_to 'aqui', new_password_path(resource_name) %><br />
+    </div>
+    <div>
+      <%= f.submit 'Sign In', class: 'btn-medio' %>
+    </div>
   </div>
 <% end %>

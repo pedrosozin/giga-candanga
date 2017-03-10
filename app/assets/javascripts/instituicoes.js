@@ -44,6 +44,7 @@ function formCustomization(){
     // mascaras
     $('input[name="instituicao[cnpj]"]').mask('00.000.000/0000-00', {reverse: true});
     $('input[name="instituicao[endereco_attributes][cep]"]').mask('00000-000');
+    $('input[name="instituicao[data_aprovacao]"]').mask('00/00/0000');
 
 
     /* editar */
@@ -111,9 +112,6 @@ function formValidadeInstituicao(){
                 maxlength: 20
             },
             "instituicao[resumo]": { maxlength: 500},
-            "instituicao[site]":{
-                url:true
-            },
             "instituicao[endereco_attributes][cep]": {cep:true},
             "instituicao[endereco_attributes][cidade]": {
                 maxlength: 30
@@ -141,10 +139,7 @@ function formValidadeInstituicao(){
                 required: "Sigla é obrigatória",
                 maxlength: jQuery.validator.format( "Sigla pode conter no máximo {0} caracteres" )
             },
-            "instituicao[resumo]": { maxlength: jQuery.validator.format( "Resumo pode conter no máximo {0} caracteres" ) },
-            "instituicao[site]":{
-                url: "Insira um url válido (ex: http://meuwebsite.com)"
-            }
+            "instituicao[resumo]": { maxlength: jQuery.validator.format( "Resumo pode conter no máximo {0} caracteres" ) }
         },
         errorElement: 'div',
         errorLabelContainer: '.errorTxt'

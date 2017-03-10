@@ -96,6 +96,7 @@
     <%= f.fields_for :responsaveis do |res| %>
         <div class="row">
             <p><%= res.object.responsavel_tipo.descricao %></p>
+            <%= res.hidden_field(:responsavel_tipo_id, value: res.object.responsavel_tipo_id)%>
             <div class="row line-type-8">
                 <div class="field">
                     <div class="label-wrapper"><%= res.label(:cargo)%></div>

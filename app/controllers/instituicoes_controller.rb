@@ -39,6 +39,7 @@ class InstituicoesController < ApplicationController
     puts instituicao_params.to_h
     respond_to do |format|
       if @instituicao.save
+        puts @instituicao.attributes
         flash[:type] = MSG_TYPE_SUCCESS
         flash[:title] = "Sucesso"
         flash[:notice] = "Registro criado com sucesso"
@@ -59,6 +60,7 @@ class InstituicoesController < ApplicationController
   def update
     respond_to do |format|
       if @instituicao.update(instituicao_params)
+        puts @instituicao.attributes
         flash[:type] = MSG_TYPE_SUCCESS
         flash[:title] = "Sucesso"
         flash[:notice] = "Registro alterado com sucesso"

@@ -1,6 +1,7 @@
 class Instituicao < ApplicationRecord
   validates :nome, presence:true, length: { in: 2..255 }
   validates :sigla, presence: true
+  validates :resumo, length: {in: 2..500}
 
   belongs_to :categoria, required: true
 
@@ -11,7 +12,7 @@ class Instituicao < ApplicationRecord
   accepts_nested_attributes_for :responsaveis, allow_destroy:true,  reject_if: proc{ |atts| deep_blank?(atts) }
 
   scope :ativas, lambda { where(se_ativa: true)}
-  scope :search, -> (query) { where('nome like ? OR sigla LIKE ?',"%#{query}%","%#{query}%") }
+  scope :search, -> (query) { where('upper(nome) like ? OR upper( sigla ) LIKE ?',"%#{query.upcase}%","%#{query.upcase}%") }
 
 
   def arquiva
@@ -26,7 +27,7 @@ class Instituicao < ApplicationRecord
 
   def self.deep_blank?(hash)
     hash.each do |key, value|
-      next if key == '_destroy'
+      next if key == '_destroy' or key =='responsavel_tipo_id'
       any_blank = value.is_a?(Hash) ? deep_blank?(value) : value.blank?
       return false unless any_blank
     end
@@ -38,6 +39,10 @@ class Instituicao < ApplicationRecord
     ((res_types.map {|rt| rt.id}) - (self.responsaveis.map {|r| r.responsavel_tipo_id})).each { |n|
       self.responsaveis.build(:responsavel_tipo_id => n)
     }
+
+    self.responsaveis.each do |r|
+      puts r.attributes
+    end
 
     self.responsaveis.each do |r|
       if r.telefones.blank?

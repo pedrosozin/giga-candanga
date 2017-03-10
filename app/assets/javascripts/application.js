@@ -18,12 +18,13 @@
 //= require app
 //= require jquery.validate
 //= jquery.validate.localization
-//= require admin-lte
 //= require bootstrap-sprockets
 //= require bootbox
 //= require bootstrap-datepicker
 //= require chosen-jquery
 //= require jquery.mask
+// require admin-lte
+//= require adminlte
 //= require_tree .
 
 function normalizaAlturaSidebar(){

@@ -1,7 +1,12 @@
 Rails.application.routes.draw do
   root 'usuarios#index'
 
-  resources :usuarios
+  resources :usuarios, except: [:destroy]
+  resources :usuarios do
+    member do
+      put 'desativar', to: 'usuarios#deactivate'
+    end
+  end
 
   devise_scope :usuario do
     # Rotas 'Sessions' Traduzidas

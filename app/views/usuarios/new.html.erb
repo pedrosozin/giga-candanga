@@ -1,4 +1,5 @@
-<h2><%= t('.sign_up') %></h2>
+<%# <h2><%= t('.sign_up') %1></h2> %>
+<h2>Cadastrar novo Usuário</h2>
 
 <%= form_for(@usuario)  do |f| %>
 
@@ -27,8 +28,10 @@
     <%= f.password_field :password_confirmation, autocomplete: "off" %>
   </div>
 
+  <%= f.hidden_field :ativo, value: true %>
+
   <div class="actions">
-    <%= f.submit t('.sign_up') %>
+    <%= f.submit "Cadastrar" %>
   </div>
 <% end %>
 

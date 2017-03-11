@@ -1,27 +1,25 @@
-<h3>Área Administrativa</h3>
-
+<h3 class="login-box-msg">Área Administrativa</h3>
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.email_field :email, { autofocus: true,
-                                  placeholder: 'Email', class: 'input-form' }  %>
+
+  <div class="form-group has-feedback">
+    <%= f.text_field :email, class: 'form-control',
+                  autofocus: true, placeholder: 'Email' %>
+    <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
   </div>
 
-  <div class="field">
-    <%= f.label :password, "Senha" %><br />
-    <%= f.password_field :password, { autocomplete: "off",
-                                        placeholder: 'Senha', class: 'input-form' } %>
+  <div class="form-group has-feedback">
+    <%= f.password_field :password, class: 'form-control',
+                    autocomplete: 'off', placeholder: 'Senha' %>
+    <span class="glyphicon glyphicon-lock form-control-feedback"></span>
   </div>
 
-  <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me, "Lembrar-me" %>
-    </div>
-  <% end %>
-
-  <div class="actions">
-    <span>Esqueceu a senha?</span><br/>
-    <span>Clique </span><%= link_to 'aqui', new_password_path(resource_name) %><br />
-    <%= f.submit 'Sign In', class: 'bt-medio' %>
+  <div class="row">
+    <div class="col-xs-8">
+      <span>Esqueceu sua senha?</span><br/>
+      <span>Clique <%= link_to 'aqui', new_password_path(resource_name) %></span>
+    </div><!-- /.col -->
+    <div class="col-xs-4">
+      <%= f.submit 'Sign in', class: 'btn btn-primary btn-block btn-flat' %>
+    </div><!-- /.col -->
   </div>
 <% end %>

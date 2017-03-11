@@ -26,9 +26,8 @@ gem 'devise'
 gem 'devise-i18n'
 gem 'cancancan'
 
-# Bourbon and Neat
-gem 'bourbon', '~> 4.3.3'
-gem 'neat', '~> 2.0.0'
+# AdminLTE 2 Bootstrap Template
+gem 'adminlte2-rails', '~> 0.0.6'
 
 # Use formtastic for semantic and easy form
 gem 'formtastic', '~> 3.0'

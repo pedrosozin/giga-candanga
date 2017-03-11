@@ -3,10 +3,6 @@ Rails.application.routes.draw do
 
   resources :usuarios
 
-  # namespace :usuarios do
-  #   get '/', action: 'index', as: 'index'
-  # end
-
   devise_scope :usuario do
     # Rotas 'Sessions' Traduzidas
     get 'entrar', to: 'devise/sessions#new', as: 'new_usuario_session'
@@ -28,14 +24,19 @@ Rails.application.routes.draw do
     # Rotas 'Password' Traduzidas
     get 'nova_senha', to: 'devise/passwords#new', as: 'new_usuario_password'
     get 'mudar_senha', to: 'devise/passwords#edit', as: 'edit_usuario_password'
-    patch 'atualizar_senha', to: 'devise/passwords#update', as:
-      'usuario_password'
+    patch 'atualizar_senha', to: 'devise/passwords#update', 
+      as: 'usuario_password'
     put 'atualizar_senha', to: 'devise/passwords#update'
     post 'nova_senha', to: 'devise/passwords#create'
+
+    # Rotas 'Confirmations' Traduzidas
+    patch 'confirmar', to: 'confirmations#confirm'
   end
 
   devise_for :usuario, skip: [:registrations, :sessions, :passwords],
-    controllers: { registrations: 'usuarios/registrations' }
+    controllers: { registrations: 'usuarios/registrations',
+                   confirmations: 'usuarios/confirmations'
+  }
   # For details on the DSL available within this file, see
   # http://guides.rubyonrails.org/routing.html
 end

@@ -30,6 +30,9 @@ gem 'cancancan'
 gem 'bourbon', '~> 4.3.3'
 gem 'neat', '~> 2.0.0'
 
+# Use formtastic for semantic and easy form
+gem 'formtastic', '~> 3.0'
+
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks

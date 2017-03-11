@@ -1,8 +1,9 @@
 class UsuariosController < ApplicationController
   before_action :usuario_params, only: [:create]
+  before_action :authenticate_usuario!, unless: [:new]
 
   def index
-    @users = Usuario.all
+    @usuarios = Usuario.all
   end
 
   def new
@@ -11,22 +12,23 @@ class UsuariosController < ApplicationController
 
   def create
     @usuario = Usuario.create(usuario_params)
-    render :index
+    respond_to do |format|
+      format.html { redirect_to :usuarios }
+    end
   end
 
   def disable
     @usuario.disable
-
     respond_to do |format|
-      format.html {render :index}
+      format.html { redirect_to :usuarios }
     end
   end
 
-  def update
+  def show
+    @usuario = Usuario.find(params[:id])
   end
 
-  def edit
-  end
+  protected
 
   def usuario_params
     params.require(:usuario).permit(:email, :password, :password_confirmation,

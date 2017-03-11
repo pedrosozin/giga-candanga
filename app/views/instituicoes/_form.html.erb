@@ -1,0 +1,151 @@
+<%= nested_form_for(@instituicao) do |f| %>
+
+    <!--  CAMPOS  PATA A INSTITUICAO -->
+    <div class="row line-type-1">
+        <div class="field">
+            <div class="label-wrapper"><%= f.label :nome %></div>
+            <%= f.text_field :nome %>
+        </div>
+
+        <div class="field">
+            <div class="label-wrapper"><%= f.label(:categoria_id, "Categoria")%></div>
+            <%= f.select(:categoria_id, @categorias.map { |c| [c.nome, c.id]},{include_blank: true },{ class: "chosen-select" })%>
+        </div>
+    </div>
+
+    <div class="row line-type-2">
+        <div class="field">
+            <div class="label-wrapper"><%= f.label :sigla %></div>
+            <%= f.text_field :sigla, required: true %>
+        </div>
+
+        <div class="field">
+            <div class="label-wrapper"><%= f.label :cnpj, "CNPJ" %></div>
+            <%= f.text_field :cnpj%>
+        </div>
+
+        <div class="field">
+            <div class="label-wrapper"><%= f.label :data_aprovacao, "Data de aprovação" %></div>
+            <%= f.text_field :data_aprovacao, class: "bootstrap-date"%>
+        </div>
+    </div>
+
+    <div class="row line-type-3">
+        <div class="field">
+            <div class="label-wrapper"><%= f.label :resumo %></div>
+            <%= f.text_area :resumo, maxlength: "500" %>
+        </div>
+    </div>
+
+    <div class="row line-type-4">
+        <div class="field">
+            <div class="label-wrapper"><%= f.label :site %></div>
+            <%= f.text_field :site %>
+        </div>
+    </div>
+
+    <!--     CAMPOS PARA O EMAIL     -->
+
+    <div class="row">
+        <h2>Endereço</h2>
+    </div>
+
+    <%= f.fields_for :endereco do |ed| %>
+
+        <div class="row line-type-5">
+            <div class="field">
+                <div class="label-wrapper"><%= ed.label :cep%></div>
+                <%= ed.text_field(:cep)%>
+            </div>
+        </div>
+
+        <div class="row line-type-6">
+            <div class="field">
+
+                <div class="label-wrapper"><%= ed.label :cidade%></div>
+                <%= ed.text_field(:cidade)%>
+
+            </div>
+
+            <div class="field">
+
+                <div class="label-wrapper"><%= ed.label :estado%></div>
+                <%= ed.text_field(:estado)%>
+
+            </div>
+            <div class="field">
+
+                <div class="label-wrapper"><%= ed.label :bairro%></div>
+                <%= ed.text_field(:bairro)%>
+            </div>
+        </div>
+        <div class="row line-type-7">
+            <div class="field">
+                <div class="label-wrapper"><%= ed.label :endereco%></div>
+                <%= ed.text_field(:endereco)%>
+            </div>
+        </div>
+
+    <%end%>
+
+    <!-- CAMPOS PARA OS RESPONSAVEIS   -->
+
+    <div class="row">
+        <h2>Responsáveis</h2>
+    </div>
+    <%= f.fields_for :responsaveis do |res| %>
+        <div class="row">
+            <p><%= res.object.responsavel_tipo.descricao %></p>
+            <%= res.hidden_field(:responsavel_tipo_id, value: res.object.responsavel_tipo_id)%>
+            <div class="row line-type-8">
+                <div class="field">
+                    <div class="label-wrapper"><%= res.label(:cargo)%></div>
+                    <%= res.text_field(:cargo)%>
+                </div>
+                <div class="field">
+                    <div class="label-wrapper"><%= res.label(:nome)%></div>
+                    <%= res.text_field(:nome)%>
+                </div>
+            </div>
+
+            <div class="row line-type-9">
+                <%= res.fields_for(:telefones) do |t|%>
+                    <div class="field fone">
+                        <div class="label-wrapper"><%= t.label(:numero, "Telefone")%></div>
+                        <%= t.text_field(:numero)%>
+                    </div>
+                    <% if t.object.persisted? %>
+                        <div class="field">
+                            <div class="label-wrapper"><%= t.check_box(:_destroy)%></div>
+                            <%= t.label(:_destroy, "Excluir")%>
+                        </div>
+                    <%end%>
+
+                <%end%>
+
+                <%= res.fields_for(:emails) do |t|%>
+                    <div class="field email">
+                        <div class="label-wrapper"><%= t.label(:email, "Email")%></div>
+                        <%= t.text_field(:email)%>
+                    </div>
+                    <% if t.object.persisted? %>
+                        <div class="field">
+                            <%= t.check_box(:_destroy)%>
+                            <%= t.label(:_destroy, "Excluir")%>
+                        </div>
+                    <%end%>
+                <%end%>
+            </div>
+        </div>
+    <%end%>
+
+    <div class="actions row">
+        <%= f.submit "Salvar" %>
+    </div>
+
+    <%puts f.object.attributes %>
+    <%= render(partial: "layouts/error_messages", locals: { object: f.object })%>
+
+<% end %>
+
+

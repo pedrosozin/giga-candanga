@@ -1,0 +1,11 @@
+// Place all the styles related to the RepasseCategorias controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+section.repasse-categorias{
+  @extend .section-default !optional;
+}
+
+#nova-categoria-repasse-dialog {
+  @extend .dialog-default !optional;
+}

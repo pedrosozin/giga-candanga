@@ -1,0 +1,23 @@
+// Place all the styles related to the categorias controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+$dialog-height: 40vh;
+
+
+
+section.categorias {
+  @extend .section-default !optional;
+}
+
+button.nova-categoria{
+    margin: 25px 0;
+    display: block;
+    min-width: 150px;
+}
+
+// Dialog box of the index page
+#nova-categoria-dialog {
+  @extend .dialog-default !optional;
+}
+

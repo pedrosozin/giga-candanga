@@ -1,0 +1,234 @@
+// Place all the styles related to the Instituicoes controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+$icon-color-neutral: #bbb;
+
+.new-button {
+    @extend .col-xs-6 !optional;
+    padding-left: 0;
+}
+
+
+.search-form {
+    @extend .col-xs-6 !optional;
+    input[type=search] {
+        width: 120px;
+    }
+
+    .search-wrapper { 
+        display: inline-block;
+        float: right;
+        margin-left: 8px;
+    }
+    button {
+        @extend .style-reset !optional;
+        &:hover {
+            cursor: pointer;
+            color: black;
+        }
+        &:hover{
+            cursor: pointer;
+            color: black;
+        }
+    }
+    i {
+        font-size: 2rem;
+        color: $icon-color-neutral;
+        vertical-align: middle;
+    }
+    @exted .clear-fix;
+}
+
+div.editar-form {
+    @extend .row !optional;
+}
+
+a.editar-form{
+    @extend .btn !optional;
+    @extend .btn-default !optional;
+    text-decoration: none;
+    float: right;
+}
+
+section.instituicao{
+  @extend .section-default !optional;
+  @extend .clear-fix !optional;
+  form.edit_instituicao {
+    @extend .inst-form;
+  }
+  form.new_instituicao {
+    @extend .inst-form;
+  }
+
+  .listing.instituicoes {
+    min-width: 95%;
+    margin-top: 15px;
+
+    td, th { padding: 10px 5px;}
+
+    thead { 
+      color: #bbb;
+      font-weight: 400;
+    }
+  }
+
+  .breadcrumb { margin-bottom: 30px}
+  [role=button]{
+    text-decoration: none;
+    border: 1px solid black;
+    padding: 5px 5px;
+    display: inline-block;
+    min-width: 100px;
+    text-align: center;
+    border-radius: 5%;
+    color: black;
+    transition: .3s;
+    &:hover, &:active {
+      background: #ccc;
+    }
+  }
+}
+
+
+.inst-form {
+  .label-wrapper{
+    display: inline-block;
+  }
+  .field {
+    display: inline-block;
+    float: left;
+    padding: 15px 10px;
+
+    label { margin-right: 10px;}
+    &:first-child {
+
+      .label-wrapper { min-width: 85px; }
+    }
+  }
+
+  .line-type-1 {
+    .field {
+      &:first-child{ width: 68%;}
+      &:nth-child(2) {width: 32%;}
+    }
+    input[type=text] {
+      width: 75.6%;
+    }
+  }
+
+  .line-type-2 {
+    .field {
+      &:first-child {
+        input { width: 110px;}
+        width: 27%;
+        input { max-width: 110px; }
+      }
+      &:nth-child(2) {
+        width: 37%;
+        input { width: 225px;}
+      }
+      &:nth-child(3) {
+        width: 36%;
+        input { max-width: 110px; }
+      }
+    }
+  }
+
+  .line-type-3{
+    .field {
+      width: 100%;
+      textarea {
+        max-width: 87%;
+        width: 88%;
+        min-height: 100px;
+        padding: 10px;
+      }
+
+      .label-wrapper {
+        vertical-align: top;
+      }
+    }
+  }
+
+  .line-type-4 {
+    .field {
+      width: 68%;
+      input { width: 75.6% }
+    }
+  }
+
+  /*  style do endeteco */
+
+  .line-type-5 {
+    .field {
+      width: 33.3333%;
+      input { width: 64%; }
+    }
+  }
+  .line-type-6 {
+    .field {
+      &:nth-child(1){
+        width: 33.3333%;
+        input { width: 64%; }
+      }
+      &:nth-child(2){
+        width: 33.3333%;
+        input { width: 64%;}
+      }
+      &:nth-child(3){
+        width: 33.3333%;
+        input { width: 71%; }
+      }
+    }
+  }
+
+  .line-type-7 {
+    .field {
+      width: 100%;
+      input { width: 87.5%;}
+    }
+  }
+
+  .line-type-8 {
+    .field {
+      &:first-child {
+        width: 40%;
+        input { width: 65%;}
+      }
+
+      &:nth-child(2){
+        width: 60%;
+
+        input { width: 80%; float: right;}
+        .label-wrapper { margin-right: 5%;}
+      }
+    }
+  }
+
+  .line-type-9 {
+    .fone {
+      width: 40%;
+      input { width: 65%;}
+    }
+
+    .email {
+      width: 60%;
+      input { width: 80%;
+        float: right;
+      }
+      .label-wrapper { 
+        margin-right: 5%;
+        min-width: 0;
+      }
+    }
+  }
+
+  .actions {
+    input { 
+      float: right;
+      margin-right: 1%;
+    }
+  }
+}
+

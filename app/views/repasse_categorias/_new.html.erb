@@ -1,0 +1,15 @@
+<div class="dialog-wrapper">
+    <div id="nova-categoria-repasse-dialog" title="Nova Categoria Repasse">
+        <div class="row">
+            <h2>Nova Categoria de Repasse</h2>
+        </div>
+        <div class="underline"></div>
+
+        <%= form_for(@repasse_categoria, remote: true, class:"nova-repasse-categoria") do |f|%>
+            <%= f.label(:nome, "Nome")%>
+            <%= f.text_field(:nome )%>
+            <%= f.submit("Salvar")%>
+        <%end%>
+    </div>
+</div>
+

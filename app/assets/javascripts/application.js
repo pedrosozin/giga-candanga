@@ -12,5 +12,49 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery-ui
+//= require jquery_nested_form/
+//= require adminlte
 //= require turbolinks
+//= require jquery.validate
+//= jquery.validate.localization
+//= require bootstrap-sprockets
+//= require bootbox
+//= require bootstrap-datepicker
+//= require chosen-jquery
+//= require jquery.mask
 //= require_tree .
+
+function normalizaAlturaSidebar(){
+    let height = $('.app-sidebar').next().height();
+    $('.app-sidebar').height(height);
+
+    const target = $('html')[0];
+
+    // create an observer instance
+    var observer = new MutationObserver(function(mutations) {
+        let height = $('.app-sidebar').next().height();
+        $('.app-sidebar').height(height);
+    });
+
+    var config = { attributes: true, childList: true, characterData: true };
+
+    // pass in the target node, as well as the observer options
+    observer.observe(target, config);
+}
+
+
+function displayNotice(content){
+    if(content.type){
+        bootbox.alert({
+            title: content.title,
+            message: content.notice
+        });
+    }
+}
+
+
+$( document ).on('turbolinks:load', function() {
+
+    normalizaAlturaSidebar();
+});

@@ -1,0 +1,19 @@
+<h3 class="login-box-msg">Esqueceu sua senha?</h3>
+
+<%= form_for(resource, as: resource_name, url: password_path(resource_name),
+             html: { method: :post }) do |f| %>
+  <%= devise_error_messages! %>
+
+  <div class="form-group has-feedback">
+    <%= f.label :email %><br />
+    <%= f.email_field :email, autofocus: true,
+                  placeholder: "Ex: seu-email@unb.br", class: "form-control" %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Enviar instruções para redefinição da senha", class: "btn btn-primary btn-block btn-flat" %>
+  </div>
+<% end %>
+<br>
+<%= link_to "Login", new_session_path(resource_name) %><br/>
+<%= link_to "Inscrever-se", new_registration_path(resource_name) %>

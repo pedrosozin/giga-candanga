@@ -1,0 +1,19 @@
+<%if @repasse_categoria.ativa %>
+    $('#categorias-ativas-listing').fadeOut(400, function(){
+      $('.dialog-wrapper').fadeOut(400);
+      $(this).remove();
+      let aTable = $('<%= j render(partial: "tables", locals: {repasse_categorias: @repasse_categorias_ativas, identifier: "categorias-ativas-listing", icone:"ion-close-circled"})%>');
+      aTable.hide();
+      aTable.insertAfter($('.pre-ativas')).fadeIn(400);
+    });
+
+    $('#categorias-inativas-listing').fadeOut(400, function(){
+      $(this).remove();
+      let iTable = $('<%= j render(partial: "tables", locals: {repasse_categorias: @repasse_categorias_inativas, identifier: "categorias-inativas-listing", icone: "ion-checkmark-circled"})%>');
+      iTable.hide();
+      iTable.insertAfter($('.pre-inativas')).fadeIn(400);
+    });
+<%else%>
+    alert("Nao foi possível desativar registro!");
+<%end%>
+

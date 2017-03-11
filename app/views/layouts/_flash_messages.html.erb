@@ -1,0 +1,6 @@
+<% if flash[:notice].present? %>
+    <%= javascript_tag do%>
+        displayNotice(<%= flash.to_h.to_json.html_safe%>);
+    <%end%>
+<%end%>
+

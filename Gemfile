@@ -21,8 +21,19 @@ gem 'coffee-rails', '~> 4.2'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
+# Use devise and cancancan for user authentication
+gem 'devise'
+gem 'devise-i18n'
+gem 'cancancan'
+
+
+# Use formtastic for semantic and easy form
+gem 'formtastic', '~> 3.0'
+
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
+gem 'jquery-ui-rails'
+gem 'jquery-validation-rails'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
 gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
@@ -32,6 +43,21 @@ gem 'jbuilder', '~> 2.5'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 #
+gem "nested_form"
+
+#style
+gem 'bootstrap-sass', '~> 3.3.6'
+gem 'adminlte-rails'
+gem 'bootbox-rails', '~>0.4'
+gem 'bootstrap-datepicker-rails'
+gem 'chosen-rails'
+gem 'jquery_mask_rails'
+gem 'font-awesome-sass'
+
+source 'https://rails-assets.org/' do 
+  gem 'rails-assets-adminlte'
+end
+# internacionalização
 gem 'rails-i18n', '~> 5.0.0'
 
 # Use Capistrano for deployment
@@ -40,6 +66,7 @@ gem 'rails-i18n', '~> 5.0.0'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
+  gem 'mailcatcher'
 end
 
 group :development do

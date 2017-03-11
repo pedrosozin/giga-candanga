@@ -1,0 +1,21 @@
+<%if @categoria.persisted? %>
+  // remove dialog
+  $('.dialog-wrapper').fadeOut(300);
+    // cria nova tr
+    let newRow = $('<tr record_id="<%=@categoria.id%>">');
+    
+    // cria 2 novas td's com o nome e o link para ativar e desativar
+    let cName = $('<td> <%=@categoria.nome %> </td>');
+    let cAction = $('<td>');
+
+    cAction.append('<%=link_to("", categoria_path(@categoria), method: "delete", class:"link-delete", data: {confirm: "Tem Certeza?"}, remote:true).html_safe %>');
+    cAction.find('a.link-delete').append($( '<i class="ion-close-circled"></i>' ));
+  
+    newRow.append(cName).append(cAction);
+    
+    // encontra a tabela o insere a nova linha na mesma
+    let body = $('#categorias-ativas-listing').find('tbody'); 
+    newRow.hide().appendTo(body).fadeIn(999);
+<%else%>
+    alert("Não foi possível criar registro!");
+<%end%>

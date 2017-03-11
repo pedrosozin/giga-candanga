@@ -1,4 +1,5 @@
 <h3>Usuários</h3>
+<span>  </span>
 
   <table>
     <thead>
@@ -9,16 +10,16 @@
       <th>Ações</th>
     </thead>
     <tbody>
-      <% @users.each do |user| %>
+      <% @usuarios.each do |usuario| %>
         <tr>
-          <td> <%= user.id %> </td>
+          <td> <%= usuario.id %> </td>
           <!-- provisorio, validação cuidará desse detalhe -->
-          <td> <%= user.complemento ? user.complemento.nome : "" %> </td>
-          <td> <%= user.email %> </td>
+          <td> <%= usuario.nome %> </td>
+          <td> <%= usuario.email %> </td>
           <!-- provisorio, validação cuidará desse detalhe -->
-          <td> <%= user.complemento ? user.complemento.telefone : "" %> </td>
-          <% if user == current_usuario %>
-            <td> <%= link_to "Editar", edit_usuario_registration_path(user)%> </td>
+          <td> <%= usuario.telefone %> </td>
+          <% if usuario == current_usuario %>
+            <td> <%= link_to "Editar", edit_usuario_registration_path(usuario)%> </td>
           <% end %>
         </tr>
       <% end %>

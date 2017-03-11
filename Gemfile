@@ -26,8 +26,9 @@ gem 'devise'
 gem 'devise-i18n'
 gem 'cancancan'
 
-# AdminLTE 2 Bootstrap Template
-gem 'adminlte2-rails', '~> 0.0.6'
+
+# Use formtastic for semantic and easy form
+gem 'formtastic', '~> 3.0'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
@@ -46,7 +47,7 @@ gem "nested_form"
 
 #style
 gem 'bootstrap-sass', '~> 3.3.6'
-# gem 'adminlte-rails'
+gem 'adminlte-rails'
 gem 'bootbox-rails', '~>0.4'
 gem 'bootstrap-datepicker-rails'
 gem 'chosen-rails'

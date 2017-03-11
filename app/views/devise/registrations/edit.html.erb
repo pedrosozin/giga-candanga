@@ -15,17 +15,17 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :password %> <i>(<%= t('.leave_blank_if_you_don_t_want_to_change_it') %>)</i><br />
+    <%= f.label :password, "Senha" %> <i>(<%= t('.leave_blank_if_you_don_t_want_to_change_it') %>)</i><br />
     <%= f.password_field :password, autocomplete: "off" %>
   </div>
 
   <div class="field">
-    <%= f.label :password_confirmation %><br />
+    <%= f.label :password_confirmation, "Confirmar Senha" %><br />
     <%= f.password_field :password_confirmation %>
   </div>
 
   <div class="field">
-    <%= f.label :current_password %> <i>(<%= t('.we_need_your_current_password_to_confirm_your_changes') %>)</i><br />
+    <%= f.label :current_password, "Senha Atual" %> <i>(<%= t('.we_need_your_current_password_to_confirm_your_changes') %>)</i><br />
     <%= f.password_field :current_password %>
   </div>
 

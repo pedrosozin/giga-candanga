@@ -14,8 +14,8 @@
 //= require jquery_ujs
 //= require jquery-ui
 //= require jquery_nested_form/
+//= require adminlte
 //= require turbolinks
-//= require app
 //= require jquery.validate
 //= jquery.validate.localization
 //= require bootstrap-sprockets
@@ -23,8 +23,6 @@
 //= require bootstrap-datepicker
 //= require chosen-jquery
 //= require jquery.mask
-// require admin-lte
-//= require adminlte
 //= require_tree .
 
 function normalizaAlturaSidebar(){

@@ -8,7 +8,7 @@ class Instituicao < ApplicationRecord
   validates :resumo, length: {in: 2..500}
 
   accepts_nested_attributes_for :endereco, allow_destroy: true, reject_if: :all_blank
-  accepts_nested_attributes_for :responsaveis, allow_destroy: true, reject_if: proc { |atts| deep_blank?(atts) }
+  accepts_nested_attributes_for :responsaveis, allow_destroy: true, reject_if: proc {|atts| deep_blank?(atts) }
 
   scope :ativas, -> { where(se_ativa: true) }
   scope :search, -> (query) {
@@ -17,11 +17,11 @@ class Instituicao < ApplicationRecord
   }
 
   def arquiva
-    self.update_attributes(se_ativa: false)
+    update_attributes(se_ativa: false)
   end
 
   def ativa
-    self.update_attributes(se_ativa: true)
+    update_attributes(se_ativa: true)
   end
 
   def self.deep_blank?(hash)
@@ -34,7 +34,7 @@ class Instituicao < ApplicationRecord
   end
 
   def build_form_dependency(tipos_responsavel)
-    (get_map_tipos_responsavel(tipos_responsavel)).each { |n|
+    get_map_tipos_responsavel(tipos_responsavel).each { |n|
       responsaveis.build(responsavel_tipo_id: n)
     }
 
@@ -43,15 +43,15 @@ class Instituicao < ApplicationRecord
       responsavel.emails.build if responsavel.emails.blank?
     end
 
-    self.build_endereco if endereco.blank?
+    build_endereco if endereco.blank?
   end
 
   def build_form_when_error(tipos_responsavel)
     responsavel_tipos = get_map_tipos_responsavel(tipos_responsavel)
-    responsaveis_vazios = self.responsaveis.select { |r| r.responsavel_tipo.blank? }
+    responsaveis_vazios = responsaveis.select {|r| r.responsavel_tipo.blank? }
 
-    responsavel_tipos.zip(responsaveis_vazios).each { |rt, r|
-      r.present? ? r.responsavel_tipo_id = rt : self.responsaveis.build(responsavel_tipo_id: rt)
+    responsavel_tipos.zip(responsaveis_vazios).each {|rt, r|
+      r.present? ? r.responsavel_tipo_id = rt : responsaveis.build(responsavel_tipo_id: rt)
     }
 
     responsaveis.each do |r|
@@ -59,10 +59,10 @@ class Instituicao < ApplicationRecord
       r.emails.build if r.emails.blank?
     end
 
-    self.build_endereco if self.endereco.blank?
+    build_endereco if endereco.blank?
   end
 
   def get_map_tipos_responsavel(tipos_responsavel)
-    tipos_responsavel.map(&:id) - self.responsaveis.map(&:responsavel_tipo_id)
+    tipos_responsavel.map(&:id) - responsaveis.map(&:responsavel_tipo_id)
   end
 end

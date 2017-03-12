@@ -20,7 +20,6 @@ class CategoriasController < ApplicationController
     @categoria = Categoria.find_by(id: params[:id])
   end
 
-
   def destroy
     @categoria = Categoria.find_by(id: params[:id])
     @categoria.desativa

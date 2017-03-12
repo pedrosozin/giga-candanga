@@ -15,5 +15,4 @@ class Responsavel < ApplicationRecord
   # proc { |atts|
   # atts["numero"].blank?
   # }
-
 end

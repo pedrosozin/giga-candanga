@@ -18,9 +18,13 @@ class InstituicoesControllerTest < ActionDispatch::IntegrationTest
   test "should create instituicao" do
     assert_difference("Instituicao.count") do
       post instituicoes_url, params: {instituicao:
-                                          {cnpj: @instituicao.cnpj, data_aprovacao: @instituicao.data_aprovacao,
-                                           nome: @instituicao.nome, references: @instituicao.references,
-                                           resumo: @instituicao.resumo, sigla: @instituicao.sigla, site: @instituicao.site}}
+                                          {cnpj: @instituicao.cnpj,
+                                           data_aprovacao: @instituicao.data_aprovacao,
+                                           nome: @instituicao.nome,
+                                           references: @instituicao.references,
+                                           resumo: @instituicao.resumo,
+                                           sigla: @instituicao.sigla,
+                                           site: @instituicao.site}}
     end
 
     assert_redirected_to instituicao_url(Instituicao.last)
@@ -38,9 +42,13 @@ class InstituicoesControllerTest < ActionDispatch::IntegrationTest
 
   test "should update instituicao" do
     patch instituicao_url(@instituicao), params: {instituicao:
-                                                      {cnpj: @instituicao.cnpj, data_aprovacao: @instituicao.data_aprovacao,
-                                                       nome: @instituicao.nome, references: @instituicao.references,
-                                                       resumo: @instituicao.resumo, sigla: @instituicao.sigla, site: @instituicao.site}}
+                                                      {cnpj: @instituicao.cnpj,
+                                                       data_aprovacao: @instituicao.data_aprovacao,
+                                                       nome: @instituicao.nome,
+                                                       references: @instituicao.references,
+                                                       resumo: @instituicao.resumo,
+                                                       sigla: @instituicao.sigla,
+                                                       site: @instituicao.site}}
     assert_redirected_to instituicao_url(@instituicao)
   end
 

@@ -14,5 +14,4 @@ class RepasseCategoria < ApplicationRecord
     self.ativa = true
     save
   end
-
 end

@@ -9,7 +9,7 @@ function handleNovaCategoria(event){
 }
 
 function handleFormCategoria(){
-    let options ={
+    var options ={
         rules: {
             "categoria[nome]": {
                 required: true,

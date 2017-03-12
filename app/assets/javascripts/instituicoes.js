@@ -1,6 +1,6 @@
-const style = `style = "text-align:center; margin-top: 15px; font-size:1.2rem;"`;
+const style = 'style = "text-align:center; margin-top: 15px; font-size:1.2rem;"';
 const eventMesseges = {
-    ARQUIVA_CONFIRM: `<p ${style}>Tem certeza que deseja aqruivar? Todos os instrumentos jurídicos e conexões relacionadas também serão arquivadas!</p>`
+    ARQUIVA_CONFIRM: '<p '+style+' >Tem certeza que deseja aqruivar? Todos os instrumentos jurídicos e conexões relacionadas também serão arquivadas!</p>'
 };
 
 const choseDefaltOptions = {
@@ -15,13 +15,13 @@ function handleInstituicoesEvents(){
 
     $('.link-delete.instituicao').on("click",'i',function(event){
         event.preventDefault();
-        let link = $(this);
+        var link = $(this);
         bootbox.confirm({
             message: eventMesseges.ARQUIVA_CONFIRM,
             size: "large",
             callback: function(sim){
                 if(sim){
-                    let clickable = link.next().click();
+                    var clickable = link.next().click();
                     return true;
                 } else{
                     bootbox.hideAll();
@@ -76,7 +76,7 @@ function addCustomRules(){
 }
 // form submit
 function instituicaoFormSubmit(form){
-    let resCount = [];
+    var resCount = [];
     $('[id*="instituicao_responsaveis"][name*="nome"]').each(function(){
         if($(this).val().length > 0) resCount++;
     });
@@ -97,7 +97,7 @@ function instituicaoFormSubmit(form){
 function formValidadeInstituicao(){
     addCustomRules();
 
-    let options = {
+    var options = {
         submitHandler: instituicaoFormSubmit,
         rules: {
             "instituicao[nome]":{

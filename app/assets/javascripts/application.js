@@ -26,14 +26,14 @@
 //= require_tree .
 
 function normalizaAlturaSidebar(){
-    let height = $('.app-sidebar').next().height();
+    var height = $('.app-sidebar').next().height();
     $('.app-sidebar').height(height);
 
     const target = $('html')[0];
 
     // create an observer instance
     var observer = new MutationObserver(function(mutations) {
-        let height = $('.app-sidebar').next().height();
+        var height = $('.app-sidebar').next().height();
         $('.app-sidebar').height(height);
     });
 

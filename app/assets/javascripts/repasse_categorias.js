@@ -8,7 +8,7 @@ function handleNovaRepasseCategoria(event){
 }
 
 function handleFormRepasseCategoria(){
-    let options ={
+    var options ={
         rules: {
             "repasse_categoria[nome]": {
                 required: true,

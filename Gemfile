@@ -55,7 +55,7 @@ gem 'jquery_mask_rails'
 # gem 'font-awesome-sass'
 gem 'ionicons-rails'
 
-source 'https://rails-assets.org/' do 
+source 'https://rails-assets.org/' do
   gem 'rails-assets-adminlte'
 end
 # internacionalização

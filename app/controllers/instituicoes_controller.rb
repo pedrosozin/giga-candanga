@@ -1,5 +1,5 @@
 class InstituicoesController < ApplicationController
-  before_action :set_instituicao, only: [:show, :edit, :update, :arquivar]
+  before_action :set_instituicao, only: [:edit, :update, :arquivar]
 
   # GET /instituicoes
   # GET /instituicoes.json
@@ -11,10 +11,6 @@ class InstituicoesController < ApplicationController
     end
   end
 
-  # GET /instituicoes/1
-  # GET /instituicoes/1.json
-  def show
-  end
 
   # GET /instituicoes/new
   def new
@@ -34,20 +30,19 @@ class InstituicoesController < ApplicationController
 
   # POST /instituicoes
   # POST /instituicoes.json
+  # fazer before action para o necessario
   def create
     @instituicao = Instituicao.new(instituicao_params)
-    puts instituicao_params.to_h
+    @responsavel_tipos = ResponsavelTipo.all
+    @categorias = Categoria.ativas
     respond_to do |format|
       if @instituicao.save
-        puts @instituicao.attributes
         flash[:type] = MSG_TYPE_SUCCESS
         flash[:title] = "Sucesso"
         flash[:notice] = "Registro criado com sucesso"
         format.html { redirect_to instituicoes_path }
         format.json { render :show, status: :created, location: @instituicao }
       else
-        @responsavel_tipos = ResponsavelTipo.all
-        @categorias = Categoria.ativas
         @instituicao.build_form_when_error(@responsavel_tipos)
         format.html { render :new }
         format.json { render json: @instituicao.errors, status: :unprocessable_entity }
@@ -60,7 +55,6 @@ class InstituicoesController < ApplicationController
   def update
     respond_to do |format|
       if @instituicao.update(instituicao_params)
-        puts @instituicao.attributes
         flash[:type] = MSG_TYPE_SUCCESS
         flash[:title] = "Sucesso"
         flash[:notice] = "Registro alterado com sucesso"

@@ -1,6 +1,6 @@
 <h3>Usuários</h3>
 <span>  </span>
-
+<%= button_to "Novo", new_usuario_registration_path, method: :get %>
   <table>
     <thead>
       <th>#</th>
@@ -20,6 +20,8 @@
           <td> <%= usuario.telefone %> </td>
           <% if usuario == current_usuario %>
             <td> <%= link_to "Editar", edit_usuario_registration_path(usuario)%> </td>
+          <% else %>
+            <td> <%= link_to "Desativar", desativar_usuario_path(usuario) %></td>
           <% end %>
         </tr>
       <% end %>

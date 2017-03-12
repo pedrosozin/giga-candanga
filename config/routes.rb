@@ -7,9 +7,15 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :repasse_categorias do 
+  resources :repasse_categorias do
     member do
       post :ativar
+    end
+  end
+
+  resources :usuarios, except: [:destroy] do
+    member do
+      put 'desativar', to: 'usuarios#deactivate'
     end
   end
 
@@ -19,9 +25,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :usuarios
-
-  devise_for :usuario, path_names: { sign_in: "entrar", sign_out: "deslogar", cancel: "cancelar", edit:"editar", new: "cadastrar", "password/new": "nova_senha" }, 
+  devise_for :usuario, path_names: { sign_in: "entrar", sign_out: "deslogar", cancel: "cancelar", edit:"editar", new: "cadastrar", "password/new": "nova_senha" },
     controllers: { registrations: 'usuarios/registrations',
                    confirmations: 'usuarios/confirmations',
   }
@@ -46,7 +50,7 @@ Rails.application.routes.draw do
   #   # Rotas 'Password' Traduzidas
   #   get 'nova_senha', to: 'devise/passwords#new', as: 'new_usuario_password'
   #   get 'mudar_senha', to: 'devise/passwords#edit', as: 'edit_usuario_password'
-  #   patch 'atualizar_senha', to: 'devise/passwords#update', 
+  #   patch 'atualizar_senha', to: 'devise/passwords#update',
   #     as: 'usuario_password'
   #   put 'atualizar_senha', to: 'devise/passwords#update'
   #   post 'nova_senha', to: 'devise/passwords#create'
@@ -54,8 +58,6 @@ Rails.application.routes.draw do
   #   # Rotas 'Confirmations' Traduzidas
   #   patch 'confirmar', to: 'confirmations#confirm'
   # end
-
-
 
 
   # For details on the DSL available within this file, see

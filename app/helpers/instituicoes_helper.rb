@@ -3,5 +3,4 @@ module InstituicoesHelper
     instituicao.endereco ||= instituicao.build_endereco
     instituicao.endereco
   end
-
 end

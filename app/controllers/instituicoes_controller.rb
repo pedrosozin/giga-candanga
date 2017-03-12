@@ -4,13 +4,12 @@ class InstituicoesController < ApplicationController
   # GET /instituicoes
   # GET /instituicoes.json
   def index
-    if params[:search].present? 
-      @instituicoes = Instituicao.search(params[:search])
-    else
-      @instituicoes = Instituicao.ativas
-    end
+    @instituicoes = if params[:search].present?
+                      Instituicao.search(params[:search])
+                    else
+                      Instituicao.ativas
+                    end
   end
-
 
   # GET /instituicoes/new
   def new
@@ -18,7 +17,6 @@ class InstituicoesController < ApplicationController
     @categorias = Categoria.ativas
     @responsavel_tipos = ResponsavelTipo.all
     @instituicao.build_form_dependency(@responsavel_tipos)
-
   end
 
   # GET /instituicoes/1/edit
@@ -58,7 +56,7 @@ class InstituicoesController < ApplicationController
         flash[:type] = MSG_TYPE_SUCCESS
         flash[:title] = "Sucesso"
         flash[:notice] = "Registro alterado com sucesso"
-        format.html { redirect_to instituicoes_path}
+        format.html { redirect_to instituicoes_path }
         format.json { render :show, status: :ok, location: @instituicao }
       else
         @categorias = Categoria.ativas
@@ -78,7 +76,7 @@ class InstituicoesController < ApplicationController
       flash[:title] = "Sucesso"
       flash[:notice] = "Registro arquivado com sucesso"
       respond_to do |format|
-        format.html { redirect_to instituicoes_url}
+        format.html { redirect_to instituicoes_url }
         format.json { head :no_content }
       end
     else
@@ -90,6 +88,7 @@ class InstituicoesController < ApplicationController
   end
 
   private
+
   # Use callbacks to share common setup or constraints between actions.
   def set_instituicao
     @instituicao = Instituicao.find(params[:id])
@@ -99,6 +98,6 @@ class InstituicoesController < ApplicationController
   def instituicao_params
     params.require(:instituicao).permit(:id, :nome, :sigla, :cnpj, :data_aprovacao, :resumo, :site, :categoria_id,
                                         {endereco_attributes: [:id, :cep, :cidade, :estado, :bairro, :endereco]},
-                                        {responsaveis_attributes: [:id, :cargo, :nome,:responsavel_tipo_id, {telefones_attributes: [:id, :numero, :_destroy]},{emails_attributes:[:id,:email, :_destroy]}]})
+                                        {responsaveis_attributes: [:id, :cargo, :nome, :responsavel_tipo_id, {telefones_attributes: [:id, :numero, :_destroy]}, {emails_attributes: [:id, :email, :_destroy]}]})
   end
 end

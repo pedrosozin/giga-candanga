@@ -25,3 +25,6 @@ tags
 public/assests
 checklist.txt
 public/assests/**/*
+
+#ignore RubyMine folder
+.idea/

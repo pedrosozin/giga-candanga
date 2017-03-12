@@ -12,7 +12,7 @@ class RepasseCategoriasController < ApplicationController
     @repasse_categorias_ativas = RepasseCategoria.ativas
 
     respond_to do |f|
-      f.js { render file: "repasse_categorias/create"}
+      f.js { render file: "repasse_categorias/create" }
     end
   end
 
@@ -23,7 +23,7 @@ class RepasseCategoriasController < ApplicationController
     @repasse_categorias_ativas = RepasseCategoria.ativas
     @repasse_categorias_inativas = RepasseCategoria.inativas
     respond_to do |f|
-      f.js { render file: "repasse_categorias/destroy"}
+      f.js { render file: "repasse_categorias/destroy" }
     end
   end
 
@@ -34,15 +34,13 @@ class RepasseCategoriasController < ApplicationController
     @repasse_categorias_ativas = RepasseCategoria.ativas
     @repasse_categorias_inativas = RepasseCategoria.inativas
     respond_to do |f|
-      f.js { render file: "repasse_categorias/ativar"}
+      f.js { render file: "repasse_categorias/ativar" }
     end
   end
 
-
   private
-  
+
   def repasse_categoria_params
     params.require(:repasse_categoria).permit(:nome)
   end
-
 end

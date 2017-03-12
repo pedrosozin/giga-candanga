@@ -1,4 +1,4 @@
-require 'test_helper'
+require "test_helper"
 
 class UsuariosControllerTest < ActionDispatch::IntegrationTest
   test "should get edit" do
@@ -25,5 +25,4 @@ class UsuariosControllerTest < ActionDispatch::IntegrationTest
     get usuarios_show_url
     assert_response :success
   end
-
 end

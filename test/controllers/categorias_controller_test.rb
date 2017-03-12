@@ -1,5 +1,4 @@
-require 'test_helper'
-
+require "test_helper"
 class CategoriasControllerTest < ActionDispatch::IntegrationTest
   test "should get listar" do
     get categorias_listar_url

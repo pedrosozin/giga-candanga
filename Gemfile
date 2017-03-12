@@ -52,7 +52,7 @@ gem 'bootbox-rails', '~>0.4'
 gem 'bootstrap-datepicker-rails'
 gem 'chosen-rails'
 gem 'jquery_mask_rails'
-gem 'font-awesome-sass'
+# gem 'font-awesome-sass'
 gem 'ionicons-rails'
 
 source 'https://rails-assets.org/' do 

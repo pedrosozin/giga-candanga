@@ -1,68 +1,24 @@
 <section class="categorias clear-fix">
-  <div class="row page-heading">
-    <h1>Categorias</h1>
-    <div class="underline"></div>
-  </div>
+	<div class="row page-heading">
+		<h1>Categorias</h1>
+		<div class="underline"></div>
+	</div>
 
-  <div class="row breadcrumb">
-        <p> <%= link_to("Instituições", instituicoes_path)%> > Categorias </p>
-  </div>
+	<div class="row breadcrumb">
+		<p> <%= link_to("Instituições", instituicoes_path)%> > Categorias </p>
+	</div>
 
+	<div class="row">
+		<button class="nova-categoria">Nova</button>
+		<div class="row">
+			<h2>Ativas</h2>
+		</div>
+		<%= render(partial: "tables", locals: {categorias: @categorias_ativas, identifier: "categorias-ativas-listing", icone: "ion-close-circled" })%> 
 
-  <div class="row">
-    <button class="nova-categoria">Nova</button>
-
-    <div class="row">
-      <h2>Ativas</h2>
-    </div>
-
-    <table class="listing " id="categorias-ativas-listing">
-      <thead>
-        <tr>
-          <th> Nome </th>
-          <th> Ações </th>
-        </tr>
-      </thead>
-      <tbody>
-        <%@categorias_ativas.each do |categoria|%>
-          <tr record_id="<%= categoria.id %>">
-            <td> <%= categoria.nome %></td>
-            <td> 
-              <%= link_to(categoria_path(categoria), method: "delete", class:"link-delete", data: {confirm: "Tem Certeza?"}, remote:true) do%> 
-                <i class="ion-close-circled"></i>
-              <%end%>
-            </td>
-          </tr>
-        <%end%>
-      </tbody>
-    </table>
-
-    <div class="row">
-      <h2>Inativas</h2>
-    </div>
-
-    <table class="listing " id="categorias-inativas-listing">
-      <thead>
-        <tr>
-          <th> Nome </th>
-          <th> Ações </th>
-        </tr>
-      </thead>
-      <tbody>
-        <%@categorias_inativas.each do |categoria|%>
-          <tr record_id="<%= categoria.id %>">
-            <td> <%= categoria.nome %></td>
-            <td> 
-              <%= link_to(ativar_categoria_path(categoria), method: "post", class:"link-ativa", data: {confirm: "Tem Certeza?"}, remote:true) do%> 
-                <i class="ion-checkmark-circled"></i>
-              <%end%>
-            </td>
-          </tr>
-        <%end%>
-      </tbody>
-    </table>
-  </div>
-
+		<div class="row">
+			<h2>Inativas</h2>
+		</div>
+		<%= render(partial: "tables", locals: {categorias: @categorias_inativas, identifier: "categorias-inativas-listing", icone: "ion-checkmark-circled" })%> 
+	</div>
 </section>
-
 <%=render("new")%>

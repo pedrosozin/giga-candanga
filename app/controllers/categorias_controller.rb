@@ -1,6 +1,5 @@
 class CategoriasController < ApplicationController
   def index
-    puts I18n.locale
     @categorias_ativas = Categoria.ativas
     @categorias_inativas = Categoria.inativas
     @categoria = Categoria.new
@@ -14,10 +13,7 @@ class CategoriasController < ApplicationController
     @categoria = Categoria.new( categoria_params )
     @categoria.save
 
-    respond_to do |f|
-      f.js { render file: "categorias/create"}
-    end
-
+    redirect_to categorias_path
   end
 
   def edit
@@ -28,17 +24,13 @@ class CategoriasController < ApplicationController
   def destroy
     @categoria = Categoria.find_by(id: params[:id])
     @categoria.desativa
-    respond_to do |f|
-      f.js {render file: "categorias/destroy"}
-    end
+    redirect_to categorias_path
   end
 
   def ativar
     @categoria = Categoria.find_by(id: params[:id])
     @categoria.ativar
-    respond_to do |f|
-      f.js {render file: "categorias/ativar" }
-    end
+    redirect_to categorias_path
   end
 
   private

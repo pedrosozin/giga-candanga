@@ -1,7 +1,6 @@
 class InstituicoesController < ApplicationController
   before_action :set_instituicao, only: [:edit, :update, :arquivar]
   before_action :initialize_categorias, only: [:new, :edit, :create, :update]
-  before_action :initialize_form_dependency, only: [:new, :edit]
 
   def index
     @instituicoes = Instituicao.ativas
@@ -9,9 +8,11 @@ class InstituicoesController < ApplicationController
 
   def new
     @instituicao = Instituicao.new
+    @instituicao.build_form_dependency(@responsavel_tipos)
   end
 
   def edit
+    @instituicao.build_form_dependency(@responsavel_tipos)
   end
 
   def create
@@ -67,8 +68,5 @@ class InstituicoesController < ApplicationController
     @responsavel_tipos = ResponsavelTipo.all
     @categorias = Categoria.ativas
   end
-
-  def initialize_form_dependency
-    @instituicao.build_form_dependency(@responsavel_tipos)
-  end
 end
+

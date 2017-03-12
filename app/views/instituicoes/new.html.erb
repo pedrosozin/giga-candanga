@@ -1,14 +1,10 @@
+<% @page_header = 'Cadastro Instituição' %>
 <section class="instituicao">
-  <div class="row page-heading">
-    <h1>Cadastro Instituição</h1>
-    <div class="underline"></div>
-  </div>
-
   <div class="row breadcrumb">
     <p> <%= link_to("Instituições", instituicoes_path) %> </p>
   </div>
 
-  <%= render partial: 'form', locals: {instituicao: @instituicao, tipos_resp: @responsavel_tipos} %>
-
+  <div class="box box-primary">
+    <%= render partial: 'form', locals: {instituicao: @instituicao, tipos_resp: @responsavel_tipos} %>
+  </div>
 </section>
-

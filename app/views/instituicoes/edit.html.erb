@@ -1,16 +1,14 @@
+<% @page_header = 'Instituição' %>
 <section class="instituicao">
-  <div class="row page-heading">
-    <h1> Instituição</h1>
-    <div class="underline"></div>
-  </div>
 
   <div class="row breadcrumb">
     <p> <%= link_to("Instituições", instituicoes_path)%> > Categorias </p>
   </div>
   <div class="editar-form">
-      <a href="#" class="editar-form">Editar</a>
+    <a href="#" class="editar-form">Editar</a>
   </div>
 
-  <%= render 'form', instituicao: @instituicao %>
-
+  <div class="box box-primary">
+    <%= render 'form', instituicao: @instituicao %>
+  </div>
 </section>

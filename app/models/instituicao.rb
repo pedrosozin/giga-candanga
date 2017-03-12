@@ -5,7 +5,7 @@ class Instituicao < ApplicationRecord
 
   validates :nome, presence: true, length: {in: 2..255}
   validates :sigla, presence: true
-  validates :resumo, length: {in: 2..500}
+  validates :resumo, length: {in: 0..500}
 
   accepts_nested_attributes_for :endereco, allow_destroy: true, reject_if: :all_blank
   accepts_nested_attributes_for :responsaveis, allow_destroy: true, reject_if: proc {|atts| deep_blank?(atts) }

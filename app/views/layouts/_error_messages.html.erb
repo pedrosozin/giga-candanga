@@ -1,9 +1,10 @@
-<% if object.present? and object.errors.size > 0 %>
+<% if object and object.errors.size > 0 %>
     <% c_flash = {:type => "error", :title => "Algumas entradas foram preenchidas incorretamente", :notice => ""}%>
     <% object.errors.full_messages.each do |msg| %>
         <% c_flash[:notice]+=sanitize(  "<p>#{msg}</p>")%>
     <%end%>
     <%= javascript_tag do%>
+        puts c_flash.to_json
         displayNotice(<%= c_flash.to_json.html_safe%>);
     <%end%>
 <%end%>

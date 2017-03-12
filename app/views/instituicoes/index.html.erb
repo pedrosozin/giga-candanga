@@ -1,0 +1,67 @@
+<section class="instituicao clear-fix">
+    <div class="row page-heading">
+        <h1>Instituições</h1>
+        <div class="underline"></div>
+    </div>
+
+    <div class="row breadcrumb">
+        <p> instituições </p>
+    </div>
+
+    <div class="row ">
+        <div class="new-button">
+            <%= link_to 'Nova', new_instituicao_path, role: "button"%>
+        </div>
+        <div class="search-form">
+            <%= form_tag(instituicoes_path, method: "get") do%>
+                <div class="search-wrapper">
+                    <%= button_tag(:pesquisar) do%>
+                        <i class="ion-search"></i>
+                    <%end%>
+                </div>
+                <div class="search-wrapper">
+                    <%= search_field_tag(:search)%>
+                </div>
+            <%end%>
+        </div>
+    </div>
+    <table class="listing instituicoes">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Sigla</th>
+                <th>Contato</th>
+                <th>Tel. Contato</th>
+                <th>Condição</th>
+                <th colspan="3">Ações</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <% @instituicoes.each do |instituicao| %>
+                <tr>
+                    <td><%= instituicao.nome %></td>
+                    <td><%= instituicao.sigla %></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td><%= link_to edit_instituicao_path(instituicao), class: "link-ativa" do %>
+                        <i class="ion-edit"></i>
+                    <%end%>
+                </td>
+                <td>
+                    <div href="#" class="link-delete instituicao">
+                        <i class="ion-close-circled"></i>
+                        <%= link_to(" ",arquivar_instituicao_path(instituicao), method: "put", class:"link-delete hidden" )%>
+                    </div>
+                </td>
+            </tr>
+        <% end %>
+    </tbody>
+</table>
+
+<br>
+
+</section>
+
+<%= render(partial: "layouts/flash_messages")%>

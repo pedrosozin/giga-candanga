@@ -1,0 +1,24 @@
+<h2><%= t('.resend_confirmation_instructions') %></h2>
+
+<%= semantic_form_for(resource, as: resource_name, url:
+                      confirmation_path(resource_name), html: { method: :post
+}) do |f| %>
+  <%= devise_error_messages! %>
+
+  <%= form.inputs do %>
+    <div class="field">
+      <%= f.input :password, input_html: { autofocus: true } %><br />
+    </div>
+    <div class="field">
+      <%= f.input :password_confirmation %>
+    </div>
+    <div class="field">
+      <%= f.input :confirmation_token, as: :hidden, input_html: { value: @original_token } %>
+    </div>
+    <% end %>
+    <%= f.actions do %>
+      <%= f.action :submit, label: t('.resend_confirmation_instructions') %>
+    <% end %>
+  <% end %>
+
+  <%= render "devise/shared/links" %>

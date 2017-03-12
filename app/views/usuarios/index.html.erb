@@ -1,0 +1,27 @@
+<h3>Usuários</h3>
+<span>  </span>
+
+  <table>
+    <thead>
+      <th>#</th>
+      <th>Nome</th>
+      <th>Email</th>
+      <th>Telefone</th>
+      <th>Ações</th>
+    </thead>
+    <tbody>
+      <% @usuarios.each do |usuario| %>
+        <tr>
+          <td> <%= usuario.id %> </td>
+          <!-- provisorio, validação cuidará desse detalhe -->
+          <td> <%= usuario.nome %> </td>
+          <td> <%= usuario.email %> </td>
+          <!-- provisorio, validação cuidará desse detalhe -->
+          <td> <%= usuario.telefone %> </td>
+          <% if usuario == current_usuario %>
+            <td> <%= link_to "Editar", edit_usuario_registration_path(usuario)%> </td>
+          <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>

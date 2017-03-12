@@ -1,0 +1,24 @@
+<section class="categorias clear-fix">
+	<div class="row page-heading">
+		<h1>Categorias</h1>
+		<div class="underline"></div>
+	</div>
+
+	<div class="row breadcrumb">
+		<p> <%= link_to("Instituições", instituicoes_path)%> > Categorias </p>
+	</div>
+
+	<div class="row">
+		<button class="nova-categoria">Nova</button>
+		<div class="row">
+			<h2>Ativas</h2>
+		</div>
+		<%= render(partial: "tables", locals: {categorias: @categorias_ativas, identifier: "categorias-ativas-listing", icone: "ion-close-circled" })%> 
+
+		<div class="row">
+			<h2>Inativas</h2>
+		</div>
+		<%= render(partial: "tables", locals: {categorias: @categorias_inativas, identifier: "categorias-inativas-listing", icone: "ion-checkmark-circled" })%> 
+	</div>
+</section>
+<%=render("new")%>

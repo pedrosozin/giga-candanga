@@ -1,0 +1,5 @@
+check list
+- combo box gategorias - ok
+- botao para adicionar novo email e telefone
+- bloquear campos quando entrar na página de edição - ok
+- arquivar: com put request

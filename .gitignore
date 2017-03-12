@@ -15,3 +15,13 @@
 
 # Ignore Byebug command history file.
 .byebug_history
+
+# Ignore database.yml local configuration
+config/database.yml
+
+#ignore general
+db/schema.rb
+tags
+public/assests
+checklist.txt
+public/assests/**/*

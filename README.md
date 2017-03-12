@@ -25,3 +25,11 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+
+* Conventions
+	original -> traduzida
+	- Rotas:
+		index -> listar
+		new -> criar
+		edit -> editar
+	

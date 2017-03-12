@@ -1,151 +1,142 @@
-<%= nested_form_for(@instituicao) do |f| %>
+<%= nested_form_for(@instituicao, html: { class: "form-horizontal" }) do |f| %>
+  <div class="box-header with-border">
+    <h3 class="box-title">Dados da Instituição</h3>
+  </div>
+  <div class="box-body">
+    <!--  Dados da Insituição -->
+    <div class="form-group">
+      <%= f.label :nome, class: "col-sm-2 control-label" %>
+      <div class="col-sm-6">
+        <%= f.text_field :nome, placeholder: "Nome da Instituição", class: "form-control" %>
+      </div>
 
-    <!--  CAMPOS  PATA A INSTITUICAO -->
-    <div class="row line-type-1">
-        <div class="field">
-            <div class="label-wrapper"><%= f.label :nome %></div>
-            <%= f.text_field :nome %>
-        </div>
-
-        <div class="field">
-            <div class="label-wrapper"><%= f.label(:categoria_id, "Categoria")%></div>
-            <%= f.select(:categoria_id, @categorias.map { |c| [c.nome, c.id]},{include_blank: true },{ class: "chosen-select" })%>
-        </div>
+      <%= f.label :sigla, class: "col-sm-1 control-label" %>
+      <div class="col-sm-2">
+        <%= f.text_field :sigla, placeholder: "Sigla", required: true, class: "form-control" %>
+      </div>
     </div>
 
-    <div class="row line-type-2">
-        <div class="field">
-            <div class="label-wrapper"><%= f.label :sigla %></div>
-            <%= f.text_field :sigla, required: true %>
-        </div>
-
-        <div class="field">
-            <div class="label-wrapper"><%= f.label :cnpj, "CNPJ" %></div>
-            <%= f.text_field :cnpj%>
-        </div>
-
-        <div class="field">
-            <div class="label-wrapper"><%= f.label :data_aprovacao, "Data de aprovação" %></div>
-            <%= f.text_field :data_aprovacao, class: "bootstrap-date"%>
-        </div>
+    <div class="form-group">
+      <%= f.label(:categoria_id, "Categoria", class: "col-sm-2 control-label")%>
+      <div class="col-sm-3">
+        <%= f.select(:categoria_id, @categorias.map { |c| [c.nome, c.id]},{include_blank: "- Selecione Categoria -" },{ class: "form-control select2 select2-hidden-accessible" })%>
+      </div>
+      <%= f.label :cnpj, "CNPJ", class: "col-sm-1 col-sm-offset-2 control-label" %>
+      <div class="col-sm-3">
+        <%= f.text_field :cnpj, placeholder: "22.333.333/4444-00", class: "form-control" %>
+      </div>
     </div>
 
-    <div class="row line-type-3">
-        <div class="field">
-            <div class="label-wrapper"><%= f.label :resumo %></div>
-            <%= f.text_area :resumo, maxlength: "500" %>
-        </div>
+    <div class="form-group">
+      <%= f.label :data_aprovacao, "Data de aprovação", class: "col-sm-2 control-label" %>
+      <div class="col-sm-2">
+        <%= f.text_field :data_aprovacao, placeholder: "dd/MM/aaaa", class: "bootstrap-date form-control"%>
+      </div>
+
+      <%= f.label :site, class: "col-sm-1 control-label" %>
+      <div class="col-sm-6">
+        <%= f.text_field :site, placeholder: "http://www.siteDaInstituicao.com.br", class: "form-control" %>
+      </div>
     </div>
 
-    <div class="row line-type-4">
-        <div class="field">
-            <div class="label-wrapper"><%= f.label :site %></div>
-            <%= f.text_field :site %>
-        </div>
+    <div class="form-group">
+      <%= f.label :resumo, class: "col-sm-2 control-label" %>
+      <div class="col-sm-9">
+        <%= f.text_area :resumo, maxlength: "500", class: "form-control" %>
+      </div>
     </div>
 
-    <!--     CAMPOS PARA O EMAIL     -->
-
+    <!-- Email -->
+    <hr/>
     <div class="row">
-        <h2>Endereço</h2>
+      <div class="col-sm-2">
+          <h4>Endereço</h4>
+      </div>
     </div>
 
     <%= f.fields_for :endereco do |ed| %>
+      <div class="form-group">
+          <%= ed.label :cep, "CEP", class: "col-sm-2 control-label" %>
+          <div class="col-sm-2">
+            <%= ed.text_field(:cep, placeholder: "333.333.333-22", class: "form-control") %>
+          </div>
 
-        <div class="row line-type-5">
-            <div class="field">
-                <div class="label-wrapper"><%= ed.label :cep%></div>
-                <%= ed.text_field(:cep)%>
-            </div>
+          <%= ed.label :cidade, class: "col-sm-1 control-label" %>
+          <div class="col-sm-3">
+            <%= ed.text_field(:cidade, placeholder: "Cidade", class: "form-control") %>
+          </div>
+
+          <%= ed.label :estado, class: "col-sm-1 control-label" %>
+          <div class="col-sm-2">
+            <%= ed.text_field(:estado, placeholder: "Estado", class: "form-control") %>
+          </div>
+      </div>
+
+      <div class="form-group">
+        <%= ed.label :bairro, class: "col-sm-2 control-label" %>
+        <div class="col-sm-2">
+          <%= ed.text_field(:bairro, placeholder: "Bairro", class: "form-control") %>
         </div>
-
-        <div class="row line-type-6">
-            <div class="field">
-
-                <div class="label-wrapper"><%= ed.label :cidade%></div>
-                <%= ed.text_field(:cidade)%>
-
-            </div>
-
-            <div class="field">
-
-                <div class="label-wrapper"><%= ed.label :estado%></div>
-                <%= ed.text_field(:estado)%>
-
-            </div>
-            <div class="field">
-
-                <div class="label-wrapper"><%= ed.label :bairro%></div>
-                <%= ed.text_field(:bairro)%>
-            </div>
+        <%= ed.label :endereco, class: "col-sm-1 control-label" %>
+        <div class="col-sm-6">
+          <%= ed.text_field(:endereco, placeholder: "Endereço da instituição", class: "form-control") %>
         </div>
-        <div class="row line-type-7">
-            <div class="field">
-                <div class="label-wrapper"><%= ed.label :endereco%></div>
-                <%= ed.text_field(:endereco)%>
-            </div>
-        </div>
+      </div>
+    <% end %>
 
-    <%end%>
-
-    <!-- CAMPOS PARA OS RESPONSAVEIS   -->
-
+    <!-- Responsáveis   -->
+    <hr/>
     <div class="row">
-        <h2>Responsáveis</h2>
+      <div class="col-sm-2">
+          <h4>Responsáveis</h4>
+      </div>
     </div>
+
     <%= f.fields_for :responsaveis do |res| %>
-        <div class="row">
-            <p><%= res.object.responsavel_tipo.descricao %></p>
-            <%= res.hidden_field(:responsavel_tipo_id, value: res.object.responsavel_tipo_id)%>
-            <div class="row line-type-8">
-                <div class="field">
-                    <div class="label-wrapper"><%= res.label(:cargo)%></div>
-                    <%= res.text_field(:cargo)%>
-                </div>
-                <div class="field">
-                    <div class="label-wrapper"><%= res.label(:nome)%></div>
-                    <%= res.text_field(:nome)%>
-                </div>
-            </div>
-
-            <div class="row line-type-9">
-                <%= res.fields_for(:telefones) do |t|%>
-                    <div class="field fone">
-                        <div class="label-wrapper"><%= t.label(:numero, "Telefone")%></div>
-                        <%= t.text_field(:numero)%>
-                    </div>
-                    <% if t.object.persisted? %>
-                        <div class="field">
-                            <div class="label-wrapper"><%= t.check_box(:_destroy)%></div>
-                            <%= t.label(:_destroy, "Excluir")%>
-                        </div>
-                    <%end%>
-
-                <%end%>
-
-                <%= res.fields_for(:emails) do |t|%>
-                    <div class="field email">
-                        <div class="label-wrapper"><%= t.label(:email, "Email")%></div>
-                        <%= t.text_field(:email)%>
-                    </div>
-                    <% if t.object.persisted? %>
-                        <div class="field">
-                            <%= t.check_box(:_destroy)%>
-                            <%= t.label(:_destroy, "Excluir")%>
-                        </div>
-                    <%end%>
-                <%end%>
-            </div>
+      <br/>
+      <h5>- <%= res.object.responsavel_tipo.descricao %></h5>
+      <%= res.hidden_field(:responsavel_tipo_id, value: res.object.responsavel_tipo_id)%>
+      <div class="form-group">
+        <%= res.label(:nome, class: "col-sm-2 control-label") %>
+        <div class="col-sm-4">
+          <%= res.text_field(:nome, placeholder: "Nome do responsável", class: "form-control") %>
         </div>
+
+        <%= res.label(:cargo, class: "col-sm-1 control-label") %>
+        <div class="col-sm-3">
+          <%= res.text_field(:cargo, placeholder: "Cargo", class: "form-control") %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= res.fields_for(:telefones) do |t| %>
+          <%= t.label(:numero, "Telefone", class: "col-sm-2 control-label") %>
+          <div class="col-sm-2">
+            <%= t.text_field(:numero, placeholder: "(61) 91234-5678", class: "form-control") %>
+          </div>
+          <% if t.object.persisted? %>
+            <%= t.check_box(:_destroy) %>
+            <%= t.label(:_destroy, "Excluir") %>
+          <%end%>
+        <%end%>
+
+        <%= res.fields_for(:emails) do |t| %>
+          <%= t.label(:email, "Email", class: "col-sm-1 col-sm-offset-2 control-label") %>
+          <div class="col-sm-3">
+            <%= t.text_field(:email, placeholder: "responsavel@email.com", class: "form-control") %>
+          </div>
+          <% if t.object.persisted? %>
+            <%= t.check_box(:_destroy)%>
+            <%= t.label(:_destroy, "Excluir")%>
+          <%end%>
+        <%end%>
+      </div>
     <%end%>
 
-    <div class="actions row">
-        <%= f.submit "Salvar" %>
-    </div>
-
-    <%puts f.object.attributes %>
     <%= render(partial: "layouts/error_messages", locals: { object: f.object })%>
+  </div>
+  <div class="box-footer">
+    <%= f.submit "Salvar", class: "btn btn-primary pull-right" %>
+  </div>
 
 <% end %>
-
-

@@ -37,7 +37,7 @@ function formCustomization(){
     $('#new_instituicao input, #edit_instituicao input').removeAttr('data-disable-with');
     $('.edit_instituicao input, #edit_instituicao input').removeAttr('data-disable-with');
     /* geral */
-    $('.chosen-select').chosen(Object.assign({},choseDefaltOptions,{width: '130px'}));
+    // $('.chosen-select').chosen(Object.assign({},choseDefaltOptions,{width: '130px'}));
 
     $('.bootstrap-date').datepicker({autoclose:true});
 
@@ -150,7 +150,7 @@ function formValidadeInstituicao(){
 
         $('[id*="instituicao_responsaveis"][name*="nome"]').each(function(){
             $(this).rules('add', {
-                respnome:true 
+                respnome:true
             });
         });
     }
@@ -164,7 +164,7 @@ function formValidadeInstituicao(){
 
         $('[id*="instituicao_responsaveis"][name*="nome"]').each(function(){
             $(this).rules('add', {
-                respnome:true 
+                respnome:true
             });
         });
     });
@@ -175,7 +175,7 @@ $( document ).on('turbolinks:load', function() {
     handleInstituicoesEvents();
     formCustomization();
 
-    /* valida os form de criacao e edição */ 
+    /* valida os form de criacao e edição */
     formValidadeInstituicao();
 });
 
@@ -192,15 +192,15 @@ function validarCNPJ(cnpj) {
         return false;
 
     // Elimina CNPJs invalidos conhecidos
-    if (cnpj == "00000000000000" || 
-        cnpj == "11111111111111" || 
-        cnpj == "22222222222222" || 
-        cnpj == "33333333333333" || 
-        cnpj == "44444444444444" || 
-        cnpj == "55555555555555" || 
-        cnpj == "66666666666666" || 
-        cnpj == "77777777777777" || 
-        cnpj == "88888888888888" || 
+    if (cnpj == "00000000000000" ||
+        cnpj == "11111111111111" ||
+        cnpj == "22222222222222" ||
+        cnpj == "33333333333333" ||
+        cnpj == "44444444444444" ||
+        cnpj == "55555555555555" ||
+        cnpj == "66666666666666" ||
+        cnpj == "77777777777777" ||
+        cnpj == "88888888888888" ||
         cnpj == "99999999999999")
         return false;
 
@@ -235,4 +235,3 @@ function validarCNPJ(cnpj) {
     return true;
 
 }
-

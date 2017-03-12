@@ -5,7 +5,7 @@
         </div>
         <div class="underline"></div>
 
-        <%= form_for(@repasse_categoria, remote: true, class:"nova-repasse-categoria") do |f|%>
+        <%= form_for(@repasse_categoria, class:"nova-repasse-categoria") do |f|%>
             <%= f.label(:nome, "Nome")%>
             <%= f.text_field(:nome )%>
             <%= f.submit("Salvar")%>

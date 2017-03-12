@@ -1,26 +1,26 @@
 <table class="listing" id="<%= identifier %>">
   <thead>
-    <tr>
-      <th> Nome </th>
-      <th> Ações </th>
-    </tr>
+  <tr>
+    <th> Nome</th>
+    <th> Ações</th>
+  </tr>
   </thead>
   <tbody>
-    <%repasse_categorias.each do |categoria|%>
+  <% repasse_categorias.each do |categoria| %>
       <tr record_id="<%= categoria.id %>">
         <td> <%= categoria.nome %></td>
         <td>
-          <%if categoria.ativa%>
-            <%= link_to(repasse_categoria_path(categoria), method: "delete", class:"link-delete", data: {confirm: "Tem Certeza?"}, remote:true) do%> 
-              <i class="<%= icone %>"></i>
-            <%end%>
-          <% else%>
-            <%= link_to(ativar_repasse_categoria_path(categoria), method: "post", class:"link-ativa", data: {confirm: "Tem Certeza?"}, remote:true) do%> 
-              <i class="<%= icone %>"></i>
-            <%end%>
-          <%end%>
+          <% if categoria.ativa %>
+              <%= link_to(repasse_categoria_path(categoria), method: "delete", class: "link-delete", data: {confirm: "Tem Certeza?"}) do %>
+                  <i class="<%= icone %>"></i>
+              <% end %>
+          <% else %>
+              <%= link_to(ativar_repasse_categoria_path(categoria), method: "post", class: "link-ativa", data: {confirm: "Tem Certeza?"}) do %>
+                  <i class="<%= icone %>"></i>
+              <% end %>
+          <% end %>
         </td>
       </tr>
-    <%end%>
+  <% end %>
   </tbody>
 </table>

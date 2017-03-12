@@ -1,30 +1,30 @@
 Rails.application.routes.draw do
   root 'usuarios#index'
 
-  resources :instituicoes, except:[:destroy], path_names: {new: "criar", edit:"editar"} do
+  resources :instituicoes, except: [:destroy, :show], path_names: {new: "criar", edit: "editar"} do
     member do
       put :arquivar
     end
   end
 
-  resources :repasse_categorias do 
+  resources :repasse_categorias, only: [:create, :destroy, :index] do
     member do
       post :ativar
     end
   end
 
-  resources :categorias, path_names: {new: "criar", edit: "editar" } do
+  resources :categorias, except: [:show, :update], path_names: {new: "criar", edit: "editar"} do
     member do
       post :ativar
     end
   end
 
-  resources :usuarios
+  resources :usuarios, except: [:edit, :update, :destroy]
 
-  devise_for :usuario, path_names: { sign_in: "entrar", sign_out: "deslogar", cancel: "cancelar", edit:"editar", new: "cadastrar", "password/new": "nova_senha" }, 
-    controllers: { registrations: 'usuarios/registrations',
-                   confirmations: 'usuarios/confirmations',
-  }
+  devise_for :usuario, path_names: {sign_in: "entrar", sign_out: "deslogar", cancel: "cancelar", edit: "editar", new: "cadastrar", "password/new": "nova_senha"},
+             controllers: {registrations: 'usuarios/registrations',
+                           confirmations: 'usuarios/confirmations',
+             }
 
   # devise_scope :usuario do
   #   # Rotas 'Sessions' Traduzidas
@@ -54,8 +54,6 @@ Rails.application.routes.draw do
   #   # Rotas 'Confirmations' Traduzidas
   #   patch 'confirmar', to: 'confirmations#confirm'
   # end
-
-
 
 
   # For details on the DSL available within this file, see

@@ -5,7 +5,7 @@
   </div>
 
   <div class="row breadcrumb">
-    <p> <a href="#">Instrumento Juídico</a> > Categorias </p>
+    <p><a href="#">Instrumento Juídico</a> > Categorias </p>
   </div>
 
 
@@ -16,13 +16,13 @@
       <h2>Ativas</h2>
     </div>
 
-    <%= render(partial: "tables", locals: {repasse_categorias: @repasse_categorias_ativas, identifier: "categorias-ativas-listing", icone: "ion-close-circled" })%> 
+    <%= render(partial: "tables", locals: {repasse_categorias: @repasse_categorias_ativas, identifier: "categorias-ativas-listing", icone: "ion-close-circled"}) %>
     <div class="row pre-inativas">
       <h2>Inativas</h2>
     </div>
-    <%= render(partial: "tables", locals: {repasse_categorias: @repasse_categorias_inativas, identifier: "categorias-inativas-listing", icone: "ion-checkmark-circled" })%>
+    <%= render(partial: "tables", locals: {repasse_categorias: @repasse_categorias_inativas, identifier: "categorias-inativas-listing", icone: "ion-checkmark-circled"}) %>
   </div>
 
 </section>
 
-<%= render "new"%>
+<%= render "new" %>

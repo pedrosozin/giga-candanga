@@ -5,7 +5,7 @@
         </div>
         <div class="underline"></div>
 
-        <%= form_for(@categoria,  class:"nova-categoria") do |f|%>
+        <%= form_for(categoria,  class:"nova-categoria") do |f|%>
             <%= f.label(:nome, "Nome")%>
             <%= f.text_field(:nome)%>
             <%= f.submit("Salvar")%>

@@ -14,13 +14,12 @@
 //= require jquery_ujs
 //= require jquery-ui
 //= require jquery_nested_form/
-//= require adminlte
 //= require turbolinks
 //= require jquery.validate
 //= jquery.validate.localization
 //= require bootstrap-sprockets
+//= require app
 //= require bootbox
-//= require bootstrap-datepicker
 //= require chosen-jquery
 //= require jquery.mask
 //= require_tree .

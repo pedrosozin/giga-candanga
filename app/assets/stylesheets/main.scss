@@ -1,17 +1,22 @@
-/** Vendors  */
+/* Vendors  */
 @import "bootstrap-sprockets";
 @import "bootstrap";
-@import "font-awesome-sprockets";
-@import "font-awesome";
+@import "AdminLTE/AdminLTE";
+@import "AdminLTE/skins/skin-blue";
+
+// // @import "bootstrap-sprockets";
+// @import "bootstrap";
+// @import "font-awesome-sprockets";
+// @import "font-awesome";
 // @import "ionicons";
 // @import "admin-lte";
 // @import "vendor/css/ionicons.min.css";
 
 /*  base  */
+@import "base/global.scss";
 // @import "base/variables.scss";
 // @import "base/mixins.scss";
 // @import "base/normalize.scss";
-// @import "base/global.scss";
 //
 //
 //

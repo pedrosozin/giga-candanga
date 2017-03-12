@@ -170,11 +170,21 @@ function formValidadeInstituicao(){
     });
 }
 
+function setCustomStyles() {
+  $('#intituicao-index-tb').DataTable({
+      "paging": true,
+      "lengthChange": false,
+      "searching": true,
+      "ordering": true,
+      "info": true,
+      "autoWidth": true
+    });
+}
 
 $( document ).on('turbolinks:load', function() {
     handleInstituicoesEvents();
     formCustomization();
-
+    setCustomStyles();
     /* valida os form de criacao e edição */
     formValidadeInstituicao();
 });

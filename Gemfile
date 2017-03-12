@@ -26,7 +26,6 @@ gem 'devise'
 gem 'devise-i18n'
 gem 'cancancan'
 
-
 # Use formtastic for semantic and easy form
 gem 'formtastic', '~> 3.0'
 
@@ -46,17 +45,18 @@ gem 'jbuilder', '~> 2.5'
 gem "nested_form"
 
 #style
-gem 'bootstrap-sass', '~> 3.3.6'
-gem 'adminlte-rails'
+gem 'adminlte2-rails'
+# gem 'bootstrap-sass', '~> 3.3.6'
+# gem 'adminlte-rails'
 gem 'bootbox-rails', '~>0.4'
-gem 'bootstrap-datepicker-rails'
+# gem 'bootstrap-datepicker-rails'
 gem 'chosen-rails'
 gem 'jquery_mask_rails'
 gem 'font-awesome-sass'
 
-source 'https://rails-assets.org/' do 
-  gem 'rails-assets-adminlte'
-end
+# source 'https://rails-assets.org/' do
+#   gem 'rails-assets-adminlte'
+# end
 # internacionalização
 gem 'rails-i18n', '~> 5.0.0'
 

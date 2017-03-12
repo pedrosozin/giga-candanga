@@ -110,14 +110,16 @@
 
       <div class="form-group">
         <%= res.fields_for(:telefones) do |t| %>
-          <%= t.label(:numero, "Telefone", class: "col-sm-2 control-label") %>
-          <div class="col-sm-2">
-            <%= t.text_field(:numero, placeholder: "(61) 91234-5678", class: "form-control") %>
+          <div class="col-sm-4">
+            <%= t.label(:numero, "Telefone", class: "col-sm-6 control-label") %>
+            <div class="col-sm-6">
+              <%= t.text_field(:numero, placeholder: "(61) 91234-5678", class: "form-control") %>
+            </div>
+            <% if t.object.persisted? %>
+              <%= t.check_box(:_destroy) %>
+              <%= t.label(:_destroy, "Excluir") %>
+            <%end%>
           </div>
-          <% if t.object.persisted? %>
-            <%= t.check_box(:_destroy) %>
-            <%= t.label(:_destroy, "Excluir") %>
-          <%end%>
         <%end%>
 
         <%= res.fields_for(:emails) do |t| %>

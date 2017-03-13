@@ -112,24 +112,28 @@
                 <%= res.fields_for(:telefones) do |t| %>
                     <div class="col-sm-4">
                         <%= t.label(:numero, "Telefone", class: "col-sm-6 control-label") %>
-                        <div class="col-sm-6">
-                            <%= t.text_field(:numero, placeholder: "(61) 91234-5678", class: "form-control") %>
+                        <div class="col-sm-4">
+                            <%= t.text_field(:numero, placeholder: "(61) 91234-5678", class: "form-control", phone: "s", maxlength: "14") %>
                         </div>
                         <% if t.object.persisted? %>
                             <%= t.check_box(:_destroy) %>
-                            <%= t.label(:_destroy, "Excluir") %>
+                            <%= t.label(:_destroy, "Excluir")  %>
                         <%end%>
                     </div>
                 <%end%>
 
-                <%= res.fields_for(:emails) do |t| %>
-                    <%= t.label(:email, "Email", class: "col-sm-1 col-sm-offset-2 control-label") %>
+                <%= res.fields_for(:emails) do |e| %>
+                    <%= e.label(:email, "Email", class: "col-sm-1 col-sm-offset-2 control-label") %>
                     <div class="col-sm-3">
-                        <%= t.text_field(:email, placeholder: "responsavel@email.com", class: "form-control") %>
+                        <%= e.text_field(:email, placeholder: "responsavel@email.com", class: "form-control") %>
                     </div>
-                    <% if t.object.persisted? %>
-                        <%= t.check_box(:_destroy)%>
-                        <%= t.label(:_destroy, "Excluir")%>
+                    <% if e.object.persisted? %>
+                        <div class="checkbox">
+                            <%= e.label(:_destroy, "Excluir") do%>
+                                <%= e.check_box(:_destroy)%>
+                                Excluir
+                            <%end%>
+                        </div>
                     <%end%>
                 <%end%>
             </div>

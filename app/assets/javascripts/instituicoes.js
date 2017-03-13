@@ -39,12 +39,14 @@ function formCustomization(){
     /* geral */
     // $('.chosen-select').chosen(Object.assign({},choseDefaltOptions,{width: '130px'}));
 
-    $('.bootstrap-date').datepicker({autoclose:true});
+    $('.bootstrap-date').datepicker({autoclose:true, language: "pt"});
 
     // mascaras
     $('input[name="instituicao[cnpj]"]').mask('00.000.000/0000-00', {reverse: true});
     $('input[name="instituicao[endereco_attributes][cep]"]').mask('00000-000');
     $('input[name="instituicao[data_aprovacao]"]').mask('00/00/0000');
+    $('input[phone=s]').mask('(00)00000-0000');
+
 
 
     /* editar */

@@ -1,9 +1,9 @@
-const style = 'style = "text-align:center; margin-top: 15px; font-size:1.2rem;"';
-const eventMesseges = {
-    ARQUIVA_CONFIRM: '<p '+style+' >Tem certeza que deseja aqruivar? Todos os instrumentos jurídicos e conexões relacionadas também serão arquivadas!</p>'
+var instStyle = 'style = "text-align:center; margin-top: 15px; font-size:1.8rem;"';
+var instEventMesseges = {
+    ARQUIVA_CONFIRM: '<p '+instStyle+' >Tem certeza que deseja aqruivar? Todos os instrumentos jurídicos e conexões relacionadas também serão arquivadas!</p>'
 };
 
-const choseDefaltOptions = {
+var choseDefaltOptions = {
     placeholder_text_single: "Seleciona Uma opção",
     search_contains: true,
     allow_single_deselect: true,
@@ -17,7 +17,7 @@ function handleInstituicoesEvents(){
         event.preventDefault();
         var link = $(this);
         bootbox.confirm({
-            message: eventMesseges.ARQUIVA_CONFIRM,
+            message: instEventMesseges.ARQUIVA_CONFIRM,
             size: "large",
             callback: function(sim){
                 if(sim){
@@ -48,13 +48,10 @@ function formCustomization(){
 
 
     /* editar */
-    $('.edit_instituicao input').prop("disabled", true);
-    $('.edit_instituicao textarea').prop("disabled", true);
+    $('[id*=edit_instituicao] input').prop("disabled", true);
+    $('[id*=edit_instituicao] textarea').prop("disabled", true);
+    $('[id*=edit_instituicao] select').prop("disabled", true);
     // é necessario dar trigger nesse evento para rerenderizar a combo box com a nova config do select
-    $('.edit_instituicao select').prop("disabled", true).trigger("chosen:updated");
-
-
-
 
     // $('#new_instituicao').on('submit', instituicaoFormSubmit);
 }
@@ -96,14 +93,13 @@ function instituicaoFormSubmit(form){
 
 function formValidadeInstituicao(){
     addCustomRules();
-
     var options = {
         submitHandler: instituicaoFormSubmit,
         rules: {
             "instituicao[nome]":{
                 required: true,
                 minlength: 2,
-                maxlength: 35
+                maxlength: 55
             },
             "instituicao[categoria_id]": "required",
             "instituicao[cnpj]": { validCnpj: true},
@@ -132,7 +128,8 @@ function formValidadeInstituicao(){
         messages: {
             "instituicao[nome]":{
                 required: "Nome é obrigatório",
-                minlength: "Nome precisa conter no mínimo 2 caracteres"
+                minlength: jQuery.validator.format("Nome precisa conter no mínimo {0} caracteres"),
+                maxlength: jQuery.validator.format("Nome pode conter no máximo {0} caracteres")
             },
             "instituicao[categoria_id]": "Categoria é obrigatória",
             "instituicao[sigla]": {
@@ -157,9 +154,9 @@ function formValidadeInstituicao(){
     // libera form para edição e aplica validacao
     $('a.editar-form').on('click', function(e){
         e.preventDefault();
-        $('.edit_instituicao input').prop("disabled", false);
-        $('.edit_instituicao textarea').prop("disabled", false);
-        $('.edit_instituicao select').prop("disabled", false).trigger("chosen:updated");
+        $('[id*=edit_instituicao] input').prop("disabled", false);
+        $('[id*=edit_instituicao] textarea').prop("disabled", false);
+        $('[id*=edit_instituicao] select').prop("disabled", false);
         $(".edit_instituicao").validate(options);
 
         $('[id*="instituicao_responsaveis"][name*="nome"]').each(function(){
@@ -171,14 +168,16 @@ function formValidadeInstituicao(){
 }
 
 function setCustomStyles() {
-  $('#intituicao-index-tb').DataTable({
-      "paging": true,
-      "lengthChange": false,
-      "searching": true,
-      "ordering": true,
-      "info": true,
-      "autoWidth": true
-    });
+    // if ($('#instituicao-index-tb').length > 0 ) {
+    //     $('#instituicao-index-tb').DataTable({
+    //         "paging": true,
+    //         "lengthChange": false,
+    //         "searching": true,
+    //         "ordering": true,
+    //         "info": true,
+    //         "autoWidth": true
+    //     });
+    // }
 }
 
 $( document ).on('turbolinks:load', function() {

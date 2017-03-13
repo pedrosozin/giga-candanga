@@ -4,11 +4,14 @@
   <div class="row breadcrumb">
     <p> <%= link_to("Instituições", instituicoes_path)%> > Categorias </p>
   </div>
-  <div class="editar-form">
-    <a href="#" class="editar-form">Editar</a>
-  </div>
 
+  <div class="row">
+    <div class="editar-form col-sm-1 col-sm-offset-10">
+      <a href="#" class="editar-form btn btn-info btn-lg">Editar</a>
+    </div>
+  </div>
   <div class="box box-primary">
     <%= render 'form', instituicao: @instituicao %>
   </div>
 </section>
+<%= render(partial: "layouts/error_messages", locals: { object: @instituicao })%>

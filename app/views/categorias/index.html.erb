@@ -1,24 +1,32 @@
+<% @page_header = 'Categorias' %>
 <section class="categorias clear-fix">
-  <div class="row page-heading">
-    <h1>Categorias</h1>
-    <div class="underline"></div>
-  </div>
 
   <div class="row breadcrumb">
     <p> <%= link_to("Instituições", instituicoes_path) %> > Categorias </p>
   </div>
+  <div class="box box-primary">
 
-  <div class="row">
-    <button class="nova-categoria">Nova</button>
-    <div class="row">
-      <h2>Ativas</h2>
-    </div>
-    <%= render(partial: "tables", locals: {categorias: @categorias_ativas, identifier: "categorias-ativas-listing", icone: "ion-close-circled"}) %>
+    <div class="box-header with-border">
+      <button class="nova-categoria btn btn-info btn-lg">Nova</button>
+      <div class="row">
 
-    <div class="row">
-      <h2>Inativas</h2>
+        <div class="col-sm-3">
+          <h2>Ativas</h2>
+        </div>
+      </div>
     </div>
-    <%= render(partial: "tables", locals: {categorias: @categorias_inativas, identifier: "categorias-inativas-listing", icone: "ion-checkmark-circled"}) %>
+
+    <div class="box-body">
+      <%= render(partial: "tables", locals: {categorias: @categorias_ativas, identifier: "categorias-ativas-listing", icone: "ion-close-circled"}) %>
+
+      <div class="row">
+        <div class="col-sm-3">
+          <h2>Inativas</h2>
+        </div>
+
+      </div>
+      <%= render(partial: "tables", locals: {categorias: @categorias_inativas, identifier: "categorias-inativas-listing", icone: "ion-checkmark-circled"}) %>
+    </div>
   </div>
 </section>
 <%= render(partial: "new", locals: {categoria: @categoria}) %>

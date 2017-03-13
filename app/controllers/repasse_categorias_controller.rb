@@ -11,19 +11,19 @@ class RepasseCategoriasController < ApplicationController
     @repasse_categoria = RepasseCategoria.new(repasse_categoria_params)
     @repasse_categoria.save
 
-    redirect_to :index
+    redirect_to repasse_categorias_path
   end
 
   def destroy
     @repasse_categoria.desativa
 
-    redirect_to :index
+    redirect_to repasse_categorias_path
   end
 
   def ativar
     @repasse_categoria.reativa
 
-    redirect_to :index
+    redirect_to repasse_categorias_path
   end
 
   private

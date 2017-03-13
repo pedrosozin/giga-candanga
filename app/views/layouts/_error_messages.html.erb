@@ -4,7 +4,6 @@
         <% c_flash[:notice]+=sanitize(  "<p>#{msg}</p>")%>
     <%end%>
     <%= javascript_tag do%>
-        puts c_flash.to_json
         displayNotice(<%= c_flash.to_json.html_safe%>);
     <%end%>
 <%end%>

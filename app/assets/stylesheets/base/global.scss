@@ -1,6 +1,36 @@
 .field {
   @extend .form-group !optional;
 }
+/************* CUSTOM BUTONS          **************/
+div.editar-form {
+  margin-bottom: 10px;
+}
+
+a.editar-form{
+  display:block;
+  width: 80%;
+  margin:auto;
+}
+
+.link-holder {
+    min-width: 15px;
+    width: 5%;
+    font-size: 1.8rem;
+    transition: .3s;
+    &:hover{
+        color: #03A678;
+        cursor: pointer;
+    }
+}
+
+.link-delete{
+    @extend .link-holder;
+}
+
+div.error {
+    color: #F22613;
+    font-style: italic;
+}
 // // configuracoes globais
 // @import "variables.scss";
 //
@@ -196,107 +226,107 @@
 // /************************************************************************************************************
 //  *********************      APLICATION LAYOUT      ******************************************************
 //  *****************************************************************************************/
-//
-// /* style para o wrapper principal do application layout*/
-// .page-wrapper {
-//     width: 100%;
-//     position: relative;
-//     max-width: $resolucao-grande;
-//     height:100%;
-//     display: block;
-//     margin: 0 auto;
-//     // left: 50%;
-//     // transform: translate(-50%,0);
-// }
-//
-//
-// /*   navigation bar  */
-// .app-nav {
-//     min-height: 90px;
-//     width: 100%;
-//     background-color: $nav-back-color;
-//     border: 1px solid $nav-border-color;
-// }
-//
-// /* style da sidebar */
-//
-//
-// .app-sidebar{
-//     min-height: 100%;
-//     background-color: $nav-back-color;
-//     max-width: $resolucao-sidebar;
-//     width: 25%;
-//     display: block;
-//     float: left;
-//     border: 1px solid $nav-border-color;
-//     padding-top: 110px;
-//     padding-left: 25px;
-//
-//     ul {
-//         list-style: none;
-//     }
-//
-//     a:link,
-//     a:visited {
-//         text-decoration: none;
-//         color: $black ;
-//         transition: .3s;
-//         line-height: 1.4rem;
-//     }
-//
-//     a:hover,
-//     a:active {
-//         color: $white;
-//     }
-// }
-//
-//
-// /********* STYLE PADRAO PARA AS SECTIONS    *****/
-// .section-default {
-//     padding: 50px 5%;
-//     width: 75%;
-//     min-height: 100vh;
-//     height: auto;
-//     display: block;
-//     float: left;
-//     background-color: white;
-// }
-//
-// /***********************                               ANIMACOES    ***************************************/
-// @keyframes animatetop {
-//     from {top: -300px; opacity: 0}
-//     to {top: 40%; opacity: 1}
-// }
-//
-// /*******************    ERRORS CUSTOMIZACOES   ***********************/
-//
-// div.error {
-//     width: 100%;
-//     text-align: center;
-//     font-style: italic;
-//     color: red;
-// }
-//
-// .field{
-//     position: relative;
-//
-//     div.error {
-//         position: absolute;
-//         top:0;
-//         transform: translate(0%,-30%);
-//         text-align: center;
-//         font-style: italic;
-//         color: red;
-//         width: 100%;
-//     }
-// }
-// label.error {
-//     font-style: italic;
-//     color: red;
-// }
-//
-// input.error {
-//     border: 2px solid red;
-//     padding: 5px 5px;
-//     border-radius: 2%;
-// }
+  //
+  // /* style para o wrapper principal do application layout*/
+  // .page-wrapper {
+    //     width: 100%;
+    //     position: relative;
+    //     max-width: $resolucao-grande;
+    //     height:100%;
+    //     display: block;
+    //     margin: 0 auto;
+    //     // left: 50%;
+    //     // transform: translate(-50%,0);
+  // }
+  //
+  //
+  // /*   navigation bar  */
+  // .app-nav {
+    //     min-height: 90px;
+    //     width: 100%;
+    //     background-color: $nav-back-color;
+    //     border: 1px solid $nav-border-color;
+  // }
+  //
+  // /* style da sidebar */
+  //
+  //
+  // .app-sidebar{
+    //     min-height: 100%;
+    //     background-color: $nav-back-color;
+    //     max-width: $resolucao-sidebar;
+    //     width: 25%;
+    //     display: block;
+    //     float: left;
+    //     border: 1px solid $nav-border-color;
+    //     padding-top: 110px;
+    //     padding-left: 25px;
+    //
+    //     ul {
+      //         list-style: none;
+    //     }
+    //
+    //     a:link,
+    //     a:visited {
+      //         text-decoration: none;
+      //         color: $black ;
+      //         transition: .3s;
+      //         line-height: 1.4rem;
+    //     }
+    //
+    //     a:hover,
+    //     a:active {
+      //         color: $white;
+    //     }
+    // }
+    //
+    //
+    // /********* STYLE PADRAO PARA AS SECTIONS    *****/
+    // .section-default {
+      //     padding: 50px 5%;
+      //     width: 75%;
+      //     min-height: 100vh;
+      //     height: auto;
+      //     display: block;
+      //     float: left;
+      //     background-color: white;
+    // }
+    //
+    // /***********************                               ANIMACOES    ***************************************/
+    // @keyframes animatetop {
+      //     from {top: -300px; opacity: 0}
+      //     to {top: 40%; opacity: 1}
+    // }
+    //
+    // /*******************    ERRORS CUSTOMIZACOES   ***********************/
+    //
+    // div.error {
+      //     width: 100%;
+      //     text-align: center;
+      //     font-style: italic;
+      //     color: red;
+    // }
+    //
+    // .field{
+      //     position: relative;
+      //
+      //     div.error {
+        //         position: absolute;
+        //         top:0;
+        //         transform: translate(0%,-30%);
+        //         text-align: center;
+        //         font-style: italic;
+        //         color: red;
+        //         width: 100%;
+      //     }
+    // }
+    // label.error {
+      //     font-style: italic;
+      //     color: red;
+    // }
+    //
+    // input.error {
+      //     border: 2px solid red;
+      //     padding: 5px 5px;
+      //     border-radius: 2%;
+    // }

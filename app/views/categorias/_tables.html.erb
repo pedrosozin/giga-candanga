@@ -1,27 +1,29 @@
-<table class="listing" id="<%= identifier %>">
-  <thead>
-  <tr>
-    <th> Nome</th>
-    <th> Ações</th>
-  </tr>
-  </thead>
-  <tbody>
-  <% categorias.each do |categoria| %>
-      <tr record_id="<%= categoria.id %>">
-        <td> <%= categoria.nome %></td>
-        <td>
-          <% if categoria.ativa %>
-              <%= link_to(categoria_path(categoria), method: "delete", class: "link-delete", data: {confirm: "Tem Certeza?"}) do %>
-                  <i class="<%= icone %>"></i>
-              <% end %>
-          <% else %>
-              <%= link_to(ativar_categoria_path(categoria), method: "post", class: "link-ativa", data: {confirm: "Tem Certeza?"}) do %>
-                  <i class="<%= icone %>"></i>
-              <% end %>
-          <% end %>
-        </td>
-      </tr>
-  <% end %>
-  </tbody>
+<table class="table table-bordered table-hover" id="<%= identifier %>">
+    <thead>
+        <tr>
+            <th> Nome</th>
+            <th> Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% categorias.each do |categoria| %>
+            <tr record_id="<%= categoria.id %>">
+                <td> <%= categoria.nome %></td>
+                <td>
+                    <% if categoria.ativa %>
+                        <div class="link-holder">
+                            <i class="<%= icone %>"></i>
+                            <%= link_to(" ", categoria_path(categoria), method: "delete", class: "link-delete hidden")  %>
+                        </div>
+                    <% else %>
+                        <div class="link-holder">
+                            <i class="<%= icone %>"></i>
+                            <%= link_to(" ", ativar_categoria_path(categoria), method: "post", class: "link-ativa")  %>
+                        </div>
+                    <% end %>
+                </td>
+            </tr>
+        <% end %>
+    </tbody>
 </table>
 

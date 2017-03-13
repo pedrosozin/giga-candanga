@@ -1,26 +1,28 @@
-<table class="listing" id="<%= identifier %>">
+<table class="table table-bordered table-hover" id="<%= identifier %>">
   <thead>
-  <tr>
-    <th> Nome</th>
-    <th> Ações</th>
-  </tr>
+    <tr>
+      <th> Nome</th>
+      <th> Ações</th>
+    </tr>
   </thead>
   <tbody>
-  <% repasse_categorias.each do |categoria| %>
+    <% repasse_categorias.each do |categoria| %>
       <tr record_id="<%= categoria.id %>">
         <td> <%= categoria.nome %></td>
         <td>
           <% if categoria.ativa %>
-              <%= link_to(repasse_categoria_path(categoria), method: "delete", class: "link-delete", data: {confirm: "Tem Certeza?"}) do %>
-                  <i class="<%= icone %>"></i>
-              <% end %>
+            <div class="link-holder">
+              <i class="<%= icone %>"></i>
+              <%= link_to(" ", repasse_categoria_path(categoria), method: "delete", class: "link-delete")  %>
+            </div>
           <% else %>
-              <%= link_to(ativar_repasse_categoria_path(categoria), method: "post", class: "link-ativa", data: {confirm: "Tem Certeza?"}) do %>
-                  <i class="<%= icone %>"></i>
-              <% end %>
+            <div class="link-holder">
+              <i class="<%= icone %>"></i>
+              <%= link_to(" ", ativar_repasse_categoria_path(categoria), method: "post", class: "link-ativa")  %>
+            </div>
           <% end %>
         </td>
       </tr>
-  <% end %>
+    <% end %>
   </tbody>
 </table>

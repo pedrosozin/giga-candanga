@@ -159,11 +159,11 @@ function formValidadeInstituicao(){
         $('[id*=edit_instituicao] select').prop("disabled", false);
         $(".edit_instituicao").validate(options);
 
-        $('[id*="instituicao_responsaveis"][name*="nome"]').each(function(){
-            $(this).rules('add', {
-                respnome:true
-            });
-        });
+        // $('[id*="instituicao_responsaveis"][name*="nome"]').each(function(){
+        //     $(this).rules('add', {
+        //         respnome:true
+        //     });
+        // });
     });
 }
 

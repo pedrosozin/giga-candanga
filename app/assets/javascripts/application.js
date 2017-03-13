@@ -65,4 +65,5 @@ function displayNotice(content){
 }
 
 $( document ).on('turbolinks:load', function() {
+    handleGenerickClicks();
 });

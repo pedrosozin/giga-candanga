@@ -43,7 +43,6 @@
 
 function handleGenerickClicks(){
     $('.link-holder').on('click', 'i', function(event){
-        console.log("cliquei handle");
         event.preventDefault();
         var link = $(this);
         bootbox.confirm("Tem Certeza?", function(sim){
@@ -66,6 +65,5 @@ function displayNotice(content){
 }
 
 $( document ).on('turbolinks:load', function() {
-    console.log("cheguei aqui");
     handleGenerickClicks();
 });

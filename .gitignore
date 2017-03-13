@@ -22,9 +22,7 @@ config/database.yml
 #ignore general
 db/schema.rb
 tags
-public/assests
 checklist.txt
-public/assests/**/*
 
 #ignore RubyMine folder
 .idea/

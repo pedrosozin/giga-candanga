@@ -26,23 +26,24 @@
 
 
 /** fix adminlte issues */
-$(document).ready(function() {
-    $.AdminLTE.layout.activate();
-});
+// $(document).ready(function() {
+//     $.AdminLTE.layout.activate();
+// });
 
-function adminLTEFix(){
-    var o;
-    console.log("rodei o fix");
-    o = $.AdminLTE.options;
-    if (o.sidebarPushMenu) {
-        $.AdminLTE.pushMenu.activate(o.sidebarToggleSelector);
-    }
-    $.AdminLTE.layout.activate();
-}
-$(document).on('page:load',adminLTEFix);
+// function adminLTEFix(){
+//     var o;
+//     console.log("rodei o fix");
+//     o = $.AdminLTE.options;
+//     if (o.sidebarPushMenu) {
+//         $.AdminLTE.pushMenu.activate(o.sidebarToggleSelector);
+//     }
+//     $.AdminLTE.layout.activate();
+// }
+// $(document).on('page:load',adminLTEFix);
 
 function handleGenerickClicks(){
     $('.link-holder').on('click', 'i', function(event){
+        console.log("cliquei handle");
         event.preventDefault();
         var link = $(this);
         bootbox.confirm("Tem Certeza?", function(sim){
@@ -65,4 +66,6 @@ function displayNotice(content){
 }
 
 $( document ).on('turbolinks:load', function() {
+    console.log("cheguei aqui");
+    handleGenerickClicks();
 });

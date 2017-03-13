@@ -1,4 +1,6 @@
 class RepasseCategoriasController < ApplicationController
+  before_action :find_repasse_categoria, only: [:destroy, :ativar]
+
   def index
     @repasse_categorias_ativas = RepasseCategoria.ativas
     @repasse_categorias_inativas = RepasseCategoria.inativas
@@ -9,38 +11,28 @@ class RepasseCategoriasController < ApplicationController
     @repasse_categoria = RepasseCategoria.new(repasse_categoria_params)
     @repasse_categoria.save
 
-    @repasse_categorias_ativas = RepasseCategoria.ativas
-
-    respond_to do |f|
-      f.js { render file: "repasse_categorias/create" }
-    end
+    redirect_to repasse_categorias_path
   end
 
   def destroy
-    @repasse_categoria = RepasseCategoria.find_by(id: params[:id])
     @repasse_categoria.desativa
 
-    @repasse_categorias_ativas = RepasseCategoria.ativas
-    @repasse_categorias_inativas = RepasseCategoria.inativas
-    respond_to do |f|
-      f.js { render file: "repasse_categorias/destroy" }
-    end
+    redirect_to repasse_categorias_path
   end
 
   def ativar
-    @repasse_categoria = RepasseCategoria.find_by(id: params[:id])
     @repasse_categoria.reativa
 
-    @repasse_categorias_ativas = RepasseCategoria.ativas
-    @repasse_categorias_inativas = RepasseCategoria.inativas
-    respond_to do |f|
-      f.js { render file: "repasse_categorias/ativar" }
-    end
+    redirect_to repasse_categorias_path
   end
 
   private
 
   def repasse_categoria_params
     params.require(:repasse_categoria).permit(:nome)
+  end
+
+  def find_repasse_categoria
+    @repasse_categoria = RepasseCategoria.find_by(id: params[:id])
   end
 end

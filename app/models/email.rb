@@ -1,7 +1,6 @@
 class Email < ApplicationRecord
   belongs_to :responsavel
 
-
   EMAIL_REGEX = /\A[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}\Z/i
 
   validates :email, format: EMAIL_REGEX, if: :check_email
@@ -9,6 +8,6 @@ class Email < ApplicationRecord
   protected
 
   def check_email
-    ! email.blank?
+    !email.blank?
   end
 end

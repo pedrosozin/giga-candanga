@@ -14,5 +14,4 @@ class CategoriasControllerTest < ActionDispatch::IntegrationTest
     get categorias_editar_url
     assert_response :success
   end
-
 end

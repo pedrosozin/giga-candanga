@@ -12,37 +12,47 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require jquery-ui
 //= require jquery_nested_form/
-//= require chosen-jquery
-//= require jquery.mask
 //= require jquery.validate
+//= require dataTables/jquery.dataTables
 //= jquery.validate.localization
 //= require turbolinks
 //= require bootstrap-sprockets
-//= require adminlte
-//= require bootbox
 //= require bootstrap-datepicker
+//= require app
+//= require bootbox
+//= require chosen-jquery
+//= require jquery.mask
 //= require_tree .
 
-function normalizaAlturaSidebar(){
-    var height = $('.app-sidebar').next().height();
-    $('.app-sidebar').height(height);
 
-    const target = $('html')[0];
+/** fix adminlte issues */
+$(document).ready(function() {
+    $.AdminLTE.layout.activate();
+});
 
-    // create an observer instance
-    var observer = new MutationObserver(function(mutations) {
-        var height = $('.app-sidebar').next().height();
-        $('.app-sidebar').height(height);
-    });
-
-    var config = { attributes: true, childList: true, characterData: true };
-
-    // pass in the target node, as well as the observer options
-    observer.observe(target, config);
+function adminLTEFix(){
+    var o;
+    o = $.AdminLTE.options;
+    if (o.sidebarPushMenu) {
+        $.AdminLTE.pushMenu.activate(o.sidebarToggleSelector);
+    }
+    $.AdminLTE.layout.activate();
 }
 
+function handleGenerickClicks(){
+    $('.link-holder').on('click', 'i', function(event){
+        event.preventDefault();
+        var link = $(this);
+        bootbox.confirm("Tem Certeza?", function(sim){
+            if(sim){
+                link.next().click();
+            } else {
+                bootbox.hideAll();
+            }
+        })
+    });
+}
 
 function displayNotice(content){
     if(content.type){
@@ -53,8 +63,7 @@ function displayNotice(content){
     }
 }
 
-
 $( document ).on('turbolinks:load', function() {
-
-    normalizaAlturaSidebar();
+    adminLTEFix();
+    handleGenerickClicks();
 });

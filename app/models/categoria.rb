@@ -5,7 +5,6 @@ class Categoria < ApplicationRecord
   scope :ativas, -> { where(ativa: true) }
   scope :inativas, -> { where(ativa: false) }
 
-
   def desativa
     self.ativa = false
     save

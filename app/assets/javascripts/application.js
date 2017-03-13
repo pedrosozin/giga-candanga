@@ -16,13 +16,12 @@
 //= require jquery.validate
 //= require dataTables/jquery.dataTables
 //= jquery.validate.localization
-//= require turbolinks
+//= require jquery.mask
 //= require bootstrap-sprockets
 //= require bootstrap-datepicker
-//= require app
 //= require bootbox
-//= require chosen-jquery
-//= require jquery.mask
+//= require app
+//= require turbolinks
 //= require_tree .
 
 
@@ -33,12 +32,14 @@ $(document).ready(function() {
 
 function adminLTEFix(){
     var o;
+    console.log("rodei o fix");
     o = $.AdminLTE.options;
     if (o.sidebarPushMenu) {
         $.AdminLTE.pushMenu.activate(o.sidebarToggleSelector);
     }
     $.AdminLTE.layout.activate();
 }
+$(document).on('page:load',adminLTEFix);
 
 function handleGenerickClicks(){
     $('.link-holder').on('click', 'i', function(event){
@@ -64,6 +65,4 @@ function displayNotice(content){
 }
 
 $( document ).on('turbolinks:load', function() {
-    adminLTEFix();
-    handleGenerickClicks();
 });

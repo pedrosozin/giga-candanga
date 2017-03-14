@@ -1,9 +1,9 @@
-const style = 'style = "text-align:center; margin-top: 15px; font-size:1.2rem;"';
-const eventMesseges = {
-    ARQUIVA_CONFIRM: '<p '+style+' >Tem certeza que deseja aqruivar? Todos os instrumentos jurídicos e conexões relacionadas também serão arquivadas!</p>'
+var instStyle = 'style = "text-align:center; margin-top: 15px; font-size:1.8rem;"';
+var instEventMesseges = {
+    ARQUIVA_CONFIRM: '<p '+instStyle+' >Tem certeza que deseja aqruivar? Todos os instrumentos jurídicos e conexões relacionadas também serão arquivadas!</p>'
 };
 
-const choseDefaltOptions = {
+var choseDefaltOptions = {
     placeholder_text_single: "Seleciona Uma opção",
     search_contains: true,
     allow_single_deselect: true,
@@ -17,7 +17,7 @@ function handleInstituicoesEvents(){
         event.preventDefault();
         var link = $(this);
         bootbox.confirm({
-            message: eventMesseges.ARQUIVA_CONFIRM,
+            message: instEventMesseges.ARQUIVA_CONFIRM,
             size: "large",
             callback: function(sim){
                 if(sim){
@@ -37,24 +37,23 @@ function formCustomization(){
     $('#new_instituicao input, #edit_instituicao input').removeAttr('data-disable-with');
     $('.edit_instituicao input, #edit_instituicao input').removeAttr('data-disable-with');
     /* geral */
-    $('.chosen-select').chosen(Object.assign({},choseDefaltOptions,{width: '130px'}));
+    // $('.chosen-select').chosen(Object.assign({},choseDefaltOptions,{width: '130px'}));
 
-    $('.bootstrap-date').datepicker({autoclose:true});
+    $('.bootstrap-date').datepicker({autoclose:true, language: "pt"});
 
     // mascaras
     $('input[name="instituicao[cnpj]"]').mask('00.000.000/0000-00', {reverse: true});
     $('input[name="instituicao[endereco_attributes][cep]"]').mask('00000-000');
     $('input[name="instituicao[data_aprovacao]"]').mask('00/00/0000');
+    $('input[phone=s]').mask('(00)00000-0000');
+
 
 
     /* editar */
-    $('.edit_instituicao input').prop("disabled", true);
-    $('.edit_instituicao textarea').prop("disabled", true);
+    $('[id*=edit_instituicao] input').prop("disabled", true);
+    $('[id*=edit_instituicao] textarea').prop("disabled", true);
+    $('[id*=edit_instituicao] select').prop("disabled", true);
     // é necessario dar trigger nesse evento para rerenderizar a combo box com a nova config do select
-    $('.edit_instituicao select').prop("disabled", true).trigger("chosen:updated");
-
-
-
 
     // $('#new_instituicao').on('submit', instituicaoFormSubmit);
 }
@@ -96,14 +95,13 @@ function instituicaoFormSubmit(form){
 
 function formValidadeInstituicao(){
     addCustomRules();
-
     var options = {
         submitHandler: instituicaoFormSubmit,
         rules: {
             "instituicao[nome]":{
                 required: true,
                 minlength: 2,
-                maxlength: 35
+                maxlength: 55
             },
             "instituicao[categoria_id]": "required",
             "instituicao[cnpj]": { validCnpj: true},
@@ -132,7 +130,8 @@ function formValidadeInstituicao(){
         messages: {
             "instituicao[nome]":{
                 required: "Nome é obrigatório",
-                minlength: "Nome precisa conter no mínimo 2 caracteres"
+                minlength: jQuery.validator.format("Nome precisa conter no mínimo {0} caracteres"),
+                maxlength: jQuery.validator.format("Nome pode conter no máximo {0} caracteres")
             },
             "instituicao[categoria_id]": "Categoria é obrigatória",
             "instituicao[sigla]": {
@@ -150,34 +149,54 @@ function formValidadeInstituicao(){
 
         $('[id*="instituicao_responsaveis"][name*="nome"]').each(function(){
             $(this).rules('add', {
-                respnome:true 
+                respnome:true
             });
         });
     }
     // libera form para edição e aplica validacao
     $('a.editar-form').on('click', function(e){
         e.preventDefault();
-        $('.edit_instituicao input').prop("disabled", false);
-        $('.edit_instituicao textarea').prop("disabled", false);
-        $('.edit_instituicao select').prop("disabled", false).trigger("chosen:updated");
+        $('[id*=edit_instituicao] input').prop("disabled", false);
+        $('[id*=edit_instituicao] textarea').prop("disabled", false);
+        $('[id*=edit_instituicao] select').prop("disabled", false);
         $(".edit_instituicao").validate(options);
 
-        $('[id*="instituicao_responsaveis"][name*="nome"]').each(function(){
-            $(this).rules('add', {
-                respnome:true 
-            });
-        });
+        // $('[id*="instituicao_responsaveis"][name*="nome"]').each(function(){
+        //     $(this).rules('add', {
+        //         respnome:true
+        //     });
+        // });
     });
 }
 
+function setCustomStyles() {
+    // if ($('#instituicao-index-tb').length > 0 ) {
+    //     $('#instituicao-index-tb').DataTable({
+    //         "paging": true,
+    //         "lengthChange": false,
+    //         "searching": true,
+    //         "ordering": true,
+    //         "info": true,
+    //         "autoWidth": true
+    //     });
+    // }
+}
 
-$( document ).on('turbolinks:load', function() {
+$(document).ready(function(){
     handleInstituicoesEvents();
     formCustomization();
-
-    /* valida os form de criacao e edição */ 
+    setCustomStyles();
+    /* valida os form de criacao e edição */
     formValidadeInstituicao();
 });
+
+// $( document ).on('turbolinks:load', function() {
+//     handleInstituicoesEvents();
+//     formCustomization();
+//     setCustomStyles();
+//     /* valida os form de criacao e edição */
+//     formValidadeInstituicao();
+// });
 
 
 
@@ -192,15 +211,15 @@ function validarCNPJ(cnpj) {
         return false;
 
     // Elimina CNPJs invalidos conhecidos
-    if (cnpj == "00000000000000" || 
-        cnpj == "11111111111111" || 
-        cnpj == "22222222222222" || 
-        cnpj == "33333333333333" || 
-        cnpj == "44444444444444" || 
-        cnpj == "55555555555555" || 
-        cnpj == "66666666666666" || 
-        cnpj == "77777777777777" || 
-        cnpj == "88888888888888" || 
+    if (cnpj == "00000000000000" ||
+        cnpj == "11111111111111" ||
+        cnpj == "22222222222222" ||
+        cnpj == "33333333333333" ||
+        cnpj == "44444444444444" ||
+        cnpj == "55555555555555" ||
+        cnpj == "66666666666666" ||
+        cnpj == "77777777777777" ||
+        cnpj == "88888888888888" ||
         cnpj == "99999999999999")
         return false;
 
@@ -235,4 +254,3 @@ function validarCNPJ(cnpj) {
     return true;
 
 }
-

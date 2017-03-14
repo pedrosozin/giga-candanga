@@ -1,28 +1,32 @@
+<% @page_header = 'Categorias de repasse' %>
 <section class="repasse-categorias clear-fix">
-  <div class="row page-heading">
-    <h1>Categorias de Repasse</h1>
-    <div class="underline"></div>
-  </div>
 
   <div class="row breadcrumb">
-    <p> <a href="#">Instrumento Juídico</a> > Categorias </p>
+    <p><a href="#">Instrumento Juídico</a> > Categorias </p>
   </div>
 
+  <div class="box box-primary">
 
-  <div class="row">
-    <button class="nova-repasse-categoria">Nova</button>
+    <div class="box-header with-border">
+      <button class="nova-repasse-categoria  btn btn-primary btn-md">Nova</button>
 
-    <div class="row pre-ativas">
-      <h2>Ativas</h2>
+      <div class="row">
+        <div class="col-sm-3">
+          <h2>Ativas</h2>
+        </div>
+      </div>
+    </div>
+    <div class="box-body">
+
+      <%= render(partial: "tables", locals: {repasse_categorias: @repasse_categorias_ativas, identifier: "categorias-ativas-listing", icone: "ion-close-circled"}) %>
+      <div class="row">
+        <div class="col-sm-3">
+          <h2>Inativas</h2>
+        </div>
+      </div>
+      <%= render(partial: "tables", locals: {repasse_categorias: @repasse_categorias_inativas, identifier: "categorias-inativas-listing", icone: "ion-checkmark-circled"}) %>
     </div>
 
-    <%= render(partial: "tables", locals: {repasse_categorias: @repasse_categorias_ativas, identifier: "categorias-ativas-listing", icone: "ion-close-circled" })%> 
-    <div class="row pre-inativas">
-      <h2>Inativas</h2>
-    </div>
-    <%= render(partial: "tables", locals: {repasse_categorias: @repasse_categorias_inativas, identifier: "categorias-inativas-listing", icone: "ion-checkmark-circled" })%>
   </div>
-
 </section>
-
-<%= render "new"%>
+<%= render partial: "new", locals: {repasse_categoria: @repasse_categoria} %>

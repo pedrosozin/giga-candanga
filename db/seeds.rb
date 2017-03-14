@@ -13,3 +13,4 @@ RepasseCategoria.create([{nome: "Contrato"}, {nome: "Convênio"}, {nome: "Acordo
 
 ResponsavelTipo.create([{descricao: "Dirigente Máximo"},{descricao: "Representante do Comitê Técnico"},{descricao: "Representante do Comitê Gestor"}])
 
+Usuario.create({nome: "Admin(Trocar em primeiro login, senha 123456)", email: "admin@admin.com", password: "123456", ativo: true, telefone: "999999999"})

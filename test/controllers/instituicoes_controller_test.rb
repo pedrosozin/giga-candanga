@@ -1,4 +1,4 @@
-require 'test_helper'
+require "test_helper"
 
 class InstituicoesControllerTest < ActionDispatch::IntegrationTest
   setup do
@@ -16,8 +16,15 @@ class InstituicoesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should create instituicao" do
-    assert_difference('Instituicao.count') do
-      post instituicoes_url, params: { instituicao: { cnpj: @instituicao.cnpj, data_aprovacao: @instituicao.data_aprovacao, nome: @instituicao.nome, references: @instituicao.references, resumo: @instituicao.resumo, sigla: @instituicao.sigla, site: @instituicao.site } }
+    assert_difference("Instituicao.count") do
+      post instituicoes_url, params: {instituicao:
+                                          {cnpj: @instituicao.cnpj,
+                                           data_aprovacao: @instituicao.data_aprovacao,
+                                           nome: @instituicao.nome,
+                                           references: @instituicao.references,
+                                           resumo: @instituicao.resumo,
+                                           sigla: @instituicao.sigla,
+                                           site: @instituicao.site}}
     end
 
     assert_redirected_to instituicao_url(Instituicao.last)
@@ -34,12 +41,19 @@ class InstituicoesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update instituicao" do
-    patch instituicao_url(@instituicao), params: { instituicao: { cnpj: @instituicao.cnpj, data_aprovacao: @instituicao.data_aprovacao, nome: @instituicao.nome, references: @instituicao.references, resumo: @instituicao.resumo, sigla: @instituicao.sigla, site: @instituicao.site } }
+    patch instituicao_url(@instituicao), params: {instituicao:
+                                                      {cnpj: @instituicao.cnpj,
+                                                       data_aprovacao: @instituicao.data_aprovacao,
+                                                       nome: @instituicao.nome,
+                                                       references: @instituicao.references,
+                                                       resumo: @instituicao.resumo,
+                                                       sigla: @instituicao.sigla,
+                                                       site: @instituicao.site}}
     assert_redirected_to instituicao_url(@instituicao)
   end
 
   test "should destroy instituicao" do
-    assert_difference('Instituicao.count', -1) do
+    assert_difference("Instituicao.count", -1) do
       delete instituicao_url(@instituicao)
     end
 

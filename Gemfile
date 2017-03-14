@@ -1,8 +1,8 @@
 source 'https://rubygems.org'
 
 git_source(:github) do |repo_name|
-  repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
-  "https://github.com/#{repo_name}.git"
+	repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
+	"https://github.com/#{repo_name}.git"
 end
 
 ruby '2.4.0'
@@ -26,7 +26,6 @@ gem 'devise'
 gem 'devise-i18n'
 gem 'cancancan'
 
-
 # Use formtastic for semantic and easy form
 gem 'formtastic', '~> 3.0'
 
@@ -34,8 +33,11 @@ gem 'formtastic', '~> 3.0'
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
 gem 'jquery-validation-rails'
+gem 'jquery_mask_rails'
+gem 'jquery-datatables-rails', '~> 3.4.0'
+gem 'chosen-rails'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
-gem 'turbolinks', '~> 5'
+# gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.5'
 # Use Redis adapter to run Action Cable in production
@@ -46,18 +48,20 @@ gem 'jbuilder', '~> 2.5'
 gem "nested_form"
 
 #style
-gem 'bootstrap-sass', '~> 3.3.6'
-gem 'adminlte-rails'
+gem 'adminlte2-rails'
+# gem 'bootstrap-sass', '~> 3.3.6'
+# gem 'adminlte-rails'
 gem 'bootbox-rails', '~>0.4'
 gem 'bootstrap-datepicker-rails'
-gem 'chosen-rails'
-gem 'jquery_mask_rails'
 # gem 'font-awesome-sass'
 gem 'ionicons-rails'
 
-source 'https://rails-assets.org/' do 
-  gem 'rails-assets-adminlte'
-end
+# source 'https://rails-assets.org/' do
+# 	gem 'rails-assets-adminlte'
+# end
+# source 'https://rails-assets.org/' do
+#   gem 'rails-assets-adminlte'
+# end
 # internacionalização
 gem 'rails-i18n', '~> 5.0.0'
 
@@ -65,20 +69,24 @@ gem 'rails-i18n', '~> 5.0.0'
 # gem 'capistrano-rails', group: :development
 
 group :development, :test do
-  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug', platform: :mri
-  gem 'mailcatcher'
-  gem 'rails_best_practices'
-  gem 'rubocop', require: false
+	# Call 'byebug' anywhere in the code to stop execution and get a debugger console
+	gem 'byebug', platform: :mri
+	gem 'mailcatcher'
+	gem 'rails_best_practices'
+	gem 'rubocop', require: false
 end
 
 group :development do
-  # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
-  gem 'web-console', '>= 3.3.0'
-  gem 'listen', '~> 3.0.5'
-  # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-  gem 'spring'
-  gem 'spring-watcher-listen', '~> 2.0.0'
+	# Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
+	gem 'web-console', '>= 3.3.0'
+	gem 'listen', '~> 3.0.5'
+	# Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
+	gem 'spring'
+	gem 'spring-watcher-listen', '~> 2.0.0'
+end
+
+group :production do
+	gem 'rails_12factor'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

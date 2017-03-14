@@ -1,5 +1,4 @@
-require 'test_helper'
-
+require "test_helper"
 class CategoriasControllerTest < ActionDispatch::IntegrationTest
   test "should get listar" do
     get categorias_listar_url
@@ -15,5 +14,4 @@ class CategoriasControllerTest < ActionDispatch::IntegrationTest
     get categorias_editar_url
     assert_response :success
   end
-
 end

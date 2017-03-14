@@ -1,9 +1,11 @@
 function handleNovaRepasseCategoria(event){
-    $('.dialog-wrapper').show();
-    $('.dialog-wrapper').find('form')[0].reset();
-
-    $('.dialog-wrapper').on('click', function(event){
-        if(event.target === this) $(this).fadeOut();
+    var dialogRepasseform = $('.dialog-wrapper').html();
+    bootbox.dialog({
+        message: dialogRepasseform,
+        closeButton: false,
+        size: 'large',
+        backdrop: true,
+        onEscape: true
     });
 }
 
@@ -28,7 +30,12 @@ function handleFormRepasseCategoria(){
 }
 
 
-$( document ).on('turbolinks:load', function() {
+$(document).ready(function(){
     $('.nova-repasse-categoria').on('click',handleNovaRepasseCategoria);
     handleFormRepasseCategoria();
 })
+
+// $( document ).on('turbolinks:load', function() {
+//     $('.nova-repasse-categoria').on('click',handleNovaRepasseCategoria);
+//     handleFormRepasseCategoria();
+// })

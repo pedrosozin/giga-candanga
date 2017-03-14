@@ -1,15 +1,26 @@
-<div class="dialog-wrapper">
+<div class="dialog-wrapper hidden">
+  <div class="box box-primary">
     <div id="nova-categoria-repasse-dialog" title="Nova Categoria Repasse">
-        <div class="row">
-            <h2>Nova Categoria de Repasse</h2>
-        </div>
-        <div class="underline"></div>
+      <div class="box-header with-border">
+        <h2>Nova Categoria de Repasse</h2>
+      </div>
 
-        <%= form_for(@repasse_categoria, remote: true, class:"nova-repasse-categoria") do |f|%>
-            <%= f.label(:nome, "Nome")%>
-            <%= f.text_field(:nome )%>
-            <%= f.submit("Salvar")%>
-        <%end%>
-    </div>
+      <%= form_for(repasse_categoria, class:"nova-repasse-categoria form-horizontal") do |f|%>
+        <div class="box-body">
+          <div class="form-group">
+            <%= f.label(:nome, "Nome", class: "col-sm-1 control-label col-sm-offset-2")%>
+            <div class="col-sm-7">
+              <%= f.text_field(:nome, class:"form-control",  maxlength: "50", laceholder: "Descrição da Categoria")%>
+            </div>
+          </div>
+        </div>
+
+        <div class="box-footer">
+          <div class="col-sm-10">
+            <%= f.submit("Salvar", class: "btn btn-primary pull-right")%>
+          </div>
+        </div>
+      <%end%>
+  </div></div>
 </div>
 

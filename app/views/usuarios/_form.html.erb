@@ -1,0 +1,43 @@
+<%= form_for(usuario, html: { class: 'form-horizontal' }) do |f| %>
+  <div class="form-group">
+    <%= f.label :nome, class: 'col-sm-1 col-sm-offset-1 control-label' %>
+    <div class="col-sm-4">
+      <%= f.text_field :nome, placeholder: 'Nome completo', class: 'form-control' %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :telefone, class: 'col-sm-2 control-label' %>
+    <div class="col-sm-4">
+      <%= f.text_field :telefone, placeholder: '(61) 91234-5678', class: 'form-control' %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :email, class: 'col-sm-2 control-label' %>
+    <div class="col-sm-3">
+      <%= f.email_field :email, autofocus: true, placeholder: 'usuario@email.com', class: 'form-control' %>
+    </div>
+  </div>
+
+  <%= f.hidden_field :ativo, value: true %>
+
+  <div class="form-group">
+    <%= f.label :password, "#{pwd} Senha", class: 'col-sm-2 control-label' %>
+    <div class="col-sm-2">
+      <%= f.password_field :password, autocomplete: "off", placeholder: 'Senha', class: 'form-control' %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :password_confirmation, "Confirmar #{pwd} Senha", class: 'col-sm-2 control-label' %>
+    <div class="col-sm-2">
+      <%= f.password_field :password_confirmation, autocomplete: "off", placeholder: 'Repita a senha', class: 'form-control' %>
+    </div>
+  </div>
+  <div class="box-footer">
+    <div class="col-sm-offset-1">
+      <%= f.submit action, class: 'btn btn-primary' %>
+    </div>
+  </div>
+<% end %>

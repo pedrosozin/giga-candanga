@@ -1,11 +1,11 @@
-<% @page_header = 'Novo Usuário' %>
+<% @page_header = 'Editar Usuário' %>
 
 <div class="box box-primary">
   <div class="box-header with-border">
     <h3 class="box-title">Dados do novo usuário</h3>
   </div>
 
-  <%= render 'form', usuario: @usuario, action: 'Cadastrar', pwd: '' %>
+  <%= render 'form', usuario: @usuario, action: 'Editar', pwd: 'Nova' %>
 
   <%= link_to "< Voltar", :usuarios %>
 </div>

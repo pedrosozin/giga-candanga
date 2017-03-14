@@ -1,6 +1,6 @@
 
 function handleNovaCategoria(event){
-    var dialogForm = $('.dialog-wrapper').html();
+
     bootbox.dialog({
         message:dialogForm,
         closeButton: false,
@@ -31,7 +31,11 @@ function handleFormCategoria(){
 }
 
 
-$( document ).on('turbolinks:load', function() {
+$(document).ready(function(){
     $('.nova-categoria').on('click',handleNovaCategoria);
     handleFormCategoria();
 });
+// $( document ).on('turbolinks:load', function() {
+//     $('.nova-categoria').on('click',handleNovaCategoria);
+//     handleFormCategoria();
+// });

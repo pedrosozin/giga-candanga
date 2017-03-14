@@ -182,13 +182,21 @@ function setCustomStyles() {
     // }
 }
 
-$( document ).on('turbolinks:load', function() {
+$(document).ready(function(){
     handleInstituicoesEvents();
     formCustomization();
     setCustomStyles();
     /* valida os form de criacao e edição */
     formValidadeInstituicao();
 });
+
+// $( document ).on('turbolinks:load', function() {
+//     handleInstituicoesEvents();
+//     formCustomization();
+//     setCustomStyles();
+//     /* valida os form de criacao e edição */
+//     formValidadeInstituicao();
+// });
 
 
 

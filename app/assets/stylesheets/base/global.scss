@@ -31,6 +31,10 @@ div.error {
     color: #F22613;
     font-style: italic;
 }
+
+div.field_whith_errors + input {
+    border: 1.5px solid red;
+}
 // // configuracoes globais
 // @import "variables.scss";
 //

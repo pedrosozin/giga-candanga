@@ -21,7 +21,7 @@
 //= require bootstrap-datepicker
 //= require bootbox
 //= require app
-//= require turbolinks
+//require turbolinks
 //= require_tree .
 
 
@@ -64,6 +64,9 @@ function displayNotice(content){
     }
 }
 
-$( document ).on('turbolinks:load', function() {
+$(document).ready(function(){
     handleGenerickClicks();
 });
+// $( document ).on('turbolinks:load', function() {
+//     handleGenerickClicks();
+// });

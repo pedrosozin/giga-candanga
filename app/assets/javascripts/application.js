@@ -24,23 +24,6 @@
 //require turbolinks
 //= require_tree .
 
-
-/** fix adminlte issues */
-// $(document).ready(function() {
-//     $.AdminLTE.layout.activate();
-// });
-
-// function adminLTEFix(){
-//     var o;
-//     console.log("rodei o fix");
-//     o = $.AdminLTE.options;
-//     if (o.sidebarPushMenu) {
-//         $.AdminLTE.pushMenu.activate(o.sidebarToggleSelector);
-//     }
-//     $.AdminLTE.layout.activate();
-// }
-// $(document).on('page:load',adminLTEFix);
-
 function handleGenerickClicks(){
     $('.link-holder').on('click', 'i', function(event){
         event.preventDefault();
@@ -67,6 +50,3 @@ function displayNotice(content){
 $(document).ready(function(){
     handleGenerickClicks();
 });
-// $( document ).on('turbolinks:load', function() {
-//     handleGenerickClicks();
-// });

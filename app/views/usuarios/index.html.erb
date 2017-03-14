@@ -23,9 +23,9 @@
             <!-- provisorio, validação cuidará desse detalhe -->
             <td> <%= usuario.telefone %> </td>
             <% if usuario == current_usuario %>
-              <td> <%= link_to "Editar", edit_usuario_registration_path(usuario)%> </td>
+              <td> <%= link_to " ", edit_usuario_registration_path(usuario), class: "ion-edit" %> </td>
             <% else %>
-              <td> <%= link_to "Desativar", desativar_usuario_path(usuario) %></td>
+              <td> <%= link_to " ", desativar_usuario_path(usuario), method: :put, class: "ion-close-circled" %></td>
             <% end %>
           </tr>
         <% end %>

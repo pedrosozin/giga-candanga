@@ -30,7 +30,12 @@ function handleFormRepasseCategoria(){
 }
 
 
-$( document ).on('turbolinks:load', function() {
+$(document).ready(function(){
     $('.nova-repasse-categoria').on('click',handleNovaRepasseCategoria);
     handleFormRepasseCategoria();
 })
+
+// $( document ).on('turbolinks:load', function() {
+//     $('.nova-repasse-categoria').on('click',handleNovaRepasseCategoria);
+//     handleFormRepasseCategoria();
+// })

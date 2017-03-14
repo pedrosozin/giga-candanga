@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
   # before_action :authenticate_usuario!
 
 
+
   MSG_TYPE_INFO = "info"
   MSG_TYPE_SUCCESS = "success"
   MSG_TYPE_ERROR = "error"

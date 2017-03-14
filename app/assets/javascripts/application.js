@@ -16,29 +16,13 @@
 //= require jquery.validate
 //= require dataTables/jquery.dataTables
 //= jquery.validate.localization
-//= require turbolinks
+//= require jquery.mask
 //= require bootstrap-sprockets
 //= require bootstrap-datepicker
-//= require app
 //= require bootbox
-//= require chosen-jquery
-//= require jquery.mask
+//= require app
+//require turbolinks
 //= require_tree .
-
-
-/** fix adminlte issues */
-$(document).ready(function() {
-    $.AdminLTE.layout.activate();
-});
-
-function adminLTEFix(){
-    var o;
-    o = $.AdminLTE.options;
-    if (o.sidebarPushMenu) {
-        $.AdminLTE.pushMenu.activate(o.sidebarToggleSelector);
-    }
-    $.AdminLTE.layout.activate();
-}
 
 function handleGenerickClicks(){
     $('.link-holder').on('click', 'i', function(event){
@@ -63,7 +47,6 @@ function displayNotice(content){
     }
 }
 
-$( document ).on('turbolinks:load', function() {
-    adminLTEFix();
+$(document).ready(function(){
     handleGenerickClicks();
 });

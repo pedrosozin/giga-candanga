@@ -1,5 +1,4 @@
 class UsuariosController < ApplicationController
-  before_action :authenticate_usuario!, unless: [:new]
 
   def index
     @usuarios = Usuario.all_active
@@ -33,7 +32,7 @@ class UsuariosController < ApplicationController
   def deactivate
     @usuario = Usuario.find(params[:id])
     respond_to do |format|
-      if @usuario.disable
+      if @usuario.deactivate
         format.html { redirect_to :usuarios, notice: 'Usuário desativado com sucesso' }
       else
         format.html { redirect_to :usuarios, alert: 'Usuário não pode ser desativado' }

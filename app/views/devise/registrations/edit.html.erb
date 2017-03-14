@@ -1,11 +1,35 @@
+<%= @page_header = 'Editar Usuário' %>
 <h2><%= t('.title', resource: resource_class.model_name.human) %></h2>
+
+<div class="box box-primary">
+  <div class="box-header with-border">
+    <h3 class="box-title">Novos dados do usuário</h3>
+  </div>
+</div>
+
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= devise_error_messages! %>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email %>
+  <div class="form-group">
+    <%= f.label :nome, class: 'col-sm-1 col-sm-offset-1 control-label' %>
+    <div class="col-sm-4">
+      <%= f.text_field :nome, autofocus: true, placeholder: 'Nome completo', class: 'form-control' %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :telefone, class: 'col-sm-2 control-label' %>
+    <div class="col-sm-4">
+      <%= f.text_field :telefone, placeholder: '(61) 91234-5678', class: 'form-control' %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :email, class: 'col-sm-2 control-label' %><br />
+    <div class="col-sm-3">
+      <%= f.email_field :email, placeholder: 'usuario@email.com', class: 'form-control' %>
+    </div>
   </div>
 
   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
@@ -14,36 +38,26 @@
     </p>
   <% end %>
 
-  <div class="field">
-    <%= f.label :nome %>
-    <%= f.text_field :nome %>
+  <div class="form-group">
+    <%= f.label :password, "Senha", class: 'col-sm-2 control-label' %> <i>(<%= t('.leave_blank_if_you_don_t_want_to_change_it') %>)</i><br />
+    <div class="col-sm-2">
+      <%= f.password_field :password, autocomplete: "off", placeholder: 'Senha', class: 'form-control'  %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= f.label :telefone %>
-    <%= f.text_field :telefone %>
+  <div class="form-group">
+    <%= f.label :password_confirmation, "Confirmar Senha", class: 'col-sm-2 control-label' %><br />
+    <div class="col-sm-2">
+      <%= f.password_field :password_confirmation, autocomplete: "off", placeholder: 'Repita a senha', class: 'form-control' %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= f.label :password, "Senha" %> <i>(<%= t('.leave_blank_if_you_don_t_want_to_change_it') %>)</i><br />
-    <%= f.password_field :password, autocomplete: "off" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation, "Confirmar Senha" %><br />
-    <%= f.password_field :password_confirmation %>
-  </div>
-
-  <div class="field">
-    <%= f.label :current_password, "Senha Atual" %> <i>(<%= t('.we_need_your_current_password_to_confirm_your_changes') %>)</i><br />
-    <%= f.password_field :current_password %>
+  <div class="form-group">
+    <%= f.label :current_password, "Senha Atual", class: 'col-sm-2 control-label' %> <i>(<%= t('.we_need_your_current_password_to_confirm_your_changes') %>)</i><br />
+    <div class="col-sm-2">
+      <%= f.password_field :current_password, autocomplete: "off", placeholder: 'Sua senha atual', class: 'form-control' %>
+    </div>
   </div>
 
   <div><%= f.submit t('.update') %></div>
 <% end %>
-
-<h3><%= t('.cancel_my_account') %></h3>
-
-<p><%= t('.unhappy') %> <%= link_to t('.cancel_my_account'), registration_path(resource_name), data: { confirm: t('.are_you_sure') }, method: :delete %>.</p>
-
-<%= link_to t('devise.shared.links.back'), :back %>

@@ -1,8 +1,7 @@
-
-function handleNovaCategoria(event){
-
+function handleNovaRepasseCategoria(event){
+    var dialogRepasseform = $('.dialog-wrapper').html();
     bootbox.dialog({
-        message:dialogForm,
+        message: dialogRepasseform,
         closeButton: false,
         size: 'large',
         backdrop: true,
@@ -10,16 +9,16 @@ function handleNovaCategoria(event){
     });
 }
 
-function handleFormCategoria(){
+function handleFormRepasseCategoria(){
     var options ={
         rules: {
-            "categoria[nome]": {
+            "repasse_categoria[nome]": {
                 required: true,
                 maxlength: 30
             }
         },
         messages: {
-            "categoria[nome]":{
+            "repasse_categoria[nome]":{
                 required: "Nome é obrigatório",
                     maxlength: "Tamanho máximo 30 caracteres"
             }
@@ -27,15 +26,17 @@ function handleFormCategoria(){
         errorElement: 'div',
         errorLabelContainer: '.errorTxt'
     }; 
-    $('#new_categoria').validate(options);
+    $('new_repasse_categoria').validate(options);
 }
 
 
 $(document).ready(function(){
-    $('.nova-categoria').on('click',handleNovaCategoria);
-    handleFormCategoria();
-});
+    $('.nova-repasse-categoria').on('click',handleNovaRepasseCategoria);
+    handleFormRepasseCategoria();
+})
+
 // $( document ).on('turbolinks:load', function() {
-//     $('.nova-categoria').on('click',handleNovaCategoria);
-//     handleFormCategoria();
-// });
+//     $('.nova-repasse-categoria').on('click',handleNovaRepasseCategoria);
+//     handleFormRepasseCategoria();
+// })
+;

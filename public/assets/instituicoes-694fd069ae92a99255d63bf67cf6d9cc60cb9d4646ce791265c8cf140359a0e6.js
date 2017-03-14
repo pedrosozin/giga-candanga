@@ -182,21 +182,13 @@ function setCustomStyles() {
     // }
 }
 
-$(document).ready(function(){
+$( document ).on('turbolinks:load', function() {
     handleInstituicoesEvents();
     formCustomization();
     setCustomStyles();
     /* valida os form de criacao e edição */
     formValidadeInstituicao();
 });
-
-// $( document ).on('turbolinks:load', function() {
-//     handleInstituicoesEvents();
-//     formCustomization();
-//     setCustomStyles();
-//     /* valida os form de criacao e edição */
-//     formValidadeInstituicao();
-// });
 
 
 
@@ -254,3 +246,4 @@ function validarCNPJ(cnpj) {
     return true;
 
 }
+;

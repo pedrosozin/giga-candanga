@@ -24,11 +24,28 @@
 //require turbolinks
 //= require_tree .
 
+
+function generalSetup(){
+    $('[data-toggle=tooltip]').tooltip();
+}
+
 function handleGenerickClicks(){
-    $('.link-holder').on('click', 'i', function(event){
+    $('.link-holder.desativa').on('click', 'i', function(event){
         event.preventDefault();
         var link = $(this);
-        bootbox.confirm("Tem Certeza?", function(sim){
+        bootbox.confirm("Tem Certeza que deseja desativar este registro?", function(sim){
+            if(sim){
+                link.next().click();
+            } else {
+                bootbox.hideAll();
+            }
+        })
+    });
+
+    $('.link-holder.reativa').on('click', 'i', function(event){
+        event.preventDefault();
+        var link = $(this);
+        bootbox.confirm("Tem Certeza que deseja reativar este registro?", function(sim){
             if(sim){
                 link.next().click();
             } else {
@@ -49,4 +66,5 @@ function displayNotice(content){
 
 $(document).ready(function(){
     handleGenerickClicks();
+    generalSetup();
 });

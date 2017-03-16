@@ -11,7 +11,7 @@
     </div>
   </div>
   <div class="box box-primary">
-    <%= render 'form', instituicao: @instituicao %>
+    <%= render 'form', instituicao: @instituicao, categorias: @categorias, tipos_resp: @responsavel_tipos%>
   </div>
 </section>
 <%= render(partial: "layouts/error_messages", locals: { object: @instituicao })%>

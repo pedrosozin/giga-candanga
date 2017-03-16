@@ -6,6 +6,11 @@ div.editar-form {
   margin-bottom: 10px;
 }
 
+.modal-medium > .modal-dialog {
+    width:30% !important;
+    min-width: 600px !important;
+}
+
 a.editar-form{
   display:block;
   width: 80%;

@@ -22,6 +22,16 @@ ActiveRecord::Schema.define(version: 20170309144714) do
     t.datetime "updated_at",                null: false
   end
 
+  create_table "complementos", force: :cascade do |t|
+    t.string   "nome"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string   "telefone"
+    t.integer  "usuario_id"
+    t.boolean  "ativo"
+    t.index ["usuario_id"], name: "index_complementos_on_usuario_id", using: :btree
+  end
+
   create_table "emails", force: :cascade do |t|
     t.string   "email"
     t.integer  "responsavel_id"
@@ -108,6 +118,7 @@ ActiveRecord::Schema.define(version: 20170309144714) do
     t.index ["reset_password_token"], name: "index_usuarios_on_reset_password_token", unique: true, using: :btree
   end
 
+  add_foreign_key "complementos", "usuarios"
   add_foreign_key "emails", "responsaveis"
   add_foreign_key "enderecos", "instituicoes"
   add_foreign_key "responsaveis", "instituicoes"

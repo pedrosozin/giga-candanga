@@ -16,35 +16,36 @@
 //= require jquery.validate
 //= require dataTables/jquery.dataTables
 //= jquery.validate.localization
-//= require turbolinks
+//= require jquery.mask
 //= require bootstrap-sprockets
 //= require bootstrap-datepicker
-//= require app
 //= require bootbox
-//= require chosen-jquery
-//= require jquery.mask
+//= require app
+//require turbolinks
 //= require_tree .
 
 
-/** fix adminlte issues */
-$(document).ready(function() {
-    $.AdminLTE.layout.activate();
-});
-
-function adminLTEFix(){
-    var o;
-    o = $.AdminLTE.options;
-    if (o.sidebarPushMenu) {
-        $.AdminLTE.pushMenu.activate(o.sidebarToggleSelector);
-    }
-    $.AdminLTE.layout.activate();
+function generalSetup(){
+    $('[data-toggle=tooltip]').tooltip();
 }
 
 function handleGenerickClicks(){
-    $('.link-holder').on('click', 'i', function(event){
+    $('.link-holder.desativa').on('click', 'i', function(event){
         event.preventDefault();
         var link = $(this);
-        bootbox.confirm("Tem Certeza?", function(sim){
+        bootbox.confirm("Tem Certeza que deseja desativar este registro?", function(sim){
+            if(sim){
+                link.next().click();
+            } else {
+                bootbox.hideAll();
+            }
+        })
+    });
+
+    $('.link-holder.reativa').on('click', 'i', function(event){
+        event.preventDefault();
+        var link = $(this);
+        bootbox.confirm("Tem Certeza que deseja reativar este registro?", function(sim){
             if(sim){
                 link.next().click();
             } else {
@@ -63,7 +64,7 @@ function displayNotice(content){
     }
 }
 
-$( document ).on('turbolinks:load', function() {
-    adminLTEFix();
+$(document).ready(function(){
     handleGenerickClicks();
+    generalSetup();
 });

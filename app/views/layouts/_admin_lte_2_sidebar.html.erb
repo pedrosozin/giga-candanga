@@ -1,39 +1,43 @@
 <!-- Left side column. contains the logo and sidebar -->
 <aside class="main-sidebar">
+    <!-- sidebar: style can be found in sidebar.less -->
+    <section class="sidebar">
+        <ul class="sidebar-menu">
+            <li class="treeview">
+                <a href="#"><i class='fa fa-building-o'></i> <span> Instituições</span><i class="fa fa-angle-left pull-right"></i></a>
 
-  <!-- sidebar: style can be found in sidebar.less -->
-  <section class="sidebar">
+                <ul class="treeview-menu">
+                    <li ><%= link_to 'Listar instituições', instituicoes_path %></li>
+                    <li ><%= link_to 'Nova instituição', new_instituicao_path %></li>
+                    <li ><%= link_to 'Categorias', categorias_path %></li>
+                </ul>
 
-    <!-- Sidebar Menu -->
-    <ul class="sidebar-menu">
-      <li class="header">Menus</li>
-      <li class="treeview">
-        <a href="#"><i class='fa fa-building-o'></i> <span>Instituições</span> <i class="fa fa-angle-left pull-right"></i></a>
-        <ul class="treeview-menu">
-          <li><%= link_to 'Ver instituições', instituicoes_path %></li>
-          <li><%= link_to 'Nova instituição', new_instituicao_path %></li>
-          <li><%= link_to 'Categorias', categorias_path %></li>
-        </ul>
-      </li>
-      <li class="treeview">
-        <a href="#"><i class='fa fa-folder-open-o'></i> <span>Instrumentos Jurídicos</span> <i class="fa fa-angle-left pull-right"></i></a>
-        <ul class="treeview-menu">
-          <li><a href="#">Ver instrumentos jurídicos</a></li>
-          <li><a href="#">Novo instrumento jurídico</a></li>
-          <li><a href="#">Novo aditivo</a></li>
-          <li><%= link_to 'Categoria de repasse', repasse_categorias_path %></li>
-        </ul>
-      </li>
-      <li><a href="#"><i class='fa fa-link'></i> <span>Conexões</span></a></li>
-      <li><a href="#"><i class='fa fa-wrench'></i> <span>Equipamentos</span></a></li>
-      <li><a href="#"><i class='fa fa-bar-chart'></i> <span>Demandas</span></a></li>
-      <li class="treeview">
-        <a href="#"><i class='fa fa-users'></i> <span>Acesso</span> <i class="fa fa-angle-left pull-right"></i></a>
-        <ul class="treeview-menu">
-          <li><%= link_to 'Novo usuário', new_usuario_path %></li>
-        </ul>
-      </li>
-    </ul><!-- /.sidebar-menu -->
-  </section>
-  <!-- /.sidebar -->
+            </li>
+
+            <li class="treeview">
+                <a href="#"><i class='fa fa-folder-open-o'></i> <span> Instrumentos Jurídicos</span><i class="fa fa-angle-left pull-right"></i></a>
+
+                <ul class="treeview-menu">
+                    <li ><a href="#">Ver instrumentos jurídicos</a></li>
+                    <li ><a href="#">Novo instrumento jurídico</a></li>
+                    <li ><a href="#">Novo aditivo</a></li>
+                    <li ><%= link_to 'Categoria de repasse', repasse_categorias_path %></li>
+                </ul>
+            </li>
+
+            <li ><a href="#"><i class='fa fa-link'></i> <span>Conexões</span></a></li>
+            <li ><a href="#"><i class='fa fa-wrench'></i> <span>Equipamentos</span></a></li>
+            <li ><a href="#"><i class='fa fa-bar-chart'></i> <span>Demandas</span></a></li>
+
+            <li class="treeview">
+                <a href="#"><i class='fa fa-users'></i> <span>Acesso</span><i class="fa fa-angle-left pull-right"></i></a>
+
+                <ul class="treeview-menu">
+                    <li ><%= link_to 'Ver usuários', :usuarios %></li>
+                    <li ><%= link_to 'Novo usuário', new_usuario_path %></li>
+                </ul>
+            </li>
+        </ul><!-- /.sidebar-menu -->
+    </section>
+    <!-- /.sidebar -->
 </aside>

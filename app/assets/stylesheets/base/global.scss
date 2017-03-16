@@ -6,6 +6,11 @@ div.editar-form {
   margin-bottom: 10px;
 }
 
+.modal-medium > .modal-dialog {
+    width:30% !important;
+    min-width: 600px !important;
+}
+
 a.editar-form{
   display:block;
   width: 80%;
@@ -30,6 +35,10 @@ a.editar-form{
 div.error {
     color: #F22613;
     font-style: italic;
+}
+
+div.field_whith_errors + input {
+    border: 1.5px solid red;
 }
 // // configuracoes globais
 // @import "variables.scss";

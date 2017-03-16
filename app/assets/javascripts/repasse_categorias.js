@@ -3,7 +3,7 @@ function handleNovaRepasseCategoria(event){
     bootbox.dialog({
         message: dialogRepasseform,
         closeButton: false,
-        size: 'large',
+        className: 'modal-medium',
         backdrop: true,
         onEscape: true
     });
@@ -20,7 +20,7 @@ function handleFormRepasseCategoria(){
         messages: {
             "repasse_categoria[nome]":{
                 required: "Nome é obrigatório",
-                    maxlength: "Tamanho máximo 30 caracteres"
+                maxlength: "Tamanho máximo 30 caracteres"
             }
         },
         errorElement: 'div',
@@ -34,8 +34,3 @@ $(document).ready(function(){
     $('.nova-repasse-categoria').on('click',handleNovaRepasseCategoria);
     handleFormRepasseCategoria();
 })
-
-// $( document ).on('turbolinks:load', function() {
-//     $('.nova-repasse-categoria').on('click',handleNovaRepasseCategoria);
-//     handleFormRepasseCategoria();
-// })

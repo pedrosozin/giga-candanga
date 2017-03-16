@@ -11,12 +11,12 @@
         <td> <%= categoria.nome %></td>
         <td>
           <% if categoria.ativa %>
-            <div class="link-holder">
+            <div class="link-holder desativa" data-toggle="tooltip" title="Desativar Categoria">
               <i class="<%= icone %>"></i>
               <%= link_to(" ", repasse_categoria_path(categoria), method: "delete", class: "link-delete")  %>
             </div>
           <% else %>
-            <div class="link-holder">
+            <div class="link-holder reativa" data-toggle="tooltip" title="Reativar Categoria">
               <i class="<%= icone %>"></i>
               <%= link_to(" ", ativar_repasse_categoria_path(categoria), method: "post", class: "link-ativa")  %>
             </div>

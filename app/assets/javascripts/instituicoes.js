@@ -1,6 +1,6 @@
 var instStyle = 'style = "text-align:center; margin-top: 15px; font-size:1.8rem;"';
 var instEventMesseges = {
-    ARQUIVA_CONFIRM: '<p '+instStyle+' >Tem certeza que deseja aqruivar? Todos os instrumentos jurídicos e conexões relacionadas também serão arquivadas!</p>'
+    ARQUIVA_CONFIRM: '<p '+instStyle+' >Tem certeza que deseja arquivar? Todos os instrumentos jurídicos e conexões relacionadas também serão arquivadas!</p>'
 };
 
 var choseDefaltOptions = {

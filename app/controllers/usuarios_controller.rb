@@ -1,4 +1,5 @@
 class UsuariosController < ApplicationController
+  before_action :set_usuario, only: [:edit, :deactivate, :update]
 
   def index
     @usuarios = Usuario.all_active
@@ -19,6 +20,9 @@ class UsuariosController < ApplicationController
     end
   end
 
+  def edit
+  end
+
   def update
     respond_to do |format|
       if @usuario.update(usuario_params)
@@ -30,7 +34,6 @@ class UsuariosController < ApplicationController
   end
 
   def deactivate
-    @usuario = Usuario.find(params[:id])
     respond_to do |format|
       if @usuario.deactivate
         format.html { redirect_to :usuarios, notice: 'Usuário desativado com sucesso' }
@@ -41,6 +44,10 @@ class UsuariosController < ApplicationController
   end
 
   private
+
+  def set_usuario
+    @usuario = Usuario.find(params[:id])
+  end
 
   def usuario_params
     params.require(:usuario).permit(:email, :password, :password_confirmation,

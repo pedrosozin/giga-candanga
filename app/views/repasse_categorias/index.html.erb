@@ -1,32 +1,38 @@
 <% @page_header = 'Categorias de repasse' %>
 <section class="repasse-categorias clear-fix">
 
-  <div class="row breadcrumb">
-    <p><a href="#">Instrumento Juídico</a> > Categorias </p>
-  </div>
-
-  <div class="box box-primary">
-
-    <div class="box-header with-border">
-      <button class="nova-repasse-categoria  btn btn-primary btn-md">Nova</button>
-
-      <div class="row">
-        <div class="col-sm-3">
-          <h2>Ativas</h2>
-        </div>
-      </div>
-    </div>
-    <div class="box-body">
-
-      <%= render(partial: "tables", locals: {repasse_categorias: @repasse_categorias_ativas, identifier: "categorias-ativas-listing", icone: "ion-close-circled"}) %>
-      <div class="row">
-        <div class="col-sm-3">
-          <h2>Inativas</h2>
-        </div>
-      </div>
-      <%= render(partial: "tables", locals: {repasse_categorias: @repasse_categorias_inativas, identifier: "categorias-inativas-listing", icone: "ion-checkmark-circled"}) %>
+    <div class="row breadcrumb">
+        <p><a href="#">Instrumento Juídico</a> > Categorias </p>
     </div>
 
-  </div>
+    <div class="box box-primary">
+
+        <div class="box-header with-border">
+            <button class="nova-repasse-categoria  btn btn-primary btn-md">Nova</button>
+            <div class="btn-group">
+                <button type="button" class="btn btn-primary">Exibir</button>
+                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                    <span class="caret"></span>
+                    <span class="sr-only">Toggle Dropdown</span>
+                </button>
+                <ul class="dropdown-menu" role="menu">
+                    <li><a repasse-toggle-ativas href="#">Ativas</a></li>
+                    <li class="divider"></li>
+                    <li><a repasse-toggle-inativas href="#">Invativas</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="box-body">
+
+            <div class="categorias-ativas-listing">
+                <%= render(partial: "tables", locals: {repasse_categorias: @repasse_categorias_ativas, identifier: "categorias-ativas-listing", icone: "ion-close-circled", initial_display: ' '}) %>
+            </div>
+
+            <div class="categorias-inativas-listing" style="display: none;">
+                <%= render(partial: "tables", locals: {repasse_categorias: @repasse_categorias_inativas, identifier: "categorias-inativas-listing", icone: "ion-checkmark-circled", initial_display: ''}) %>
+            </div>
+        </div>
+
+    </div>
 </section>
 <%= render partial: "new", locals: {repasse_categoria: @repasse_categoria} %>

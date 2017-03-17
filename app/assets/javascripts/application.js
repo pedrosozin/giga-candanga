@@ -24,6 +24,17 @@
 //require turbolinks
 //= require_tree .
 
+/************************************ GLOBAL VARIABLES         ******************************/
+var dataTableDefaultOptions = {
+    "paging": true,
+    "lengthChange": false,
+    "searching": true,
+    "ordering": true,
+    "info": true,
+    "language": {
+        "url": "//cdn.datatables.net/plug-ins/1.10.13/i18n/Portuguese.json"
+    }
+}
 
 function generalSetup(){
     $('[data-toggle=tooltip]').tooltip();

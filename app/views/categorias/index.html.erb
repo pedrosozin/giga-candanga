@@ -1,32 +1,36 @@
 <% @page_header = 'Categorias' %>
 <section class="categorias clear-fix">
 
-  <div class="row breadcrumb">
-    <p> <%= link_to("Instituições", instituicoes_path) %> > Categorias </p>
-  </div>
-  <div class="box box-primary">
-
-    <div class="box-header with-border">
-      <button class="nova-categoria btn btn-primary btn-md">Nova</button>
-      <div class="row">
-
-        <div class="col-sm-3">
-          <h2>Ativas</h2>
-        </div>
-      </div>
+    <div class="row breadcrumb">
+        <p> <%= link_to("Instituições", instituicoes_path) %> > Categorias </p>
     </div>
+    <div class="box box-primary">
 
-    <div class="box-body">
-      <%= render(partial: "tables", locals: {categorias: @categorias_ativas, identifier: "categorias-ativas-listing", icone: "ion-close-circled"}) %>
-
-      <div class="row">
-        <div class="col-sm-3">
-          <h2>Inativas</h2>
+        <div class="box-header with-border">
+            <button class="nova-categoria btn btn-primary btn-md">Nova</button>
+            <div class="btn-group">
+                <button type="button" class="btn btn-primary">Exibir</button>
+                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                    <span class="caret"></span>
+                    <span class="sr-only">Toggle Dropdown</span>
+                </button>
+                <ul class="dropdown-menu" role="menu">
+                    <li><a categoria-toggle-ativas href="#">Ativas</a></li>
+                    <li class="divider"></li>
+                    <li><a categoria-toggle-inativas href="#">Invativas</a></li>
+                </ul>
+            </div>
         </div>
 
-      </div>
-      <%= render(partial: "tables", locals: {categorias: @categorias_inativas, identifier: "categorias-inativas-listing", icone: "ion-checkmark-circled"}) %>
+        <div class="box-body">
+            <div class="categorias-ativas-listing">
+                <%= render(partial: 'tables', locals: {categorias: @categorias_ativas, identifier: 'categorias-ativas-listing', icone: 'ion-close-circled', initial_display: ' '}) %>
+            </div>
+
+            <div class="categorias-inativas-listing" style="display: none;">
+                <%= render(partial: 'tables', locals: {categorias: @categorias_inativas, identifier: 'categorias-inativas-listing', icone: 'ion-checkmark-circled', initial_display: 'style="display: none;"'}) %>
+            </div>
+        </div>
     </div>
-  </div>
 </section>
 <%= render(partial: "new", locals: {categoria: @categoria}) %>

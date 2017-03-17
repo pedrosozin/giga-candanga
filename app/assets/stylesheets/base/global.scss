@@ -1,5 +1,7 @@
-.field {
+.fields{
   @extend .form-group !optional;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
 }
 /************* CUSTOM BUTONS          **************/
 div.editar-form {
@@ -41,6 +43,7 @@ div.field_whith_errors + input {
     border: 1.5px solid red;
 }
 // // configuracoes globais
+//
 // @import "variables.scss";
 //
 // $nav-back-color: #4388cc;

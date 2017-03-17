@@ -1,52 +1,51 @@
 <% @page_header = 'Instituições' %>
 <section class="instituicao clear-fix">
 
-  <div class="row breadcrumb">
-    <p> Instituições </p>
-  </div>
-
-  <div class="box box-primary">
-    <div class="box-header with-border">
-        <%= link_to 'Nova instiuição', new_instituicao_path, title: 'Adicionar nova instituição', class: 'btn btn-primary' %>
+    <div class="row breadcrumb">
+        <p> Instituições </p>
     </div>
-    <div class="box-body">
-      <table id="instituicao-index-tb" class="table table-bordered table-hover">
-          <thead>
-            <tr>
-              <th>Nome</th>
-              <th>Sigla</th>
-              <th>Contato</th>
-              <th>Tel. Contato</th>
-              <th>Condição</th>
-              <th colspan="3">Ações</th>
-            </tr>
-          </thead>
 
-          <tbody>
-              <% @instituicoes.each do |instituicao| %>
-                  <tr>
-                      <td><%= instituicao.nome %></td>
-                      <td><%= instituicao.sigla %></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td><%= link_to edit_instituicao_path(instituicao), class: "link-ativa" do %>
-                          <i class="ion-edit"></i>
-                      <%end%>
-                  </td>
-                  <td>
-                      <div href="#" class="link-delete instituicao">
-                          <i class="ion-close-circled"></i>
-                          <%= link_to(" ",arquivar_instituicao_path(instituicao), method: "put", class:"link-delete hidden" )%>
-                      </div>
-                  </td>
-              </tr>
-          <% end %>
-        </tbody>
-      </table>
+    <div class="box box-primary">
+        <div class="box-header with-border">
+            <%= link_to 'Nova instiuição', new_instituicao_path, title: 'Adicionar nova instituição', class: 'btn btn-primary' %>
+        </div>
+        <div class="box-body">
+            <table id="instituicao-index-tb" class="table table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Sigla</th>
+                        <th>Contato</th>
+                        <th>Tel. Contato</th>
+                        <th>Condição</th>
+                        <th >Ações</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <% @instituicoes.each do |instituicao| %>
+                        <tr>
+                            <td><%= instituicao.nome %></td>
+                            <td><%= instituicao.sigla %></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>
+                                <%= link_to edit_instituicao_path(instituicao), class: "link-ativa" do %>
+                                    <i class="ion-edit"></i>
+                                <%end%>
+                                <div href="#" style="display:inline-block;" class="link-delete instituicao link-td">
+                                    <i class="ion-close-circled"></i>
+                                    <%= link_to(" ",arquivar_instituicao_path(instituicao), method: "put", class:"link-delete hidden" )%>
+                                </div>
+                            </td>
+                        </tr>
+                    <% end %>
+                </tbody>
+            </table>
+        </div>
     </div>
-  </div>
-  <br>
+    <br>
 
 </section>
 

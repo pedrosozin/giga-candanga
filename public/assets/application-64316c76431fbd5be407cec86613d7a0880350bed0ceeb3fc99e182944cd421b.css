@@ -5559,7 +5559,7 @@ input[type="search"] {
   }
 }
 /* line 206, /home/sodre/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/_forms.scss */
-.form-group, .field {
+.form-group, .fields {
   margin-bottom: 15px;
 }
 
@@ -5925,7 +5925,7 @@ select[multiple].input-lg,
 
 @media (min-width: 768px) {
   /* line 441, /home/sodre/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/_forms.scss */
-  .form-inline .form-group, .form-inline .field {
+  .form-inline .form-group, .form-inline .fields {
     display: inline-block;
     margin-bottom: 0;
     vertical-align: middle;
@@ -6000,17 +6000,17 @@ select[multiple].input-lg,
   min-height: 27px;
 }
 /* line 538, /home/sodre/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/_forms.scss */
-.form-horizontal .form-group, .form-horizontal .field {
+.form-horizontal .form-group, .form-horizontal .fields {
   margin-left: -15px;
   margin-right: -15px;
 }
 /* line 14, /home/sodre/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/mixins/_clearfix.scss */
-.form-horizontal .form-group:before, .form-horizontal .field:before, .form-horizontal .form-group:after, .form-horizontal .field:after {
+.form-horizontal .form-group:before, .form-horizontal .fields:before, .form-horizontal .form-group:after, .form-horizontal .fields:after {
   content: " ";
   display: table;
 }
 /* line 19, /home/sodre/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/mixins/_clearfix.scss */
-.form-horizontal .form-group:after, .form-horizontal .field:after {
+.form-horizontal .form-group:after, .form-horizontal .fields:after {
   clear: both;
 }
 @media (min-width: 768px) {
@@ -7394,7 +7394,7 @@ tbody.collapse.in {
 }
 @media (min-width: 768px) {
   /* line 441, /home/sodre/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/_forms.scss */
-  .navbar-form .form-group, .navbar-form .field {
+  .navbar-form .form-group, .navbar-form .fields {
     display: inline-block;
     margin-bottom: 0;
     vertical-align: middle;
@@ -7455,11 +7455,11 @@ tbody.collapse.in {
 }
 @media (max-width: 767px) {
   /* line 298, /home/sodre/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/_navbar.scss */
-  .navbar-form .form-group, .navbar-form .field {
+  .navbar-form .form-group, .navbar-form .fields {
     margin-bottom: 5px;
   }
   /* line 302, /home/sodre/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/_navbar.scss */
-  .navbar-form .form-group:last-child, .navbar-form .field:last-child {
+  .navbar-form .form-group:last-child, .navbar-form .fields:last-child {
     margin-bottom: 0;
   }
 }
@@ -11884,34 +11884,34 @@ a:focus {
 }
 
 /* line 1248, /home/sodre/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/adminlte2-rails-0.0.6/vendor/assets/stylesheets/AdminLTE/AdminLTE.css */
-.form-group.has-success label, .has-success.field label {
+.form-group.has-success label, .has-success.fields label {
   color: #00a65a;
 }
 
 /* line 1251, /home/sodre/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/adminlte2-rails-0.0.6/vendor/assets/stylesheets/AdminLTE/AdminLTE.css */
-.form-group.has-success .form-control, .has-success.field .form-control {
+.form-group.has-success .form-control, .has-success.fields .form-control {
   border-color: #00a65a !important;
   box-shadow: none;
 }
 
 /* line 1255, /home/sodre/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/adminlte2-rails-0.0.6/vendor/assets/stylesheets/AdminLTE/AdminLTE.css */
-.form-group.has-warning label, .has-warning.field label {
+.form-group.has-warning label, .has-warning.fields label {
   color: #f39c12;
 }
 
 /* line 1258, /home/sodre/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/adminlte2-rails-0.0.6/vendor/assets/stylesheets/AdminLTE/AdminLTE.css */
-.form-group.has-warning .form-control, .has-warning.field .form-control {
+.form-group.has-warning .form-control, .has-warning.fields .form-control {
   border-color: #f39c12 !important;
   box-shadow: none;
 }
 
 /* line 1262, /home/sodre/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/adminlte2-rails-0.0.6/vendor/assets/stylesheets/AdminLTE/AdminLTE.css */
-.form-group.has-error label, .has-error.field label {
+.form-group.has-error label, .has-error.fields label {
   color: #dd4b39;
 }
 
 /* line 1265, /home/sodre/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/adminlte2-rails-0.0.6/vendor/assets/stylesheets/AdminLTE/AdminLTE.css */
-.form-group.has-error .form-control, .has-error.field .form-control {
+.form-group.has-error .form-control, .has-error.fields .form-control {
   border-color: #dd4b39 !important;
   box-shadow: none;
 }
@@ -16059,36 +16059,53 @@ table.text-center th {
 }
 
 /*  Base  */
+/* line 1, /home/sodre/Documents/ruby-prog/giga-candanga/app/assets/stylesheets/base/global.scss */
+.fields {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
 /************* CUSTOM BUTONS          **************/
-/* line 5, /home/sodre/Documents/ruby-prog/giga-candanga/app/assets/stylesheets/base/global.scss */
+/* line 7, /home/sodre/Documents/ruby-prog/giga-candanga/app/assets/stylesheets/base/global.scss */
 div.editar-form {
   margin-bottom: 10px;
 }
 
-/* line 9, /home/sodre/Documents/ruby-prog/giga-candanga/app/assets/stylesheets/base/global.scss */
+/* line 11, /home/sodre/Documents/ruby-prog/giga-candanga/app/assets/stylesheets/base/global.scss */
+.modal-medium > .modal-dialog {
+  width: 30% !important;
+  min-width: 600px !important;
+}
+
+/* line 16, /home/sodre/Documents/ruby-prog/giga-candanga/app/assets/stylesheets/base/global.scss */
 a.editar-form {
   display: block;
   width: 80%;
   margin: auto;
 }
 
-/* line 15, /home/sodre/Documents/ruby-prog/giga-candanga/app/assets/stylesheets/base/global.scss */
+/* line 22, /home/sodre/Documents/ruby-prog/giga-candanga/app/assets/stylesheets/base/global.scss */
 .link-holder, .link-delete {
   min-width: 15px;
   width: 5%;
   font-size: 1.8rem;
   transition: .3s;
 }
-/* line 20, /home/sodre/Documents/ruby-prog/giga-candanga/app/assets/stylesheets/base/global.scss */
+/* line 27, /home/sodre/Documents/ruby-prog/giga-candanga/app/assets/stylesheets/base/global.scss */
 .link-holder:hover, .link-delete:hover {
   color: #03A678;
   cursor: pointer;
 }
 
-/* line 30, /home/sodre/Documents/ruby-prog/giga-candanga/app/assets/stylesheets/base/global.scss */
+/* line 37, /home/sodre/Documents/ruby-prog/giga-candanga/app/assets/stylesheets/base/global.scss */
 div.error {
   color: #F22613;
   font-style: italic;
+}
+
+/* line 42, /home/sodre/Documents/ruby-prog/giga-candanga/app/assets/stylesheets/base/global.scss */
+div.field_whith_errors + input {
+  border: 1.5px solid red;
 }
 
 /* Controllers */

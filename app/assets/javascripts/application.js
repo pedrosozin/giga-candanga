@@ -55,15 +55,6 @@ function handleGenerickClicks(){
     });
 }
 
-function displayNotice(content){
-    if(content.type){
-        bootbox.alert({
-            title: content.title,
-            message: content.notice
-        });
-    }
-}
-
 $(document).ready(function(){
     handleGenerickClicks();
     generalSetup();

@@ -28464,13 +28464,21 @@ return $;
 
 	return $.fn.dataTable;
 }));
-/*
-Turbolinks 5.0.0
-Copyright © 2016 Basecamp, LLC
- */
-
-(function(){(function(){(function(){this.Turbolinks={supported:function(){return null!=window.history.pushState&&null!=window.requestAnimationFrame}(),visit:function(e,r){return t.controller.visit(e,r)},clearCache:function(){return t.controller.clearCache()}}}).call(this)}).call(this);var t=this.Turbolinks;(function(){(function(){var e,r;t.copyObject=function(t){var e,r,n;r={};for(e in t)n=t[e],r[e]=n;return r},t.closest=function(t,r){return e.call(t,r)},e=function(){var t,e;return t=document.documentElement,null!=(e=t.closest)?e:function(t){var e;for(e=this;e;){if(e.nodeType===Node.ELEMENT_NODE&&r.call(e,t))return e;e=e.parentNode}}}(),t.defer=function(t){return setTimeout(t,1)},t.dispatch=function(t,e){var r,n,o,i,s;return i=null!=e?e:{},s=i.target,r=i.cancelable,n=i.data,o=document.createEvent("Events"),o.initEvent(t,!0,r===!0),o.data=null!=n?n:{},(null!=s?s:document).dispatchEvent(o),o},t.match=function(t,e){return r.call(t,e)},r=function(){var t,e,r,n;return t=document.documentElement,null!=(e=null!=(r=null!=(n=t.matchesSelector)?n:t.webkitMatchesSelector)?r:t.msMatchesSelector)?e:t.mozMatchesSelector}(),t.uuid=function(){var t,e,r;for(r="",t=e=1;36>=e;t=++e)r+=9===t||14===t||19===t||24===t?"-":15===t?"4":20===t?(Math.floor(4*Math.random())+8).toString(16):Math.floor(15*Math.random()).toString(16);return r}}).call(this),function(){t.Location=function(){function t(t){var e,r;null==t&&(t=""),r=document.createElement("a"),r.href=t.toString(),this.absoluteURL=r.href,e=r.hash.length,2>e?this.requestURL=this.absoluteURL:(this.requestURL=this.absoluteURL.slice(0,-e),this.anchor=r.hash.slice(1))}var e,r,n,o;return t.wrap=function(t){return t instanceof this?t:new this(t)},t.prototype.getOrigin=function(){return this.absoluteURL.split("/",3).join("/")},t.prototype.getPath=function(){var t,e;return null!=(t=null!=(e=this.absoluteURL.match(/\/\/[^\/]*(\/[^?;]*)/))?e[1]:void 0)?t:"/"},t.prototype.getPathComponents=function(){return this.getPath().split("/").slice(1)},t.prototype.getLastPathComponent=function(){return this.getPathComponents().slice(-1)[0]},t.prototype.getExtension=function(){var t,e;return null!=(t=null!=(e=this.getLastPathComponent().match(/\.[^.]*$/))?e[0]:void 0)?t:""},t.prototype.isHTML=function(){return this.getExtension().match(/^(?:|\.(?:htm|html|xhtml))$/)},t.prototype.isPrefixedBy=function(t){var e;return e=r(t),this.isEqualTo(t)||o(this.absoluteURL,e)},t.prototype.isEqualTo=function(t){return this.absoluteURL===(null!=t?t.absoluteURL:void 0)},t.prototype.toCacheKey=function(){return this.requestURL},t.prototype.toJSON=function(){return this.absoluteURL},t.prototype.toString=function(){return this.absoluteURL},t.prototype.valueOf=function(){return this.absoluteURL},r=function(t){return e(t.getOrigin()+t.getPath())},e=function(t){return n(t,"/")?t:t+"/"},o=function(t,e){return t.slice(0,e.length)===e},n=function(t,e){return t.slice(-e.length)===e},t}()}.call(this),function(){var e=function(t,e){return function(){return t.apply(e,arguments)}};t.HttpRequest=function(){function r(r,n,o){this.delegate=r,this.requestCanceled=e(this.requestCanceled,this),this.requestTimedOut=e(this.requestTimedOut,this),this.requestFailed=e(this.requestFailed,this),this.requestLoaded=e(this.requestLoaded,this),this.requestProgressed=e(this.requestProgressed,this),this.url=t.Location.wrap(n).requestURL,this.referrer=t.Location.wrap(o).absoluteURL,this.createXHR()}return r.NETWORK_FAILURE=0,r.TIMEOUT_FAILURE=-1,r.timeout=60,r.prototype.send=function(){var t;return this.xhr&&!this.sent?(this.notifyApplicationBeforeRequestStart(),this.setProgress(0),this.xhr.send(),this.sent=!0,"function"==typeof(t=this.delegate).requestStarted?t.requestStarted():void 0):void 0},r.prototype.cancel=function(){return this.xhr&&this.sent?this.xhr.abort():void 0},r.prototype.requestProgressed=function(t){return t.lengthComputable?this.setProgress(t.loaded/t.total):void 0},r.prototype.requestLoaded=function(){return this.endRequest(function(t){return function(){var e;return 200<=(e=t.xhr.status)&&300>e?t.delegate.requestCompletedWithResponse(t.xhr.responseText,t.xhr.getResponseHeader("Turbolinks-Location")):(t.failed=!0,t.delegate.requestFailedWithStatusCode(t.xhr.status,t.xhr.responseText))}}(this))},r.prototype.requestFailed=function(){return this.endRequest(function(t){return function(){return t.failed=!0,t.delegate.requestFailedWithStatusCode(t.constructor.NETWORK_FAILURE)}}(this))},r.prototype.requestTimedOut=function(){return this.endRequest(function(t){return function(){return t.failed=!0,t.delegate.requestFailedWithStatusCode(t.constructor.TIMEOUT_FAILURE)}}(this))},r.prototype.requestCanceled=function(){return this.endRequest()},r.prototype.notifyApplicationBeforeRequestStart=function(){return t.dispatch("turbolinks:request-start",{data:{url:this.url,xhr:this.xhr}})},r.prototype.notifyApplicationAfterRequestEnd=function(){return t.dispatch("turbolinks:request-end",{data:{url:this.url,xhr:this.xhr}})},r.prototype.createXHR=function(){return this.xhr=new XMLHttpRequest,this.xhr.open("GET",this.url,!0),this.xhr.timeout=1e3*this.constructor.timeout,this.xhr.setRequestHeader("Accept","text/html, application/xhtml+xml"),this.xhr.setRequestHeader("Turbolinks-Referrer",this.referrer),this.xhr.onprogress=this.requestProgressed,this.xhr.onload=this.requestLoaded,this.xhr.onerror=this.requestFailed,this.xhr.ontimeout=this.requestTimedOut,this.xhr.onabort=this.requestCanceled},r.prototype.endRequest=function(t){return this.xhr?(this.notifyApplicationAfterRequestEnd(),null!=t&&t.call(this),this.destroy()):void 0},r.prototype.setProgress=function(t){var e;return this.progress=t,"function"==typeof(e=this.delegate).requestProgressed?e.requestProgressed(this.progress):void 0},r.prototype.destroy=function(){var t;return this.setProgress(1),"function"==typeof(t=this.delegate).requestFinished&&t.requestFinished(),this.delegate=null,this.xhr=null},r}()}.call(this),function(){var e=function(t,e){return function(){return t.apply(e,arguments)}};t.ProgressBar=function(){function t(){this.trickle=e(this.trickle,this),this.stylesheetElement=this.createStylesheetElement(),this.progressElement=this.createProgressElement()}var r;return r=300,t.defaultCSS=".turbolinks-progress-bar {\n  position: fixed;\n  display: block;\n  top: 0;\n  left: 0;\n  height: 3px;\n  background: #0076ff;\n  z-index: 9999;\n  transition: width "+r+"ms ease-out, opacity "+r/2+"ms "+r/2+"ms ease-in;\n  transform: translate3d(0, 0, 0);\n}",t.prototype.show=function(){return this.visible?void 0:(this.visible=!0,this.installStylesheetElement(),this.installProgressElement(),this.startTrickling())},t.prototype.hide=function(){return this.visible&&!this.hiding?(this.hiding=!0,this.fadeProgressElement(function(t){return function(){return t.uninstallProgressElement(),t.stopTrickling(),t.visible=!1,t.hiding=!1}}(this))):void 0},t.prototype.setValue=function(t){return this.value=t,this.refresh()},t.prototype.installStylesheetElement=function(){return document.head.insertBefore(this.stylesheetElement,document.head.firstChild)},t.prototype.installProgressElement=function(){return this.progressElement.style.width=0,this.progressElement.style.opacity=1,document.documentElement.insertBefore(this.progressElement,document.body),this.refresh()},t.prototype.fadeProgressElement=function(t){return this.progressElement.style.opacity=0,setTimeout(t,1.5*r)},t.prototype.uninstallProgressElement=function(){return this.progressElement.parentNode?document.documentElement.removeChild(this.progressElement):void 0},t.prototype.startTrickling=function(){return null!=this.trickleInterval?this.trickleInterval:this.trickleInterval=setInterval(this.trickle,r)},t.prototype.stopTrickling=function(){return clearInterval(this.trickleInterval),this.trickleInterval=null},t.prototype.trickle=function(){return this.setValue(this.value+Math.random()/100)},t.prototype.refresh=function(){return requestAnimationFrame(function(t){return function(){return t.progressElement.style.width=10+90*t.value+"%"}}(this))},t.prototype.createStylesheetElement=function(){var t;return t=document.createElement("style"),t.type="text/css",t.textContent=this.constructor.defaultCSS,t},t.prototype.createProgressElement=function(){var t;return t=document.createElement("div"),t.className="turbolinks-progress-bar",t},t}()}.call(this),function(){var e=function(t,e){return function(){return t.apply(e,arguments)}};t.BrowserAdapter=function(){function r(r){this.controller=r,this.showProgressBar=e(this.showProgressBar,this),this.progressBar=new t.ProgressBar}var n,o,i,s;return s=t.HttpRequest,n=s.NETWORK_FAILURE,i=s.TIMEOUT_FAILURE,o=500,r.prototype.visitProposedToLocationWithAction=function(t,e){return this.controller.startVisitToLocationWithAction(t,e)},r.prototype.visitStarted=function(t){return t.issueRequest(),t.changeHistory(),t.loadCachedSnapshot()},r.prototype.visitRequestStarted=function(t){return this.progressBar.setValue(0),t.hasCachedSnapshot()||"restore"!==t.action?this.showProgressBarAfterDelay():this.showProgressBar()},r.prototype.visitRequestProgressed=function(t){return this.progressBar.setValue(t.progress)},r.prototype.visitRequestCompleted=function(t){return t.loadResponse()},r.prototype.visitRequestFailedWithStatusCode=function(t,e){switch(e){case n:case i:return this.reload();default:return t.loadResponse()}},r.prototype.visitRequestFinished=function(t){return this.hideProgressBar()},r.prototype.visitCompleted=function(t){return t.followRedirect()},r.prototype.pageInvalidated=function(){return this.reload()},r.prototype.showProgressBarAfterDelay=function(){return this.progressBarTimeout=setTimeout(this.showProgressBar,o)},r.prototype.showProgressBar=function(){return this.progressBar.show()},r.prototype.hideProgressBar=function(){return this.progressBar.hide(),clearTimeout(this.progressBarTimeout)},r.prototype.reload=function(){return window.location.reload()},r}()}.call(this),function(){var e,r=function(t,e){return function(){return t.apply(e,arguments)}};e=!1,addEventListener("load",function(){return t.defer(function(){return e=!0})},!1),t.History=function(){function n(t){this.delegate=t,this.onPopState=r(this.onPopState,this)}return n.prototype.start=function(){return this.started?void 0:(addEventListener("popstate",this.onPopState,!1),this.started=!0)},n.prototype.stop=function(){return this.started?(removeEventListener("popstate",this.onPopState,!1),this.started=!1):void 0},n.prototype.push=function(e,r){return e=t.Location.wrap(e),this.update("push",e,r)},n.prototype.replace=function(e,r){return e=t.Location.wrap(e),this.update("replace",e,r)},n.prototype.onPopState=function(e){var r,n,o,i;return this.shouldHandlePopState()&&(i=null!=(n=e.state)?n.turbolinks:void 0)?(r=t.Location.wrap(window.location),o=i.restorationIdentifier,this.delegate.historyPoppedToLocationWithRestorationIdentifier(r,o)):void 0},n.prototype.shouldHandlePopState=function(){return e===!0},n.prototype.update=function(t,e,r){var n;return n={turbolinks:{restorationIdentifier:r}},history[t+"State"](n,null,e)},n}()}.call(this),function(){t.Snapshot=function(){function e(t){var e,r;r=t.head,e=t.body,this.head=null!=r?r:document.createElement("head"),this.body=null!=e?e:document.createElement("body")}return e.wrap=function(t){return t instanceof this?t:this.fromHTML(t)},e.fromHTML=function(t){var e;return e=document.createElement("html"),e.innerHTML=t,this.fromElement(e)},e.fromElement=function(t){return new this({head:t.querySelector("head"),body:t.querySelector("body")})},e.prototype.clone=function(){return new e({head:this.head.cloneNode(!0),body:this.body.cloneNode(!0)})},e.prototype.getRootLocation=function(){var e,r;return r=null!=(e=this.getSetting("root"))?e:"/",new t.Location(r)},e.prototype.getCacheControlValue=function(){return this.getSetting("cache-control")},e.prototype.hasAnchor=function(t){try{return null!=this.body.querySelector("[id='"+t+"']")}catch(e){}},e.prototype.isPreviewable=function(){return"no-preview"!==this.getCacheControlValue()},e.prototype.isCacheable=function(){return"no-cache"!==this.getCacheControlValue()},e.prototype.getSetting=function(t){var e,r;return r=this.head.querySelectorAll("meta[name='turbolinks-"+t+"']"),e=r[r.length-1],null!=e?e.getAttribute("content"):void 0},e}()}.call(this),function(){var e=[].slice;t.Renderer=function(){function t(){}var r;return t.render=function(){var t,r,n,o;return n=arguments[0],r=arguments[1],t=3<=arguments.length?e.call(arguments,2):[],o=function(t,e,r){r.prototype=t.prototype;var n=new r,o=t.apply(n,e);return Object(o)===o?o:n}(this,t,function(){}),o.delegate=n,o.render(r),o},t.prototype.renderView=function(t){return this.delegate.viewWillRender(this.newBody),t(),this.delegate.viewRendered(this.newBody)},t.prototype.invalidateView=function(){return this.delegate.viewInvalidated()},t.prototype.createScriptElement=function(t){var e;return"false"===t.getAttribute("data-turbolinks-eval")?t:(e=document.createElement("script"),e.textContent=t.textContent,r(e,t),e)},r=function(t,e){var r,n,o,i,s,a,u;for(i=e.attributes,a=[],r=0,n=i.length;n>r;r++)s=i[r],o=s.name,u=s.value,a.push(t.setAttribute(o,u));return a},t}()}.call(this),function(){t.HeadDetails=function(){function t(t){var e,r,i,s,a,u,c;for(this.element=t,this.elements={},c=this.element.childNodes,s=0,u=c.length;u>s;s++)i=c[s],i.nodeType===Node.ELEMENT_NODE&&(a=i.outerHTML,r=null!=(e=this.elements)[a]?e[a]:e[a]={type:o(i),tracked:n(i),elements:[]},r.elements.push(i))}var e,r,n,o;return t.prototype.hasElementWithKey=function(t){return t in this.elements},t.prototype.getTrackedElementSignature=function(){var t,e;return function(){var r,n;r=this.elements,n=[];for(t in r)e=r[t].tracked,e&&n.push(t);return n}.call(this).join("")},t.prototype.getScriptElementsNotInDetails=function(t){return this.getElementsMatchingTypeNotInDetails("script",t)},t.prototype.getStylesheetElementsNotInDetails=function(t){return this.getElementsMatchingTypeNotInDetails("stylesheet",t)},t.prototype.getElementsMatchingTypeNotInDetails=function(t,e){var r,n,o,i,s,a;o=this.elements,s=[];for(n in o)i=o[n],a=i.type,r=i.elements,a!==t||e.hasElementWithKey(n)||s.push(r[0]);return s},t.prototype.getProvisionalElements=function(){var t,e,r,n,o,i,s;r=[],n=this.elements;for(e in n)o=n[e],s=o.type,i=o.tracked,t=o.elements,null!=s||i?t.length>1&&r.push.apply(r,t.slice(1)):r.push.apply(r,t);return r},o=function(t){return e(t)?"script":r(t)?"stylesheet":void 0},n=function(t){return"reload"===t.getAttribute("data-turbolinks-track")},e=function(t){var e;return e=t.tagName.toLowerCase(),"script"===e},r=function(t){var e;return e=t.tagName.toLowerCase(),"style"===e||"link"===e&&"stylesheet"===t.getAttribute("rel")},t}()}.call(this),function(){var e=function(t,e){function n(){this.constructor=t}for(var o in e)r.call(e,o)&&(t[o]=e[o]);return n.prototype=e.prototype,t.prototype=new n,t.__super__=e.prototype,t},r={}.hasOwnProperty;t.SnapshotRenderer=function(r){function n(e,r){this.currentSnapshot=e,this.newSnapshot=r,this.currentHeadDetails=new t.HeadDetails(this.currentSnapshot.head),this.newHeadDetails=new t.HeadDetails(this.newSnapshot.head),this.newBody=this.newSnapshot.body}return e(n,r),n.prototype.render=function(t){return this.trackedElementsAreIdentical()?(this.mergeHead(),this.renderView(function(e){return function(){return e.replaceBody(),e.focusFirstAutofocusableElement(),t()}}(this))):this.invalidateView()},n.prototype.mergeHead=function(){return this.copyNewHeadStylesheetElements(),this.copyNewHeadScriptElements(),this.removeCurrentHeadProvisionalElements(),this.copyNewHeadProvisionalElements()},n.prototype.replaceBody=function(){return this.activateBodyScriptElements(),this.importBodyPermanentElements(),this.assignNewBody()},n.prototype.trackedElementsAreIdentical=function(){return this.currentHeadDetails.getTrackedElementSignature()===this.newHeadDetails.getTrackedElementSignature()},n.prototype.copyNewHeadStylesheetElements=function(){var t,e,r,n,o;for(n=this.getNewHeadStylesheetElements(),o=[],e=0,r=n.length;r>e;e++)t=n[e],o.push(document.head.appendChild(t));return o},n.prototype.copyNewHeadScriptElements=function(){var t,e,r,n,o;for(n=this.getNewHeadScriptElements(),o=[],e=0,r=n.length;r>e;e++)t=n[e],o.push(document.head.appendChild(this.createScriptElement(t)));return o},n.prototype.removeCurrentHeadProvisionalElements=function(){var t,e,r,n,o;for(n=this.getCurrentHeadProvisionalElements(),o=[],e=0,r=n.length;r>e;e++)t=n[e],o.push(document.head.removeChild(t));return o},n.prototype.copyNewHeadProvisionalElements=function(){var t,e,r,n,o;for(n=this.getNewHeadProvisionalElements(),o=[],e=0,r=n.length;r>e;e++)t=n[e],o.push(document.head.appendChild(t));return o},n.prototype.importBodyPermanentElements=function(){var t,e,r,n,o,i;for(n=this.getNewBodyPermanentElements(),i=[],e=0,r=n.length;r>e;e++)o=n[e],(t=this.findCurrentBodyPermanentElement(o))?i.push(o.parentNode.replaceChild(t,o)):i.push(void 0);return i},n.prototype.activateBodyScriptElements=function(){var t,e,r,n,o,i;for(n=this.getNewBodyScriptElements(),i=[],e=0,r=n.length;r>e;e++)o=n[e],t=this.createScriptElement(o),i.push(o.parentNode.replaceChild(t,o));return i},n.prototype.assignNewBody=function(){return document.body=this.newBody},n.prototype.focusFirstAutofocusableElement=function(){var t;return null!=(t=this.findFirstAutofocusableElement())?t.focus():void 0},n.prototype.getNewHeadStylesheetElements=function(){return this.newHeadDetails.getStylesheetElementsNotInDetails(this.currentHeadDetails)},n.prototype.getNewHeadScriptElements=function(){return this.newHeadDetails.getScriptElementsNotInDetails(this.currentHeadDetails)},n.prototype.getCurrentHeadProvisionalElements=function(){return this.currentHeadDetails.getProvisionalElements()},n.prototype.getNewHeadProvisionalElements=function(){return this.newHeadDetails.getProvisionalElements()},n.prototype.getNewBodyPermanentElements=function(){return this.newBody.querySelectorAll("[id][data-turbolinks-permanent]")},n.prototype.findCurrentBodyPermanentElement=function(t){return document.body.querySelector("#"+t.id+"[data-turbolinks-permanent]")},n.prototype.getNewBodyScriptElements=function(){return this.newBody.querySelectorAll("script")},n.prototype.findFirstAutofocusableElement=function(){return document.body.querySelector("[autofocus]")},n}(t.Renderer)}.call(this),function(){var e=function(t,e){function n(){this.constructor=t}for(var o in e)r.call(e,o)&&(t[o]=e[o]);return n.prototype=e.prototype,t.prototype=new n,t.__super__=e.prototype,t},r={}.hasOwnProperty;t.ErrorRenderer=function(t){function r(t){this.html=t}return e(r,t),r.prototype.render=function(t){return this.renderView(function(e){return function(){return e.replaceDocumentHTML(),e.activateBodyScriptElements(),t()}}(this))},r.prototype.replaceDocumentHTML=function(){return document.documentElement.innerHTML=this.html},r.prototype.activateBodyScriptElements=function(){var t,e,r,n,o,i;for(n=this.getScriptElements(),i=[],e=0,r=n.length;r>e;e++)o=n[e],t=this.createScriptElement(o),i.push(o.parentNode.replaceChild(t,o));return i},r.prototype.getScriptElements=function(){return document.documentElement.querySelectorAll("script")},r}(t.Renderer)}.call(this),function(){t.View=function(){function e(t){this.delegate=t,this.element=document.documentElement}return e.prototype.getRootLocation=function(){return this.getSnapshot().getRootLocation()},e.prototype.getSnapshot=function(){return t.Snapshot.fromElement(this.element)},e.prototype.render=function(t,e){var r,n,o;return o=t.snapshot,r=t.error,n=t.isPreview,this.markAsPreview(n),null!=o?this.renderSnapshot(o,e):this.renderError(r,e)},e.prototype.markAsPreview=function(t){return t?this.element.setAttribute("data-turbolinks-preview",""):this.element.removeAttribute("data-turbolinks-preview")},e.prototype.renderSnapshot=function(e,r){return t.SnapshotRenderer.render(this.delegate,r,this.getSnapshot(),t.Snapshot.wrap(e))},e.prototype.renderError=function(e,r){return t.ErrorRenderer.render(this.delegate,r,e)},e}()}.call(this),function(){var e=function(t,e){return function(){return t.apply(e,arguments)}};t.ScrollManager=function(){function t(t){this.delegate=t,this.onScroll=e(this.onScroll,this)}return t.prototype.start=function(){return this.started?void 0:(addEventListener("scroll",this.onScroll,!1),this.onScroll(),this.started=!0)},t.prototype.stop=function(){return this.started?(removeEventListener("scroll",this.onScroll,!1),this.started=!1):void 0},t.prototype.scrollToElement=function(t){return t.scrollIntoView()},t.prototype.scrollToPosition=function(t){var e,r;return e=t.x,r=t.y,window.scrollTo(e,r)},t.prototype.onScroll=function(t){return this.updatePosition({x:window.pageXOffset,y:window.pageYOffset})},t.prototype.updatePosition=function(t){var e;return this.position=t,null!=(e=this.delegate)?e.scrollPositionChanged(this.position):void 0},t}()}.call(this),function(){t.SnapshotCache=function(){function e(t){this.size=t,this.keys=[],this.snapshots={}}var r;return e.prototype.has=function(t){var e;return e=r(t),e in this.snapshots},e.prototype.get=function(t){var e;if(this.has(t))return e=this.read(t),this.touch(t),e},e.prototype.put=function(t,e){return this.write(t,e),this.touch(t),e},e.prototype.read=function(t){var e;return e=r(t),this.snapshots[e]},e.prototype.write=function(t,e){var n;return n=r(t),this.snapshots[n]=e},e.prototype.touch=function(t){var e,n;return n=r(t),e=this.keys.indexOf(n),e>-1&&this.keys.splice(e,1),this.keys.unshift(n),this.trim()},e.prototype.trim=function(){var t,e,r,n,o;for(n=this.keys.splice(this.size),o=[],t=0,r=n.length;r>t;t++)e=n[t],o.push(delete this.snapshots[e]);return o},r=function(e){return t.Location.wrap(e).toCacheKey()},e}()}.call(this),function(){var e=function(t,e){return function(){return t.apply(e,arguments)}};t.Visit=function(){function r(r,n,o){this.controller=r,this.action=o,this.performScroll=e(this.performScroll,this),this.identifier=t.uuid(),this.location=t.Location.wrap(n),this.adapter=this.controller.adapter,this.state="initialized",this.timingMetrics={}}var n;return r.prototype.start=function(){return"initialized"===this.state?(this.recordTimingMetric("visitStart"),this.state="started",this.adapter.visitStarted(this)):void 0},r.prototype.cancel=function(){var t;return"started"===this.state?(null!=(t=this.request)&&t.cancel(),this.cancelRender(),this.state="canceled"):void 0},r.prototype.complete=function(){var t;return"started"===this.state?(this.recordTimingMetric("visitEnd"),this.state="completed","function"==typeof(t=this.adapter).visitCompleted&&t.visitCompleted(this),this.controller.visitCompleted(this)):void 0},r.prototype.fail=function(){var t;return"started"===this.state?(this.state="failed","function"==typeof(t=this.adapter).visitFailed?t.visitFailed(this):void 0):void 0},r.prototype.changeHistory=function(){var t,e;return this.historyChanged?void 0:(t=this.location.isEqualTo(this.referrer)?"replace":this.action,e=n(t),this.controller[e](this.location,this.restorationIdentifier),this.historyChanged=!0)},r.prototype.issueRequest=function(){return this.shouldIssueRequest()&&null==this.request?(this.progress=0,this.request=new t.HttpRequest(this,this.location,this.referrer),this.request.send()):void 0},r.prototype.getCachedSnapshot=function(){var t;return!(t=this.controller.getCachedSnapshotForLocation(this.location))||null!=this.location.anchor&&!t.hasAnchor(this.location.anchor)||"restore"!==this.action&&!t.isPreviewable()?void 0:t},r.prototype.hasCachedSnapshot=function(){return null!=this.getCachedSnapshot()},r.prototype.loadCachedSnapshot=function(){var t,e;return(e=this.getCachedSnapshot())?(t=this.shouldIssueRequest(),this.render(function(){var r;return this.cacheSnapshot(),this.controller.render({snapshot:e,isPreview:t},this.performScroll),"function"==typeof(r=this.adapter).visitRendered&&r.visitRendered(this),t?void 0:this.complete()})):void 0},r.prototype.loadResponse=function(){return null!=this.response?this.render(function(){var t,e;return this.cacheSnapshot(),this.request.failed?(this.controller.render({error:this.response},this.performScroll),"function"==typeof(t=this.adapter).visitRendered&&t.visitRendered(this),this.fail()):(this.controller.render({snapshot:this.response},this.performScroll),"function"==typeof(e=this.adapter).visitRendered&&e.visitRendered(this),this.complete())}):void 0},r.prototype.followRedirect=function(){return this.redirectedToLocation&&!this.followedRedirect?(this.location=this.redirectedToLocation,this.controller.replaceHistoryWithLocationAndRestorationIdentifier(this.redirectedToLocation,this.restorationIdentifier),this.followedRedirect=!0):void 0},r.prototype.requestStarted=function(){var t;return this.recordTimingMetric("requestStart"),"function"==typeof(t=this.adapter).visitRequestStarted?t.visitRequestStarted(this):void 0},r.prototype.requestProgressed=function(t){var e;return this.progress=t,"function"==typeof(e=this.adapter).visitRequestProgressed?e.visitRequestProgressed(this):void 0},r.prototype.requestCompletedWithResponse=function(e,r){return this.response=e,null!=r&&(this.redirectedToLocation=t.Location.wrap(r)),this.adapter.visitRequestCompleted(this)},r.prototype.requestFailedWithStatusCode=function(t,e){return this.response=e,this.adapter.visitRequestFailedWithStatusCode(this,t)},r.prototype.requestFinished=function(){var t;return this.recordTimingMetric("requestEnd"),"function"==typeof(t=this.adapter).visitRequestFinished?t.visitRequestFinished(this):void 0},r.prototype.performScroll=function(){return this.scrolled?void 0:("restore"===this.action?this.scrollToRestoredPosition()||this.scrollToTop():this.scrollToAnchor()||this.scrollToTop(),this.scrolled=!0)},r.prototype.scrollToRestoredPosition=function(){var t,e;return t=null!=(e=this.restorationData)?e.scrollPosition:void 0,null!=t?(this.controller.scrollToPosition(t),!0):void 0},r.prototype.scrollToAnchor=function(){return null!=this.location.anchor?(this.controller.scrollToAnchor(this.location.anchor),!0):void 0},r.prototype.scrollToTop=function(){return this.controller.scrollToPosition({x:0,y:0})},r.prototype.recordTimingMetric=function(t){var e;return null!=(e=this.timingMetrics)[t]?e[t]:e[t]=(new Date).getTime()},r.prototype.getTimingMetrics=function(){return t.copyObject(this.timingMetrics)},n=function(t){switch(t){case"replace":return"replaceHistoryWithLocationAndRestorationIdentifier";case"advance":case"restore":return"pushHistoryWithLocationAndRestorationIdentifier"}},r.prototype.shouldIssueRequest=function(){return"restore"===this.action?!this.hasCachedSnapshot():!0},r.prototype.cacheSnapshot=function(){return this.snapshotCached?void 0:(this.controller.cacheSnapshot(),this.snapshotCached=!0)},r.prototype.render=function(t){return this.cancelRender(),this.frame=requestAnimationFrame(function(e){return function(){return e.frame=null,t.call(e)}}(this))},r.prototype.cancelRender=function(){return this.frame?cancelAnimationFrame(this.frame):void 0},r}()}.call(this),function(){var e=function(t,e){return function(){return t.apply(e,arguments)}};t.Controller=function(){function r(){this.clickBubbled=e(this.clickBubbled,this),this.clickCaptured=e(this.clickCaptured,this),this.pageLoaded=e(this.pageLoaded,this),this.history=new t.History(this),this.view=new t.View(this),this.scrollManager=new t.ScrollManager(this),this.restorationData={},this.clearCache()}return r.prototype.start=function(){return t.supported&&!this.started?(addEventListener("click",this.clickCaptured,!0),addEventListener("DOMContentLoaded",this.pageLoaded,!1),this.scrollManager.start(),this.startHistory(),this.started=!0,this.enabled=!0):void 0},r.prototype.disable=function(){return this.enabled=!1},r.prototype.stop=function(){return this.started?(removeEventListener("click",this.clickCaptured,!0),removeEventListener("DOMContentLoaded",this.pageLoaded,!1),this.scrollManager.stop(),this.stopHistory(),this.started=!1):void 0},r.prototype.clearCache=function(){return this.cache=new t.SnapshotCache(10)},r.prototype.visit=function(e,r){var n,o;return null==r&&(r={}),e=t.Location.wrap(e),this.applicationAllowsVisitingLocation(e)?this.locationIsVisitable(e)?(n=null!=(o=r.action)?o:"advance",this.adapter.visitProposedToLocationWithAction(e,n)):window.location=e:void 0},r.prototype.startVisitToLocationWithAction=function(e,r,n){var o;return t.supported?(o=this.getRestorationDataForIdentifier(n),this.startVisit(e,r,{restorationData:o})):window.location=e},r.prototype.startHistory=function(){return this.location=t.Location.wrap(window.location),this.restorationIdentifier=t.uuid(),this.history.start(),this.history.replace(this.location,this.restorationIdentifier)},r.prototype.stopHistory=function(){return this.history.stop()},r.prototype.pushHistoryWithLocationAndRestorationIdentifier=function(e,r){return this.restorationIdentifier=r,this.location=t.Location.wrap(e),this.history.push(this.location,this.restorationIdentifier)},r.prototype.replaceHistoryWithLocationAndRestorationIdentifier=function(e,r){return this.restorationIdentifier=r,this.location=t.Location.wrap(e),this.history.replace(this.location,this.restorationIdentifier)},r.prototype.historyPoppedToLocationWithRestorationIdentifier=function(e,r){var n;return this.restorationIdentifier=r,this.enabled?(n=this.getRestorationDataForIdentifier(this.restorationIdentifier),this.startVisit(e,"restore",{restorationIdentifier:this.restorationIdentifier,restorationData:n,historyChanged:!0}),this.location=t.Location.wrap(e)):this.adapter.pageInvalidated()},r.prototype.getCachedSnapshotForLocation=function(t){var e;return e=this.cache.get(t),e?e.clone():void 0},r.prototype.shouldCacheSnapshot=function(){return this.view.getSnapshot().isCacheable()},r.prototype.cacheSnapshot=function(){var t;return this.shouldCacheSnapshot()?(this.notifyApplicationBeforeCachingSnapshot(),t=this.view.getSnapshot(),this.cache.put(this.lastRenderedLocation,t.clone())):void 0},r.prototype.scrollToAnchor=function(t){var e;return(e=document.getElementById(t))?this.scrollToElement(e):this.scrollToPosition({x:0,y:0})},r.prototype.scrollToElement=function(t){return this.scrollManager.scrollToElement(t)},r.prototype.scrollToPosition=function(t){return this.scrollManager.scrollToPosition(t)},r.prototype.scrollPositionChanged=function(t){var e;return e=this.getCurrentRestorationData(),e.scrollPosition=t},r.prototype.render=function(t,e){return this.view.render(t,e)},r.prototype.viewInvalidated=function(){return this.adapter.pageInvalidated()},r.prototype.viewWillRender=function(t){return this.notifyApplicationBeforeRender(t)},r.prototype.viewRendered=function(){return this.lastRenderedLocation=this.currentVisit.location,this.notifyApplicationAfterRender()},r.prototype.pageLoaded=function(){return this.lastRenderedLocation=this.location,this.notifyApplicationAfterPageLoad()},r.prototype.clickCaptured=function(){return removeEventListener("click",this.clickBubbled,!1),addEventListener("click",this.clickBubbled,!1)},r.prototype.clickBubbled=function(t){var e,r,n;return this.enabled&&this.clickEventIsSignificant(t)&&(r=this.getVisitableLinkForNode(t.target))&&(n=this.getVisitableLocationForLink(r))&&this.applicationAllowsFollowingLinkToLocation(r,n)?(t.preventDefault(),e=this.getActionForLink(r),this.visit(n,{action:e})):void 0},r.prototype.applicationAllowsFollowingLinkToLocation=function(t,e){var r;return r=this.notifyApplicationAfterClickingLinkToLocation(t,e),!r.defaultPrevented},r.prototype.applicationAllowsVisitingLocation=function(t){var e;return e=this.notifyApplicationBeforeVisitingLocation(t),!e.defaultPrevented},r.prototype.notifyApplicationAfterClickingLinkToLocation=function(e,r){return t.dispatch("turbolinks:click",{target:e,data:{url:r.absoluteURL},cancelable:!0})},r.prototype.notifyApplicationBeforeVisitingLocation=function(e){return t.dispatch("turbolinks:before-visit",{data:{url:e.absoluteURL},cancelable:!0})},r.prototype.notifyApplicationAfterVisitingLocation=function(e){return t.dispatch("turbolinks:visit",{data:{url:e.absoluteURL}})},r.prototype.notifyApplicationBeforeCachingSnapshot=function(){return t.dispatch("turbolinks:before-cache")},r.prototype.notifyApplicationBeforeRender=function(e){return t.dispatch("turbolinks:before-render",{data:{newBody:e}})},r.prototype.notifyApplicationAfterRender=function(){return t.dispatch("turbolinks:render")},r.prototype.notifyApplicationAfterPageLoad=function(e){return null==e&&(e={}),t.dispatch("turbolinks:load",{data:{url:this.location.absoluteURL,timing:e}})},r.prototype.startVisit=function(t,e,r){var n;return null!=(n=this.currentVisit)&&n.cancel(),this.currentVisit=this.createVisit(t,e,r),this.currentVisit.start(),this.notifyApplicationAfterVisitingLocation(t)},r.prototype.createVisit=function(e,r,n){
-var o,i,s,a,u;return i=null!=n?n:{},a=i.restorationIdentifier,s=i.restorationData,o=i.historyChanged,u=new t.Visit(this,e,r),u.restorationIdentifier=null!=a?a:t.uuid(),u.restorationData=t.copyObject(s),u.historyChanged=o,u.referrer=this.location,u},r.prototype.visitCompleted=function(t){return this.notifyApplicationAfterPageLoad(t.getTimingMetrics())},r.prototype.clickEventIsSignificant=function(t){return!(t.defaultPrevented||t.target.isContentEditable||t.which>1||t.altKey||t.ctrlKey||t.metaKey||t.shiftKey)},r.prototype.getVisitableLinkForNode=function(e){return this.nodeIsVisitable(e)?t.closest(e,"a[href]:not([target])"):void 0},r.prototype.getVisitableLocationForLink=function(e){var r;return r=new t.Location(e.getAttribute("href")),this.locationIsVisitable(r)?r:void 0},r.prototype.getActionForLink=function(t){var e;return null!=(e=t.getAttribute("data-turbolinks-action"))?e:"advance"},r.prototype.nodeIsVisitable=function(e){var r;return(r=t.closest(e,"[data-turbolinks]"))?"false"!==r.getAttribute("data-turbolinks"):!0},r.prototype.locationIsVisitable=function(t){return t.isPrefixedBy(this.view.getRootLocation())&&t.isHTML()},r.prototype.getCurrentRestorationData=function(){return this.getRestorationDataForIdentifier(this.restorationIdentifier)},r.prototype.getRestorationDataForIdentifier=function(t){var e;return null!=(e=this.restorationData)[t]?e[t]:e[t]={}},r}()}.call(this),function(){var e,r,n;t.start=function(){return r()?(null==t.controller&&(t.controller=e()),t.controller.start()):void 0},r=function(){return null==window.Turbolinks&&(window.Turbolinks=t),n()},e=function(){var e;return e=new t.Controller,e.adapter=new t.BrowserAdapter(e),e},n=function(){return window.Turbolinks===t},n()&&t.start()}.call(this)}).call(this),"object"==typeof module&&module.exports?module.exports=t:"function"==typeof define&&define.amd&&define(t)}).call(this);
+// jQuery Mask Plugin v1.14.0
+// github.com/igorescobar/jQuery-Mask-Plugin
+(function(b){"function"===typeof define&&define.amd?define(["jquery"],b):"object"===typeof exports?module.exports=b(require("jquery")):b(jQuery||Zepto)})(function(b){var y=function(a,e,d){var c={invalid:[],getCaret:function(){try{var r,b=0,e=a.get(0),d=document.selection,f=e.selectionStart;if(d&&-1===navigator.appVersion.indexOf("MSIE 10"))r=d.createRange(),r.moveStart("character",-c.val().length),b=r.text.length;else if(f||"0"===f)b=f;return b}catch(g){}},setCaret:function(r){try{if(a.is(":focus")){var c,
+b=a.get(0);b.setSelectionRange?(b.focus(),b.setSelectionRange(r,r)):(c=b.createTextRange(),c.collapse(!0),c.moveEnd("character",r),c.moveStart("character",r),c.select())}}catch(e){}},events:function(){a.on("keydown.mask",function(c){a.data("mask-keycode",c.keyCode||c.which)}).on(b.jMaskGlobals.useInput?"input.mask":"keyup.mask",c.behaviour).on("paste.mask drop.mask",function(){setTimeout(function(){a.keydown().keyup()},100)}).on("change.mask",function(){a.data("changed",!0)}).on("blur.mask",function(){n===
+c.val()||a.data("changed")||a.trigger("change");a.data("changed",!1)}).on("blur.mask",function(){n=c.val()}).on("focus.mask",function(a){!0===d.selectOnFocus&&b(a.target).select()}).on("focusout.mask",function(){d.clearIfNotMatch&&!p.test(c.val())&&c.val("")})},getRegexMask:function(){for(var a=[],c,b,d,f,l=0;l<e.length;l++)(c=g.translation[e.charAt(l)])?(b=c.pattern.toString().replace(/.{1}$|^.{1}/g,""),d=c.optional,(c=c.recursive)?(a.push(e.charAt(l)),f={digit:e.charAt(l),pattern:b}):a.push(d||
+c?b+"?":b)):a.push(e.charAt(l).replace(/[-\/\\^$*+?.()|[\]{}]/g,"\\$&"));a=a.join("");f&&(a=a.replace(new RegExp("("+f.digit+"(.*"+f.digit+")?)"),"($1)?").replace(new RegExp(f.digit,"g"),f.pattern));return new RegExp(a)},destroyEvents:function(){a.off("input keydown keyup paste drop blur focusout ".split(" ").join(".mask "))},val:function(c){var b=a.is("input")?"val":"text";if(0<arguments.length){if(a[b]()!==c)a[b](c);b=a}else b=a[b]();return b},getMCharsBeforeCount:function(a,c){for(var b=0,d=0,
+f=e.length;d<f&&d<a;d++)g.translation[e.charAt(d)]||(a=c?a+1:a,b++);return b},caretPos:function(a,b,d,h){return g.translation[e.charAt(Math.min(a-1,e.length-1))]?Math.min(a+d-b-h,d):c.caretPos(a+1,b,d,h)},behaviour:function(d){d=d||window.event;c.invalid=[];var e=a.data("mask-keycode");if(-1===b.inArray(e,g.byPassKeys)){var m=c.getCaret(),h=c.val().length,f=c.getMasked(),l=f.length,k=c.getMCharsBeforeCount(l-1)-c.getMCharsBeforeCount(h-1),n=m<h;c.val(f);n&&(8!==e&&46!==e&&(m=c.caretPos(m,h,l,k)),
+c.setCaret(m));return c.callbacks(d)}},getMasked:function(a,b){var m=[],h=void 0===b?c.val():b+"",f=0,l=e.length,k=0,n=h.length,q=1,p="push",u=-1,t,w;d.reverse?(p="unshift",q=-1,t=0,f=l-1,k=n-1,w=function(){return-1<f&&-1<k}):(t=l-1,w=function(){return f<l&&k<n});for(;w();){var x=e.charAt(f),v=h.charAt(k),s=g.translation[x];if(s)v.match(s.pattern)?(m[p](v),s.recursive&&(-1===u?u=f:f===t&&(f=u-q),t===u&&(f-=q)),f+=q):s.optional?(f+=q,k-=q):s.fallback?(m[p](s.fallback),f+=q,k-=q):c.invalid.push({p:k,
+v:v,e:s.pattern}),k+=q;else{if(!a)m[p](x);v===x&&(k+=q);f+=q}}h=e.charAt(t);l!==n+1||g.translation[h]||m.push(h);return m.join("")},callbacks:function(b){var g=c.val(),m=g!==n,h=[g,b,a,d],f=function(a,b,c){"function"===typeof d[a]&&b&&d[a].apply(this,c)};f("onChange",!0===m,h);f("onKeyPress",!0===m,h);f("onComplete",g.length===e.length,h);f("onInvalid",0<c.invalid.length,[g,b,a,c.invalid,d])}};a=b(a);var g=this,n=c.val(),p;e="function"===typeof e?e(c.val(),void 0,a,d):e;g.mask=e;g.options=d;g.remove=
+function(){var b=c.getCaret();c.destroyEvents();c.val(g.getCleanVal());c.setCaret(b-c.getMCharsBeforeCount(b));return a};g.getCleanVal=function(){return c.getMasked(!0)};g.getMaskedVal=function(a){return c.getMasked(!1,a)};g.init=function(e){e=e||!1;d=d||{};g.clearIfNotMatch=b.jMaskGlobals.clearIfNotMatch;g.byPassKeys=b.jMaskGlobals.byPassKeys;g.translation=b.extend({},b.jMaskGlobals.translation,d.translation);g=b.extend(!0,{},g,d);p=c.getRegexMask();!1===e?(d.placeholder&&a.attr("placeholder",d.placeholder),
+a.data("mask")&&a.attr("autocomplete","off"),c.destroyEvents(),c.events(),e=c.getCaret(),c.val(c.getMasked()),c.setCaret(e+c.getMCharsBeforeCount(e,!0))):(c.events(),c.val(c.getMasked()))};g.init(!a.is("input"))};b.maskWatchers={};var A=function(){var a=b(this),e={},d=a.attr("data-mask");a.attr("data-mask-reverse")&&(e.reverse=!0);a.attr("data-mask-clearifnotmatch")&&(e.clearIfNotMatch=!0);"true"===a.attr("data-mask-selectonfocus")&&(e.selectOnFocus=!0);if(z(a,d,e))return a.data("mask",new y(this,
+d,e))},z=function(a,e,d){d=d||{};var c=b(a).data("mask"),g=JSON.stringify;a=b(a).val()||b(a).text();try{return"function"===typeof e&&(e=e(a)),"object"!==typeof c||g(c.options)!==g(d)||c.mask!==e}catch(n){}};b.fn.mask=function(a,e){e=e||{};var d=this.selector,c=b.jMaskGlobals,g=c.watchInterval,c=e.watchInputs||c.watchInputs,n=function(){if(z(this,a,e))return b(this).data("mask",new y(this,a,e))};b(this).each(n);d&&""!==d&&c&&(clearInterval(b.maskWatchers[d]),b.maskWatchers[d]=setInterval(function(){b(document).find(d).each(n)},
+g));return this};b.fn.masked=function(a){return this.data("mask").getMaskedVal(a)};b.fn.unmask=function(){clearInterval(b.maskWatchers[this.selector]);delete b.maskWatchers[this.selector];return this.each(function(){var a=b(this).data("mask");a&&a.remove().removeData("mask")})};b.fn.cleanVal=function(){return this.data("mask").getCleanVal()};b.applyDataMask=function(a){a=a||b.jMaskGlobals.maskElements;(a instanceof b?a:b(a)).filter(b.jMaskGlobals.dataMaskAttr).each(A)};var p={maskElements:"input,td,span,div",
+dataMaskAttr:"*[data-mask]",dataMask:!0,watchInterval:300,watchInputs:!0,useInput:function(a){var b=document.createElement("div"),d;a="on"+a;d=a in b;d||(b.setAttribute(a,"return;"),d="function"===typeof b[a]);return d}("input"),watchDataMask:!1,byPassKeys:[9,16,17,18,36,37,38,39,40,91],translation:{0:{pattern:/\d/},9:{pattern:/\d/,optional:!0},"#":{pattern:/\d/,recursive:!0},A:{pattern:/[a-zA-Z0-9]/},S:{pattern:/[a-zA-Z]/}}};b.jMaskGlobals=b.jMaskGlobals||{};p=b.jMaskGlobals=b.extend(!0,{},p,b.jMaskGlobals);
+p.dataMask&&b.applyDataMask();setInterval(function(){b.jMaskGlobals.watchDataMask&&b.applyDataMask()},p.watchInterval)});
 /* ========================================================================
  * Bootstrap: affix.js v3.3.4
  * http://getbootstrap.com/javascript/#affix
@@ -34101,735 +34109,6 @@ var o,i,s,a,u;return i=null!=n?n:{},a=i.restorationIdentifier,s=i.restorationDat
 }(jQuery));
 
 
-/*! AdminLTE app.js
- * ================
- * Main JS application file for AdminLTE v2. This file
- * should be included in all pages. It controls some layout
- * options and implements exclusive AdminLTE plugins.
- *
- * @Author  Almsaeed Studio
- * @Support <http://www.almsaeedstudio.com>
- * @Email   <support@almsaeedstudio.com>
- * @version 2.1.0
- * @license MIT <http://opensource.org/licenses/MIT>
- */
-
-
-'use strict';
-
-//Make sure jQuery has been loaded before app.js
-if (typeof jQuery === "undefined") {
-  throw new Error("AdminLTE requires jQuery");
-}
-
-/* AdminLTE
- *
- * @type Object
- * @description $.AdminLTE is the main object for the template's app.
- *              It's used for implementing functions and options related
- *              to the template. Keeping everything wrapped in an object
- *              prevents conflict with other plugins and is a better
- *              way to organize our code.
- */
-$.AdminLTE = {};
-
-/* --------------------
- * - AdminLTE Options -
- * --------------------
- * Modify these options to suit your implementation
- */
-$.AdminLTE.options = {
-  //Add slimscroll to navbar menus
-  //This requires you to load the slimscroll plugin
-  //in every page before app.js
-  navbarMenuSlimscroll: true,
-  navbarMenuSlimscrollWidth: "3px", //The width of the scroll bar
-  navbarMenuHeight: "200px", //The height of the inner menu
-  //General animation speed for JS animated elements such as box collapse/expand and
-  //sidebar treeview slide up/down. This options accepts an integer as milliseconds,
-  //'fast', 'normal', or 'slow'
-  animationSpeed: 500,
-  //Sidebar push menu toggle button selector
-  sidebarToggleSelector: "[data-toggle='offcanvas']",
-  //Activate sidebar push menu
-  sidebarPushMenu: true,
-  //Activate sidebar slimscroll if the fixed layout is set (requires SlimScroll Plugin)
-  sidebarSlimScroll: true,
-  //Enable sidebar expand on hover effect for sidebar mini
-  //This option is forced to true if both the fixed layout and sidebar mini
-  //are used together
-  sidebarExpandOnHover: false,
-  //BoxRefresh Plugin
-  enableBoxRefresh: true,
-  //Bootstrap.js tooltip
-  enableBSToppltip: true,
-  BSTooltipSelector: "[data-toggle='tooltip']",
-  //Enable Fast Click. Fastclick.js creates a more
-  //native touch experience with touch devices. If you
-  //choose to enable the plugin, make sure you load the script
-  //before AdminLTE's app.js
-  enableFastclick: true,
-  //Control Sidebar Options
-  enableControlSidebar: true,
-  controlSidebarOptions: {
-    //Which button should trigger the open/close event
-    toggleBtnSelector: "[data-toggle='control-sidebar']",
-    //The sidebar selector
-    selector: ".control-sidebar",
-    //Enable slide over content
-    slide: true
-  },
-  //Box Widget Plugin. Enable this plugin
-  //to allow boxes to be collapsed and/or removed
-  enableBoxWidget: true,
-  //Box Widget plugin options
-  boxWidgetOptions: {
-    boxWidgetIcons: {
-      //Collapse icon
-      collapse: 'fa-minus',
-      //Open icon
-      open: 'fa-plus',
-      //Remove icon
-      remove: 'fa-times'
-    },
-    boxWidgetSelectors: {
-      //Remove button selector
-      remove: '[data-widget="remove"]',
-      //Collapse button selector
-      collapse: '[data-widget="collapse"]'
-    }
-  },
-  //Direct Chat plugin options
-  directChat: {
-    //Enable direct chat by default
-    enable: true,
-    //The button to open and close the chat contacts pane
-    contactToggleSelector: '[data-widget="chat-pane-toggle"]'
-  },
-  //Define the set of colors to use globally around the website
-  colors: {
-    lightBlue: "#3c8dbc",
-    red: "#f56954",
-    green: "#00a65a",
-    aqua: "#00c0ef",
-    yellow: "#f39c12",
-    blue: "#0073b7",
-    navy: "#001F3F",
-    teal: "#39CCCC",
-    olive: "#3D9970",
-    lime: "#01FF70",
-    orange: "#FF851B",
-    fuchsia: "#F012BE",
-    purple: "#8E24AA",
-    maroon: "#D81B60",
-    black: "#222222",
-    gray: "#d2d6de"
-  },
-  //The standard screen sizes that bootstrap uses.
-  //If you change these in the variables.less file, change
-  //them here too.
-  screenSizes: {
-    xs: 480,
-    sm: 768,
-    md: 992,
-    lg: 1200
-  }
-};
-
-/* ------------------
- * - Implementation -
- * ------------------
- * The next block of code implements AdminLTE's
- * functions and plugins as specified by the
- * options above.
- */
-$(function () {
-  //Extend options if external options exist
-  if (typeof AdminLTEOptions !== "undefined") {
-    $.extend(true,
-            $.AdminLTE.options,
-            AdminLTEOptions);
-  }
-
-  //Easy access to options
-  var o = $.AdminLTE.options;
-
-  //Set up the object
-  _init();
-
-  //Activate the layout maker
-  $.AdminLTE.layout.activate();
-
-  //Enable sidebar tree view controls
-  $.AdminLTE.tree('.sidebar');
-
-  //Enable control sidebar
-  if (o.enableControlSidebar) {
-    $.AdminLTE.controlSidebar.activate();
-  }
-
-  //Add slimscroll to navbar dropdown
-  if (o.navbarMenuSlimscroll && typeof $.fn.slimscroll != 'undefined') {
-    $(".navbar .menu").slimscroll({
-      height: o.navbarMenuHeight,
-      alwaysVisible: false,
-      size: o.navbarMenuSlimscrollWidth
-    }).css("width", "100%");
-  }
-
-  //Activate sidebar push menu
-  if (o.sidebarPushMenu) {
-    $.AdminLTE.pushMenu.activate(o.sidebarToggleSelector);
-  }
-
-  //Activate Bootstrap tooltip
-  if (o.enableBSToppltip) {
-    $('body').tooltip({
-      selector: o.BSTooltipSelector
-    });
-  }
-
-  //Activate box widget
-  if (o.enableBoxWidget) {
-    $.AdminLTE.boxWidget.activate();
-  }
-
-  //Activate fast click
-  if (o.enableFastclick && typeof FastClick != 'undefined') {
-    FastClick.attach(document.body);
-  }
-
-  //Activate direct chat widget
-  if (o.directChat.enable) {
-    $(o.directChat.contactToggleSelector).on('click', function () {
-      var box = $(this).parents('.direct-chat').first();
-      box.toggleClass('direct-chat-contacts-open');
-    });
-  }
-
-  /*
-   * INITIALIZE BUTTON TOGGLE
-   * ------------------------
-   */
-  $('.btn-group[data-toggle="btn-toggle"]').each(function () {
-    var group = $(this);
-    $(this).find(".btn").on('click', function (e) {
-      group.find(".btn.active").removeClass("active");
-      $(this).addClass("active");
-      e.preventDefault();
-    });
-
-  });
-});
-
-/* ----------------------------------
- * - Initialize the AdminLTE Object -
- * ----------------------------------
- * All AdminLTE functions are implemented below.
- */
-function _init() {
-
-  /* Layout
-   * ======
-   * Fixes the layout height in case min-height fails.
-   *
-   * @type Object
-   * @usage $.AdminLTE.layout.activate()
-   *        $.AdminLTE.layout.fix()
-   *        $.AdminLTE.layout.fixSidebar()
-   */
-  $.AdminLTE.layout = {
-    activate: function () {
-      var _this = this;
-      _this.fix();
-      _this.fixSidebar();
-      $(window, ".wrapper").resize(function () {
-        _this.fix();
-        _this.fixSidebar();
-      });
-    },
-    fix: function () {
-      //Get window height and the wrapper height
-      var neg = $('.main-header').outerHeight() + $('.main-footer').outerHeight();
-      var window_height = $(window).height();
-      var sidebar_height = $(".sidebar").height();
-      //Set the min-height of the content and sidebar based on the
-      //the height of the document.
-      if ($("body").hasClass("fixed")) {
-        $(".content-wrapper, .right-side").css('min-height', window_height - $('.main-footer').outerHeight());
-      } else {
-        var postSetWidth;
-        if (window_height >= sidebar_height) {
-          $(".content-wrapper, .right-side").css('min-height', window_height - neg);
-          postSetWidth = window_height - neg;
-        } else {
-          $(".content-wrapper, .right-side").css('min-height', sidebar_height);
-          postSetWidth = sidebar_height;
-        }
-
-        //Fix for the control sidebar height
-        var controlSidebar = $($.AdminLTE.options.controlSidebarOptions.selector);
-        if (typeof controlSidebar !== "undefined") {
-          if (controlSidebar.height() > postSetWidth)
-            $(".content-wrapper, .right-side").css('min-height', controlSidebar.height());
-        }
-
-      }
-    },
-    fixSidebar: function () {
-      //Make sure the body tag has the .fixed class
-      if (!$("body").hasClass("fixed")) {
-        if (typeof $.fn.slimScroll != 'undefined') {
-          $(".sidebar").slimScroll({destroy: true}).height("auto");
-        }
-        return;
-      } else if (typeof $.fn.slimScroll == 'undefined' && console) {
-        console.error("Error: the fixed layout requires the slimscroll plugin!");
-      }
-      //Enable slimscroll for fixed layout
-      if ($.AdminLTE.options.sidebarSlimScroll) {
-        if (typeof $.fn.slimScroll != 'undefined') {
-          //Destroy if it exists
-          $(".sidebar").slimScroll({destroy: true}).height("auto");
-          //Add slimscroll
-          $(".sidebar").slimscroll({
-            height: ($(window).height() - $(".main-header").height()) + "px",
-            color: "rgba(0,0,0,0.2)",
-            size: "3px"
-          });
-        }
-      }
-    }
-  };
-
-  /* PushMenu()
-   * ==========
-   * Adds the push menu functionality to the sidebar.
-   *
-   * @type Function
-   * @usage: $.AdminLTE.pushMenu("[data-toggle='offcanvas']")
-   */
-  $.AdminLTE.pushMenu = {
-    activate: function (toggleBtn) {
-      //Get the screen sizes
-      var screenSizes = $.AdminLTE.options.screenSizes;
-
-      //Enable sidebar toggle
-      $(toggleBtn).on('click', function (e) {
-        e.preventDefault();
-
-        //Enable sidebar push menu
-        if ($(window).width() > (screenSizes.sm - 1)) {
-          $("body").toggleClass('sidebar-collapse');
-        }
-        //Handle sidebar push menu for small screens
-        else {
-          if ($("body").hasClass('sidebar-open')) {
-            $("body").removeClass('sidebar-open');
-            $("body").removeClass('sidebar-collapse')
-          } else {
-            $("body").addClass('sidebar-open');
-          }
-        }
-      });
-
-      $(".content-wrapper").click(function () {
-        //Enable hide menu when clicking on the content-wrapper on small screens
-        if ($(window).width() <= (screenSizes.sm - 1) && $("body").hasClass("sidebar-open")) {
-          $("body").removeClass('sidebar-open');
-        }
-      });
-
-      //Enable expand on hover for sidebar mini
-      if ($.AdminLTE.options.sidebarExpandOnHover
-              || ($('body').hasClass('fixed')
-                      && $('body').hasClass('sidebar-mini'))) {
-        this.expandOnHover();
-      }
-
-    },
-    expandOnHover: function () {
-      var _this = this;
-      var screenWidth = $.AdminLTE.options.screenSizes.sm - 1;
-      //Expand sidebar on hover
-      $('.main-sidebar').hover(function () {
-        if ($('body').hasClass('sidebar-mini')
-                && $("body").hasClass('sidebar-collapse')
-                && $(window).width() > screenWidth) {
-          _this.expand();
-        }
-      }, function () {
-        if ($('body').hasClass('sidebar-mini')
-                && $('body').hasClass('sidebar-expanded-on-hover')
-                && $(window).width() > screenWidth) {
-          _this.collapse();
-        }
-      });
-    },
-    expand: function () {
-      $("body").removeClass('sidebar-collapse').addClass('sidebar-expanded-on-hover');
-    },
-    collapse: function () {
-      if ($('body').hasClass('sidebar-expanded-on-hover')) {
-        $('body').removeClass('sidebar-expanded-on-hover').addClass('sidebar-collapse');
-      }
-    }
-  };
-
-  /* Tree()
-   * ======
-   * Converts the sidebar into a multilevel
-   * tree view menu.
-   *
-   * @type Function
-   * @Usage: $.AdminLTE.tree('.sidebar')
-   */
-  $.AdminLTE.tree = function (menu) {
-    var _this = this;
-    var animationSpeed = $.AdminLTE.options.animationSpeed;
-    $("li a", $(menu)).on('click', function (e) {
-      //Get the clicked link and the next element
-      var $this = $(this);
-      var checkElement = $this.next();
-
-      //Check if the next element is a menu and is visible
-      if ((checkElement.is('.treeview-menu')) && (checkElement.is(':visible'))) {
-        //Close the menu
-        checkElement.slideUp(animationSpeed, function () {
-          checkElement.removeClass('menu-open');
-          //Fix the layout in case the sidebar stretches over the height of the window
-          //_this.layout.fix();
-        });
-        checkElement.parent("li").removeClass("active");
-      }
-      //If the menu is not visible
-      else if ((checkElement.is('.treeview-menu')) && (!checkElement.is(':visible'))) {
-        //Get the parent menu
-        var parent = $this.parents('ul').first();
-        //Close all open menus within the parent
-        var ul = parent.find('ul:visible').slideUp(animationSpeed);
-        //Remove the menu-open class from the parent
-        ul.removeClass('menu-open');
-        //Get the parent li
-        var parent_li = $this.parent("li");
-
-        //Open the target menu and add the menu-open class
-        checkElement.slideDown(animationSpeed, function () {
-          //Add the class active to the parent li
-          checkElement.addClass('menu-open');
-          parent.find('li.active').removeClass('active');
-          parent_li.addClass('active');
-          //Fix the layout in case the sidebar stretches over the height of the window
-          _this.layout.fix();
-        });
-      }
-      //if this isn't a link, prevent the page from being redirected
-      if (checkElement.is('.treeview-menu')) {
-        e.preventDefault();
-      }
-    });
-  };
-
-  /* ControlSidebar
-   * ==============
-   * Adds functionality to the right sidebar
-   *
-   * @type Object
-   * @usage $.AdminLTE.controlSidebar.activate(options)
-   */
-  $.AdminLTE.controlSidebar = {
-    //instantiate the object
-    activate: function () {
-      //Get the object
-      var _this = this;
-      //Update options
-      var o = $.AdminLTE.options.controlSidebarOptions;
-      //Get the sidebar
-      var sidebar = $(o.selector);
-      //The toggle button
-      var btn = $(o.toggleBtnSelector);
-
-      //Listen to the click event
-      btn.on('click', function (e) {
-        e.preventDefault();
-        //If the sidebar is not open
-        if (!sidebar.hasClass('control-sidebar-open')
-                && !$('body').hasClass('control-sidebar-open')) {
-          //Open the sidebar
-          _this.open(sidebar, o.slide);
-        } else {
-          _this.close(sidebar, o.slide);
-        }
-      });
-
-      //If the body has a boxed layout, fix the sidebar bg position
-      var bg = $(".control-sidebar-bg");
-      _this._fix(bg);
-
-      //If the body has a fixed layout, make the control sidebar fixed
-      if ($('body').hasClass('fixed')) {
-        _this._fixForFixed(sidebar);
-      } else {
-        //If the content height is less than the sidebar's height, force max height
-        if ($('.content-wrapper, .right-side').height() < sidebar.height()) {
-          _this._fixForContent(sidebar);
-        }
-      }
-    },
-    //Open the control sidebar
-    open: function (sidebar, slide) {
-      var _this = this;
-      //Slide over content
-      if (slide) {
-        sidebar.addClass('control-sidebar-open');
-      } else {
-        //Push the content by adding the open class to the body instead
-        //of the sidebar itself
-        $('body').addClass('control-sidebar-open');
-      }
-    },
-    //Close the control sidebar
-    close: function (sidebar, slide) {
-      if (slide) {
-        sidebar.removeClass('control-sidebar-open');
-      } else {
-        $('body').removeClass('control-sidebar-open');
-      }
-    },
-    _fix: function (sidebar) {
-      var _this = this;
-      if ($("body").hasClass('layout-boxed')) {
-        sidebar.css('position', 'absolute');
-        sidebar.height($(".wrapper").height());
-        $(window).resize(function () {
-          _this._fix(sidebar);
-        });
-      } else {
-        sidebar.css({
-          'position': 'fixed',
-          'height': 'auto'
-        });
-      }
-    },
-    _fixForFixed: function (sidebar) {
-      sidebar.css({
-        'position': 'fixed',
-        'max-height': '100%',
-        'overflow': 'auto',
-        'padding-bottom': '50px'
-      });
-    },
-    _fixForContent: function (sidebar) {
-      $(".content-wrapper, .right-side").css('min-height', sidebar.height());
-    }
-  };
-
-  /* BoxWidget
-   * =========
-   * BoxWidget is a plugin to handle collapsing and
-   * removing boxes from the screen.
-   *
-   * @type Object
-   * @usage $.AdminLTE.boxWidget.activate()
-   *        Set all your options in the main $.AdminLTE.options object
-   */
-  $.AdminLTE.boxWidget = {
-    selectors: $.AdminLTE.options.boxWidgetOptions.boxWidgetSelectors,
-    icons: $.AdminLTE.options.boxWidgetOptions.boxWidgetIcons,
-    animationSpeed: $.AdminLTE.options.animationSpeed,
-    activate: function (_box) {
-      var _this = this;
-      if (! _box) {
-        _box = document; // activate all boxes per default
-      }
-      //Listen for collapse event triggers
-      $(_box).find(_this.selectors.collapse).on('click', function (e) {
-        e.preventDefault();
-        _this.collapse($(this));
-      });
-
-      //Listen for remove event triggers
-      $(_box).find(_this.selectors.remove).on('click', function (e) {
-        e.preventDefault();
-        _this.remove($(this));
-      });
-    },
-    collapse: function (element) {
-      var _this = this;
-      //Find the box parent
-      var box = element.parents(".box").first();
-      //Find the body and the footer
-      var box_content = box.find("> .box-body, > .box-footer");
-      if (!box.hasClass("collapsed-box")) {
-        //Convert minus into plus
-        element.children(":first")
-                .removeClass(_this.icons.collapse)
-                .addClass(_this.icons.open);
-        //Hide the content
-        box_content.slideUp(_this.animationSpeed, function () {
-          box.addClass("collapsed-box");
-        });
-      } else {
-        //Convert plus into minus
-        element.children(":first")
-                .removeClass(_this.icons.open)
-                .addClass(_this.icons.collapse);
-        //Show the content
-        box_content.slideDown(_this.animationSpeed, function () {
-          box.removeClass("collapsed-box");
-        });
-      }
-    },
-    remove: function (element) {
-      //Find the box parent
-      var box = element.parents(".box").first();
-      box.slideUp(this.animationSpeed);
-    }
-  };
-}
-
-/* ------------------
- * - Custom Plugins -
- * ------------------
- * All custom plugins are defined below.
- */
-
-/*
- * BOX REFRESH BUTTON
- * ------------------
- * This is a custom plugin to use with the component BOX. It allows you to add
- * a refresh button to the box. It converts the box's state to a loading state.
- *
- * @type plugin
- * @usage $("#box-widget").boxRefresh( options );
- */
-(function ($) {
-
-  $.fn.boxRefresh = function (options) {
-
-    // Render options
-    var settings = $.extend({
-      //Refresh button selector
-      trigger: ".refresh-btn",
-      //File source to be loaded (e.g: ajax/src.php)
-      source: "",
-      //Callbacks
-      onLoadStart: function (box) {
-      }, //Right after the button has been clicked
-      onLoadDone: function (box) {
-      } //When the source has been loaded
-
-    }, options);
-
-    //The overlay
-    var overlay = $('<div class="overlay"><div class="fa fa-refresh fa-spin"></div></div>');
-
-    return this.each(function () {
-      //if a source is specified
-      if (settings.source === "") {
-        if (console) {
-          console.log("Please specify a source first - boxRefresh()");
-        }
-        return;
-      }
-      //the box
-      var box = $(this);
-      //the button
-      var rBtn = box.find(settings.trigger).first();
-
-      //On trigger click
-      rBtn.on('click', function (e) {
-        e.preventDefault();
-        //Add loading overlay
-        start(box);
-
-        //Perform ajax call
-        box.find(".box-body").load(settings.source, function () {
-          done(box);
-        });
-      });
-    });
-
-    function start(box) {
-      //Add overlay and loading img
-      box.append(overlay);
-
-      settings.onLoadStart.call(box);
-    }
-
-    function done(box) {
-      //Remove overlay and loading img
-      box.find(overlay).remove();
-
-      settings.onLoadDone.call(box);
-    }
-
-  };
-
-})(jQuery);
-
-/*
- * EXPLICIT BOX ACTIVATION
- * -----------------------
- * This is a custom plugin to use with the component BOX. It allows you to activate
- * a box inserted in the DOM after the app.js was loaded.
- *
- * @type plugin
- * @usage $("#box-widget").activateBox();
- */
-(function ($) {
-
-  $.fn.activateBox = function () {
-    $.AdminLTE.boxWidget.activate(this);
-  };
-
-})(jQuery);
-
-/*
- * TODO LIST CUSTOM PLUGIN
- * -----------------------
- * This plugin depends on iCheck plugin for checkbox and radio inputs
- *
- * @type plugin
- * @usage $("#todo-widget").todolist( options );
- */
-(function ($) {
-
-  $.fn.todolist = function (options) {
-    // Render options
-    var settings = $.extend({
-      //When the user checks the input
-      onCheck: function (ele) {
-      },
-      //When the user unchecks the input
-      onUncheck: function (ele) {
-      }
-    }, options);
-
-    return this.each(function () {
-
-      if (typeof $.fn.iCheck != 'undefined') {
-        $('input', this).on('ifChecked', function (event) {
-          var ele = $(this).parents("li").first();
-          ele.toggleClass("done");
-          settings.onCheck.call(ele);
-        });
-
-        $('input', this).on('ifUnchecked', function (event) {
-          var ele = $(this).parents("li").first();
-          ele.toggleClass("done");
-          settings.onUncheck.call(ele);
-        });
-      } else {
-        $('input', this).on('change', function (event) {
-          var ele = $(this).parents("li").first();
-          ele.toggleClass("done");
-          settings.onCheck.call(ele);
-        });
-      }
-    });
-  };
-}(jQuery));
 /**
  * bootbox.js [master branch]
  *
@@ -35820,1347 +35099,735 @@ function _init() {
 
   return exports;
 }));
-(function() {
-  var AbstractChosen;
+/*! AdminLTE app.js
+ * ================
+ * Main JS application file for AdminLTE v2. This file
+ * should be included in all pages. It controls some layout
+ * options and implements exclusive AdminLTE plugins.
+ *
+ * @Author  Almsaeed Studio
+ * @Support <http://www.almsaeedstudio.com>
+ * @Email   <support@almsaeedstudio.com>
+ * @version 2.1.0
+ * @license MIT <http://opensource.org/licenses/MIT>
+ */
 
-  AbstractChosen = (function() {
-    function AbstractChosen(form_field, options1) {
-      this.form_field = form_field;
-      this.options = options1 != null ? options1 : {};
-      if (!AbstractChosen.browser_is_supported()) {
+
+'use strict';
+
+//Make sure jQuery has been loaded before app.js
+if (typeof jQuery === "undefined") {
+  throw new Error("AdminLTE requires jQuery");
+}
+
+/* AdminLTE
+ *
+ * @type Object
+ * @description $.AdminLTE is the main object for the template's app.
+ *              It's used for implementing functions and options related
+ *              to the template. Keeping everything wrapped in an object
+ *              prevents conflict with other plugins and is a better
+ *              way to organize our code.
+ */
+$.AdminLTE = {};
+
+/* --------------------
+ * - AdminLTE Options -
+ * --------------------
+ * Modify these options to suit your implementation
+ */
+$.AdminLTE.options = {
+  //Add slimscroll to navbar menus
+  //This requires you to load the slimscroll plugin
+  //in every page before app.js
+  navbarMenuSlimscroll: true,
+  navbarMenuSlimscrollWidth: "3px", //The width of the scroll bar
+  navbarMenuHeight: "200px", //The height of the inner menu
+  //General animation speed for JS animated elements such as box collapse/expand and
+  //sidebar treeview slide up/down. This options accepts an integer as milliseconds,
+  //'fast', 'normal', or 'slow'
+  animationSpeed: 500,
+  //Sidebar push menu toggle button selector
+  sidebarToggleSelector: "[data-toggle='offcanvas']",
+  //Activate sidebar push menu
+  sidebarPushMenu: true,
+  //Activate sidebar slimscroll if the fixed layout is set (requires SlimScroll Plugin)
+  sidebarSlimScroll: true,
+  //Enable sidebar expand on hover effect for sidebar mini
+  //This option is forced to true if both the fixed layout and sidebar mini
+  //are used together
+  sidebarExpandOnHover: false,
+  //BoxRefresh Plugin
+  enableBoxRefresh: true,
+  //Bootstrap.js tooltip
+  enableBSToppltip: true,
+  BSTooltipSelector: "[data-toggle='tooltip']",
+  //Enable Fast Click. Fastclick.js creates a more
+  //native touch experience with touch devices. If you
+  //choose to enable the plugin, make sure you load the script
+  //before AdminLTE's app.js
+  enableFastclick: true,
+  //Control Sidebar Options
+  enableControlSidebar: true,
+  controlSidebarOptions: {
+    //Which button should trigger the open/close event
+    toggleBtnSelector: "[data-toggle='control-sidebar']",
+    //The sidebar selector
+    selector: ".control-sidebar",
+    //Enable slide over content
+    slide: true
+  },
+  //Box Widget Plugin. Enable this plugin
+  //to allow boxes to be collapsed and/or removed
+  enableBoxWidget: true,
+  //Box Widget plugin options
+  boxWidgetOptions: {
+    boxWidgetIcons: {
+      //Collapse icon
+      collapse: 'fa-minus',
+      //Open icon
+      open: 'fa-plus',
+      //Remove icon
+      remove: 'fa-times'
+    },
+    boxWidgetSelectors: {
+      //Remove button selector
+      remove: '[data-widget="remove"]',
+      //Collapse button selector
+      collapse: '[data-widget="collapse"]'
+    }
+  },
+  //Direct Chat plugin options
+  directChat: {
+    //Enable direct chat by default
+    enable: true,
+    //The button to open and close the chat contacts pane
+    contactToggleSelector: '[data-widget="chat-pane-toggle"]'
+  },
+  //Define the set of colors to use globally around the website
+  colors: {
+    lightBlue: "#3c8dbc",
+    red: "#f56954",
+    green: "#00a65a",
+    aqua: "#00c0ef",
+    yellow: "#f39c12",
+    blue: "#0073b7",
+    navy: "#001F3F",
+    teal: "#39CCCC",
+    olive: "#3D9970",
+    lime: "#01FF70",
+    orange: "#FF851B",
+    fuchsia: "#F012BE",
+    purple: "#8E24AA",
+    maroon: "#D81B60",
+    black: "#222222",
+    gray: "#d2d6de"
+  },
+  //The standard screen sizes that bootstrap uses.
+  //If you change these in the variables.less file, change
+  //them here too.
+  screenSizes: {
+    xs: 480,
+    sm: 768,
+    md: 992,
+    lg: 1200
+  }
+};
+
+/* ------------------
+ * - Implementation -
+ * ------------------
+ * The next block of code implements AdminLTE's
+ * functions and plugins as specified by the
+ * options above.
+ */
+$(function () {
+  //Extend options if external options exist
+  if (typeof AdminLTEOptions !== "undefined") {
+    $.extend(true,
+            $.AdminLTE.options,
+            AdminLTEOptions);
+  }
+
+  //Easy access to options
+  var o = $.AdminLTE.options;
+
+  //Set up the object
+  _init();
+
+  //Activate the layout maker
+  $.AdminLTE.layout.activate();
+
+  //Enable sidebar tree view controls
+  $.AdminLTE.tree('.sidebar');
+
+  //Enable control sidebar
+  if (o.enableControlSidebar) {
+    $.AdminLTE.controlSidebar.activate();
+  }
+
+  //Add slimscroll to navbar dropdown
+  if (o.navbarMenuSlimscroll && typeof $.fn.slimscroll != 'undefined') {
+    $(".navbar .menu").slimscroll({
+      height: o.navbarMenuHeight,
+      alwaysVisible: false,
+      size: o.navbarMenuSlimscrollWidth
+    }).css("width", "100%");
+  }
+
+  //Activate sidebar push menu
+  if (o.sidebarPushMenu) {
+    $.AdminLTE.pushMenu.activate(o.sidebarToggleSelector);
+  }
+
+  //Activate Bootstrap tooltip
+  if (o.enableBSToppltip) {
+    $('body').tooltip({
+      selector: o.BSTooltipSelector
+    });
+  }
+
+  //Activate box widget
+  if (o.enableBoxWidget) {
+    $.AdminLTE.boxWidget.activate();
+  }
+
+  //Activate fast click
+  if (o.enableFastclick && typeof FastClick != 'undefined') {
+    FastClick.attach(document.body);
+  }
+
+  //Activate direct chat widget
+  if (o.directChat.enable) {
+    $(o.directChat.contactToggleSelector).on('click', function () {
+      var box = $(this).parents('.direct-chat').first();
+      box.toggleClass('direct-chat-contacts-open');
+    });
+  }
+
+  /*
+   * INITIALIZE BUTTON TOGGLE
+   * ------------------------
+   */
+  $('.btn-group[data-toggle="btn-toggle"]').each(function () {
+    var group = $(this);
+    $(this).find(".btn").on('click', function (e) {
+      group.find(".btn.active").removeClass("active");
+      $(this).addClass("active");
+      e.preventDefault();
+    });
+
+  });
+});
+
+/* ----------------------------------
+ * - Initialize the AdminLTE Object -
+ * ----------------------------------
+ * All AdminLTE functions are implemented below.
+ */
+function _init() {
+
+  /* Layout
+   * ======
+   * Fixes the layout height in case min-height fails.
+   *
+   * @type Object
+   * @usage $.AdminLTE.layout.activate()
+   *        $.AdminLTE.layout.fix()
+   *        $.AdminLTE.layout.fixSidebar()
+   */
+  $.AdminLTE.layout = {
+    activate: function () {
+      var _this = this;
+      _this.fix();
+      _this.fixSidebar();
+      $(window, ".wrapper").resize(function () {
+        _this.fix();
+        _this.fixSidebar();
+      });
+    },
+    fix: function () {
+      //Get window height and the wrapper height
+      var neg = $('.main-header').outerHeight() + $('.main-footer').outerHeight();
+      var window_height = $(window).height();
+      var sidebar_height = $(".sidebar").height();
+      //Set the min-height of the content and sidebar based on the
+      //the height of the document.
+      if ($("body").hasClass("fixed")) {
+        $(".content-wrapper, .right-side").css('min-height', window_height - $('.main-footer').outerHeight());
+      } else {
+        var postSetWidth;
+        if (window_height >= sidebar_height) {
+          $(".content-wrapper, .right-side").css('min-height', window_height - neg);
+          postSetWidth = window_height - neg;
+        } else {
+          $(".content-wrapper, .right-side").css('min-height', sidebar_height);
+          postSetWidth = sidebar_height;
+        }
+
+        //Fix for the control sidebar height
+        var controlSidebar = $($.AdminLTE.options.controlSidebarOptions.selector);
+        if (typeof controlSidebar !== "undefined") {
+          if (controlSidebar.height() > postSetWidth)
+            $(".content-wrapper, .right-side").css('min-height', controlSidebar.height());
+        }
+
+      }
+    },
+    fixSidebar: function () {
+      //Make sure the body tag has the .fixed class
+      if (!$("body").hasClass("fixed")) {
+        if (typeof $.fn.slimScroll != 'undefined') {
+          $(".sidebar").slimScroll({destroy: true}).height("auto");
+        }
         return;
+      } else if (typeof $.fn.slimScroll == 'undefined' && console) {
+        console.error("Error: the fixed layout requires the slimscroll plugin!");
       }
-      this.is_multiple = this.form_field.multiple;
-      this.set_default_text();
-      this.set_default_values();
-      this.setup();
-      this.set_up_html();
-      this.register_observers();
-      this.on_ready();
-    }
-
-    AbstractChosen.prototype.set_default_values = function() {
-      this.click_test_action = (function(_this) {
-        return function(evt) {
-          return _this.test_active_click(evt);
-        };
-      })(this);
-      this.activate_action = (function(_this) {
-        return function(evt) {
-          return _this.activate_field(evt);
-        };
-      })(this);
-      this.active_field = false;
-      this.mouse_on_container = false;
-      this.results_showing = false;
-      this.result_highlighted = null;
-      this.allow_single_deselect = (this.options.allow_single_deselect != null) && (this.form_field.options[0] != null) && this.form_field.options[0].text === "" ? this.options.allow_single_deselect : false;
-      this.disable_search_threshold = this.options.disable_search_threshold || 0;
-      this.disable_search = this.options.disable_search || false;
-      this.enable_split_word_search = this.options.enable_split_word_search != null ? this.options.enable_split_word_search : true;
-      this.group_search = this.options.group_search != null ? this.options.group_search : true;
-      this.search_contains = this.options.search_contains || false;
-      this.single_backstroke_delete = this.options.single_backstroke_delete != null ? this.options.single_backstroke_delete : true;
-      this.max_selected_options = this.options.max_selected_options || 2e308;
-      this.inherit_select_classes = this.options.inherit_select_classes || false;
-      this.display_selected_options = this.options.display_selected_options != null ? this.options.display_selected_options : true;
-      this.display_disabled_options = this.options.display_disabled_options != null ? this.options.display_disabled_options : true;
-      this.include_group_label_in_selected = this.options.include_group_label_in_selected || false;
-      this.max_shown_results = this.options.max_shown_results || Number.POSITIVE_INFINITY;
-      return this.case_sensitive_search = this.options.case_sensitive_search || false;
-    };
-
-    AbstractChosen.prototype.set_default_text = function() {
-      if (this.form_field.getAttribute("data-placeholder")) {
-        this.default_text = this.form_field.getAttribute("data-placeholder");
-      } else if (this.is_multiple) {
-        this.default_text = this.options.placeholder_text_multiple || this.options.placeholder_text || AbstractChosen.default_multiple_text;
-      } else {
-        this.default_text = this.options.placeholder_text_single || this.options.placeholder_text || AbstractChosen.default_single_text;
-      }
-      return this.results_none_found = this.form_field.getAttribute("data-no_results_text") || this.options.no_results_text || AbstractChosen.default_no_result_text;
-    };
-
-    AbstractChosen.prototype.choice_label = function(item) {
-      if (this.include_group_label_in_selected && (item.group_label != null)) {
-        return "<b class='group-name'>" + item.group_label + "</b>" + item.html;
-      } else {
-        return item.html;
-      }
-    };
-
-    AbstractChosen.prototype.mouse_enter = function() {
-      return this.mouse_on_container = true;
-    };
-
-    AbstractChosen.prototype.mouse_leave = function() {
-      return this.mouse_on_container = false;
-    };
-
-    AbstractChosen.prototype.input_focus = function(evt) {
-      if (this.is_multiple) {
-        if (!this.active_field) {
-          return setTimeout(((function(_this) {
-            return function() {
-              return _this.container_mousedown();
-            };
-          })(this)), 50);
-        }
-      } else {
-        if (!this.active_field) {
-          return this.activate_field();
-        }
-      }
-    };
-
-    AbstractChosen.prototype.input_blur = function(evt) {
-      if (!this.mouse_on_container) {
-        this.active_field = false;
-        return setTimeout(((function(_this) {
-          return function() {
-            return _this.blur_test();
-          };
-        })(this)), 100);
-      }
-    };
-
-    AbstractChosen.prototype.results_option_build = function(options) {
-      var content, data, data_content, i, len, ref, shown_results;
-      content = '';
-      shown_results = 0;
-      ref = this.results_data;
-      for (i = 0, len = ref.length; i < len; i++) {
-        data = ref[i];
-        data_content = '';
-        if (data.group) {
-          data_content = this.result_add_group(data);
-        } else {
-          data_content = this.result_add_option(data);
-        }
-        if (data_content !== '') {
-          shown_results++;
-          content += data_content;
-        }
-        if (options != null ? options.first : void 0) {
-          if (data.selected && this.is_multiple) {
-            this.choice_build(data);
-          } else if (data.selected && !this.is_multiple) {
-            this.single_set_selected_text(this.choice_label(data));
-          }
-        }
-        if (shown_results >= this.max_shown_results) {
-          break;
-        }
-      }
-      return content;
-    };
-
-    AbstractChosen.prototype.result_add_option = function(option) {
-      var classes, option_el;
-      if (!option.search_match) {
-        return '';
-      }
-      if (!this.include_option_in_results(option)) {
-        return '';
-      }
-      classes = [];
-      if (!option.disabled && !(option.selected && this.is_multiple)) {
-        classes.push("active-result");
-      }
-      if (option.disabled && !(option.selected && this.is_multiple)) {
-        classes.push("disabled-result");
-      }
-      if (option.selected) {
-        classes.push("result-selected");
-      }
-      if (option.group_array_index != null) {
-        classes.push("group-option");
-      }
-      if (option.classes !== "") {
-        classes.push(option.classes);
-      }
-      option_el = document.createElement("li");
-      option_el.className = classes.join(" ");
-      option_el.style.cssText = option.style;
-      option_el.setAttribute("data-option-array-index", option.array_index);
-      option_el.innerHTML = option.search_text;
-      if (option.title) {
-        option_el.title = option.title;
-      }
-      return this.outerHTML(option_el);
-    };
-
-    AbstractChosen.prototype.result_add_group = function(group) {
-      var classes, group_el;
-      if (!(group.search_match || group.group_match)) {
-        return '';
-      }
-      if (!(group.active_options > 0)) {
-        return '';
-      }
-      classes = [];
-      classes.push("group-result");
-      if (group.classes) {
-        classes.push(group.classes);
-      }
-      group_el = document.createElement("li");
-      group_el.className = classes.join(" ");
-      group_el.innerHTML = group.search_text;
-      if (group.title) {
-        group_el.title = group.title;
-      }
-      return this.outerHTML(group_el);
-    };
-
-    AbstractChosen.prototype.results_update_field = function() {
-      this.set_default_text();
-      if (!this.is_multiple) {
-        this.results_reset_cleanup();
-      }
-      this.result_clear_highlight();
-      this.results_build();
-      if (this.results_showing) {
-        return this.winnow_results();
-      }
-    };
-
-    AbstractChosen.prototype.reset_single_select_options = function() {
-      var i, len, ref, result, results1;
-      ref = this.results_data;
-      results1 = [];
-      for (i = 0, len = ref.length; i < len; i++) {
-        result = ref[i];
-        if (result.selected) {
-          results1.push(result.selected = false);
-        } else {
-          results1.push(void 0);
-        }
-      }
-      return results1;
-    };
-
-    AbstractChosen.prototype.results_toggle = function() {
-      if (this.results_showing) {
-        return this.results_hide();
-      } else {
-        return this.results_show();
-      }
-    };
-
-    AbstractChosen.prototype.results_search = function(evt) {
-      if (this.results_showing) {
-        return this.winnow_results();
-      } else {
-        return this.results_show();
-      }
-    };
-
-    AbstractChosen.prototype.winnow_results = function() {
-      var escapedSearchText, i, len, option, ref, regex, results, results_group, searchText, startpos, text, zregex;
-      this.no_results_clear();
-      results = 0;
-      searchText = this.get_search_text();
-      escapedSearchText = searchText.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
-      zregex = new RegExp(escapedSearchText, 'i');
-      regex = this.get_search_regex(escapedSearchText);
-      ref = this.results_data;
-      for (i = 0, len = ref.length; i < len; i++) {
-        option = ref[i];
-        option.search_match = false;
-        results_group = null;
-        if (this.include_option_in_results(option)) {
-          if (option.group) {
-            option.group_match = false;
-            option.active_options = 0;
-          }
-          if ((option.group_array_index != null) && this.results_data[option.group_array_index]) {
-            results_group = this.results_data[option.group_array_index];
-            if (results_group.active_options === 0 && results_group.search_match) {
-              results += 1;
-            }
-            results_group.active_options += 1;
-          }
-          option.search_text = option.group ? option.label : option.html;
-          if (!(option.group && !this.group_search)) {
-            option.search_match = this.search_string_match(option.search_text, regex);
-            if (option.search_match && !option.group) {
-              results += 1;
-            }
-            if (option.search_match) {
-              if (searchText.length) {
-                startpos = option.search_text.search(zregex);
-                text = option.search_text.substr(0, startpos + searchText.length) + '</em>' + option.search_text.substr(startpos + searchText.length);
-                option.search_text = text.substr(0, startpos) + '<em>' + text.substr(startpos);
-              }
-              if (results_group != null) {
-                results_group.group_match = true;
-              }
-            } else if ((option.group_array_index != null) && this.results_data[option.group_array_index].search_match) {
-              option.search_match = true;
-            }
-          }
-        }
-      }
-      this.result_clear_highlight();
-      if (results < 1 && searchText.length) {
-        this.update_results_content("");
-        return this.no_results(searchText);
-      } else {
-        this.update_results_content(this.results_option_build());
-        return this.winnow_results_set_highlight();
-      }
-    };
-
-    AbstractChosen.prototype.get_search_regex = function(escaped_search_string) {
-      var regex_anchor, regex_flag;
-      regex_anchor = this.search_contains ? "" : "^";
-      regex_flag = this.case_sensitive_search ? "" : "i";
-      return new RegExp(regex_anchor + escaped_search_string, regex_flag);
-    };
-
-    AbstractChosen.prototype.search_string_match = function(search_string, regex) {
-      var i, len, part, parts;
-      if (regex.test(search_string)) {
-        return true;
-      } else if (this.enable_split_word_search && (search_string.indexOf(" ") >= 0 || search_string.indexOf("[") === 0)) {
-        parts = search_string.replace(/\[|\]/g, "").split(" ");
-        if (parts.length) {
-          for (i = 0, len = parts.length; i < len; i++) {
-            part = parts[i];
-            if (regex.test(part)) {
-              return true;
-            }
-          }
-        }
-      }
-    };
-
-    AbstractChosen.prototype.choices_count = function() {
-      var i, len, option, ref;
-      if (this.selected_option_count != null) {
-        return this.selected_option_count;
-      }
-      this.selected_option_count = 0;
-      ref = this.form_field.options;
-      for (i = 0, len = ref.length; i < len; i++) {
-        option = ref[i];
-        if (option.selected) {
-          this.selected_option_count += 1;
-        }
-      }
-      return this.selected_option_count;
-    };
-
-    AbstractChosen.prototype.choices_click = function(evt) {
-      evt.preventDefault();
-      if (!(this.results_showing || this.is_disabled)) {
-        return this.results_show();
-      }
-    };
-
-    AbstractChosen.prototype.keyup_checker = function(evt) {
-      var ref, stroke;
-      stroke = (ref = evt.which) != null ? ref : evt.keyCode;
-      this.search_field_scale();
-      switch (stroke) {
-        case 8:
-          if (this.is_multiple && this.backstroke_length < 1 && this.choices_count() > 0) {
-            return this.keydown_backstroke();
-          } else if (!this.pending_backstroke) {
-            this.result_clear_highlight();
-            return this.results_search();
-          }
-          break;
-        case 13:
-          evt.preventDefault();
-          if (this.results_showing) {
-            return this.result_select(evt);
-          }
-          break;
-        case 27:
-          if (this.results_showing) {
-            this.results_hide();
-          }
-          return true;
-        case 9:
-        case 38:
-        case 40:
-        case 16:
-        case 91:
-        case 17:
-        case 18:
-          break;
-        default:
-          return this.results_search();
-      }
-    };
-
-    AbstractChosen.prototype.clipboard_event_checker = function(evt) {
-      return setTimeout(((function(_this) {
-        return function() {
-          return _this.results_search();
-        };
-      })(this)), 50);
-    };
-
-    AbstractChosen.prototype.container_width = function() {
-      if (this.options.width != null) {
-        return this.options.width;
-      } else {
-        return this.form_field.offsetWidth + "px";
-      }
-    };
-
-    AbstractChosen.prototype.include_option_in_results = function(option) {
-      if (this.is_multiple && (!this.display_selected_options && option.selected)) {
-        return false;
-      }
-      if (!this.display_disabled_options && option.disabled) {
-        return false;
-      }
-      if (option.empty) {
-        return false;
-      }
-      return true;
-    };
-
-    AbstractChosen.prototype.search_results_touchstart = function(evt) {
-      this.touch_started = true;
-      return this.search_results_mouseover(evt);
-    };
-
-    AbstractChosen.prototype.search_results_touchmove = function(evt) {
-      this.touch_started = false;
-      return this.search_results_mouseout(evt);
-    };
-
-    AbstractChosen.prototype.search_results_touchend = function(evt) {
-      if (this.touch_started) {
-        return this.search_results_mouseup(evt);
-      }
-    };
-
-    AbstractChosen.prototype.outerHTML = function(element) {
-      var tmp;
-      if (element.outerHTML) {
-        return element.outerHTML;
-      }
-      tmp = document.createElement("div");
-      tmp.appendChild(element);
-      return tmp.innerHTML;
-    };
-
-    AbstractChosen.browser_is_supported = function() {
-      if ("Microsoft Internet Explorer" === window.navigator.appName) {
-        return document.documentMode >= 8;
-      }
-      if (/iP(od|hone)/i.test(window.navigator.userAgent) || /IEMobile/i.test(window.navigator.userAgent) || /Windows Phone/i.test(window.navigator.userAgent) || /BlackBerry/i.test(window.navigator.userAgent) || /BB10/i.test(window.navigator.userAgent) || /Android.*Mobile/i.test(window.navigator.userAgent)) {
-        return false;
-      }
-      return true;
-    };
-
-    AbstractChosen.default_multiple_text = "Select Some Options";
-
-    AbstractChosen.default_single_text = "Select an Option";
-
-    AbstractChosen.default_no_result_text = "No results match";
-
-    return AbstractChosen;
-
-  })();
-
-  window.AbstractChosen = AbstractChosen;
-
-}).call(this);
-(function() {
-  var SelectParser;
-
-  SelectParser = (function() {
-    function SelectParser() {
-      this.options_index = 0;
-      this.parsed = [];
-    }
-
-    SelectParser.prototype.add_node = function(child) {
-      if (child.nodeName.toUpperCase() === "OPTGROUP") {
-        return this.add_group(child);
-      } else {
-        return this.add_option(child);
-      }
-    };
-
-    SelectParser.prototype.add_group = function(group) {
-      var group_position, i, len, option, ref, results;
-      group_position = this.parsed.length;
-      this.parsed.push({
-        array_index: group_position,
-        group: true,
-        label: this.escapeExpression(group.label),
-        title: group.title ? group.title : void 0,
-        children: 0,
-        disabled: group.disabled,
-        classes: group.className
-      });
-      ref = group.childNodes;
-      results = [];
-      for (i = 0, len = ref.length; i < len; i++) {
-        option = ref[i];
-        results.push(this.add_option(option, group_position, group.disabled));
-      }
-      return results;
-    };
-
-    SelectParser.prototype.add_option = function(option, group_position, group_disabled) {
-      if (option.nodeName.toUpperCase() === "OPTION") {
-        if (option.text !== "") {
-          if (group_position != null) {
-            this.parsed[group_position].children += 1;
-          }
-          this.parsed.push({
-            array_index: this.parsed.length,
-            options_index: this.options_index,
-            value: option.value,
-            text: option.text,
-            html: option.innerHTML,
-            title: option.title ? option.title : void 0,
-            selected: option.selected,
-            disabled: group_disabled === true ? group_disabled : option.disabled,
-            group_array_index: group_position,
-            group_label: group_position != null ? this.parsed[group_position].label : null,
-            classes: option.className,
-            style: option.style.cssText
-          });
-        } else {
-          this.parsed.push({
-            array_index: this.parsed.length,
-            options_index: this.options_index,
-            empty: true
+      //Enable slimscroll for fixed layout
+      if ($.AdminLTE.options.sidebarSlimScroll) {
+        if (typeof $.fn.slimScroll != 'undefined') {
+          //Destroy if it exists
+          $(".sidebar").slimScroll({destroy: true}).height("auto");
+          //Add slimscroll
+          $(".sidebar").slimscroll({
+            height: ($(window).height() - $(".main-header").height()) + "px",
+            color: "rgba(0,0,0,0.2)",
+            size: "3px"
           });
         }
-        return this.options_index += 1;
       }
-    };
-
-    SelectParser.prototype.escapeExpression = function(text) {
-      var map, unsafe_chars;
-      if ((text == null) || text === false) {
-        return "";
-      }
-      if (!/[\&\<\>\"\'\`]/.test(text)) {
-        return text;
-      }
-      map = {
-        "<": "&lt;",
-        ">": "&gt;",
-        '"': "&quot;",
-        "'": "&#x27;",
-        "`": "&#x60;"
-      };
-      unsafe_chars = /&(?!\w+;)|[\<\>\"\'\`]/g;
-      return text.replace(unsafe_chars, function(chr) {
-        return map[chr] || "&amp;";
-      });
-    };
-
-    return SelectParser;
-
-  })();
-
-  SelectParser.select_to_array = function(select) {
-    var child, i, len, parser, ref;
-    parser = new SelectParser();
-    ref = select.childNodes;
-    for (i = 0, len = ref.length; i < len; i++) {
-      child = ref[i];
-      parser.add_node(child);
     }
-    return parser.parsed;
   };
 
-  window.SelectParser = SelectParser;
+  /* PushMenu()
+   * ==========
+   * Adds the push menu functionality to the sidebar.
+   *
+   * @type Function
+   * @usage: $.AdminLTE.pushMenu("[data-toggle='offcanvas']")
+   */
+  $.AdminLTE.pushMenu = {
+    activate: function (toggleBtn) {
+      //Get the screen sizes
+      var screenSizes = $.AdminLTE.options.screenSizes;
 
-}).call(this);
-(function() {
-  var $, Chosen,
-    extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
-    hasProp = {}.hasOwnProperty;
+      //Enable sidebar toggle
+      $(toggleBtn).on('click', function (e) {
+        e.preventDefault();
 
-  $ = jQuery;
-
-  $.fn.extend({
-    chosen: function(options) {
-      if (!AbstractChosen.browser_is_supported()) {
-        return this;
-      }
-      return this.each(function(input_field) {
-        var $this, chosen;
-        $this = $(this);
-        chosen = $this.data('chosen');
-        if (options === 'destroy') {
-          if (chosen instanceof Chosen) {
-            chosen.destroy();
+        //Enable sidebar push menu
+        if ($(window).width() > (screenSizes.sm - 1)) {
+          $("body").toggleClass('sidebar-collapse');
+        }
+        //Handle sidebar push menu for small screens
+        else {
+          if ($("body").hasClass('sidebar-open')) {
+            $("body").removeClass('sidebar-open');
+            $("body").removeClass('sidebar-collapse')
+          } else {
+            $("body").addClass('sidebar-open');
           }
-          return;
-        }
-        if (!(chosen instanceof Chosen)) {
-          $this.data('chosen', new Chosen(this, options));
         }
       });
+
+      $(".content-wrapper").click(function () {
+        //Enable hide menu when clicking on the content-wrapper on small screens
+        if ($(window).width() <= (screenSizes.sm - 1) && $("body").hasClass("sidebar-open")) {
+          $("body").removeClass('sidebar-open');
+        }
+      });
+
+      //Enable expand on hover for sidebar mini
+      if ($.AdminLTE.options.sidebarExpandOnHover
+              || ($('body').hasClass('fixed')
+                      && $('body').hasClass('sidebar-mini'))) {
+        this.expandOnHover();
+      }
+
+    },
+    expandOnHover: function () {
+      var _this = this;
+      var screenWidth = $.AdminLTE.options.screenSizes.sm - 1;
+      //Expand sidebar on hover
+      $('.main-sidebar').hover(function () {
+        if ($('body').hasClass('sidebar-mini')
+                && $("body").hasClass('sidebar-collapse')
+                && $(window).width() > screenWidth) {
+          _this.expand();
+        }
+      }, function () {
+        if ($('body').hasClass('sidebar-mini')
+                && $('body').hasClass('sidebar-expanded-on-hover')
+                && $(window).width() > screenWidth) {
+          _this.collapse();
+        }
+      });
+    },
+    expand: function () {
+      $("body").removeClass('sidebar-collapse').addClass('sidebar-expanded-on-hover');
+    },
+    collapse: function () {
+      if ($('body').hasClass('sidebar-expanded-on-hover')) {
+        $('body').removeClass('sidebar-expanded-on-hover').addClass('sidebar-collapse');
+      }
     }
-  });
+  };
 
-  Chosen = (function(superClass) {
-    extend(Chosen, superClass);
+  /* Tree()
+   * ======
+   * Converts the sidebar into a multilevel
+   * tree view menu.
+   *
+   * @type Function
+   * @Usage: $.AdminLTE.tree('.sidebar')
+   */
+  $.AdminLTE.tree = function (menu) {
+    var _this = this;
+    var animationSpeed = $.AdminLTE.options.animationSpeed;
+    $("li a", $(menu)).on('click', function (e) {
+      //Get the clicked link and the next element
+      var $this = $(this);
+      var checkElement = $this.next();
 
-    function Chosen() {
-      return Chosen.__super__.constructor.apply(this, arguments);
+      //Check if the next element is a menu and is visible
+      if ((checkElement.is('.treeview-menu')) && (checkElement.is(':visible'))) {
+        //Close the menu
+        checkElement.slideUp(animationSpeed, function () {
+          checkElement.removeClass('menu-open');
+          //Fix the layout in case the sidebar stretches over the height of the window
+          //_this.layout.fix();
+        });
+        checkElement.parent("li").removeClass("active");
+      }
+      //If the menu is not visible
+      else if ((checkElement.is('.treeview-menu')) && (!checkElement.is(':visible'))) {
+        //Get the parent menu
+        var parent = $this.parents('ul').first();
+        //Close all open menus within the parent
+        var ul = parent.find('ul:visible').slideUp(animationSpeed);
+        //Remove the menu-open class from the parent
+        ul.removeClass('menu-open');
+        //Get the parent li
+        var parent_li = $this.parent("li");
+
+        //Open the target menu and add the menu-open class
+        checkElement.slideDown(animationSpeed, function () {
+          //Add the class active to the parent li
+          checkElement.addClass('menu-open');
+          parent.find('li.active').removeClass('active');
+          parent_li.addClass('active');
+          //Fix the layout in case the sidebar stretches over the height of the window
+          _this.layout.fix();
+        });
+      }
+      //if this isn't a link, prevent the page from being redirected
+      if (checkElement.is('.treeview-menu')) {
+        e.preventDefault();
+      }
+    });
+  };
+
+  /* ControlSidebar
+   * ==============
+   * Adds functionality to the right sidebar
+   *
+   * @type Object
+   * @usage $.AdminLTE.controlSidebar.activate(options)
+   */
+  $.AdminLTE.controlSidebar = {
+    //instantiate the object
+    activate: function () {
+      //Get the object
+      var _this = this;
+      //Update options
+      var o = $.AdminLTE.options.controlSidebarOptions;
+      //Get the sidebar
+      var sidebar = $(o.selector);
+      //The toggle button
+      var btn = $(o.toggleBtnSelector);
+
+      //Listen to the click event
+      btn.on('click', function (e) {
+        e.preventDefault();
+        //If the sidebar is not open
+        if (!sidebar.hasClass('control-sidebar-open')
+                && !$('body').hasClass('control-sidebar-open')) {
+          //Open the sidebar
+          _this.open(sidebar, o.slide);
+        } else {
+          _this.close(sidebar, o.slide);
+        }
+      });
+
+      //If the body has a boxed layout, fix the sidebar bg position
+      var bg = $(".control-sidebar-bg");
+      _this._fix(bg);
+
+      //If the body has a fixed layout, make the control sidebar fixed
+      if ($('body').hasClass('fixed')) {
+        _this._fixForFixed(sidebar);
+      } else {
+        //If the content height is less than the sidebar's height, force max height
+        if ($('.content-wrapper, .right-side').height() < sidebar.height()) {
+          _this._fixForContent(sidebar);
+        }
+      }
+    },
+    //Open the control sidebar
+    open: function (sidebar, slide) {
+      var _this = this;
+      //Slide over content
+      if (slide) {
+        sidebar.addClass('control-sidebar-open');
+      } else {
+        //Push the content by adding the open class to the body instead
+        //of the sidebar itself
+        $('body').addClass('control-sidebar-open');
+      }
+    },
+    //Close the control sidebar
+    close: function (sidebar, slide) {
+      if (slide) {
+        sidebar.removeClass('control-sidebar-open');
+      } else {
+        $('body').removeClass('control-sidebar-open');
+      }
+    },
+    _fix: function (sidebar) {
+      var _this = this;
+      if ($("body").hasClass('layout-boxed')) {
+        sidebar.css('position', 'absolute');
+        sidebar.height($(".wrapper").height());
+        $(window).resize(function () {
+          _this._fix(sidebar);
+        });
+      } else {
+        sidebar.css({
+          'position': 'fixed',
+          'height': 'auto'
+        });
+      }
+    },
+    _fixForFixed: function (sidebar) {
+      sidebar.css({
+        'position': 'fixed',
+        'max-height': '100%',
+        'overflow': 'auto',
+        'padding-bottom': '50px'
+      });
+    },
+    _fixForContent: function (sidebar) {
+      $(".content-wrapper, .right-side").css('min-height', sidebar.height());
     }
+  };
 
-    Chosen.prototype.setup = function() {
-      this.form_field_jq = $(this.form_field);
-      this.current_selectedIndex = this.form_field.selectedIndex;
-      return this.is_rtl = this.form_field_jq.hasClass("chosen-rtl");
-    };
-
-    Chosen.prototype.set_up_html = function() {
-      var container_classes, container_props;
-      container_classes = ["chosen-container"];
-      container_classes.push("chosen-container-" + (this.is_multiple ? "multi" : "single"));
-      if (this.inherit_select_classes && this.form_field.className) {
-        container_classes.push(this.form_field.className);
+  /* BoxWidget
+   * =========
+   * BoxWidget is a plugin to handle collapsing and
+   * removing boxes from the screen.
+   *
+   * @type Object
+   * @usage $.AdminLTE.boxWidget.activate()
+   *        Set all your options in the main $.AdminLTE.options object
+   */
+  $.AdminLTE.boxWidget = {
+    selectors: $.AdminLTE.options.boxWidgetOptions.boxWidgetSelectors,
+    icons: $.AdminLTE.options.boxWidgetOptions.boxWidgetIcons,
+    animationSpeed: $.AdminLTE.options.animationSpeed,
+    activate: function (_box) {
+      var _this = this;
+      if (! _box) {
+        _box = document; // activate all boxes per default
       }
-      if (this.is_rtl) {
-        container_classes.push("chosen-rtl");
-      }
-      container_props = {
-        'class': container_classes.join(' '),
-        'style': "width: " + (this.container_width()) + ";",
-        'title': this.form_field.title
-      };
-      if (this.form_field.id.length) {
-        container_props.id = this.form_field.id.replace(/[^\w]/g, '_') + "_chosen";
-      }
-      this.container = $("<div />", container_props);
-      if (this.is_multiple) {
-        this.container.html('<ul class="chosen-choices"><li class="search-field"><input type="text" value="' + this.default_text + '" class="default" autocomplete="off" style="width:25px;" /></li></ul><div class="chosen-drop"><ul class="chosen-results"></ul></div>');
-      } else {
-        this.container.html('<a class="chosen-single chosen-default"><span>' + this.default_text + '</span><div><b></b></div></a><div class="chosen-drop"><div class="chosen-search"><input type="text" autocomplete="off" /></div><ul class="chosen-results"></ul></div>');
-      }
-      this.form_field_jq.hide().after(this.container);
-      this.dropdown = this.container.find('div.chosen-drop').first();
-      this.search_field = this.container.find('input').first();
-      this.search_results = this.container.find('ul.chosen-results').first();
-      this.search_field_scale();
-      this.search_no_results = this.container.find('li.no-results').first();
-      if (this.is_multiple) {
-        this.search_choices = this.container.find('ul.chosen-choices').first();
-        this.search_container = this.container.find('li.search-field').first();
-      } else {
-        this.search_container = this.container.find('div.chosen-search').first();
-        this.selected_item = this.container.find('.chosen-single').first();
-      }
-      this.results_build();
-      this.set_tab_index();
-      return this.set_label_behavior();
-    };
-
-    Chosen.prototype.on_ready = function() {
-      return this.form_field_jq.trigger("chosen:ready", {
-        chosen: this
+      //Listen for collapse event triggers
+      $(_box).find(_this.selectors.collapse).on('click', function (e) {
+        e.preventDefault();
+        _this.collapse($(this));
       });
-    };
 
-    Chosen.prototype.register_observers = function() {
-      this.container.bind('touchstart.chosen', (function(_this) {
-        return function(evt) {
-          _this.container_mousedown(evt);
-          return evt.preventDefault();
-        };
-      })(this));
-      this.container.bind('touchend.chosen', (function(_this) {
-        return function(evt) {
-          _this.container_mouseup(evt);
-          return evt.preventDefault();
-        };
-      })(this));
-      this.container.bind('mousedown.chosen', (function(_this) {
-        return function(evt) {
-          _this.container_mousedown(evt);
-        };
-      })(this));
-      this.container.bind('mouseup.chosen', (function(_this) {
-        return function(evt) {
-          _this.container_mouseup(evt);
-        };
-      })(this));
-      this.container.bind('mouseenter.chosen', (function(_this) {
-        return function(evt) {
-          _this.mouse_enter(evt);
-        };
-      })(this));
-      this.container.bind('mouseleave.chosen', (function(_this) {
-        return function(evt) {
-          _this.mouse_leave(evt);
-        };
-      })(this));
-      this.search_results.bind('mouseup.chosen', (function(_this) {
-        return function(evt) {
-          _this.search_results_mouseup(evt);
-        };
-      })(this));
-      this.search_results.bind('mouseover.chosen', (function(_this) {
-        return function(evt) {
-          _this.search_results_mouseover(evt);
-        };
-      })(this));
-      this.search_results.bind('mouseout.chosen', (function(_this) {
-        return function(evt) {
-          _this.search_results_mouseout(evt);
-        };
-      })(this));
-      this.search_results.bind('mousewheel.chosen DOMMouseScroll.chosen', (function(_this) {
-        return function(evt) {
-          _this.search_results_mousewheel(evt);
-        };
-      })(this));
-      this.search_results.bind('touchstart.chosen', (function(_this) {
-        return function(evt) {
-          _this.search_results_touchstart(evt);
-        };
-      })(this));
-      this.search_results.bind('touchmove.chosen', (function(_this) {
-        return function(evt) {
-          _this.search_results_touchmove(evt);
-        };
-      })(this));
-      this.search_results.bind('touchend.chosen', (function(_this) {
-        return function(evt) {
-          _this.search_results_touchend(evt);
-        };
-      })(this));
-      this.form_field_jq.bind("chosen:updated.chosen", (function(_this) {
-        return function(evt) {
-          _this.results_update_field(evt);
-        };
-      })(this));
-      this.form_field_jq.bind("chosen:activate.chosen", (function(_this) {
-        return function(evt) {
-          _this.activate_field(evt);
-        };
-      })(this));
-      this.form_field_jq.bind("chosen:open.chosen", (function(_this) {
-        return function(evt) {
-          _this.container_mousedown(evt);
-        };
-      })(this));
-      this.form_field_jq.bind("chosen:close.chosen", (function(_this) {
-        return function(evt) {
-          _this.input_blur(evt);
-        };
-      })(this));
-      this.search_field.bind('blur.chosen', (function(_this) {
-        return function(evt) {
-          _this.input_blur(evt);
-        };
-      })(this));
-      this.search_field.bind('keyup.chosen', (function(_this) {
-        return function(evt) {
-          _this.keyup_checker(evt);
-        };
-      })(this));
-      this.search_field.bind('keydown.chosen', (function(_this) {
-        return function(evt) {
-          _this.keydown_checker(evt);
-        };
-      })(this));
-      this.search_field.bind('focus.chosen', (function(_this) {
-        return function(evt) {
-          _this.input_focus(evt);
-        };
-      })(this));
-      this.search_field.bind('cut.chosen', (function(_this) {
-        return function(evt) {
-          _this.clipboard_event_checker(evt);
-        };
-      })(this));
-      this.search_field.bind('paste.chosen', (function(_this) {
-        return function(evt) {
-          _this.clipboard_event_checker(evt);
-        };
-      })(this));
-      if (this.is_multiple) {
-        return this.search_choices.bind('click.chosen', (function(_this) {
-          return function(evt) {
-            _this.choices_click(evt);
-          };
-        })(this));
-      } else {
-        return this.container.bind('click.chosen', function(evt) {
-          evt.preventDefault();
-        });
-      }
-    };
-
-    Chosen.prototype.destroy = function() {
-      $(this.container[0].ownerDocument).unbind("click.chosen", this.click_test_action);
-      if (this.search_field[0].tabIndex) {
-        this.form_field_jq[0].tabIndex = this.search_field[0].tabIndex;
-      }
-      this.container.remove();
-      this.form_field_jq.removeData('chosen');
-      return this.form_field_jq.show();
-    };
-
-    Chosen.prototype.search_field_disabled = function() {
-      this.is_disabled = this.form_field_jq[0].disabled;
-      if (this.is_disabled) {
-        this.container.addClass('chosen-disabled');
-        this.search_field[0].disabled = true;
-        if (!this.is_multiple) {
-          this.selected_item.unbind("focus.chosen", this.activate_action);
-        }
-        return this.close_field();
-      } else {
-        this.container.removeClass('chosen-disabled');
-        this.search_field[0].disabled = false;
-        if (!this.is_multiple) {
-          return this.selected_item.bind("focus.chosen", this.activate_action);
-        }
-      }
-    };
-
-    Chosen.prototype.container_mousedown = function(evt) {
-      if (!this.is_disabled) {
-        if (evt && evt.type === "mousedown" && !this.results_showing) {
-          evt.preventDefault();
-        }
-        if (!((evt != null) && ($(evt.target)).hasClass("search-choice-close"))) {
-          if (!this.active_field) {
-            if (this.is_multiple) {
-              this.search_field.val("");
-            }
-            $(this.container[0].ownerDocument).bind('click.chosen', this.click_test_action);
-            this.results_show();
-          } else if (!this.is_multiple && evt && (($(evt.target)[0] === this.selected_item[0]) || $(evt.target).parents("a.chosen-single").length)) {
-            evt.preventDefault();
-            this.results_toggle();
-          }
-          return this.activate_field();
-        }
-      }
-    };
-
-    Chosen.prototype.container_mouseup = function(evt) {
-      if (evt.target.nodeName === "ABBR" && !this.is_disabled) {
-        return this.results_reset(evt);
-      }
-    };
-
-    Chosen.prototype.search_results_mousewheel = function(evt) {
-      var delta;
-      if (evt.originalEvent) {
-        delta = evt.originalEvent.deltaY || -evt.originalEvent.wheelDelta || evt.originalEvent.detail;
-      }
-      if (delta != null) {
-        evt.preventDefault();
-        if (evt.type === 'DOMMouseScroll') {
-          delta = delta * 40;
-        }
-        return this.search_results.scrollTop(delta + this.search_results.scrollTop());
-      }
-    };
-
-    Chosen.prototype.blur_test = function(evt) {
-      if (!this.active_field && this.container.hasClass("chosen-container-active")) {
-        return this.close_field();
-      }
-    };
-
-    Chosen.prototype.close_field = function() {
-      $(this.container[0].ownerDocument).unbind("click.chosen", this.click_test_action);
-      this.active_field = false;
-      this.results_hide();
-      this.container.removeClass("chosen-container-active");
-      this.clear_backstroke();
-      this.show_search_field_default();
-      return this.search_field_scale();
-    };
-
-    Chosen.prototype.activate_field = function() {
-      this.container.addClass("chosen-container-active");
-      this.active_field = true;
-      this.search_field.val(this.search_field.val());
-      return this.search_field.focus();
-    };
-
-    Chosen.prototype.test_active_click = function(evt) {
-      var active_container;
-      active_container = $(evt.target).closest('.chosen-container');
-      if (active_container.length && this.container[0] === active_container[0]) {
-        return this.active_field = true;
-      } else {
-        return this.close_field();
-      }
-    };
-
-    Chosen.prototype.results_build = function() {
-      this.parsing = true;
-      this.selected_option_count = null;
-      this.results_data = SelectParser.select_to_array(this.form_field);
-      if (this.is_multiple) {
-        this.search_choices.find("li.search-choice").remove();
-      } else if (!this.is_multiple) {
-        this.single_set_selected_text();
-        if (this.disable_search || this.form_field.options.length <= this.disable_search_threshold) {
-          this.search_field[0].readOnly = true;
-          this.container.addClass("chosen-container-single-nosearch");
-        } else {
-          this.search_field[0].readOnly = false;
-          this.container.removeClass("chosen-container-single-nosearch");
-        }
-      }
-      this.update_results_content(this.results_option_build({
-        first: true
-      }));
-      this.search_field_disabled();
-      this.show_search_field_default();
-      this.search_field_scale();
-      return this.parsing = false;
-    };
-
-    Chosen.prototype.result_do_highlight = function(el) {
-      var high_bottom, high_top, maxHeight, visible_bottom, visible_top;
-      if (el.length) {
-        this.result_clear_highlight();
-        this.result_highlight = el;
-        this.result_highlight.addClass("highlighted");
-        maxHeight = parseInt(this.search_results.css("maxHeight"), 10);
-        visible_top = this.search_results.scrollTop();
-        visible_bottom = maxHeight + visible_top;
-        high_top = this.result_highlight.position().top + this.search_results.scrollTop();
-        high_bottom = high_top + this.result_highlight.outerHeight();
-        if (high_bottom >= visible_bottom) {
-          return this.search_results.scrollTop((high_bottom - maxHeight) > 0 ? high_bottom - maxHeight : 0);
-        } else if (high_top < visible_top) {
-          return this.search_results.scrollTop(high_top);
-        }
-      }
-    };
-
-    Chosen.prototype.result_clear_highlight = function() {
-      if (this.result_highlight) {
-        this.result_highlight.removeClass("highlighted");
-      }
-      return this.result_highlight = null;
-    };
-
-    Chosen.prototype.results_show = function() {
-      if (this.is_multiple && this.max_selected_options <= this.choices_count()) {
-        this.form_field_jq.trigger("chosen:maxselected", {
-          chosen: this
-        });
-        return false;
-      }
-      this.container.addClass("chosen-with-drop");
-      this.results_showing = true;
-      this.search_field.focus();
-      this.search_field.val(this.search_field.val());
-      this.winnow_results();
-      return this.form_field_jq.trigger("chosen:showing_dropdown", {
-        chosen: this
+      //Listen for remove event triggers
+      $(_box).find(_this.selectors.remove).on('click', function (e) {
+        e.preventDefault();
+        _this.remove($(this));
       });
-    };
-
-    Chosen.prototype.update_results_content = function(content) {
-      return this.search_results.html(content);
-    };
-
-    Chosen.prototype.results_hide = function() {
-      if (this.results_showing) {
-        this.result_clear_highlight();
-        this.container.removeClass("chosen-with-drop");
-        this.form_field_jq.trigger("chosen:hiding_dropdown", {
-          chosen: this
+    },
+    collapse: function (element) {
+      var _this = this;
+      //Find the box parent
+      var box = element.parents(".box").first();
+      //Find the body and the footer
+      var box_content = box.find("> .box-body, > .box-footer");
+      if (!box.hasClass("collapsed-box")) {
+        //Convert minus into plus
+        element.children(":first")
+                .removeClass(_this.icons.collapse)
+                .addClass(_this.icons.open);
+        //Hide the content
+        box_content.slideUp(_this.animationSpeed, function () {
+          box.addClass("collapsed-box");
+        });
+      } else {
+        //Convert plus into minus
+        element.children(":first")
+                .removeClass(_this.icons.open)
+                .addClass(_this.icons.collapse);
+        //Show the content
+        box_content.slideDown(_this.animationSpeed, function () {
+          box.removeClass("collapsed-box");
         });
       }
-      return this.results_showing = false;
-    };
+    },
+    remove: function (element) {
+      //Find the box parent
+      var box = element.parents(".box").first();
+      box.slideUp(this.animationSpeed);
+    }
+  };
+}
 
-    Chosen.prototype.set_tab_index = function(el) {
-      var ti;
-      if (this.form_field.tabIndex) {
-        ti = this.form_field.tabIndex;
-        this.form_field.tabIndex = -1;
-        return this.search_field[0].tabIndex = ti;
-      }
-    };
+/* ------------------
+ * - Custom Plugins -
+ * ------------------
+ * All custom plugins are defined below.
+ */
 
-    Chosen.prototype.set_label_behavior = function() {
-      this.form_field_label = this.form_field_jq.parents("label");
-      if (!this.form_field_label.length && this.form_field.id.length) {
-        this.form_field_label = $("label[for='" + this.form_field.id + "']");
-      }
-      if (this.form_field_label.length > 0) {
-        return this.form_field_label.bind('click.chosen', (function(_this) {
-          return function(evt) {
-            if (_this.is_multiple) {
-              return _this.container_mousedown(evt);
-            } else {
-              return _this.activate_field();
-            }
-          };
-        })(this));
-      }
-    };
+/*
+ * BOX REFRESH BUTTON
+ * ------------------
+ * This is a custom plugin to use with the component BOX. It allows you to add
+ * a refresh button to the box. It converts the box's state to a loading state.
+ *
+ * @type plugin
+ * @usage $("#box-widget").boxRefresh( options );
+ */
+(function ($) {
 
-    Chosen.prototype.show_search_field_default = function() {
-      if (this.is_multiple && this.choices_count() < 1 && !this.active_field) {
-        this.search_field.val(this.default_text);
-        return this.search_field.addClass("default");
-      } else {
-        this.search_field.val("");
-        return this.search_field.removeClass("default");
-      }
-    };
+  $.fn.boxRefresh = function (options) {
 
-    Chosen.prototype.search_results_mouseup = function(evt) {
-      var target;
-      target = $(evt.target).hasClass("active-result") ? $(evt.target) : $(evt.target).parents(".active-result").first();
-      if (target.length) {
-        this.result_highlight = target;
-        this.result_select(evt);
-        return this.search_field.focus();
-      }
-    };
+    // Render options
+    var settings = $.extend({
+      //Refresh button selector
+      trigger: ".refresh-btn",
+      //File source to be loaded (e.g: ajax/src.php)
+      source: "",
+      //Callbacks
+      onLoadStart: function (box) {
+      }, //Right after the button has been clicked
+      onLoadDone: function (box) {
+      } //When the source has been loaded
 
-    Chosen.prototype.search_results_mouseover = function(evt) {
-      var target;
-      target = $(evt.target).hasClass("active-result") ? $(evt.target) : $(evt.target).parents(".active-result").first();
-      if (target) {
-        return this.result_do_highlight(target);
-      }
-    };
+    }, options);
 
-    Chosen.prototype.search_results_mouseout = function(evt) {
-      if ($(evt.target).hasClass("active-result" || $(evt.target).parents('.active-result').first())) {
-        return this.result_clear_highlight();
-      }
-    };
+    //The overlay
+    var overlay = $('<div class="overlay"><div class="fa fa-refresh fa-spin"></div></div>');
 
-    Chosen.prototype.choice_build = function(item) {
-      var choice, close_link;
-      choice = $('<li />', {
-        "class": "search-choice"
-      }).html("<span>" + (this.choice_label(item)) + "</span>");
-      if (item.disabled) {
-        choice.addClass('search-choice-disabled');
-      } else {
-        close_link = $('<a />', {
-          "class": 'search-choice-close',
-          'data-option-array-index': item.array_index
-        });
-        close_link.bind('click.chosen', (function(_this) {
-          return function(evt) {
-            return _this.choice_destroy_link_click(evt);
-          };
-        })(this));
-        choice.append(close_link);
-      }
-      return this.search_container.before(choice);
-    };
-
-    Chosen.prototype.choice_destroy_link_click = function(evt) {
-      evt.preventDefault();
-      evt.stopPropagation();
-      if (!this.is_disabled) {
-        return this.choice_destroy($(evt.target));
-      }
-    };
-
-    Chosen.prototype.choice_destroy = function(link) {
-      if (this.result_deselect(link[0].getAttribute("data-option-array-index"))) {
-        this.show_search_field_default();
-        if (this.is_multiple && this.choices_count() > 0 && this.search_field.val().length < 1) {
-          this.results_hide();
+    return this.each(function () {
+      //if a source is specified
+      if (settings.source === "") {
+        if (console) {
+          console.log("Please specify a source first - boxRefresh()");
         }
-        link.parents('li').first().remove();
-        return this.search_field_scale();
-      }
-    };
-
-    Chosen.prototype.results_reset = function() {
-      this.reset_single_select_options();
-      this.form_field.options[0].selected = true;
-      this.single_set_selected_text();
-      this.show_search_field_default();
-      this.results_reset_cleanup();
-      this.form_field_jq.trigger("change");
-      if (this.active_field) {
-        return this.results_hide();
-      }
-    };
-
-    Chosen.prototype.results_reset_cleanup = function() {
-      this.current_selectedIndex = this.form_field.selectedIndex;
-      return this.selected_item.find("abbr").remove();
-    };
-
-    Chosen.prototype.result_select = function(evt) {
-      var high, item;
-      if (this.result_highlight) {
-        high = this.result_highlight;
-        this.result_clear_highlight();
-        if (this.is_multiple && this.max_selected_options <= this.choices_count()) {
-          this.form_field_jq.trigger("chosen:maxselected", {
-            chosen: this
-          });
-          return false;
-        }
-        if (this.is_multiple) {
-          high.removeClass("active-result");
-        } else {
-          this.reset_single_select_options();
-        }
-        high.addClass("result-selected");
-        item = this.results_data[high[0].getAttribute("data-option-array-index")];
-        item.selected = true;
-        this.form_field.options[item.options_index].selected = true;
-        this.selected_option_count = null;
-        if (this.is_multiple) {
-          this.choice_build(item);
-        } else {
-          this.single_set_selected_text(this.choice_label(item));
-        }
-        if (!((evt.metaKey || evt.ctrlKey) && this.is_multiple)) {
-          this.results_hide();
-        }
-        this.show_search_field_default();
-        if (this.is_multiple || this.form_field.selectedIndex !== this.current_selectedIndex) {
-          this.form_field_jq.trigger("change", {
-            'selected': this.form_field.options[item.options_index].value
-          });
-        }
-        this.current_selectedIndex = this.form_field.selectedIndex;
-        evt.preventDefault();
-        return this.search_field_scale();
-      }
-    };
-
-    Chosen.prototype.single_set_selected_text = function(text) {
-      if (text == null) {
-        text = this.default_text;
-      }
-      if (text === this.default_text) {
-        this.selected_item.addClass("chosen-default");
-      } else {
-        this.single_deselect_control_build();
-        this.selected_item.removeClass("chosen-default");
-      }
-      return this.selected_item.find("span").html(text);
-    };
-
-    Chosen.prototype.result_deselect = function(pos) {
-      var result_data;
-      result_data = this.results_data[pos];
-      if (!this.form_field.options[result_data.options_index].disabled) {
-        result_data.selected = false;
-        this.form_field.options[result_data.options_index].selected = false;
-        this.selected_option_count = null;
-        this.result_clear_highlight();
-        if (this.results_showing) {
-          this.winnow_results();
-        }
-        this.form_field_jq.trigger("change", {
-          deselected: this.form_field.options[result_data.options_index].value
-        });
-        this.search_field_scale();
-        return true;
-      } else {
-        return false;
-      }
-    };
-
-    Chosen.prototype.single_deselect_control_build = function() {
-      if (!this.allow_single_deselect) {
         return;
       }
-      if (!this.selected_item.find("abbr").length) {
-        this.selected_item.find("span").first().after("<abbr class=\"search-choice-close\"></abbr>");
-      }
-      return this.selected_item.addClass("chosen-single-with-deselect");
-    };
+      //the box
+      var box = $(this);
+      //the button
+      var rBtn = box.find(settings.trigger).first();
 
-    Chosen.prototype.get_search_text = function() {
-      return $('<div/>').text($.trim(this.search_field.val())).html();
-    };
+      //On trigger click
+      rBtn.on('click', function (e) {
+        e.preventDefault();
+        //Add loading overlay
+        start(box);
 
-    Chosen.prototype.winnow_results_set_highlight = function() {
-      var do_high, selected_results;
-      selected_results = !this.is_multiple ? this.search_results.find(".result-selected.active-result") : [];
-      do_high = selected_results.length ? selected_results.first() : this.search_results.find(".active-result").first();
-      if (do_high != null) {
-        return this.result_do_highlight(do_high);
-      }
-    };
-
-    Chosen.prototype.no_results = function(terms) {
-      var no_results_html;
-      no_results_html = $('<li class="no-results">' + this.results_none_found + ' "<span></span>"</li>');
-      no_results_html.find("span").first().html(terms);
-      this.search_results.append(no_results_html);
-      return this.form_field_jq.trigger("chosen:no_results", {
-        chosen: this
+        //Perform ajax call
+        box.find(".box-body").load(settings.source, function () {
+          done(box);
+        });
       });
-    };
+    });
 
-    Chosen.prototype.no_results_clear = function() {
-      return this.search_results.find(".no-results").remove();
-    };
+    function start(box) {
+      //Add overlay and loading img
+      box.append(overlay);
 
-    Chosen.prototype.keydown_arrow = function() {
-      var next_sib;
-      if (this.results_showing && this.result_highlight) {
-        next_sib = this.result_highlight.nextAll("li.active-result").first();
-        if (next_sib) {
-          return this.result_do_highlight(next_sib);
-        }
-      } else {
-        return this.results_show();
+      settings.onLoadStart.call(box);
+    }
+
+    function done(box) {
+      //Remove overlay and loading img
+      box.find(overlay).remove();
+
+      settings.onLoadDone.call(box);
+    }
+
+  };
+
+})(jQuery);
+
+/*
+ * EXPLICIT BOX ACTIVATION
+ * -----------------------
+ * This is a custom plugin to use with the component BOX. It allows you to activate
+ * a box inserted in the DOM after the app.js was loaded.
+ *
+ * @type plugin
+ * @usage $("#box-widget").activateBox();
+ */
+(function ($) {
+
+  $.fn.activateBox = function () {
+    $.AdminLTE.boxWidget.activate(this);
+  };
+
+})(jQuery);
+
+/*
+ * TODO LIST CUSTOM PLUGIN
+ * -----------------------
+ * This plugin depends on iCheck plugin for checkbox and radio inputs
+ *
+ * @type plugin
+ * @usage $("#todo-widget").todolist( options );
+ */
+(function ($) {
+
+  $.fn.todolist = function (options) {
+    // Render options
+    var settings = $.extend({
+      //When the user checks the input
+      onCheck: function (ele) {
+      },
+      //When the user unchecks the input
+      onUncheck: function (ele) {
       }
-    };
+    }, options);
 
-    Chosen.prototype.keyup_arrow = function() {
-      var prev_sibs;
-      if (!this.results_showing && !this.is_multiple) {
-        return this.results_show();
-      } else if (this.result_highlight) {
-        prev_sibs = this.result_highlight.prevAll("li.active-result");
-        if (prev_sibs.length) {
-          return this.result_do_highlight(prev_sibs.first());
-        } else {
-          if (this.choices_count() > 0) {
-            this.results_hide();
-          }
-          return this.result_clear_highlight();
-        }
-      }
-    };
+    return this.each(function () {
 
-    Chosen.prototype.keydown_backstroke = function() {
-      var next_available_destroy;
-      if (this.pending_backstroke) {
-        this.choice_destroy(this.pending_backstroke.find("a").first());
-        return this.clear_backstroke();
-      } else {
-        next_available_destroy = this.search_container.siblings("li.search-choice").last();
-        if (next_available_destroy.length && !next_available_destroy.hasClass("search-choice-disabled")) {
-          this.pending_backstroke = next_available_destroy;
-          if (this.single_backstroke_delete) {
-            return this.keydown_backstroke();
-          } else {
-            return this.pending_backstroke.addClass("search-choice-focus");
-          }
-        }
-      }
-    };
-
-    Chosen.prototype.clear_backstroke = function() {
-      if (this.pending_backstroke) {
-        this.pending_backstroke.removeClass("search-choice-focus");
-      }
-      return this.pending_backstroke = null;
-    };
-
-    Chosen.prototype.keydown_checker = function(evt) {
-      var ref, stroke;
-      stroke = (ref = evt.which) != null ? ref : evt.keyCode;
-      this.search_field_scale();
-      if (stroke !== 8 && this.pending_backstroke) {
-        this.clear_backstroke();
-      }
-      switch (stroke) {
-        case 8:
-          this.backstroke_length = this.search_field.val().length;
-          break;
-        case 9:
-          if (this.results_showing && !this.is_multiple) {
-            this.result_select(evt);
-          }
-          this.mouse_on_container = false;
-          break;
-        case 13:
-          if (this.results_showing) {
-            evt.preventDefault();
-          }
-          break;
-        case 32:
-          if (this.disable_search) {
-            evt.preventDefault();
-          }
-          break;
-        case 38:
-          evt.preventDefault();
-          this.keyup_arrow();
-          break;
-        case 40:
-          evt.preventDefault();
-          this.keydown_arrow();
-          break;
-      }
-    };
-
-    Chosen.prototype.search_field_scale = function() {
-      var div, f_width, h, i, len, style, style_block, styles, w;
-      if (this.is_multiple) {
-        h = 0;
-        w = 0;
-        style_block = "position:absolute; left: -1000px; top: -1000px; display:none;";
-        styles = ['font-size', 'font-style', 'font-weight', 'font-family', 'line-height', 'text-transform', 'letter-spacing'];
-        for (i = 0, len = styles.length; i < len; i++) {
-          style = styles[i];
-          style_block += style + ":" + this.search_field.css(style) + ";";
-        }
-        div = $('<div />', {
-          'style': style_block
+      if (typeof $.fn.iCheck != 'undefined') {
+        $('input', this).on('ifChecked', function (event) {
+          var ele = $(this).parents("li").first();
+          ele.toggleClass("done");
+          settings.onCheck.call(ele);
         });
-        div.text(this.search_field.val());
-        $('body').append(div);
-        w = div.width() + 25;
-        div.remove();
-        f_width = this.container.outerWidth();
-        if (w > f_width - 10) {
-          w = f_width - 10;
-        }
-        return this.search_field.css({
-          'width': w + 'px'
+
+        $('input', this).on('ifUnchecked', function (event) {
+          var ele = $(this).parents("li").first();
+          ele.toggleClass("done");
+          settings.onUncheck.call(ele);
+        });
+      } else {
+        $('input', this).on('change', function (event) {
+          var ele = $(this).parents("li").first();
+          ele.toggleClass("done");
+          settings.onCheck.call(ele);
         });
       }
-    };
-
-    return Chosen;
-
-  })(AbstractChosen);
-
-}).call(this);
-
-
-
-// jQuery Mask Plugin v1.14.0
-// github.com/igorescobar/jQuery-Mask-Plugin
-(function(b){"function"===typeof define&&define.amd?define(["jquery"],b):"object"===typeof exports?module.exports=b(require("jquery")):b(jQuery||Zepto)})(function(b){var y=function(a,e,d){var c={invalid:[],getCaret:function(){try{var r,b=0,e=a.get(0),d=document.selection,f=e.selectionStart;if(d&&-1===navigator.appVersion.indexOf("MSIE 10"))r=d.createRange(),r.moveStart("character",-c.val().length),b=r.text.length;else if(f||"0"===f)b=f;return b}catch(g){}},setCaret:function(r){try{if(a.is(":focus")){var c,
-b=a.get(0);b.setSelectionRange?(b.focus(),b.setSelectionRange(r,r)):(c=b.createTextRange(),c.collapse(!0),c.moveEnd("character",r),c.moveStart("character",r),c.select())}}catch(e){}},events:function(){a.on("keydown.mask",function(c){a.data("mask-keycode",c.keyCode||c.which)}).on(b.jMaskGlobals.useInput?"input.mask":"keyup.mask",c.behaviour).on("paste.mask drop.mask",function(){setTimeout(function(){a.keydown().keyup()},100)}).on("change.mask",function(){a.data("changed",!0)}).on("blur.mask",function(){n===
-c.val()||a.data("changed")||a.trigger("change");a.data("changed",!1)}).on("blur.mask",function(){n=c.val()}).on("focus.mask",function(a){!0===d.selectOnFocus&&b(a.target).select()}).on("focusout.mask",function(){d.clearIfNotMatch&&!p.test(c.val())&&c.val("")})},getRegexMask:function(){for(var a=[],c,b,d,f,l=0;l<e.length;l++)(c=g.translation[e.charAt(l)])?(b=c.pattern.toString().replace(/.{1}$|^.{1}/g,""),d=c.optional,(c=c.recursive)?(a.push(e.charAt(l)),f={digit:e.charAt(l),pattern:b}):a.push(d||
-c?b+"?":b)):a.push(e.charAt(l).replace(/[-\/\\^$*+?.()|[\]{}]/g,"\\$&"));a=a.join("");f&&(a=a.replace(new RegExp("("+f.digit+"(.*"+f.digit+")?)"),"($1)?").replace(new RegExp(f.digit,"g"),f.pattern));return new RegExp(a)},destroyEvents:function(){a.off("input keydown keyup paste drop blur focusout ".split(" ").join(".mask "))},val:function(c){var b=a.is("input")?"val":"text";if(0<arguments.length){if(a[b]()!==c)a[b](c);b=a}else b=a[b]();return b},getMCharsBeforeCount:function(a,c){for(var b=0,d=0,
-f=e.length;d<f&&d<a;d++)g.translation[e.charAt(d)]||(a=c?a+1:a,b++);return b},caretPos:function(a,b,d,h){return g.translation[e.charAt(Math.min(a-1,e.length-1))]?Math.min(a+d-b-h,d):c.caretPos(a+1,b,d,h)},behaviour:function(d){d=d||window.event;c.invalid=[];var e=a.data("mask-keycode");if(-1===b.inArray(e,g.byPassKeys)){var m=c.getCaret(),h=c.val().length,f=c.getMasked(),l=f.length,k=c.getMCharsBeforeCount(l-1)-c.getMCharsBeforeCount(h-1),n=m<h;c.val(f);n&&(8!==e&&46!==e&&(m=c.caretPos(m,h,l,k)),
-c.setCaret(m));return c.callbacks(d)}},getMasked:function(a,b){var m=[],h=void 0===b?c.val():b+"",f=0,l=e.length,k=0,n=h.length,q=1,p="push",u=-1,t,w;d.reverse?(p="unshift",q=-1,t=0,f=l-1,k=n-1,w=function(){return-1<f&&-1<k}):(t=l-1,w=function(){return f<l&&k<n});for(;w();){var x=e.charAt(f),v=h.charAt(k),s=g.translation[x];if(s)v.match(s.pattern)?(m[p](v),s.recursive&&(-1===u?u=f:f===t&&(f=u-q),t===u&&(f-=q)),f+=q):s.optional?(f+=q,k-=q):s.fallback?(m[p](s.fallback),f+=q,k-=q):c.invalid.push({p:k,
-v:v,e:s.pattern}),k+=q;else{if(!a)m[p](x);v===x&&(k+=q);f+=q}}h=e.charAt(t);l!==n+1||g.translation[h]||m.push(h);return m.join("")},callbacks:function(b){var g=c.val(),m=g!==n,h=[g,b,a,d],f=function(a,b,c){"function"===typeof d[a]&&b&&d[a].apply(this,c)};f("onChange",!0===m,h);f("onKeyPress",!0===m,h);f("onComplete",g.length===e.length,h);f("onInvalid",0<c.invalid.length,[g,b,a,c.invalid,d])}};a=b(a);var g=this,n=c.val(),p;e="function"===typeof e?e(c.val(),void 0,a,d):e;g.mask=e;g.options=d;g.remove=
-function(){var b=c.getCaret();c.destroyEvents();c.val(g.getCleanVal());c.setCaret(b-c.getMCharsBeforeCount(b));return a};g.getCleanVal=function(){return c.getMasked(!0)};g.getMaskedVal=function(a){return c.getMasked(!1,a)};g.init=function(e){e=e||!1;d=d||{};g.clearIfNotMatch=b.jMaskGlobals.clearIfNotMatch;g.byPassKeys=b.jMaskGlobals.byPassKeys;g.translation=b.extend({},b.jMaskGlobals.translation,d.translation);g=b.extend(!0,{},g,d);p=c.getRegexMask();!1===e?(d.placeholder&&a.attr("placeholder",d.placeholder),
-a.data("mask")&&a.attr("autocomplete","off"),c.destroyEvents(),c.events(),e=c.getCaret(),c.val(c.getMasked()),c.setCaret(e+c.getMCharsBeforeCount(e,!0))):(c.events(),c.val(c.getMasked()))};g.init(!a.is("input"))};b.maskWatchers={};var A=function(){var a=b(this),e={},d=a.attr("data-mask");a.attr("data-mask-reverse")&&(e.reverse=!0);a.attr("data-mask-clearifnotmatch")&&(e.clearIfNotMatch=!0);"true"===a.attr("data-mask-selectonfocus")&&(e.selectOnFocus=!0);if(z(a,d,e))return a.data("mask",new y(this,
-d,e))},z=function(a,e,d){d=d||{};var c=b(a).data("mask"),g=JSON.stringify;a=b(a).val()||b(a).text();try{return"function"===typeof e&&(e=e(a)),"object"!==typeof c||g(c.options)!==g(d)||c.mask!==e}catch(n){}};b.fn.mask=function(a,e){e=e||{};var d=this.selector,c=b.jMaskGlobals,g=c.watchInterval,c=e.watchInputs||c.watchInputs,n=function(){if(z(this,a,e))return b(this).data("mask",new y(this,a,e))};b(this).each(n);d&&""!==d&&c&&(clearInterval(b.maskWatchers[d]),b.maskWatchers[d]=setInterval(function(){b(document).find(d).each(n)},
-g));return this};b.fn.masked=function(a){return this.data("mask").getMaskedVal(a)};b.fn.unmask=function(){clearInterval(b.maskWatchers[this.selector]);delete b.maskWatchers[this.selector];return this.each(function(){var a=b(this).data("mask");a&&a.remove().removeData("mask")})};b.fn.cleanVal=function(){return this.data("mask").getCleanVal()};b.applyDataMask=function(a){a=a||b.jMaskGlobals.maskElements;(a instanceof b?a:b(a)).filter(b.jMaskGlobals.dataMaskAttr).each(A)};var p={maskElements:"input,td,span,div",
-dataMaskAttr:"*[data-mask]",dataMask:!0,watchInterval:300,watchInputs:!0,useInput:function(a){var b=document.createElement("div"),d;a="on"+a;d=a in b;d||(b.setAttribute(a,"return;"),d="function"===typeof b[a]);return d}("input"),watchDataMask:!1,byPassKeys:[9,16,17,18,36,37,38,39,40,91],translation:{0:{pattern:/\d/},9:{pattern:/\d/,optional:!0},"#":{pattern:/\d/,recursive:!0},A:{pattern:/[a-zA-Z0-9]/},S:{pattern:/[a-zA-Z]/}}};b.jMaskGlobals=b.jMaskGlobals||{};p=b.jMaskGlobals=b.extend(!0,{},p,b.jMaskGlobals);
-p.dataMask&&b.applyDataMask();setInterval(function(){b.jMaskGlobals.watchDataMask&&b.applyDataMask()},p.watchInterval)});
+    });
+  };
+}(jQuery));
 (function() {
   (function() {
     (function() {
@@ -37777,11 +36444,13 @@ function handleNovaCategoria(event){
     bootbox.dialog({
         message:dialogForm,
         closeButton: false,
-        size: 'large',
+        className: 'modal-medium',
         backdrop: true,
         onEscape: true
     });
 }
+
+
 
 function handleFormCategoria(){
     var options ={
@@ -37794,23 +36463,23 @@ function handleFormCategoria(){
         messages: {
             "categoria[nome]":{
                 required: "Nome é obrigatório",
-                    maxlength: "Tamanho máximo 30 caracteres"
+                maxlength: "Tamanho máximo 30 caracteres"
             }
         },
         errorElement: 'div',
         errorLabelContainer: '.errorTxt'
-    }; 
+    };
     $('#new_categoria').validate(options);
 }
 
 
-$( document ).on('turbolinks:load', function() {
+$(document).ready(function(){
     $('.nova-categoria').on('click',handleNovaCategoria);
     handleFormCategoria();
 });
 var instStyle = 'style = "text-align:center; margin-top: 15px; font-size:1.8rem;"';
 var instEventMesseges = {
-    ARQUIVA_CONFIRM: '<p '+instStyle+' >Tem certeza que deseja aqruivar? Todos os instrumentos jurídicos e conexões relacionadas também serão arquivadas!</p>'
+    ARQUIVA_CONFIRM: '<p '+instStyle+' >Tem certeza que deseja arquivar? Todos os instrumentos jurídicos e conexões relacionadas também serão arquivadas!</p>'
 };
 
 var choseDefaltOptions = {
@@ -37849,12 +36518,14 @@ function formCustomization(){
     /* geral */
     // $('.chosen-select').chosen(Object.assign({},choseDefaltOptions,{width: '130px'}));
 
-    $('.bootstrap-date').datepicker({autoclose:true});
+    $('.bootstrap-date').datepicker({autoclose:true, language: "pt"});
 
     // mascaras
     $('input[name="instituicao[cnpj]"]').mask('00.000.000/0000-00', {reverse: true});
     $('input[name="instituicao[endereco_attributes][cep]"]').mask('00000-000');
     $('input[name="instituicao[data_aprovacao]"]').mask('00/00/0000');
+    $('input[phone=s]').mask('(00)00000-0000');
+
 
 
     /* editar */
@@ -37990,13 +36661,21 @@ function setCustomStyles() {
     // }
 }
 
-$( document ).on('turbolinks:load', function() {
+$(document).ready(function(){
     handleInstituicoesEvents();
     formCustomization();
     setCustomStyles();
     /* valida os form de criacao e edição */
     formValidadeInstituicao();
 });
+
+// $( document ).on('turbolinks:load', function() {
+//     handleInstituicoesEvents();
+//     formCustomization();
+//     setCustomStyles();
+//     /* valida os form de criacao e edição */
+//     formValidadeInstituicao();
+// });
 
 
 
@@ -38060,7 +36739,7 @@ function handleNovaRepasseCategoria(event){
     bootbox.dialog({
         message: dialogRepasseform,
         closeButton: false,
-        size: 'large',
+        className: 'modal-medium',
         backdrop: true,
         onEscape: true
     });
@@ -38077,7 +36756,7 @@ function handleFormRepasseCategoria(){
         messages: {
             "repasse_categoria[nome]":{
                 required: "Nome é obrigatório",
-                    maxlength: "Tamanho máximo 30 caracteres"
+                maxlength: "Tamanho máximo 30 caracteres"
             }
         },
         errorElement: 'div',
@@ -38087,7 +36766,7 @@ function handleFormRepasseCategoria(){
 }
 
 
-$( document ).on('turbolinks:load', function() {
+$(document).ready(function(){
     $('.nova-repasse-categoria').on('click',handleNovaRepasseCategoria);
     handleFormRepasseCategoria();
 })
@@ -38119,31 +36798,31 @@ $( document ).on('turbolinks:load', function() {
 
 
 
+//require turbolinks
 
 
 
-
-
-/** fix adminlte issues */
-
-$(document).ready(function() {
-    $.AdminLTE.layout.activate();
-});
-
-function adminLTEFix(){
-    var o;
-    o = $.AdminLTE.options;
-    if (o.sidebarPushMenu) {
-        $.AdminLTE.pushMenu.activate(o.sidebarToggleSelector);
-    }
-    $.AdminLTE.layout.activate();
+function generalSetup(){
+    $('[data-toggle=tooltip]').tooltip();
 }
 
 function handleGenerickClicks(){
-    $('.link-holder').on('click', 'i', function(event){
+    $('.link-holder.desativa').on('click', 'i', function(event){
         event.preventDefault();
         var link = $(this);
-        bootbox.confirm("Tem Certeza?", function(sim){
+        bootbox.confirm("Tem Certeza que deseja desativar este registro?", function(sim){
+            if(sim){
+                link.next().click();
+            } else {
+                bootbox.hideAll();
+            }
+        })
+    });
+
+    $('.link-holder.reativa').on('click', 'i', function(event){
+        event.preventDefault();
+        var link = $(this);
+        bootbox.confirm("Tem Certeza que deseja reativar este registro?", function(sim){
             if(sim){
                 link.next().click();
             } else {
@@ -38153,16 +36832,7 @@ function handleGenerickClicks(){
     });
 }
 
-function displayNotice(content){
-    if(content.type){
-        bootbox.alert({
-            title: content.title,
-            message: content.notice
-        });
-    }
-}
-
-$( document ).on('turbolinks:load', function() {
-    adminLTEFix();
+$(document).ready(function(){
     handleGenerickClicks();
+    generalSetup();
 });

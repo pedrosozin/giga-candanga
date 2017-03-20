@@ -1,5 +1,4 @@
 class Usuarios::ConfirmationsController < Devise::ConfirmationsController
-
   def show
     if params[:confirmation_token].present?
       @original_token = params[:confirmation_token]
@@ -7,25 +6,25 @@ class Usuarios::ConfirmationsController < Devise::ConfirmationsController
       @original_token = params[resource_name][:confirmation_token]
     end
 
-    self.resource = resource_class.find_by_confirmation_token Devise.token_generator
-      .digest(self, :confirmation_token, @original_token)
+    self.resource = resource_class.find_by Devise.token_generator
+                                               .digest(self, :confirmation_token, @original_token)
 
-    super if resource.nil? or resource.confirmed?
+    super if resource.nil? || resource.confirmed?
   end
 
   def confirm
     @original_token = params[resource_name].try(:[], :confirmation_token)
     digested_token = Devise.token_generator.digest(self, :confirmation_token,
                                                    @original_token)
-    self.resource = resource_class.find_by_confirmation_token! digested_token
+    self.resource = resource_class.find_by! digested_token
     resource.assign_attributes(permitted_params) unless params[resource_name].nil?
 
     if resource.valid? && resource.password_match?
-      self.resource.confirm!
+      resource.confirm!
       set_flash_message :notice, :confirmed
       sign_in_and_redirect resource_name, resource
     else
-      render 'show'
+      render "show"
     end
   end
 

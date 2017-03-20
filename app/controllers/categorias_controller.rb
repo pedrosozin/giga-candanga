@@ -7,11 +7,9 @@ class CategoriasController < ApplicationController
     @categorias_inativas = Categoria.inativas
   end
 
-  def new
-  end
+  def new; end
 
-  def edit
-  end
+  def edit; end
 
   def create
     @categoria = Categoria.new(categoria_params)

@@ -8,13 +8,13 @@ class Instituicao < ApplicationRecord
   validates :resumo, length: {in: 0..500}
 
   accepts_nested_attributes_for :endereco, allow_destroy: true, reject_if: :all_blank
-  accepts_nested_attributes_for :responsaveis, allow_destroy: true, reject_if: proc {|atts| deep_blank?(atts) }
+  accepts_nested_attributes_for :responsaveis, allow_destroy: true, reject_if: proc { |atts| deep_blank?(atts) }
 
   scope :ativas, -> { where(se_ativa: true) }
-  scope :search, -> (query) {
+  scope :search, lambda do |query|
     where("upper(nome) like ? OR upper( sigla ) LIKE ?",
           "%#{query.upcase}%", "%#{query.upcase}%")
-  }
+  end
 
   def arquiva
     update_attributes(se_ativa: false)
@@ -34,7 +34,7 @@ class Instituicao < ApplicationRecord
   end
 
   def build_form_dependency(tipos_responsavel)
-    get_map_tipos_responsavel(tipos_responsavel).each { |n|
+    get_map_tipos_responsavel(tipos_responsavel).each {|n|
       responsaveis.build(responsavel_tipo_id: n)
     }
 
@@ -48,9 +48,9 @@ class Instituicao < ApplicationRecord
 
   def build_form_when_error(tipos_responsavel)
     responsavel_tipos = get_map_tipos_responsavel(tipos_responsavel)
-    responsaveis_vazios = responsaveis.select {|r| r.responsavel_tipo.blank? }
+    responsaveis_vazios = responsaveis.select { |r| r.responsavel_tipo.blank? }
 
-    responsavel_tipos.zip(responsaveis_vazios).each {|rt, r|
+    responsavel_tipos.zip(responsaveis_vazios).each { |rt, r|
       r.present? ? r.responsavel_tipo_id = rt : responsaveis.build(responsavel_tipo_id: rt)
     }
 

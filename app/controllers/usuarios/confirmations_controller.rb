@@ -25,7 +25,7 @@ class Usuarios::ConfirmationsController < Devise::ConfirmationsController
       set_flash_message :notice, :confirmed
       sign_in_and_redirect resource_name, resource
     else
-      render action: 'show'
+      render 'show'
     end
   end
 

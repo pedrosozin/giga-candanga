@@ -19,7 +19,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :categorias, path_names: {new: "criar", edit: "editar" } do
+  resources :categorias, except: [:show, :update], path_names: {new: "criar", edit: "editar" } do
     member do
       post :ativar
     end
@@ -30,7 +30,7 @@ Rails.application.routes.draw do
                   confirmations: 'usuarios/confirmations',
   }
 
-  resources :usuarios, except: [:edit, :update, :destroy]
+  resources :usuarios, except: [:show, :destroy], only: [:new, :create, :index]
   resources :usuarios do
     member do
       put 'desativar', to: 'usuarios#deactivate'

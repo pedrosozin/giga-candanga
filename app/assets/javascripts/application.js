@@ -40,6 +40,15 @@ function generalSetup(){
     $('[data-toggle=tooltip]').tooltip();
 }
 
+function displayNotice(content){
+    if(content.type){
+        bootbox.alert({
+            title: content.title,
+            message: content.notice
+        });
+    }
+}
+
 function handleGenerickClicks(){
     $('.link-holder.desativa').on('click', 'i', function(event){
         event.preventDefault();

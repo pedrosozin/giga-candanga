@@ -101,7 +101,7 @@
           <%= res.label(:nome, class: "col-sm-4 control-label") %>
           <div class="col-sm-8">
             <div class="col-sm-12">
-              <%= res.text_field(:nome, placeholder: "Nome do responsável", class: "form-control") %>
+              <%= res.text_field(:nome, placeholder: "Nome do responsável", class: "form-control", seq: res.options[:child_index]) %>
             </div>
           </div>
         </div>
@@ -110,7 +110,7 @@
           <%= res.label(:cargo, class: "col-sm-2 control-label") %>
           <div class="col-sm-6">
             <div class="col-sm-12">
-              <%= res.text_field(:cargo, placeholder: "Cargo", class: "form-control") %>
+              <%= res.text_field(:cargo, placeholder: "Cargo", class: "form-control", seq: res.options[:child_index]) %>
             </div>
           </div>
         </div>

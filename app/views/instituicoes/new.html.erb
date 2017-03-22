@@ -8,4 +8,4 @@
         <%= render partial: 'form', locals: {instituicao: @instituicao, tipos_resp: @responsavel_tipos, categorias: @categorias} %>
     </div>
 </section>
-<%= render(partial: "layouts/error_messages", locals: { object: @instituicao })%>
+<% @error_object = @instituicao %>

@@ -5,8 +5,10 @@ class Usuario < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
 
   validates :nome, presence: true
-  validates :telefone, presence: {alert: "Telefone inválido"},
-            length: {minimum: 8, maximum: 13}
+  validates :telefone, presence: {alert: "Telefone inválido"}, length: {
+    minimum: 8,
+    maximum: 13
+  }
 
   def self.all_active
     where(ativo: true)

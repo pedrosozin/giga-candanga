@@ -38,8 +38,11 @@ class InstituicoesController < ApplicationController
   end
 
   def arquivar
-    @instituicao.arquiva ? set_flash("Registro arquivado com sucesso!") :
-        set_flash("Falha ao arquivar registro", "Erro", MSG_TYPE_ERROR)
+    if @instituicao.arquiva
+      set_flash("Registro arquivado com sucesso!")
+    else
+      set_flash("Falha ao arquivar registro", "Erro", MSG_TYPE_ERROR)
+    end
     redirect_to instituicoes_url
   end
 
@@ -52,30 +55,19 @@ class InstituicoesController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   def instituicao_params
     params.require(:instituicao).permit(:id, :nome, :sigla, :cnpj, :data_aprovacao, :resumo, :site, :categoria_id,
-                                        endereco_attributes: [
-                                            :id,
-                                            :cep,
-                                            :cidade,
-                                            :estado,
-                                            :bairro,
-                                            :endereco
-                                        ],
                                         responsaveis_attributes: [
-                                            :id,
-                                            :cargo,
-                                            :nome,
-                                            :responsavel_tipo_id,
-                                            telefones_attributes: [
-                                                :id,
-                                                :numero,
-                                                :_destroy],
-                                            emails_attributes: [
-                                                :id,
-                                                :email,
-                                                :_destroy]])
+                                          :id, :cargo, :nome, :responsavel_tipo_id,
+                                          telefones_attributes: [
+                                            :id, :numero, :_destroy
+                                          ], emails_attributes: [
+                                            :id, :email, :_destroy
+                                          ]
+                                        ], endereco_attributes: [
+                                          :id, :cep, :cidade, :estado, :bairro, :endereco
+                                        ])
   end
 
-  def set_flash(mensagem, titulo="Sucesso", tipo=MSG_TYPE_SUCCESS)
+  def set_flash(mensagem, titulo = "Sucesso", tipo = MSG_TYPE_SUCCESS)
     flash[:type] = tipo
     flash[:title] = titulo
     flash[:notice] = mensagem

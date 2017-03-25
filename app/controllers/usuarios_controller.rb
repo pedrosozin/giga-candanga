@@ -13,20 +13,19 @@ class UsuariosController < ApplicationController
     @usuario = Usuario.new(usuario_params)
     respond_to do |format|
       if @usuario.save
-        format.html { redirect_to :usuarios, notice: 'Usuário criado com sucesso' }
+        format.html { redirect_to :usuarios, notice: "Usuário criado com sucesso" }
       else
         format.html { render :new }
       end
     end
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
     respond_to do |format|
       if @usuario.update(usuario_params)
-        format.html { redirect_to :usuarios, notice: 'Usuário atualizado com sucesso' }
+        format.html { redirect_to :usuarios, notice: "Usuário atualizado com sucesso" }
       else
         format.html { render :edit }
       end
@@ -36,9 +35,9 @@ class UsuariosController < ApplicationController
   def deactivate
     respond_to do |format|
       if @usuario.deactivate
-        format.html { redirect_to :usuarios, notice: 'Usuário desativado com sucesso' }
+        format.html { redirect_to :usuarios, notice: "Usuário desativado com sucesso" }
       else
-        format.html { redirect_to :usuarios, alert: 'Usuário não pode ser desativado' }
+        format.html { redirect_to :usuarios, alert: "Usuário não pode ser desativado" }
       end
     end
   end

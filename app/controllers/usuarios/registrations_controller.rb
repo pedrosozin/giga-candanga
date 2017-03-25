@@ -6,10 +6,9 @@ class Usuarios::RegistrationsController < Devise::RegistrationsController
   def create
     build_resource(sign_up_params)
     resource.save
-    if resource.persisted?
-      if resource.active_for_authentication?
-        set_flash_message! :notice, :user_created
-      end
+    return unless resource.persisted?
+    if resource.active_for_authentication?
+      set_flash_message! :notice, :user_created
     end
   end
 
@@ -26,5 +25,4 @@ class Usuarios::RegistrationsController < Devise::RegistrationsController
                                     :current_password, :nome, :telefone,
                                     :ativo)
   end
-
 end

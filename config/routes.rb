@@ -24,8 +24,7 @@ Rails.application.routes.draw do
                   confirmations: 'usuarios/confirmations',
   }
 
-  resources :usuarios, except: [:show, :destroy], only: [:new, :create, :index]
-  resources :usuarios do
+  resources :usuarios, except: [:show, :destroy]  do
     member do
       put 'desativar', to: 'usuarios#deactivate'
     end

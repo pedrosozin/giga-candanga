@@ -11,10 +11,6 @@ class Instituicao < ApplicationRecord
   accepts_nested_attributes_for :responsaveis, allow_destroy: true, reject_if: proc { |atts| deep_blank?(atts) }
 
   scope :ativas, -> { where(se_ativa: true) }
-  scope :search, lambda do |query|
-    where("upper(nome) like ? OR upper( sigla ) LIKE ?",
-          "%#{query.upcase}%", "%#{query.upcase}%")
-  end
 
   def arquiva
     update_attributes(se_ativa: false)

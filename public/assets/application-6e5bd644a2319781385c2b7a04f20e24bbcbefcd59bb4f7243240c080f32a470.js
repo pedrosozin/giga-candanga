@@ -36600,7 +36600,8 @@ function addCustomRules(){
 	}, "Por favor, digite um CEP válido");
 
 	jQuery.validator.addMethod("respnome", function(value, element) {
-		return (($(element).val().length == 0) && ($(element).parent().parent().find('[name*="cargo"]').val().length == 0)) || value.length > 0;
+        var seq = $(element).attr('seq');
+		return (($(element).val().length == 0) && ($('[name*=cargo][seq='+seq+']').val().length == 0)) || value.length > 0;
 	}, "Nome é obrigatório caso preencha o responsável");
 
 }
@@ -36869,6 +36870,15 @@ var dataTableDefaultOptions = {
 
 function generalSetup(){
     $('[data-toggle=tooltip]').tooltip();
+}
+
+function displayNotice(content){
+    if(content.type){
+        bootbox.alert({
+            title: content.title,
+            message: content.notice
+        });
+    }
 }
 
 function handleGenerickClicks(){

@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Segmentos</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Numero</th>
+      <th>Comprimento</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @segmentos.each do |segmento| %>
+      <tr>
+        <td><%= segmento.numero %></td>
+        <td><%= segmento.comprimento %></td>
+        <td><%= link_to 'Show', segmento %></td>
+        <td><%= link_to 'Edit', edit_segmento_path(segmento) %></td>
+        <td><%= link_to 'Destroy', segmento, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Segmento', new_segmento_path %>

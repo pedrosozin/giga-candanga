@@ -1,0 +1,2 @@
+json.extract! trecho, :id, :segmento_id, :cod, :comprimento, :ano_fabricacao, :infra, :proprietario, :fabricante, :tipo, :data_criacao, :data_exclusao, :acesso, :created_at, :updated_at
+json.url trecho_url(trecho, format: :json)

@@ -1,0 +1,1 @@
+json.array! @dgos, partial: 'dgos/dgo', as: :dgo

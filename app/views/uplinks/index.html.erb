@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Uplinks</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Cod</th>
+      <th>Nome vlan</th>
+      <th>Banda</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @uplinks.each do |uplink| %>
+      <tr>
+        <td><%= uplink.cod %></td>
+        <td><%= uplink.nome_vlan %></td>
+        <td><%= uplink.banda %></td>
+        <td><%= link_to 'Show', uplink %></td>
+        <td><%= link_to 'Edit', edit_uplink_path(uplink) %></td>
+        <td><%= link_to 'Destroy', uplink, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Uplink', new_uplink_path %>

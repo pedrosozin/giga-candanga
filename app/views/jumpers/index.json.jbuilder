@@ -1,0 +1,1 @@
+json.array! @jumpers, partial: 'jumpers/jumper', as: :jumper

@@ -1,0 +1,1 @@
+json.partial! "portadgos/portadgo", portadgo: @portadgo

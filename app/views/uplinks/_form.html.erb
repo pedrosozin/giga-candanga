@@ -1,0 +1,32 @@
+<%= form_for(uplink) do |f| %>
+  <% if uplink.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(uplink.errors.count, "error") %> prohibited this uplink from being saved:</h2>
+
+      <ul>
+      <% uplink.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :cod %>
+    <%= f.text_field :cod %>
+  </div>
+
+  <div class="field">
+    <%= f.label :nome_vlan %>
+    <%= f.text_field :nome_vlan %>
+  </div>
+
+  <div class="field">
+    <%= f.label :banda %>
+    <%= f.number_field :banda %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

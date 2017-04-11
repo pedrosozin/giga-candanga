@@ -1,0 +1,23 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Cod:</strong>
+  <%= @uplink.cod %>
+</p>
+
+<p>
+  <strong>Nome vlan:</strong>
+  <%= @uplink.nome_vlan %>
+</p>
+
+<p>
+  <strong>Banda:</strong>
+  <%= @uplink.banda %>
+</p>
+
+<h2>Fibras conectadas: </h2>
+<% @uplink.fibras.each do |t| %>
+        <p><%= t.numero %></p>
+    <% end %>
+<%= link_to 'Edit', edit_uplink_path(@uplink) %> |
+<%= link_to 'Back', uplinks_path %>

@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Nobreaks</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Site</th>
+      <th>Potencia</th>
+      <th>Proprietario</th>
+      <th>Patrimonio</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @nobreaks.each do |nobreak| %>
+      <tr>
+        <td><%= nobreak.site.nome %></td>
+        <td><%= nobreak.potencia %></td>
+        <td><%= nobreak.proprietario %></td>
+        <td><%= nobreak.patrimonio %></td>
+        <td><%= link_to 'Show', nobreak %></td>
+        <td><%= link_to 'Edit', edit_nobreak_path(nobreak) %></td>
+        <td><%= link_to 'Destroy', nobreak, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Nobreak', new_nobreak_path %>

@@ -1,0 +1,1 @@
+json.array! @portadgos, partial: 'portadgos/portadgo', as: :portadgo

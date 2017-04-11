@@ -1,0 +1,1 @@
+json.array! @caixaemendas, partial: 'caixaemendas/caixaemenda', as: :caixaemenda

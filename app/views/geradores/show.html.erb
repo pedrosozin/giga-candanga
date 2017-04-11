@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Site:</strong>
+  <%= @gerador.site.nome %>
+</p>
+
+<p>
+  <strong>Potencia:</strong>
+  <%= @gerador.potencia %>
+</p>
+
+<p>
+  <strong>Fabricante:</strong>
+  <%= @gerador.fabricante %>
+</p>
+
+<p>
+  <strong>Patrimonio:</strong>
+  <%= @gerador.patrimonio %>
+</p>
+
+<%= link_to 'Edit', edit_gerador_path(@gerador) %> |
+<%= link_to 'Back', geradores_path %>

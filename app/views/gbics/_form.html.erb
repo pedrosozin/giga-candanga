@@ -1,0 +1,41 @@
+<%= form_for(gbic) do |f| %>
+  <% if gbic.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(gbic.errors.count, "error") %> prohibited this gbic from being saved:</h2>
+
+      <ul>
+      <% gbic.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <% if @gbic.porta_slot %>
+      <%= f.hidden_field 'porta_slot_id' %>
+    <% else %>
+    <p><%= f.label :porta_slot_id %><br />
+    <%= f.collection_select(:porta_slot_id, @porta_slots,:id, :porta, :prompt => true) %></p>
+    <% end %>
+  </div>
+
+  <div class="field">
+    <%= f.label :serie %>
+    <%= f.text_field :serie %>
+  </div>
+
+  <div class="field">
+    <%= f.label :patrimonio %>
+    <%= f.text_field :patrimonio %>
+  </div>
+
+  <div class="field">
+    <%= f.label :tipo %>
+    <%= f.text_field :tipo %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

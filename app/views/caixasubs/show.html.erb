@@ -1,0 +1,59 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Cod:</strong>
+  <%= @caixasub.cod %>
+</p>
+
+<p>
+  <strong>Tipo:</strong>
+  <%= @caixasub.tipo %>
+</p>
+
+<p>
+  <strong>Infra:</strong>
+  <%= @caixasub.infra %>
+</p>
+
+<p>
+  <strong>Latitude:</strong>
+  <%= @caixasub.latitude %>
+</p>
+
+<p>
+  <strong>Longitude:</strong>
+  <%= @caixasub.longitude %>
+</p>
+
+<p>
+  <strong>Num desenho:</strong>
+  <%= @caixasub.num_desenho %>
+</p>
+
+<p>
+  <strong>Tipo tampa:</strong>
+  <%= @caixasub.tipo_tampa %>
+</p>
+
+<% if @caixasub.reserva != nil %>
+<p>
+  <strong>Reserva:</strong>
+  <%= @caixasub.reserva.cod %>
+</p>
+<% end %>
+
+<% if @caixasub.caixaemenda != nil %>
+<p>
+  <strong>Caixa de Emenda:</strong>
+  <%= @caixasub.caixaemenda.cod %>
+</p>
+<% end %>
+
+
+<h2>Trechos armazenados: </h2>
+<% @caixasub.trechos.each do |t| %>
+        <p><%= t.cod %></p>
+    <% end %>
+
+<%= link_to 'Edit', edit_caixasub_path(@caixasub) %> |
+<%= link_to 'Back', caixasubs_path %>

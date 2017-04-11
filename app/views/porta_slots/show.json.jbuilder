@@ -1,0 +1,1 @@
+json.partial! "porta_slots/porta_slot", porta_slot: @porta_slot

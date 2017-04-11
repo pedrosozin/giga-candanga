@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Dgos</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Cod</th>
+      <th>Fabricante</th>
+      <th>Qtd portas</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @dgos.each do |dgo| %>
+      <tr>
+        <td><%= dgo.cod %></td>
+        <td><%= dgo.fabricante %></td>
+        <td><%= dgo.qtd_portas %></td>
+        <td><%= link_to 'Show', dgo %></td>
+        <td><%= link_to 'Edit', edit_dgo_path(dgo) %></td>
+        <td><%= link_to 'Destroy', dgo, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Dgo', new_dgo_path %>

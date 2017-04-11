@@ -1,0 +1,70 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Trecho:</strong>
+  <%= @fibra.tubeloose.trecho.cod %>
+</p>
+
+<p>
+  <strong>Tubeloose:</strong>
+  <%= @fibra.tubeloose.numero %>
+</p>
+
+
+
+<p>
+  <strong>Numero:</strong>
+  <%= @fibra.numero %>
+</p>
+
+<p>
+  <strong>Grupo:</strong>
+  <%= @fibra.grupo %>
+</p>
+
+<p>
+  <strong>Cor:</strong>
+  <%= @fibra.cor %>
+</p>
+
+<p>
+  <strong>Situacao:</strong>
+  <%= @fibra.situacao %>
+</p>
+
+<p>
+  <strong>Proprietario:</strong>
+  <%= @fibra.proprietario %>
+</p>
+
+<p>
+  <strong>Info:</strong>
+  <%= @fibra.info %>
+</p>
+
+<p>
+  <strong>Porta DGO:</strong>
+  <%= @fibra.portadgo.cod %>
+</p>
+
+<h2>Caixas de emenda: </h2>
+<% @fibra.caixaemendas.each do |t| %>
+        <p><%= t.cod %></p>
+    <% end %>
+
+  <h2>Uplink: </h2>
+<% @fibra.uplinks.each do |t| %>
+        <p><%= t.cod %></p>
+    <% end %>
+
+<% if @fibra.fusao %>
+  <p>
+    <strong>Fusão com fibra:</strong>
+    <%= @fibra.fusao.fibra2.numero %>
+  </p>
+<% end %>
+
+
+<%= link_to "Fazer Fusão", controller: "fusoes", action: "new", fibra: @fibra %>
+<%= link_to 'Edit', edit_fibra_path(@fibra) %> |
+<%= link_to 'Back', fibras_path %>

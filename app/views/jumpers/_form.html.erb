@@ -1,0 +1,31 @@
+<%= form_for(jumper) do |f| %>
+  <% if jumper.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(jumper.errors.count, "error") %> prohibited this jumper from being saved:</h2>
+
+      <ul>
+      <% jumper.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <% if @jumper.portadgo %>
+      <%= f.hidden_field 'portadgo_id' %>
+    <% else %>
+    <p><%= f.label :portadgo_id %><br />
+    <%= f.collection_select(:portadgo_id, @portadgos,:id, :cod, :prompt => true) %></p>
+    <% end %>
+  </div>
+
+  <div class="field">
+    <p><%= f.label :portadgo2_id %>
+    <%= f.collection_select(:portadgo2_id, @portadgos,:id, :cod, :prompt => true) %></p>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,37 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Slots</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Switch</th>
+      <th>Serie</th>
+      <th>Numero</th>
+      <th>Patrimonio</th>
+      <th>Qtd portas</th>
+      <th>Banda</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @slots.each do |slot| %>
+      <tr>
+        <td><%= slot.switch.serie %></td>
+        <td><%= slot.serie %></td>
+        <td><%= slot.numero %></td>
+        <td><%= slot.patrimonio %></td>
+        <td><%= slot.qtd_portas %></td>
+        <td><%= slot.banda %></td>
+        <td><%= link_to 'Show', slot %></td>
+        <td><%= link_to 'Edit', edit_slot_path(slot) %></td>
+        <td><%= link_to 'Destroy', slot, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Slot', new_slot_path %>

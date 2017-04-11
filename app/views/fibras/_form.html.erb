@@ -1,0 +1,56 @@
+<%= form_for(fibra) do |f| %>
+  <% if fibra.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(fibra.errors.count, "error") %> prohibited this fibra from being saved:</h2>
+
+      <ul>
+      <% fibra.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <% if @fibra.tubeloose %>
+      <%= f.hidden_field 'tubeloose_id' %>
+    <% else %>
+    <p><%= f.label :tubeloose_id %><br />
+    <%= f.collection_select(:tubeloose_id, @tubelooses,:id, :numero, :prompt => true) %></p>
+    <% end %>
+  </div>
+
+  <div class="field">
+    <%= f.label :numero %>
+    <%= f.number_field :numero %>
+  </div>
+
+  <div class="field">
+    <%= f.label :grupo %>
+    <%= f.text_field :grupo %>
+  </div>
+
+  <div class="field">
+    <%= f.label :cor %>
+    <%= f.text_field :cor %>
+  </div>
+
+  <div class="field">
+    <%= f.label :situacao %>
+    <%= f.text_field :situacao %>
+  </div>
+
+  <div class="field">
+    <%= f.label :proprietario %>
+    <%= f.text_field :proprietario %>
+  </div>
+
+  <div class="field">
+    <%= f.label :info %>
+    <%= f.text_field :info %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

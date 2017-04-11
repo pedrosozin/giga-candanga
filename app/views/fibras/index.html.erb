@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Fibras</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Tubeloose</th>
+      <th>Numero</th>
+      <th>Grupo</th>
+      <th>Cor</th>
+      <th>Situacao</th>
+      <th>Proprietario</th>
+      <th>Info</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @fibras.each do |fibra| %>
+      <tr>
+        <td><%= fibra.tubeloose.numero %></td>
+        <td><%= fibra.numero %></td>
+        <td><%= fibra.grupo %></td>
+        <td><%= fibra.cor %></td>
+        <td><%= fibra.situacao %></td>
+        <td><%= fibra.proprietario %></td>
+        <td><%= fibra.info %></td>
+        <td><%= link_to 'Show', fibra %></td>
+        <td><%= link_to 'Edit', edit_fibra_path(fibra) %></td>
+        <td><%= link_to 'Destroy', fibra, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Fibra', new_fibra_path %>

@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Numero:</strong>
+  <%= @segmento.numero %>
+</p>
+
+<p>
+  <strong>Comprimento:</strong>
+  <%= @segmento.comprimento %>
+</p>
+<h2>Dgos:</h2>
+<%= render @segmento.dgos %>
+<h2>Caixas de Emenda especiais: </h2>
+<% @segmento.caixaemendas.each do |t| %>
+        <p><%= t.cod %></p>
+    <% end %>
+<h2>Trechos</h2>
+<%= render @segmento.trechos %>
+<%= link_to "Novo incidente", controller: "incidentes", action: "new", trecho: @trecho %>
+<%= link_to "Novo DGO", controller: "dgos", action: "new", segmento: @segmento %>
+<%= link_to "Novo Trecho", controller: "trechos", action: "new", segmento: @segmento %>
+<%= link_to 'Edit', edit_segmento_path(@segmento) %> |
+<%= link_to 'Back', segmentos_path %>

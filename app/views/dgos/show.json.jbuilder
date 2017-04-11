@@ -1,0 +1,1 @@
+json.partial! "dgos/dgo", dgo: @dgo

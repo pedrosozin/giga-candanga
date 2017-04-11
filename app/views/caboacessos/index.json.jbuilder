@@ -1,0 +1,1 @@
+json.array! @caboacessos, partial: 'caboacessos/caboacesso', as: :caboacesso

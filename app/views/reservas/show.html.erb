@@ -1,0 +1,40 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Cod:</strong>
+  <%= @reserva.cod %>
+</p>
+
+<p>
+  <strong>Comprimento:</strong>
+  <%= @reserva.comprimento %>
+</p>
+
+<p>
+  <strong>Latitude:</strong>
+  <%= @reserva.latitude %>
+</p>
+
+<p>
+  <strong>Longitude:</strong>
+  <%= @reserva.longitude %>
+</p>
+<% if @reserva.poste %>
+<p>
+	<strong>Poste:</strong>
+	<%= @reserva.poste.cod %>
+</p>
+<% end %>
+
+<% if @reserva.caixasub %>
+<p>
+	<strong>Caixa subterrânea:</strong>
+	<%= @reserva.caixasub.cod %>
+</p>
+<% end %>
+
+
+<%= link_to "Armazenar em novo poste", controller: "postes", action: "new", reserva: @reserva %>
+<%= link_to "Armazenar em nova caixa subterrânea", controller: "caixasubs", action: "new", reserva: @reserva %>
+<%= link_to 'Edit', edit_reserva_path(@reserva) %> |
+<%= link_to 'Back', reservas_path %>

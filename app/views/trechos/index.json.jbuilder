@@ -1,0 +1,1 @@
+json.array! @trechos, partial: 'trechos/trecho', as: :trecho

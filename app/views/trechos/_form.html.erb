@@ -1,0 +1,82 @@
+<%= form_for(trecho) do |f| %>
+  <% if trecho.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(trecho.errors.count, "error") %> prohibited this trecho from being saved:</h2>
+
+      <ul>
+      <% trecho.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :segmento_id %>
+    <%= f.collection_select(:segmento_id, @segmentos,:id, :numero, :prompt => true) %></p>
+  </div>
+
+  <div class="field">
+    <%= f.label :cod %>
+    <%= f.text_field :cod %>
+  </div>
+
+  <div class="field">
+    <%= f.label :comprimento %>
+    <%= f.text_field :comprimento %>
+  </div>
+
+  <div class="field">
+    <%= f.label :ano_fabricacao %>
+    <%= f.text_field :ano_fabricacao %>
+  </div>
+
+  <div class="field">
+    <%= f.label :infra %>
+    <%= f.text_field :infra %>
+  </div>
+
+  <div class="field">
+    <%= f.label :proprietario %>
+    <%= f.text_field :proprietario %>
+  </div>
+
+  <div class="field">
+    <%= f.label :fabricante %>
+    <%= f.text_field :fabricante %>
+  </div>
+
+  <div class="field">
+    <%= f.label :tipo %>
+    <%= f.text_field :tipo %>
+  </div>
+
+  <div class="field">
+    <%= f.label :data_criacao %>
+    <%= f.datetime_select :data_criacao %>
+  </div>
+
+  <div class="field">
+    <%= f.label :data_exclusao %>
+    <%= f.datetime_select :data_exclusao %>
+  </div>
+
+  <div class="field">
+    <%= f.label :acesso %>
+    <%= f.check_box :acesso %>
+  </div>
+
+  <div class="field">
+    <%= f.label :dgo_id %>
+    <%= f.collection_select(:dgo_id, @dgos,:id, :cod, :prompt => true) %></p>
+  </div>
+
+  <div class="field">
+    <%= f.label :caboacesso_id %>
+    <%= f.collection_select(:caboacesso_id, @caboacessos,:id, :cod, :prompt => true) %></p>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

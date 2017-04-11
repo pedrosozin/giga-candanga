@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Tubelooses</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Trecho</th>
+      <th>Numero</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @tubelooses.each do |tubeloose| %>
+      <tr>
+        <td><%= tubeloose.trecho.cod %></td>
+        <td><%= tubeloose.numero %></td>
+        <td><%= link_to 'Show', tubeloose %></td>
+        <td><%= link_to 'Edit', edit_tubeloose_path(tubeloose) %></td>
+        <td><%= link_to 'Destroy', tubeloose, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Tubeloose', new_tubeloose_path %>

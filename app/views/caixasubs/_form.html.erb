@@ -1,0 +1,68 @@
+<%= form_for(caixasub) do |f| %>
+  <% if caixasub.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(caixasub.errors.count, "error") %> prohibited this caixasub from being saved:</h2>
+
+      <ul>
+      <% caixasub.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :cod %>
+    <%= f.text_field :cod %>
+  </div>
+
+  <div class="field">
+    <%= f.label :tipo %>
+    <%= f.text_field :tipo %>
+  </div>
+
+  <div class="field">
+    <%= f.label :infra %>
+    <%= f.text_field :infra %>
+  </div>
+
+  <div class="field">
+    <%= f.label :latitude %>
+    <%= f.text_field :latitude %>
+  </div>
+
+  <div class="field">
+    <%= f.label :longitude %>
+    <%= f.text_field :longitude %>
+  </div>
+
+  <div class="field">
+    <%= f.label :num_desenho %>
+    <%= f.number_field :num_desenho %>
+  </div>
+
+  <div class="field">
+    <%= f.label :tipo_tampa %>
+    <%= f.text_field :tipo_tampa %>
+  </div>
+  <% if caixasub.reserva != nil %>
+  <div class="field">
+    
+    <p><%= f.label :reserva_id %><br />
+    <%= f.collection_select(:reserva_id, @reservas,:id, :cod, :prompt => true) %></p>
+ 
+  </div>
+  <% end %>
+
+  <% if caixasub.caixaemenda != nil %>
+  <div class="field">
+    
+    <p><%= f.label :caixaemenda_id %><br />
+    <%= f.collection_select(:caixaemenda_id, @caixaemendas,:id, :cod, :prompt => true) %></p>
+ 
+  </div>
+  <% end %>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,2 @@
+json.extract! caixaemenda, :id, :cod, :fabricante, :tipo, :infra, :latitude, :longitude, :num_desenho, :acesso, :data_criacao, :data_exclusao, :created_at, :updated_at
+json.url caixaemenda_url(caixaemenda, format: :json)

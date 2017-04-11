@@ -1,0 +1,7 @@
+<p>
+	<% if gbic.serie %>
+   <%= gbic.serie %>  
+   <%= link_to '(remover)', gbic, method: :delete, data: { confirm: 'Are you sure?' } %>
+   <%= link_to '(mostrar)', gbic %>
+   <% end %>
+ </p>

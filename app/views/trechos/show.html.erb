@@ -1,0 +1,95 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Segmento:</strong>
+  <%= @trecho.segmento.numero %>
+</p>
+
+<p>
+  <strong>Cod:</strong>
+  <%= @trecho.cod %>
+</p>
+
+<p>
+  <strong>Comprimento:</strong>
+  <%= @trecho.comprimento %>
+</p>
+
+<p>
+  <strong>Ano fabricacao:</strong>
+  <%= @trecho.ano_fabricacao %>
+</p>
+
+<p>
+  <strong>Infra:</strong>
+  <%= @trecho.infra %>
+</p>
+
+<p>
+  <strong>Proprietario:</strong>
+  <%= @trecho.proprietario %>
+</p>
+
+<p>
+  <strong>Fabricante:</strong>
+  <%= @trecho.fabricante %>
+</p>
+
+<p>
+  <strong>Tipo:</strong>
+  <%= @trecho.tipo %>
+</p>
+
+<p>
+  <strong>Data criacao:</strong>
+  <%= @trecho.data_criacao %>
+</p>
+
+<p>
+  <strong>Data exclusao:</strong>
+  <%= @trecho.data_exclusao %>
+</p>
+
+<p>
+  <strong>Acesso:</strong>
+  <%= @trecho.acesso %>
+</p>
+<% if @trecho.dgo != nil %>
+<p>
+  <strong>DGO:</strong>
+  <%= @trecho.dgo.cod %>
+</p>
+<% end %>
+
+<h2>Tubelooses</h2>
+<%= render @trecho.tubelooses %>
+
+<% if @trecho.caboacesso != nil %>
+<p>
+  <strong>Cabo Acesso:</strong>
+  <%= @trecho.caboacesso.cod %>
+</p>
+<% end %>
+
+<h2>Caixas de Emenda: </h2>
+<% @trecho.caixaemendas.each do |t| %>
+        <p><%= t.cod %></p>
+    <% end %>
+<h2>Caixas subterrâneas: </h2>
+
+<% @trecho.caixasubs.each do |t| %>
+        <p><%= t.cod %></p>
+    <% end %>
+
+<h2>Postes: </h2>
+
+<% @trecho.postes.each do |t| %>
+        <p><%= t.cod %></p>
+    <% end %>
+<h2>Incidentes</h2>
+<%= render @trecho.incidentes %>
+
+<%= link_to "Novo incidente", controller: "incidentes", action: "new", trecho: @trecho %>
+
+<%= link_to 'Edit', edit_trecho_path(@trecho) %> |
+<%= link_to 'Back', trechos_path %>

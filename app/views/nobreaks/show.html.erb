@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Site:</strong>
+  <%= @nobreak.site.nome %>
+</p>
+
+<p>
+  <strong>Potencia:</strong>
+  <%= @nobreak.potencia %>
+</p>
+
+<p>
+  <strong>Proprietario:</strong>
+  <%= @nobreak.proprietario %>
+</p>
+
+<p>
+  <strong>Patrimonio:</strong>
+  <%= @nobreak.patrimonio %>
+</p>
+
+<%= link_to 'Edit', edit_nobreak_path(@nobreak) %> |
+<%= link_to 'Back', nobreaks_path %>

@@ -1,0 +1,28 @@
+<%= form_for(segmento) do |f| %>
+  <% if segmento.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(segmento.errors.count, "error") %> prohibited this segmento from being saved:</h2>
+
+      <ul>
+      <% segmento.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :numero %>
+    <%= f.number_field :numero %>
+  </div>
+
+  <div class="field">
+    <%= f.label :comprimento %>
+    <%= f.text_field :comprimento %>
+  </div>
+
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

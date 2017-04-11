@@ -1,0 +1,27 @@
+<%= form_for(tubeloose) do |f| %>
+  <% if tubeloose.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(tubeloose.errors.count, "error") %> prohibited this tubeloose from being saved:</h2>
+
+      <ul>
+      <% tubeloose.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :trecho_id %>
+    <%= f.number_field :trecho_id %>
+  </div>
+
+  <div class="field">
+    <%= f.label :numero %>
+    <%= f.number_field :numero %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

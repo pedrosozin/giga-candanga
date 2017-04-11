@@ -1,0 +1,14 @@
+<h2> Confirmar conexao</h2>
+
+<%=  "Criar #{@qnt_trechos} trechos com #{@qnt_fibras} fibras" %><br/>		
+<%= "Utilizar a porta #{@portadgo} e a próxima" %><br/>
+<%= "Utilizar a fibra numero #{@fibra} e a próxima" %><br/>
+<%= "Conectar ao #{@dgo.cod} "%><br/>
+<%= "Segmento: #{@segmento.numero} "%><br/>
+
+<%= "Fibra de origem: #{@fibraOrigem.id}"%><br/>
+<%= "Trechos" %><br/>
+
+<% @trechos.each do |t| %>
+        <p><%= t.cod %></p>
+ <% end %>

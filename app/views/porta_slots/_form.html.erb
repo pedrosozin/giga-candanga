@@ -1,0 +1,36 @@
+<%= form_for(porta_slot) do |f| %>
+  <% if porta_slot.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(porta_slot.errors.count, "error") %> prohibited this porta_slot from being saved:</h2>
+
+      <ul>
+      <% porta_slot.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <% if @porta_slot.slot %>
+      <%= f.hidden_field 'slot_id' %>
+    <% else %>
+    <p><%= f.label :slot_id %><br />
+    <%= f.collection_select(:slot_id, @slots,:id, :serie, :prompt => true) %></p>
+    <% end %>
+  </div>
+
+  <div class="field">
+    <%= f.label :porta %>
+    <%= f.text_field :porta %>
+  </div>
+
+  <div class="field">
+    <%= f.label :tipo %>
+    <%= f.text_field :tipo %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

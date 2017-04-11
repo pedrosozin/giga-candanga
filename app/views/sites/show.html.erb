@@ -1,0 +1,42 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Ipa:</strong>
+  <%= @site.ipa.nome %>
+</p>
+
+<p>
+  <strong>Nome:</strong>
+  <%= @site.nome %>
+</p>
+
+<p>
+  <strong>Latitude:</strong>
+  <%= @site.latitude %>
+</p>
+
+<p>
+  <strong>Longitude:</strong>
+  <%= @site.longitude %>
+</p>
+
+<p>
+  <strong>Largura banda:</strong>
+  <%= @site.largura_banda %>
+</p>
+
+<p>
+  <strong>Tipo:</strong>
+  <%= @site.tipo %>
+</p>
+<h2>Nobreaks</h2>
+<%= render @site.nobreaks %>
+<h2>Geradores</h2>
+<%= render @site.geradores %>
+<h2>Switches</h2>
+<%= render @site.switches %>
+<%= link_to "Novo nobreak", controller: "nobreaks", action: "new", site: @site %>
+<%= link_to "Novo gerador", controller: "geradores", action: "new", site: @site %>
+<%= link_to "Novo switch", controller: "switches", action: "new", site: @site %>
+<%= link_to 'Edit', edit_site_path(@site) %> |
+<%= link_to 'Back', sites_path %>

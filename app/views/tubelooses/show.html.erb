@@ -1,0 +1,18 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Trecho:</strong>
+  <%= @tubeloose.trecho.cod %>
+</p>
+
+<p>
+  <strong>Numero:</strong>
+  <%= @tubeloose.numero %>
+</p>
+
+<h2>Fibras</h2>
+<%= render @tubeloose.fibras.order(numero: :asc)%>
+<%= link_to "Nova Fibra", controller: "fibras", action: "new", tubeloose: @tubeloose %>
+
+<%= link_to 'Edit', edit_tubeloose_path(@tubeloose) %> |
+<%= link_to 'Back', tubelooses_path %>

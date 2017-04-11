@@ -1,0 +1,51 @@
+<%= form_for(poste) do |f| %>
+  <% if poste.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(poste.errors.count, "error") %> prohibited this poste from being saved:</h2>
+
+      <ul>
+      <% poste.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :cod %>
+    <%= f.text_field :cod %>
+  </div>
+
+  <div class="field">
+    <%= f.label :latitude %>
+    <%= f.text_field :latitude %>
+  </div>
+
+  <div class="field">
+    <%= f.label :longitude %>
+    <%= f.text_field :longitude %>
+  </div>
+
+  <% if poste.reserva != nil %>
+  <div class="field">
+    
+    <p><%= f.label :reserva_id %><br />
+    <%= f.collection_select(:reserva_id, @reservas,:id, :cod, :prompt => true) %></p>
+ 
+  </div>
+  <% end %>
+
+  <% if poste.caixaemenda != nil %>
+  <div class="field">
+    
+    <p><%= f.label :caixaemenda_id %><br />
+    <%= f.collection_select(:caixaemenda_id, @caixaemendas,:id, :cod, :prompt => true) %></p>
+ 
+  </div>
+  <% end %>
+
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

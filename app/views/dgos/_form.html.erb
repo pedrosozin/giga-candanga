@@ -1,0 +1,41 @@
+<%= form_for(dgo) do |f| %>
+  <% if dgo.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(dgo.errors.count, "error") %> prohibited this dgo from being saved:</h2>
+
+      <ul>
+      <% dgo.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <% if @dgo.segmento %>
+      <%= f.hidden_field 'segmento_id' %>
+    <% else %>
+    <p><%= f.label :segmento_id %><br />
+    <%= f.collection_select(:segmento_id, @segmento,:id, :numero, :prompt => true) %></p>
+    <% end %>
+  </div>
+
+  <div class="field">
+    <%= f.label :cod %>
+    <%= f.text_field :cod %>
+  </div>
+
+  <div class="field">
+    <%= f.label :fabricante %>
+    <%= f.text_field :fabricante %>
+  </div>
+
+  <div class="field">
+    <%= f.label :qtd_portas %>
+    <%= f.number_field :qtd_portas %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

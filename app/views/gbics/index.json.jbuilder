@@ -1,0 +1,1 @@
+json.array! @gbics, partial: 'gbics/gbic', as: :gbic

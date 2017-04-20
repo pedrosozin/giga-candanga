@@ -1,0 +1,23 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Slot:</strong>
+  <%= @porta_slot.slot.serie %>
+</p>
+
+<p>
+  <strong>Porta:</strong>
+  <%= @porta_slot.porta %>
+</p>
+
+<p>
+  <strong>Tipo:</strong>
+  <%= @porta_slot.tipo %>
+</p>
+<% if @porta_slot.gbic %>
+<h2>Gbic</h2>
+<%= render @porta_slot.gbic %>
+<% end %>
+<%= link_to "Novo Gbic", controller: "gbics", action: "new", porta_slot: @porta_slot %>
+<%= link_to 'Edit', edit_porta_slot_path(@porta_slot) %> |
+<%= link_to 'Back', porta_slots_path %>

@@ -1,0 +1,49 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Nome:</strong>
+  <%= @contato.nome %>
+</p>
+
+<p>
+  <strong>Cargo:</strong>
+  <%= @contato.cargo %>
+</p>
+
+<p>
+  <strong>Telefone:</strong>
+  <%= @contato.telefone %>
+</p>
+
+<p>
+  <strong>Telefone 2:</strong>
+  <%= @contato.telefone2 %>
+</p>
+
+<p>
+  <strong>Telefone 3:</strong>
+  <%= @contato.telefone3 %>
+</p>
+
+<p>
+  <strong>Tipo:</strong>
+  <%= @contato.tipo %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @contato.email %>
+</p>
+
+<p>
+  <strong>Prioridade:</strong>
+  <%= @contato.prioridade %>
+</p>
+
+<p>
+  <strong>Ipa:</strong>
+  <%= @contato.ipa.nome %>
+</p>
+
+<%= link_to 'Edit', edit_contato_path(@contato) %> |
+<%= link_to 'Back', contatos_path %>

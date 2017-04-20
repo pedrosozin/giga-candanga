@@ -1,0 +1,81 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Cod:</strong>
+  <%= @caixaemenda.cod %>
+</p>
+
+<p>
+  <strong>Fabricante:</strong>
+  <%= @caixaemenda.fabricante %>
+</p>
+
+<p>
+  <strong>Tipo:</strong>
+  <%= @caixaemenda.tipo %>
+</p>
+
+<p>
+  <strong>Infra:</strong>
+  <%= @caixaemenda.infra %>
+</p>
+
+<p>
+  <strong>Latitude:</strong>
+  <%= @caixaemenda.latitude %>
+</p>
+
+<p>
+  <strong>Longitude:</strong>
+  <%= @caixaemenda.longitude %>
+</p>
+
+<p>
+  <strong>Num desenho:</strong>
+  <%= @caixaemenda.num_desenho %>
+</p>
+
+<p>
+  <strong>Acesso:</strong>
+  <%= @caixaemenda.acesso %>
+</p>
+
+<p>
+  <strong>Data criacao:</strong>
+  <%= @caixaemenda.data_criacao %>
+</p>
+
+<p>
+  <strong>Data exclusao:</strong>
+  <%= @caixaemenda.data_exclusao %>
+</p>
+
+<% if @caixaemenda.poste %>
+<p>
+  <strong>Poste:</strong>
+  <%= @caixaemenda.poste.cod %>
+</p>
+<% end %>
+
+<% if @caixaemenda.caixasub %>
+<p>
+  <strong>Caixa Emenda:</strong>
+  <%= @caixaemenda.caixasub.cod %>
+</p>
+<% end %>
+
+<h2>Trechos conectados: </h2>
+<% @caixaemenda.trechos.each do |t| %>
+        <p><%= t.cod %></p>
+    <% end %>
+
+<h2>Fibras conectadas: </h2>
+<% @caixaemenda.fibras.each do |t| %>
+        <p><%= t.numero %></p>
+    <% end %>
+
+
+<%= link_to "Armazenar em novo poste", controller: "postes", action: "new", caixaemenda: @caixaemenda %>
+<%= link_to "Armazenar em nova caixa subterrânea", controller: "caixasubs", action: "new", caixaemenda: @caixaemenda %>
+<%= link_to 'Edit', edit_caixaemenda_path(@caixaemenda) %> |
+<%= link_to 'Back', caixaemendas_path %>

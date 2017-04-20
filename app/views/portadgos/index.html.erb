@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Portadgos</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Gbic</th>
+      <th>DGO</th>
+      <th>Cod</th>
+      <th>Tipo conexao</th>
+
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @portadgos.each do |portadgo| %>
+      <tr>
+        <td><%= portadgo.gbic.serie %></td>
+        <td><%= portadgo.dgo.cod %></td>
+        <td><%= portadgo.cod %></td>
+        <td><%= portadgo.tipo_conexao %></td>
+
+        <td><%= link_to 'Show', portadgo %></td>
+        <td><%= link_to 'Edit', edit_portadgo_path(portadgo) %></td>
+        <td><%= link_to 'Destroy', portadgo, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Portadgo', new_portadgo_path %>

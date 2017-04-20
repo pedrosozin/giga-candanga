@@ -1,0 +1,1 @@
+json.partial! "caboacessos/caboacesso", caboacesso: @caboacesso

@@ -1,0 +1,1 @@
+json.partial! "tubelooses/tubeloose", tubeloose: @tubeloose

@@ -1,0 +1,1 @@
+json.array! @fusoes, partial: 'fusoes/fusao', as: :fusao

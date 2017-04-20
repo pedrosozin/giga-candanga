@@ -1,0 +1,1 @@
+json.partial! "geradores/gerador", gerador: @gerador

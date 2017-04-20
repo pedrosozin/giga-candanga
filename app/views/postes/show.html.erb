@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Cod:</strong>
+  <%= @poste.cod %>
+</p>
+
+<p>
+  <strong>Latitude:</strong>
+  <%= @poste.latitude %>
+</p>
+
+<p>
+  <strong>Longitude:</strong>
+  <%= @poste.longitude %>
+</p>
+
+<% if @poste.reserva != nil %>
+<p>
+  <strong>Reserva:</strong>
+  <%= @poste.reserva.cod %>
+</p>
+<% end %>
+
+<% if @poste.caixaemenda != nil %>
+<p>
+  <strong>Caixa de Emenda:</strong>
+  <%= @poste.caixaemenda.cod %>
+</p>
+<% end %>
+
+<h2>Trechos armazenados: </h2>
+<% @poste.trechos.each do |t| %>
+        <p><%= t.cod %></p>
+    <% end %>
+
+
+<%= link_to 'Edit', edit_poste_path(@poste) %> |
+<%= link_to 'Back', postes_path %>

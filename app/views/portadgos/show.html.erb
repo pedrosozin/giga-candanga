@@ -1,0 +1,45 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Gbic:</strong>
+  <%= @portadgo.gbic.serie %>
+</p>
+
+<p>
+  <strong>DGO:</strong>
+  <%= @portadgo.dgo.cod %>
+  <%= link_to '(mostrar)', @portadgo.dgo %>
+</p>
+
+
+<p>
+  <strong>Cod:</strong>
+  <%= @portadgo.cod %>
+</p>
+
+<p>
+  <strong>Tipo conexao:</strong>
+  <%= @portadgo.tipo_conexao %>
+</p>
+
+
+<% if @portadgo.jumper %>
+	<p>
+	  <strong>Jumper com porta:</strong>
+	  <%= @portadgo.jumper.portadgo2_id %>
+	</p>
+<% end %>
+
+<% if @portadgo.fibra %>
+  <p>
+    <strong>Conectado com a fibra:</strong>
+    <%= @portadgo.fibra.numero %>
+  </p>
+<% end %>
+
+<p>Codigo:</p>
+<%= @codigo %>
+
+<%= link_to "Novo jumper", controller: "jumpers", action: "new", portadgo: @portadgo %>
+<%= link_to 'Edit', edit_portadgo_path(@portadgo) %> |
+<%= link_to 'Back', portadgos_path %>

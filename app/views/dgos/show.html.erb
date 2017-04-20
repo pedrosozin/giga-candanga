@@ -1,0 +1,45 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Cod:</strong>
+  <%= @dgo.cod %>
+</p>
+
+<p>
+  <strong>Site:</strong>
+  <%= @dgo.site.nome %>
+</p>
+
+<p>
+  <strong>Fabricante:</strong>
+  <%= @dgo.fabricante %>
+</p>
+
+<p>
+  <strong>Qtd portas:</strong>
+  <%= @dgo.qtd_portas %>
+</p>
+
+<h2>Portas DGO:</h2>
+<%= render @dgo.portadgos.sort_by { |a| -(a.cod.to_i)}.reverse!%>
+<%= link_to "Nova Porta DGO", controller: "portadgos", action: "new", dgo: @dgo %>
+
+<% if @dgo.segmento %>
+	<p>
+	  <strong>Segmento:</strong>
+	  <%= @dgo.segmento.numero %>
+      <%= link_to '(mostrar)', @dgo.segmento %>
+
+	</p>
+<% end %>
+
+<% if @dgo.trecho %>
+  <p>
+    <strong>Trecho:</strong>
+    <%= @dgo.trecho.cod %>
+  </p>
+<% end %>
+
+<%= link_to "Novo Trecho", controller: "trechos", action: "new", dgo: @dgo %>
+<%= link_to 'Edit', edit_dgo_path(@dgo) %> |
+<%= link_to 'Back', dgos_path %>

@@ -1,0 +1,45 @@
+<%= form_for(portadgo) do |f| %>
+  <% if portadgo.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(portadgo.errors.count, "error") %> prohibited this portadgo from being saved:</h2>
+
+      <ul>
+      <% portadgo.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <% if @portadgo.gbic %>
+      <%= f.hidden_field 'gbic_id' %>
+    <% else %>
+    <p><%= f.label :gbic_id %><br />
+    <%= f.collection_select(:gbic_id, @gbics,:id, :serie, :prompt => true) %></p>
+    <% end %>
+  </div>
+
+  <div class="field">
+    <% if @portadgo.dgo %>
+      <%= f.hidden_field 'dgo_id' %>
+    <% else %>
+    <p><%= f.label :dgo_id %><br />
+    <%= f.collection_select(:dgo_id, @dgos,:id, :cod, :prompt => true) %></p>
+    <% end %>
+  </div>
+
+  <div class="field">
+    <%= f.label :cod %>
+    <%= f.text_field :cod %>
+  </div>
+
+  <div class="field">
+    <%= f.label :tipo_conexao %>
+    <%= f.text_field :tipo_conexao %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

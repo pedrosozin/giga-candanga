@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Site:</strong>
+  <%= @switch.site.nome %>
+</p>
+
+<p>
+  <strong>Serie:</strong>
+  <%= @switch.serie %>
+</p>
+
+<p>
+  <strong>Fabricante:</strong>
+  <%= @switch.fabricante %>
+</p>
+
+<p>
+  <strong>Qtd slots:</strong>
+  <%= @switch.qtd_slots %>
+</p>
+
+<p>
+  <strong>Patrimonio:</strong>
+  <%= @switch.patrimonio %>
+</p>
+
+<h2>Slots</h2>
+<%= render @switch.slots.order(serie: :asc)%>
+<%= link_to "Novo Slot", controller: "slots", action: "new", switch: @switch %>
+
+<%= link_to 'Edit', edit_switch_path(@switch) %> |
+<%= link_to 'Back', switches_path %>

@@ -1,0 +1,37 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Switch:</strong>
+  <%= @slot.switch.serie %>
+</p>
+
+<p>
+  <strong>Serie:</strong>
+  <%= @slot.serie %>
+</p>
+
+<p>
+  <strong>Numero:</strong>
+  <%= @slot.numero %>
+</p>
+
+<p>
+  <strong>Patrimonio:</strong>
+  <%= @slot.patrimonio %>
+</p>
+
+<p>
+  <strong>Qtd portas:</strong>
+  <%= @slot.qtd_portas %>
+</p>
+
+<p>
+  <strong>Banda:</strong>
+  <%= @slot.banda %>
+</p>
+<h2>Portas</h2>
+<%= render @slot.porta_slots.sort_by { |a| -(a.porta.to_i)}.reverse! %>
+<%= link_to "Nova Porta", controller: "porta_slots", action: "new", slot: @slot %>
+
+<%= link_to 'Edit', edit_slot_path(@slot) %> |
+<%= link_to 'Back', slots_path %>

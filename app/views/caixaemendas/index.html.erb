@@ -1,0 +1,47 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Caixaemendas</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Cod</th>
+      <th>Fabricante</th>
+      <th>Tipo</th>
+      <th>Infra</th>
+      <th>Latitude</th>
+      <th>Longitude</th>
+      <th>Num desenho</th>
+      <th>Acesso</th>
+      <th>Data criacao</th>
+      <th>Data exclusao</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+  
+
+  <tbody>
+    <% @caixaemendas.each do |caixaemenda| %>
+      <tr>
+        <td><%= caixaemenda.cod %></td>
+        <td><%= caixaemenda.fabricante %></td>
+        <td><%= caixaemenda.tipo %></td>
+        <td><%= caixaemenda.infra %></td>
+        <td><%= caixaemenda.latitude %></td>
+        <td><%= caixaemenda.longitude %></td>
+        <td><%= caixaemenda.num_desenho %></td>
+        <td><%= caixaemenda.acesso %></td>
+        <td><%= caixaemenda.data_criacao %></td>
+        <td><%= caixaemenda.data_exclusao %></td>
+        <td><%= link_to 'Show', caixaemenda %></td>
+        <td><%= link_to 'Edit', edit_caixaemenda_path(caixaemenda) %></td>
+        <td><%= link_to 'Destroy', caixaemenda, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= paginate @caixaemendas %>
+
+<br>
+
+<%= link_to 'New Caixaemenda', new_caixaemenda_path %>

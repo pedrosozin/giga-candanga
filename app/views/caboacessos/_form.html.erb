@@ -1,0 +1,50 @@
+<%= form_for(caboacesso) do |f| %>
+  <% if caboacesso.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(caboacesso.errors.count, "error") %> prohibited this caboacesso from being saved:</h2>
+
+      <ul>
+      <% caboacesso.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <% if @caboacesso.ipa %>
+      <%= f.hidden_field 'ipa_id' %>
+    <% else %>
+    <p><%= f.label :ipa_id %><br />
+    <%= f.collection_select(:ipa_id, @ipas,:id, :nome, :prompt => true) %></p>
+    <% end %>
+  </div>
+
+  <div class="field">
+    <% if @caboacesso.dgo %>
+      <%= f.hidden_field 'dgo_id' %>
+    <% else %>
+    <p><%= f.label :dgo_id %><br />
+    <%= f.collection_select(:dgo_id, @dgos,:id, :cod, :prompt => true) %></p>
+    <% end %>
+  </div>
+
+  <div class="field">
+    <%= f.label :cod %>
+    <%= f.text_field :cod %>
+  </div>
+
+  <div class="field">
+    <%= f.label :comprimento %>
+    <%= f.text_field :comprimento %>
+  </div>
+
+  <div class="field">
+    <%= f.label :qtd_fibras %>
+    <%= f.number_field :qtd_fibras %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

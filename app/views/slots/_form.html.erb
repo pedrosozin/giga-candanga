@@ -1,0 +1,51 @@
+<%= form_for(slot) do |f| %>
+  <% if slot.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(slot.errors.count, "error") %> prohibited this slot from being saved:</h2>
+
+      <ul>
+      <% slot.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <% if @slot.switch %>
+      <%= f.hidden_field 'switch_id' %>
+    <% else %>
+    <p><%= f.label :switch_id %><br />
+    <%= f.collection_select(:switch_id, @switches,:id, :serie, :prompt => true) %></p>
+    <% end %>
+  </div>
+
+  <div class="field">
+    <%= f.label :serie %>
+    <%= f.text_field :serie %>
+  </div>
+
+  <div class="field">
+    <%= f.label :numero %>
+    <%= f.number_field :numero %>
+  </div>
+
+  <div class="field">
+    <%= f.label :patrimonio %>
+    <%= f.text_field :patrimonio %>
+  </div>
+
+  <div class="field">
+    <%= f.label :qtd_portas %>
+    <%= f.text_field :qtd_portas %>
+  </div>
+
+  <div class="field">
+    <%= f.label :banda %>
+    <%= f.text_field :banda %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

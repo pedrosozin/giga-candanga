@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Trecho:</strong>
+  <%= @incidente.trecho.cod %>
+</p>
+
+<p>
+  <strong>Cod:</strong>
+  <%= @incidente.cod %>
+</p>
+
+<p>
+  <strong>Data:</strong>
+  <%= @incidente.data %>
+</p>
+
+<p>
+  <strong>Latitude:</strong>
+  <%= @incidente.latitude %>
+</p>
+
+<p>
+  <strong>Longitude:</strong>
+  <%= @incidente.longitude %>
+</p>
+
+<p>
+  <strong>Responsavel:</strong>
+  <%= @incidente.responsavel %>
+</p>
+
+<%= link_to 'Edit', edit_incidente_path(@incidente) %> |
+<%= link_to 'Back', incidentes_path %>

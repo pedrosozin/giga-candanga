@@ -1,0 +1,11 @@
+<h1>Nova Conexao</h1>
+<%= form_for(@trecho) do |f| %>
+<div class="field">
+    <%= f.label :trecho_id %>
+    <%= f.collection_select(:trecho_id, @trechos,:id, :cod, :prompt => true) %></p>
+ </div>
+ <div class="field">
+    <%= f.label :caixaemenda_id %>
+    <%= f.collection_select(:caixaemenda_id, @caixaemendas,:id, :cod, :prompt => true) %></p>
+  </div>
+  <% end %>

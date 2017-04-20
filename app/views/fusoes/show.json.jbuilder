@@ -1,0 +1,1 @@
+json.partial! "fusoes/fusao", fusao: @fusao

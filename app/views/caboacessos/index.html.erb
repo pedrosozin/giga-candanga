@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Caboacessos</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Ipa</th>
+      <th>Dgo</th>
+      <th>Cod</th>
+      <th>Comprimento</th>
+      <th>Qtd fibras</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @caboacessos.each do |caboacesso| %>
+      <tr>
+        <td><%= caboacesso.ipa.nome %></td>
+        <td><%= caboacesso.dgo.cod %></td>
+        <td><%= caboacesso.cod %></td>
+        <td><%= caboacesso.comprimento %></td>
+        <td><%= caboacesso.qtd_fibras %></td>
+        <td><%= link_to 'Show', caboacesso %></td>
+        <td><%= link_to 'Edit', edit_caboacesso_path(caboacesso) %></td>
+        <td><%= link_to 'Destroy', caboacesso, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Caboacesso', new_caboacesso_path %>

@@ -1,0 +1,1 @@
+json.partial! "gbics/gbic", gbic: @gbic

@@ -1,0 +1,67 @@
+<%= form_for(caixaemenda) do |f| %>
+  <% if caixaemenda.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(caixaemenda.errors.count, "error") %> prohibited this caixaemenda from being saved:</h2>
+
+      <ul>
+      <% caixaemenda.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :cod %>
+    <%= f.text_field :cod %>
+  </div>
+
+  <div class="field">
+    <%= f.label :fabricante %>
+    <%= f.text_field :fabricante %>
+  </div>
+
+  <div class="field">
+    <%= f.label :tipo %>
+    <%= f.text_field :tipo %>
+  </div>
+
+  <div class="field">
+    <%= f.label :infra %>
+    <%= f.text_field :infra %>
+  </div>
+
+  <div class="field">
+    <%= f.label :latitude %>
+    <%= f.text_field :latitude %>
+  </div>
+
+  <div class="field">
+    <%= f.label :longitude %>
+    <%= f.text_field :longitude %>
+  </div>
+
+  <div class="field">
+    <%= f.label :num_desenho %>
+    <%= f.number_field :num_desenho %>
+  </div>
+
+  <div class="field">
+    <%= f.label :acesso %>
+    <%= f.check_box :acesso %>
+  </div>
+
+  <div class="field">
+    <%= f.label :data_criacao %>
+    <%= f.datetime_select :data_criacao %>
+  </div>
+
+  <div class="field">
+    <%= f.label :data_exclusao %>
+    <%= f.datetime_select :data_exclusao %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

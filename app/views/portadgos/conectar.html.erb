@@ -1,0 +1,24 @@
+<%= form_tag(dgo_portadgo_conf_conexao_path, :method => :post) do %>
+
+  <%= @dgo.cod %>
+  <%= @portadgo.cod %>
+
+  <%= select_tag "dgos", options_from_collection_for_select(@dgos_conectar, "id", "cod") %>
+
+
+  <%= select_tag "ce", options_from_collection_for_select(@ce_conectar, "id", "cod") %>
+
+  <%= label_tag(:qnt_trechos, "Quantidade de trechos:") %>
+  <%= text_field_tag(:qnt_trechos) %>
+
+  <%= label_tag(:qnt_fibras, "Quantidade de fibras do cabo de acesso:") %>
+  <%= text_field_tag(:qnt_fibras) %>
+
+  <%= label_tag(:portadgo, "Porta DGO:") %>
+  <%= text_field_tag(:portadgo) %>
+
+  <%= label_tag(:fibra, "Fibras:") %>
+  <%= text_field_tag(:fibra) %>
+
+  <%= submit_tag("Conectar") %>
+<% end %>

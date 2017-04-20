@@ -1,0 +1,1 @@
+json.partial! "nobreaks/nobreak", nobreak: @nobreak

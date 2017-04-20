@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Geradores</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Site</th>
+      <th>Potencia</th>
+      <th>Fabricante</th>
+      <th>Patrimonio</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @geradores.each do |gerador| %>
+      <tr>
+        <td><%= gerador.site.nome %></td>
+        <td><%= gerador.potencia %></td>
+        <td><%= gerador.fabricante %></td>
+        <td><%= gerador.patrimonio %></td>
+        <td><%= link_to 'Show', gerador %></td>
+        <td><%= link_to 'Edit', edit_gerador_path(gerador) %></td>
+        <td><%= link_to 'Destroy', gerador, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Gerador', new_gerador_path %>

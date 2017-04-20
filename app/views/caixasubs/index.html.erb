@@ -1,0 +1,43 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Caixasubs</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Cod</th>
+      <th>Tipo</th>
+      <th>Infra</th>
+      <th>Latitude</th>
+      <th>Longitude</th>
+      <th>Num desenho</th>
+      <th>Tipo tampa</th>
+      <th>Reserva</th>
+      <th>Caixa emenda</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @caixasubs.each do |caixasub| %>
+      <tr>
+        <td><%= caixasub.cod %></td>
+        <td><%= caixasub.tipo %></td>
+        <td><%= caixasub.infra %></td>
+        <td><%= caixasub.latitude %></td>
+        <td><%= caixasub.longitude %></td>
+        <td><%= caixasub.num_desenho %></td>
+        <td><%= caixasub.tipo_tampa %></td>
+        <td><% if caixasub.reserva != nil %><%= caixasub.reserva.cod %><% end %></td>
+        <td><% if caixasub.caixaemenda != nil %><%= caixasub.caixaemenda.cod %><% end %></td>
+        <td><%= link_to 'Show', caixasub %></td>
+        <td><%= link_to 'Edit', edit_caixasub_path(caixasub) %></td>
+        <td><%= link_to 'Destroy', caixasub, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Caixasub', new_caixasub_path %>

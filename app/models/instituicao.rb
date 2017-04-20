@@ -2,6 +2,7 @@ class Instituicao < ApplicationRecord
   belongs_to :categoria, required: true
   has_one :endereco, inverse_of: :instituicao, dependent: :destroy
   has_many :responsaveis, inverse_of: :instituicao, dependent: :destroy
+  has_many :sites
 
   validates :nome, presence: true, length: {in: 2..255}
   validates :sigla, presence: true

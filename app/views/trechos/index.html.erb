@@ -1,0 +1,59 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Trechos</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Segmento</th>
+      <th>Cod</th>
+      <th>Comprimento</th>
+      <th>Ano fabricacao</th>
+      <th>Infra</th>
+      <th>Proprietario</th>
+      <th>Fabricante</th>
+      <th>Tipo</th>
+      <th>Data criacao</th>
+      <th>Data exclusao</th>
+      <th>Acesso</th>
+      <th>DGO</th>
+      <th>Cabo acesso</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @trechos.each do |trecho| %>
+      <tr>
+        <td><%= trecho.segmento.numero %></td>
+        <td><%= trecho.cod %></td>
+        <td><%= trecho.comprimento %></td>
+        <td><%= trecho.ano_fabricacao %></td>
+        <td><%= trecho.infra %></td>
+        <td><%= trecho.proprietario %></td>
+        <td><%= trecho.fabricante %></td>
+        <td><%= trecho.tipo %></td>
+        <td><%= trecho.data_criacao %></td>
+        <td><%= trecho.data_exclusao %></td>
+        <td><%= trecho.acesso %></td>
+        <% if trecho.dgo_id != nil %>
+        <td><%= trecho.dgo_id %></td>
+        <% else %>
+        <td></td>
+        <% end %>
+        <% if trecho.caboacesso != nil %>
+        <td><%= trecho.caboacesso.cod %></td>
+        <% else %>
+        <td></td>
+        <% end %>
+        <td><%= link_to 'Show', trecho %></td>
+        <td><%= link_to 'Edit', edit_trecho_path(trecho) %></td>
+        <td><%= link_to 'Destroy', trecho, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Trecho', new_trecho_path %>

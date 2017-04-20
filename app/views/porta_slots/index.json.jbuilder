@@ -1,0 +1,1 @@
+json.array! @porta_slots, partial: 'porta_slots/porta_slot', as: :porta_slot

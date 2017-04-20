@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Porta slot:</strong>
+  <%= @gbic.porta_slot.porta %>
+</p>
+
+<p>
+  <strong>Serie:</strong>
+  <%= @gbic.serie %>
+</p>
+
+<p>
+  <strong>Patrimonio:</strong>
+  <%= @gbic.patrimonio %>
+</p>
+
+<p>
+  <strong>Tipo:</strong>
+  <%= @gbic.tipo %>
+</p>
+<h2>Portas DGO</h2>
+<%= render @gbic.portadgos.order(cod: :asc) %>
+<%= link_to "Nova Porta DGO", controller: "portadgos", action: "new", gbic: @gbic %>
+
+<%= link_to 'Edit', edit_gbic_path(@gbic) %> |
+<%= link_to 'Back', gbics_path %>

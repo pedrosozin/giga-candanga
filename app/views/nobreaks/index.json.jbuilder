@@ -1,0 +1,1 @@
+json.array! @nobreaks, partial: 'nobreaks/nobreak', as: :nobreak

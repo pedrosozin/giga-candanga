@@ -1,0 +1,47 @@
+<%= form_for(incidente) do |f| %>
+  <% if incidente.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(incidente.errors.count, "error") %> prohibited this incidente from being saved:</h2>
+
+      <ul>
+      <% incidente.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :trecho_id %>
+    <%= f.collection_select(:trecho_id, @trechos,:id, :cod, :prompt => true) %></p>
+  </div>
+
+  <div class="field">
+    <%= f.label :cod %>
+    <%= f.text_field :cod %>
+  </div>
+
+  <div class="field">
+    <%= f.label :data %>
+    <%= f.datetime_select :data %>
+  </div>
+
+  <div class="field">
+    <%= f.label :latitude %>
+    <%= f.text_field :latitude %>
+  </div>
+
+  <div class="field">
+    <%= f.label :longitude %>
+    <%= f.text_field :longitude %>
+  </div>
+
+  <div class="field">
+    <%= f.label :responsavel %>
+    <%= f.text_field :responsavel %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,31 @@
+<%= form_for(fusao) do |f| %>
+  <% if fusao.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(fusao.errors.count, "error") %> prohibited this fusao from being saved:</h2>
+
+      <ul>
+      <% fusao.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <% if @fusao.fibra %>
+      <%= f.hidden_field 'fibra_id' %>
+    <% else %>
+    <p><%= f.label :fibra_id %><br />
+    <%= f.collection_select(:fibra_id, @fibras,:id, :numero, :prompt => true) %></p>
+    <% end %>
+  </div>
+
+  <div class="field">
+    <p><%= f.label :fibra2_id %>
+    <%= f.collection_select(:fibra2_id, @fibras,:id, :numero, :prompt => true) %></p>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

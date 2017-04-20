@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Ipa:</strong>
+  <%= @caboacesso.ipa.nome %>
+  <%= link_to '(mostrar)', @caboacesso.ipa %>
+</p>
+
+<p>
+  <strong>Dgo:</strong>
+  <%= @caboacesso.dgo.cod %>
+  <%= link_to '(mostrar)', @caboacesso.dgo %>
+</p>
+
+<p>
+  <strong>Cod:</strong>
+  <%= @caboacesso.cod %>
+</p>
+
+<p>
+  <strong>Comprimento:</strong>
+  <%= @caboacesso.comprimento %>
+</p>
+
+<p>
+  <strong>Qtd fibras:</strong>
+  <%= @caboacesso.qtd_fibras %>
+</p>
+
+<h2>Trechos</h2>
+<%= render @caboacesso.trechos.order(cod:) %>
+<%= link_to 'Edit', edit_caboacesso_path(@caboacesso) %> |
+<%= link_to 'Back', caboacessos_path %>

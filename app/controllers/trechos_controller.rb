@@ -1,10 +1,10 @@
 class TrechosController < ApplicationController
   before_action :set_trecho, only: [:show, :edit, :update, :destroy]
-  has_scope :por_segmento
+ 
   # GET /trechos
   # GET /trechos.json
   def index
-    @trechos = apply_scopes(Trecho).all
+    @trechos = Trecho.all
   end
 
   # GET /trechos/1

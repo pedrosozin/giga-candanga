@@ -1,0 +1,1 @@
+json.partial! "ipas/ipa", ipa: @ipa

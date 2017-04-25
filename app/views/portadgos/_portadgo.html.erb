@@ -1,20 +1,24 @@
 <p>
     <% @achou = 0%>
+     
    <%= portadgo.cod %>  
-   <%= portadgo.gbic.serie %> 
+   <!--<%= portadgo.gbic.serie %> -->
+   <%= portadgo.fibra.numero %> 
+
    <% if portadgo.fibra %>
-    <% @conectadas.each do |t| %>
-    <% if  t.numero == portadgo.fibra.numero %>
-      <%= 'Conectada' %>
+    <% @fusoes.each do |t| %>
+    <% if  t.fibra.numero == portadgo.fibra.numero %>
+      <%=  "#{portadgo.fibra.fusao.conexao.site.nome}" %>
       <% @achou = 1%>
-     	<% break %>
+      <% break %>
    <% end %>
   <% end %>
   <% if @achou == 0 %>
-  <%= link_to'Vaga', "#{portadgo.dgo_id}/portadgos/#{portadgo.id}/conectar" %>
+  <%= link_to'Vaga', "#{@link}"+"#{portadgo.dgo_id}/portadgos/#{portadgo.id}/conectar" %>
   <% end %>
   <% end %>
 
+ 
 
    <%= link_to '(remover)', portadgo, method: :delete, data: { confirm: 'Are you sure?' } %>
    <%= link_to '(mostrar)', portadgo %>

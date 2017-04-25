@@ -4,4 +4,5 @@ class Site < ApplicationRecord
 	has_many :nobreaks
 	has_many :switches
 	has_many :dgos
+	has_many :conexoes
 end

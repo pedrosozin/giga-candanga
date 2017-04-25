@@ -1,0 +1,6 @@
+/* line 13, C:/giga-candanga/app/assets/stylesheets/categorias.scss */
+button.nova-categoria {
+  margin: 25px 0;
+  display: block;
+  min-width: 150px;
+}

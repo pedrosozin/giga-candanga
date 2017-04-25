@@ -20,17 +20,21 @@
   <%= @dgo.qtd_portas %>
 </p>
 
+
+
 <h2>Portas DGO:</h2>
 <%= render @dgo.portadgos.sort_by { |a| -(a.cod.to_i)}.reverse!%>
 <%= link_to "Nova Porta DGO", controller: "portadgos", action: "new", dgo: @dgo %>
 
+
+
 <% if @dgo.segmento %>
-	<p>
-	  <strong>Segmento:</strong>
-	  <%= @dgo.segmento.numero %>
+  <p>
+    <strong>Segmento:</strong>
+    <%= @dgo.segmento.numero %>
       <%= link_to '(mostrar)', @dgo.segmento %>
 
-	</p>
+  </p>
 <% end %>
 
 <% if @dgo.trecho %>

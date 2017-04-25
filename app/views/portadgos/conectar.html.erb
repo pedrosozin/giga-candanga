@@ -2,6 +2,9 @@
 
   <%= @dgo.cod %>
   <%= @portadgo.cod %>
+  <%= @dupla %>
+  <%= select_tag "dgo1", options_from_collection_for_select(@dgos_conectar, "id", "cod") %>
+
 
   <%= select_tag "dgos", options_from_collection_for_select(@dgos_conectar, "id", "cod") %>
 

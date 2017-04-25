@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Nome:</strong>
+  <%= @ipa.nome %>
+</p>
+
+<p>
+  <strong>Tipo:</strong>
+  <%= @ipa.tipo %>
+</p>
+<h2>Contatos</h2>
+<%= render @ipa.contatos %>
+<h2>Sites</h2>
+<%= render @ipa.sites %>
+<%= link_to "Novo contato", controller: "contatos", action: "new", ipa: @ipa %>
+<%= link_to "Novo site", controller: "sites", action: "new", ipa: @ipa %>
+<%= link_to 'Edit', edit_ipa_path(@ipa) %> |
+<%= link_to 'Back', ipas_path %>

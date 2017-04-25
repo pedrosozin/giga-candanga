@@ -10,6 +10,12 @@ class DgosController < ApplicationController
   # GET /dgos/1
   # GET /dgos/1.json
   def show
+    @conexoes = Conexao.where(dgo_origem_id: (params[:id]))
+    @fusoes = Fusao.find_by_sql("SELECT DISTINCT * FROM fusoes where conexao_id IN (Select id from conexoes where dgo_origem_id = #{params[:id]}); ")
+
+
+
+
     @conectadas = Fibra.find_by_sql("Select DISTINCT numero from fibras where id in (Select fibra_id from caixaemendas_fibras where caixaemendas_fibras.caixaemenda_id in (SELECT caixaemendas.id from caixaemendas where  cod REGEXP 'EO-09' and acesso = 1));")
   end
 

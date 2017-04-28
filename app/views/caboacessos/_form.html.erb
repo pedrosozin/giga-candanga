@@ -12,11 +12,11 @@
   <% end %>
 
   <div class="field">
-    <% if @caboacesso.ipa %>
-      <%= f.hidden_field 'ipa_id' %>
+    <% if @caboacesso.site %>
+      <%= f.hidden_field 'site_id' %>
     <% else %>
-    <p><%= f.label :ipa_id %><br />
-    <%= f.collection_select(:ipa_id, @ipas,:id, :nome, :prompt => true) %></p>
+    <p><%= f.label :site_id %><br />
+    <%= f.collection_select(:site_id, @sites,:id, :nome, :prompt => true) %></p>
     <% end %>
   </div>
 

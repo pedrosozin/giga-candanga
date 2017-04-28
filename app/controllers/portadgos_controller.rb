@@ -10,12 +10,13 @@ class PortadgosController < ApplicationController
   # GET /portadgos/1
   # GET /portadgos/1.json
   def show
-    @conectadas = Fibra.find_by_sql("Select DISTINCT numero from fibras where id in (Select fibra_id from caixaemendas_fibras where caixaemendas_fibras.caixaemenda_id in (SELECT caixaemendas.id from caixaemendas where  cod REGEXP 'EO-09' and acesso = 1));")
+    @conectadas = Fibra.find_by_sql("Select DISTINCT numero from fibras where id in (Select fibra_id from caixaemendas_fibras where caixaemendas_fibras.caixaemenda_id in (SELECT caixaemendas.id from caixaemendas where  cod LIKE 'EO-09' and acesso = '1'));")
     if params[:dgo]
       @link = "#{portadgo.dgo_id}/portadgos/#{portadgo.id}/conectar"
     end
-    id params[:segmento]
+    if params[:segmento]
       @link = "#{portadgo.dgo.segmento_id}/dgosportadgo.dgo_id}/portadgos/#{portadgo.id}/conectar"
+    end
   end
 
   # GET /portadgos/new
@@ -88,7 +89,7 @@ class PortadgosController < ApplicationController
     #@fibras = Fibra.where(tubeloose_id: [@tubelooses[0].id, @tubelooses[1].id,@tubelooses[2].id,@tubelooses[3].id,@tubelooses[4].id,@tubelooses[5].id,@tubelooses[6].id,@tubelooses[7].id,@tubelooses[8].id,@tubelooses[9].id,@tubelooses[10].id,@tubelooses[11].id])
     @dgos_conectar = Dgo.all
     #@conectadas = Fibra.find_by_sql("Select DISTINCT numero from fibras where id in (Select fibra_id from caixaemendas_fibras where caixaemendas_fibras.caixaemenda_id in (SELECT caixaemendas.id from caixaemendas where  cod REGEXP 'EO-09' and acesso = 1));")
-    @ce_conectar = Caixaemenda.find_by_sql("SELECT DISTINCT * from caixaemendas where cod REGEXP 'EO-0#{@dgo.segmento.numero}' and acesso != 1 ")
+    @ce_conectar = Caixaemenda.find_by_sql("SELECT DISTINCT * from caixaemendas where cod LIKE 'EO-0#{@dgo.segmento.numero}%' and acesso != '1' ")
   end
 
   def criar_cabo_acesso (cabo_id,dgo_id,seg_id,qnt_trechos, cod_ce, fibra, portadgo, conexao_id, fusao_id)
@@ -128,13 +129,13 @@ class PortadgosController < ApplicationController
               
               if m == fibra.to_i and i == qnt_trechos.to_i
                 puts "entrou"
-                @pt_dgo = Portadgo.find_by("dgo_id = ? AND cod = ?", dgo_id.to_i ,portadgo.to_i)
+                @pt_dgo = Portadgo.find_by("dgo_id = ? AND cod = ?", dgo_id.to_i ,portadgo)
                 @fibra.portadgo_id = @pt_dgo.id
 
               end
 
               if (((m == ((fibra.to_i) + 1))) and (i == qnt_trechos.to_i))
-                @pt_dgo = Portadgo.find_by("dgo_id = ? AND cod = ?", dgo_id.to_i ,(portadgo.to_i + 1))
+                @pt_dgo = Portadgo.find_by("dgo_id = ? AND cod = ?", dgo_id.to_i ,(portadgo.to_i + 1).to_s)
                 @fibra.portadgo_id = @pt_dgo.id
               end
 
@@ -187,9 +188,9 @@ class PortadgosController < ApplicationController
     @dgo = Dgo.find_by(id: params[:dgos])
     @ce = Caixaemenda.find_by(id: params[:ce]) 
     @segmento = Segmento.find_by(id: @dgo.segmento_id)
-    if  Caboacesso.exists?(ipa_id: @dgo.site.ipa_id)
+    if  Caboacesso.exists?(site_id: @dgo.site_id)
       existente = 1
-      @caboacesso = Caboacesso.find_by(ipa_id: @dgo.site.ipa_id)
+      @caboacesso = Caboacesso.find_by(site_id: @dgo.site_id)
       @pt_dgo = Portadgo.find_by("dgo_id = ? AND cod = ?", @dgo.id ,@portadgo)
       puts @pt_dgo.id
       @trecho = Trecho.find_by("dgo_id = ? AND caboacesso_id = ?", @dgo.id, @caboacesso.id)
@@ -204,7 +205,7 @@ class PortadgosController < ApplicationController
 
     else
       @caboacesso = Caboacesso.new
-      @caboacesso.ipa_id = @dgo.site.ipa_id
+      @caboacesso.site_id = @dgo.site_id
       @caboacesso.dgo_id = @dgo.id
       @caboacesso.qtd_fibras = @qnt_fibras.to_i
       @caboacesso.cod = "Acesso "+@dgo.cod.split("_").first

@@ -30,6 +30,22 @@ ActiveSupport::Inflector.inflections do |inflect|
   inflect.plural(/ão$/i,  'ões')
   inflect.plural(/^(irm|m)ão$/i,  '\1ãos')
   inflect.plural(/^(alem|c|p)ão$/i,  '\1ães')
+  inflect.irregular 'ipa', 'ipas'
+  inflect.irregular 'site', 'sites'
+  inflect.irregular 'nobreak', 'nobreaks'
+  inflect.irregular 'gerador', 'geradores'
+  inflect.irregular 'contato', 'contatos'
+  inflect.irregular 'portadgo', 'portadgos'
+  inflect.irregular 'dgo', 'dgos'
+  inflect.irregular 'poste', 'postes'
+  inflect.irregular 'trecho', 'trechos'
+  inflect.irregular 'incidente', 'incidentes'
+  inflect.irregular 'trecho', 'trechos'
+  inflect.irregular 'caboacesso', 'caboacessos'
+  inflect.irregular 'fusao', 'fusoes'
+  inflect.irregular 'conexao', 'conexoes'
+  inflect.irregular 'jumper', 'jumpers'
+  inflect.irregular 'switch', 'switches'
 
   # Sem acentos...
   inflect.plural(/ao$/i,  'oes')

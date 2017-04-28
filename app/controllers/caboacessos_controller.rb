@@ -16,8 +16,8 @@ class CaboacessosController < ApplicationController
   def new
     preparar_form
     @caboacesso = Caboacesso.new
-    if params[:ipa]
-      @caboacesso.ipa = Ipa.find(params[:ipa])
+    if params[:site]
+      @caboacesso.site = Site.find(params[:site])
     end
     if params[:dgo]
       @caboacesso.dgo = Dgo.find(params[:dgo])
@@ -79,11 +79,11 @@ class CaboacessosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def caboacesso_params
-      params.require(:caboacesso).permit(:ipa_id, :dgo_id, :cod, :comprimento, :qtd_fibras)
+      params.require(:caboacesso).permit(:site_id, :dgo_id, :cod, :comprimento, :qtd_fibras)
     end
 
     def preparar_form
-      @ipas = Ipa.order :nome
+      @sites = Site.order :nome
       @dgos = Dgo.order :cod
     end
 end

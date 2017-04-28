@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170411194036) do
+ActiveRecord::Schema.define(version: 20170421014442) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,8 +33,8 @@ ActiveRecord::Schema.define(version: 20170411194036) do
     t.string   "longitude"
     t.integer  "num_desenho"
     t.boolean  "acesso"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "caixaemendas_fibras", id: false, force: :cascade do |t|
@@ -84,6 +84,32 @@ ActiveRecord::Schema.define(version: 20170411194036) do
     t.boolean  "ativa",      default: true
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
+  end
+
+  create_table "conexoes", force: :cascade do |t|
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.integer  "segmento_id"
+    t.integer  "caixaemenda_id"
+    t.integer  "caboacesso_id"
+    t.integer  "dgo_origem_id"
+    t.integer  "dgo_site_id"
+    t.integer  "switch_origem_id"
+    t.integer  "switch_site_id"
+    t.integer  "site_id"
+    t.integer  "concentrador_id"
+    t.integer  "gbic_origem_id"
+    t.integer  "gbic_site_id"
+    t.index ["caboacesso_id"], name: "index_conexoes_on_caboacesso_id", using: :btree
+    t.index ["caixaemenda_id"], name: "index_conexoes_on_caixaemenda_id", using: :btree
+    t.index ["concentrador_id"], name: "index_conexoes_on_concentrador_id", using: :btree
+    t.index ["dgo_origem_id"], name: "index_conexoes_on_dgo_origem_id", using: :btree
+    t.index ["dgo_site_id"], name: "index_conexoes_on_dgo_site_id", using: :btree
+    t.index ["gbic_origem_id"], name: "index_conexoes_on_gbic_origem_id", using: :btree
+    t.index ["gbic_site_id"], name: "index_conexoes_on_gbic_site_id", using: :btree
+    t.index ["segmento_id"], name: "index_conexoes_on_segmento_id", using: :btree
+    t.index ["site_id"], name: "index_conexoes_on_site_id", using: :btree
+    t.index ["switch_origem_id"], name: "index_conexoes_on_switch_origem_id", using: :btree
   end
 
   create_table "contatos", force: :cascade do |t|
@@ -152,6 +178,8 @@ ActiveRecord::Schema.define(version: 20170411194036) do
   create_table "fusoes", force: :cascade do |t|
     t.integer "fibra_id"
     t.integer "fibra2_id"
+    t.integer "conexao_id"
+    t.index ["conexao_id"], name: "index_fusoes_on_conexao_id", using: :btree
     t.index ["fibra2_id"], name: "index_fusoes_on_fibra2_id", using: :btree
     t.index ["fibra_id", "fibra2_id"], name: "index_fusoes_on_fibra_id_and_fibra2_id", unique: true, using: :btree
     t.index ["fibra_id"], name: "index_fusoes_on_fibra_id", using: :btree

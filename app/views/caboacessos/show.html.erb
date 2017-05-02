@@ -1,9 +1,9 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Ipa:</strong>
-  <%= @caboacesso.ipa.nome %>
-  <%= link_to '(mostrar)', @caboacesso.ipa %>
+  <strong>Site:</strong>
+  <%= @caboacesso.site_id %>
+  <%= link_to '(mostrar)', @caboacesso.site %>
 </p>
 
 <p>
@@ -28,6 +28,6 @@
 </p>
 
 <h2>Trechos</h2>
-<%= render @caboacesso.trechos.order(cod:) %>
+<%= render @caboacesso.trechos.order(:cod) %>
 <%= link_to 'Edit', edit_caboacesso_path(@caboacesso) %> |
 <%= link_to 'Back', caboacessos_path %>

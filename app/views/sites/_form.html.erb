@@ -11,7 +11,8 @@
     </div>
   <% end %>
 
-  <div class="field">
+ <!-- 
+ <div class="field">
     <% if @site.ipa %>
       <%= f.hidden_field 'ipa_id' %>
     <% else %>
@@ -19,7 +20,7 @@
     <%= f.collection_select(:ipa_id, @ipas,:id, :nome, :prompt => true) %></p>
     <% end %>
   </div>
-
+  -->
   <div class="field">
     <%= f.label :nome %>
     <%= f.text_field :nome %>

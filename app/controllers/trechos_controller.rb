@@ -80,7 +80,7 @@ class TrechosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def trecho_params
-      params.require(:trecho).permit(:segmento_id, :cod, :comprimento, :ano_fabricacao, :infra, :proprietario, :fabricante, :tipo, :data_criacao, :data_exclusao, :acesso, :dgo_id, :caboacesso)
+      params.require(:trecho).permit(:segmento_id, :cod, :comprimento, :ano_fabricacao, :infra, :proprietario, :fabricante, :tipo, :created_at, :updated_at, :acesso, :dgo_id, :caboacesso)
     end
     def preparar_form
       @segmentos = Segmento.order :numero

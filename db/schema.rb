@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170421014442) do
+ActiveRecord::Schema.define(version: 20170503214813) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -87,8 +87,8 @@ ActiveRecord::Schema.define(version: 20170421014442) do
   end
 
   create_table "conexoes", force: :cascade do |t|
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.integer  "segmento_id"
     t.integer  "caixaemenda_id"
     t.integer  "caboacesso_id"
@@ -179,7 +179,6 @@ ActiveRecord::Schema.define(version: 20170421014442) do
     t.integer "fibra_id"
     t.integer "fibra2_id"
     t.integer "conexao_id"
-    t.index ["conexao_id"], name: "index_fusoes_on_conexao_id", using: :btree
     t.index ["fibra2_id"], name: "index_fusoes_on_fibra2_id", using: :btree
     t.index ["fibra_id", "fibra2_id"], name: "index_fusoes_on_fibra_id_and_fibra2_id", unique: true, using: :btree
     t.index ["fibra_id"], name: "index_fusoes_on_fibra_id", using: :btree

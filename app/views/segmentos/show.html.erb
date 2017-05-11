@@ -9,9 +9,14 @@
   <strong>Comprimento:</strong>
   <%= @segmento.comprimento %>
 </p>
-<!--<h2>Dgos:</h2>
-<%= render @segmento.dgos %>
--->
+
+
+<h2>DGOs: </h2>
+<%= render @dgos %>
+
+
+
+
 <h2>Caixas de Emenda especiais: </h2>
 <% @segmento.caixaemendas.each do |t| %>
         <p><%= t.cod %></p>
@@ -19,6 +24,7 @@
 <!--<h2>Trechos</h2>
 <%= render @segmento.trechos %>
 -->	
+
 <%= render @dgo.portadgos.sort_by { |a| -(a.cod.to_i)}.reverse!%> %>
 
 <%= link_to "Novo incidente", controller: "incidentes", action: "new", trecho: @trecho %>

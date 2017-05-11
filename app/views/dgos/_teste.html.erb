@@ -1,0 +1,26 @@
+<% @portas = @dgo.portadgos.sort_by { |a| -(a.cod.to_i)}.reverse%>
+<% i = 0 %>
+<% while (i < @dgo.portadgos.count) do %>
+<% @achou = 0%>
+<%= @portas[i].fibra.numero%>
+<%= "/" %>
+<%= @portas[i+1].fibra.numero%>
+<% if @portas[i].fibra %>
+    <% @fusoes.each do |t| %>
+    <% if  t.fibra.numero == @portas[i].fibra.numero %>
+      <%=  "#{@portas[i].fibra.fusao.conexao.site.nome}--" %>
+      <%= "--#{@portas[i].fibra.fusao.conexao.caixaemenda.cod}" %>
+      <% @achou = 1%>
+      <% break %>
+   <% end %>
+  <% end %>
+  <% if @achou == 0 %>
+  <%= link_to'Vaga', "#{@link}"+"#{@portas[i].dgo_id}/portadgos/#{@portas[i].id}/conectar" %>
+  <% end %>
+  <% end %>
+  <%= link_to '(remover)', @portas[i], method: :delete, data: { confirm: 'Are you sure?' } %>
+   <%= link_to '(mostrar)', @portas[i] %>
+  </br>
+<% i = i + 2%>
+<% end %>
+

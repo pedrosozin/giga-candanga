@@ -1,5 +1,7 @@
-<p>
+	<p>
    <%= dgo.cod %>  
+   <%= render partial: "dgos/teste"  , locals: { dgo: @dgos } %>
+
    <%= link_to '(remover)', dgo, method: :delete, data: { confirm: 'Are you sure?' } %>
    <%= link_to '(mostrar)', dgo %>
  </p>

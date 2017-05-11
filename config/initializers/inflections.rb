@@ -84,6 +84,7 @@ ActiveSupport::Inflector.inflections do |inflect|
   inflect.irregular 'conexao', 'conexoes'
   inflect.irregular 'jumper', 'jumpers'
   inflect.irregular 'switch', 'switches'
+  inflect.irregular 'tubeloose', 'tubelooses'
 
   
 

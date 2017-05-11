@@ -23,7 +23,7 @@
 
 
 <h2>Portas DGO:</h2>
-<%= render @dgo.portadgos.sort_by { |a| -(a.cod.to_i)}.reverse!%>
+<%= render partial: "teste" %>
 <%= link_to "Nova Porta DGO", controller: "portadgos", action: "new", dgo: @dgo %>
 
 

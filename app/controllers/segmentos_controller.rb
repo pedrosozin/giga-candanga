@@ -11,7 +11,8 @@ class SegmentosController < ApplicationController
   # GET /segmentos/1.json
   def show
     #@dgos = Dgo.where(segmento_id: params[:id], site.tipo: 1)
-    @dgos = Dgo.find_by_sql("SELECT DISTINCT * From dgos  where segmento_id = #{params[:id]} and site_id IN (Select id from sites where tipo = 1);")
+    @dgos = Dgo.find_by_sql("SELECT DISTINCT * From dgos  where segmento_id = #{params[:id]} and site_id IN (Select id from sites where tipo = '1');")
+    
     count  = 0
     @dgos.each do |t|
       if count < Conexao.where(dgo_origem_id: t.id).count
@@ -20,7 +21,8 @@ class SegmentosController < ApplicationController
       end
     end
     @link = "#{params[:id]}/dgos/"
-    @fusoes = Fusao.find_by_sql("SELECT DISTINCT * FROM fusoes where conexao_id IN (Select id from conexoes where dgo_origem_id = #{@dgo.id}); ")
+    #@fusoes = Fusao.find_by_sql("SELECT DISTINCT * FROM fusoes where conexao_id IN (Select id from conexoes where dgo_origem_id = #{@dgo.id}); ")
+     @fusoes = Fusao.find_by_sql("SELECT DISTINCT * FROM fusoes where conexao_id IN (Select id from conexoes where dgo_origem_id = #{@dgo.id}); ")
   end
 
   # GET /segmentos/new

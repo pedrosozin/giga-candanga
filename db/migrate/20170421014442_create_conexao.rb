@@ -1,7 +1,8 @@
  class CreateConexao < ActiveRecord::Migration[5.0]
   def change
-       create_table :conexoes do |t|
-    t.timestamps
+     create_table :conexoes do |t|
+     t.column  :created_at , :timestamp, :null => true
+     t.column  :updated_at , :timestamp, :null => true
      t.integer :segmento_id
      t.integer :caixaemenda_id
      t.integer :caboacesso_id

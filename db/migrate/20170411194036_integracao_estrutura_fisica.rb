@@ -18,7 +18,10 @@ class IntegracaoEstruturaFisica < ActiveRecord::Migration[5.0]
     t.string   "longitude"
     t.integer  "num_desenho"
     t.boolean  "acesso"
-    t.timestamps, null: true
+    t.column  :created_at , :timestamp, :null => true
+    t.column  :updated_at , :timestamp, :null => true
+
+
   end
 
   create_table "caixaemendas_fibras", id: false, force: :cascade do |t|
@@ -230,7 +233,8 @@ class IntegracaoEstruturaFisica < ActiveRecord::Migration[5.0]
     t.string   "proprietario"
     t.string   "fabricante"
     t.string   "tipo"
-    t.timestamps, null: true
+    t.column  :created_at , :timestamp, :null => true
+    t.column  :updated_at , :timestamp, :null => true
     t.integer  "acesso"
     t.references :dgo
     t.references :segmento

@@ -28,7 +28,7 @@
  	 add_index :conexoes, :concentrador_id
  	 add_index :conexoes, :gbic_origem_id
  	 add_index :conexoes, :gbic_site_id
- 	 add_index :fusoes, :conexao_id
+ 	 
 
   end 
 

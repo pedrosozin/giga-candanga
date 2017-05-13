@@ -26,3 +26,6 @@ checklist.txt
 
 #ignore RubyMine folder
 .idea/
+
+/config/database.yml
+/config/secrets.yml

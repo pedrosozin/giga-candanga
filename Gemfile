@@ -7,25 +7,8 @@ end
 
 # ruby '2.4.0'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.0.1
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-'
+gem 'rails', '~> 5.0.1'
+#gem 'capistrano'
 # Use postgresql as the database for Active Record
 gem 'pg', '~> 0.18'
 # Use Puma as the app server
@@ -95,14 +78,30 @@ group :development, :test do
 	gem 'rubocop', require: false
 end
 
+#group :development do
+#	# Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
+#	gem 'web-console', '>= 3.3.0'
+#	gem 'listen', '~> 3.0.5'
+#	# Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
+#	gem 'spring'
+#	gem 'spring-watcher-listen', '~> 2.0.0'
+ #       ##################
+#	gem 'capistrano'
+#	# cap tasks to manage puma application server
+#	gem 'capistrano-puma', require: false
+#	gem 'capistrano-rails',   '~> 1.1', require: false
+#	gem 'capistrano-bundler', '~> 1.1', require: false
+#	gem 'capistrano-rvm',   '~> 0.1', require: false
+#end
+
 group :development do
-	# Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
-	gem 'web-console', '>= 3.3.0'
-	gem 'listen', '~> 3.0.5'
-	# Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-	gem 'spring'
-	gem 'spring-watcher-listen', '~> 2.0.0'
+   gem 'capistrano',         '~> 3.8.1', require: false
+   gem 'capistrano-rvm',     '~> 0.1',   require: false
+   gem 'capistrano-rails',   '~> 1.1.7', require: false
+   gem 'capistrano-bundler', '~> 1.1.4', require: false
+   gem 'capistrano3-puma',   '~> 1.2.1', require: false
 end
+
 
 group :production do
 	gem 'rails_12factor'
